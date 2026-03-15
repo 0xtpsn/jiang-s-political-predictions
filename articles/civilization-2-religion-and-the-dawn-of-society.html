@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civilization #2: Religion and the Dawn of Society — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Civilization #2: Religion and the Dawn of Society">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #06b6d4;
+            --accent-bg: rgba(6, 182, 212, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Civilization #2</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Civilization #2</div>
+        <h1 class="article-title">Religion and the Dawn of Society</h1>
+        <div class="article-meta">
+            <span>📖 45 min read</span>
+            <span>📝 8,921 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Civilization #2：  Religion and the Dawn of Society</p>
+<p><span class="timestamp">[0:04]</span> okay to review last class we discussed uh three PR prehistorical sites right including goe Jericho and K Hoak and the argument I made to you um last class which is the general scholarly which is the general scholarly consensus is that um what drove what consensus is that um what drove what compelled the transition to agriculture compelled the transition to agriculture was was the religious beliefs of the was was the religious beliefs of the</p>
+<p><span class="timestamp">[0:35]</span> people at that time okay so it was Humanity&#x27;s religious impulse that uh Humanity&#x27;s religious impulse that uh drove our transition into agriculture drove our transition into agriculture drove our transition into agriculture what I will show you today okay my what I will show you today okay my argument to you today is that this religious impulse this need for religion this need to understand why we are here today and what we must be doing and where we&#x27;re going it&#x27;s all always been there okay in fact religion is what</p>
+<p><span class="timestamp">[1:06]</span> makes us fundamentally human and to prove this case I&#x27;m going to talk about Ice Age cave paintings so I ask you to look at um these cave paintings that we found all around the world okay that go back 30,000 40,000 years and uh as you can see from um those pictures they&#x27;re beautiful right um and they&#x27;re extremely creative uh creative uh artistic and um so I want to look at artistic and um so I want to look at</p>
+<p><span class="timestamp">[1:37]</span> three questions about the K paintings today first of all how were they painted they didn&#x27;t have the technology we have today so how do they paint these um cave paintings second question is why did they do this because when you&#x27;re in a cave it&#x27;s very dark it&#x27;s very cold and it&#x27;s very hard to breathe but they spend days in there days in there pinning them so why do they do that okay pinning them so why do they do that okay that&#x27;s a second question the third</p>
+<p><span class="timestamp">[2:08]</span> question is the hardest question is um what do these cave pennings represent or what do they what do they mean so um the first Cal yet the first mean so um the first Cal yet the first thing I want you to be aware of is that there&#x27;s absolutely no agreement on any of these questions cave paintings is something that um we have a lot of around the world but there&#x27;s very little evidence as to what they are what they represent and how they were painted so</p>
+<p><span class="timestamp">[2:40]</span> there are a lot of guesses okay and the case that I will present to you today is my own personal interpretation based on my research and my understanding of the evidence but please be aware that um there are many different interpretations there are many different interpretations and the evidence is extremely unclear and the evidence is extremely unclear about many of these things okay okay so um let&#x27;s start the first thing you need</p>
+<p><span class="timestamp">[3:11]</span> to understand is that to understand is that um for most of human history it&#x27;s been um for most of human history it&#x27;s been very cold okay so the Ice Age only ended about 12,000 years ago and we&#x27;ve seen a general warming of the planet which is which has allowed us to adopt agriculture but before then we&#x27;re agriculture but before then we&#x27;re basically living on a very cold planet basically living on a very cold planet now the history of humanity is this 300,000 years 300,000 years ago um we came into being</p>
+<p><span class="timestamp">[3:41]</span> ago um we came into being in in Africa but because the world was became Africa but because the world was became very cold about 100,00 years ago um that meant a scarcity of meant a scarcity of resources and that Force us to seek food resources and that Force us to seek food and resources elsewhere and so that drw of our mov movement into Europe which then drove our movement into Asia and then across the bearing stra remember because this all ice right into North</p>
+<p><span class="timestamp">[4:12]</span> America and into South America and then from Asia we went down to Australia okay so basically so basically colonized um the planet but there were colonized um the planet but there were that many of us there was only about 1 million of us all around the world 20,000 years ago and the other thing to remember is that in this process there were actually other human beings in other places so the neodol were here ne ne the the nans were here and we interbred with them until we</p>
+<p><span class="timestamp">[4:45]</span> became the dominant human species okay okay so does that make sense all right so that&#x27;s the so that&#x27;s the background now let&#x27;s look at some cave background now let&#x27;s look at some cave paintings because uh this is in the shoval cave and we and this started about 30,000 years ago go so these C paintings were a continuous process paintings were a continuous process where different people at different where different people at different where different people at different times went to the caves and painted times went to the caves and painted different pictures they might have added more things to the pictures as well okay but as you can see this is clearly</p>
+<p><span class="timestamp">[5:19]</span> representing animals right bis re re rurus the other thing that&#x27;s interesting that there&#x27;s really no Focus okay you see uh Lions you see horses you see rhinos okay it&#x27;s almost like nature is one interconnected one interconnected picture Okay um these are Okay um these are lions</p>
+<p><span class="timestamp">[5:49]</span> lions lions okay um this is Leo cave about 20,000 okay um this is Leo cave about 20,000 years ago and the most and a very famous artist Pabla Picasso actually was artist Pabla Picasso actually was invited into one of these caves and he invited into one of these caves and he said that wow we learned nothing in 10,000 years meaning that they were just as good back then as they are today artistically speaking humans have not artistically speaking humans have not improved at all</p>
+<p><span class="timestamp">[6:25]</span> okay um so these are okay um so these are horses horses horses okay this is alar Spain which goes back okay this is alar Spain which goes back to 34,000 to 34,000 BCE and uh you can see that they&#x27;re not BCE and uh you can see that they&#x27;re not looking for a realistic depiction of animals okay they&#x27;re trying to imagine the natural world in their own way okay so now the question then is</p>
+<p><span class="timestamp">[6:55]</span> okay how did they paint these pictures so first of all they mainly use red and black okay red came from ochre which is a type of clay and black comes from charal okay so that&#x27;s the coloring they they used um inside a cave it&#x27;s very dark so used um inside a cave it&#x27;s very dark so they had to use lighting okay so what they did was they got some animal animal fat and put fire on it okay so they could see some of the could see some of the um um caves but not all of</p>
+<p><span class="timestamp">[7:28]</span> um um caves but not all of them okay them okay and then um so now the question is why and then um so now the question is why did they paint these pictures and the L clue is this the L clue is where we found these paintings and we found these paintings in a very special place in the cave we found these paintings in the cave the section of the cave where the Acoustics was the best the sound was the</p>
+<p><span class="timestamp">[8:00]</span> best so what this means is is we&#x27;re fairly fairly convinced that these paintings were part convinced that these paintings were part of a ritual which included music because we found musical instruments as well flutes okay so in other words we think that these paintings are like go goe which is like maybe now and then these Hunter gathers would come into</p>
+<p><span class="timestamp">[8:30]</span> this cave for a religious Festival where there&#x27;s music there&#x27;s music dancing okay and there are dancing okay and there are dancing okay and there are watching watching watching these paintings together So these these paintings together So these these paintings together So these paintings are part of a religious paintings are part of a religious Festival in other words these paintings are not about art it&#x27;s really about religion it&#x27;s expressing the religious religion it&#x27;s expressing the religious beliefs of the people at that time okay beliefs of the people at that time okay</p>
+<p><span class="timestamp">[9:08]</span> yes okay so I&#x27;m going to answer the question what are the beliefs right now okay all right so again no one knows what their beliefs are because they they wrote nothing down okay they are preliterate um we can&#x27;t go back in time and talk to them okay so we have to use our our imagination so let&#x27;s imagine that we go imagination so let&#x27;s imagine that we go back in time to this time it&#x27;s very cold and our memories have been wiped</p>
+<p><span class="timestamp">[9:38]</span> out meaning like we&#x27;ve lost the knowledge of today we&#x27;ve lost science we&#x27;ve lost what we learned in Biology class okay so my first question is we&#x27;re in this world and what are things that amaze us or make us Wonder or make us in awe what are things that capture our imagin imagin okay meaning like we see these things okay meaning like we see these things we&#x27;re like oh my God God must exist because there&#x27;s no way I can explain</p>
+<p><span class="timestamp">[10:10]</span> what happened what what are these things that we would see and we would be surprised by be Marvel at basically being an all off what are things about our life that amazes us what what&#x27;s the thing you&#x27;re in this world right you should imagination what&#x27;s one thing should imagination what&#x27;s one thing that&#x27;s like oh okay there must be a God</p>
+<p><span class="timestamp">[10:42]</span> that&#x27;s like oh okay there must be a God or there must be some Supernatural powers that govern our world what&#x27;s the mind how about child mind how about child birth child birth right does that make sense you guys because I&#x27;m a father I have three kids and I can tell you when I first saw my child being born I was amazed because</p>
+<p><span class="timestamp">[11:14]</span> you have this life come out of nothing right okay and if you don&#x27;t if you never biology you can&#x27;t explain what happened so that&#x27;s the first thing that amazes about amazes us about being human childbirth right what&#x27;s the second thing that would Amaze you you if you were back here back here yeah uh child growing up okay so child yeah uh child growing up okay so child</p>
+<p><span class="timestamp">[11:44]</span> else how about else how about yeah okay how about the Stars right it&#x27;s yeah okay how about the Stars right it&#x27;s it&#x27;s late at night and remember there&#x27;s no no pollution so you see out into the pollution so you see out into the darkness and it&#x27;s All Stars glowing right that&#x27;s pretty right that&#x27;s pretty amazing so what do you think these stars are you&#x27;re St into outer space right and</p>
+<p><span class="timestamp">[12:14]</span> you see these Stars glowing brightly in the sky what are the sky what are they what&#x27;s your own explanation really excuse really excuse me okay possibly okay possibly me okay possibly okay possibly me okay possibly okay possibly souls or other worlds okay planets souls or other worlds okay planets worlds in other words the first thing that you recognize is that our world is just one of many world out there does that make that make sense all right what what else amazes</p>
+<p><span class="timestamp">[12:45]</span> sense all right what what else amazes world excuse world excuse me okay recovery from disease okay so me okay recovery from disease okay so healing healing right how how do you explain healing right how how do you explain healing then what thoughts save then what thoughts save you God oh the God save you okay all you God oh the God save you okay all right yeah okay so there are some</p>
+<p><span class="timestamp">[13:21]</span> Powers but another way to explain healing okay is that you have a body and you have a soul right and the soul could be one of the Stars so what&#x27;s causing disease in this world is the soul the body are in conflict and so healing is about bring the soul and the body aligned together okay and we think this because look at Chinese medicine right it&#x27;s the same idea right where the soul</p>
+<p><span class="timestamp">[13:54]</span> and the body are in Conflict right and you want to align the two in order to heal okay so what so other things that were surprised to is nature right the animals the trees the vastness of nature okay now these are things that surprise us and they force us to ask the question why so now let&#x27;s try to construct a theory of how to connect all</p>
+<p><span class="timestamp">[14:26]</span> these things okay all right so we know that the Stars there&#x27;s that the Stars there&#x27;s other powers out there right there has other powers out there right there has to be gods or the soul of really uh great people or other planets or other worlds worlds okay how does child birth happen okay how does child birth happen happen what is the womb it comes from</p>
+<p><span class="timestamp">[15:06]</span> right right so what the womb is is a portal that the so what the womb is is a portal that the soul comes from another world into our world does that make world does that make sense then how do sense then how do sense then how do people return to the other people return to the other people return to the other world if the womb is a portal that world if the womb is a portal that allows soul to come into our world how</p>
+<p><span class="timestamp">[15:45]</span> depth how do we so people die and then burial thank you you understand so right the soul comes into our world from the mother&#x27;s womb from darkness and and then for us to return the soul back into the original World we bury this person in darkness that carries that person back to the original World okay does that make sense okay so this is probably</p>
+<p><span class="timestamp">[16:17]</span> the simplest explanation for how life and death works and death works okay all right okay all right so these there are these portals okay so these there are these portals okay and what in nature most resem resembles womb what in nature most resembles a womb a mother&#x27;s womb a mother&#x27;s womb like a cave right do you understand womb like a cave right do you understand</p>
+<p><span class="timestamp">[16:49]</span> cave so we can think that okay we humans come from a mother&#x27;s womb which is a cave right a tunnel but cave right a tunnel but animals also come from womb which is the animals also come from womb which is the cave okay so the cave is a portal into another another world so why are we in the cave world so why are we in the cave celebrating celebrating animals why are we doing</p>
+<p><span class="timestamp">[17:23]</span> cave cave celebrating animals what what are we celebrating animals what what are we we respect what we respect the soul and what else are we doing because and why soul yeah we kill them right so we kill do let them forgive us but what else are</p>
+<p><span class="timestamp">[17:55]</span> are we really trying to do once we eat them what what what must we do now me yes bring them back right do you understand so when we kill them we think they go back they go back into the spirit world right so now we have to summon them summon them back from the spirit world into our back from the spirit world into our world okay does that make sense so in other other words what this religion what this</p>
+<p><span class="timestamp">[18:27]</span> words what this religion what this belief is really saying is that we are all all interconnected and for every action that interconnected and for every action that we make we have to something else to compensate for Action okay so if we kill an animal for to eat the meat then we need to ask forgiveness and then bring this animal back into the spirit world to maintain balance and Harmony in nature does that make sense guys okay so</p>
+<p><span class="timestamp">[19:00]</span> why is it in this world there&#x27;s balance in there&#x27;s balance in harmony why do we think there&#x27;s balance harmony why do we think there&#x27;s balance in in harmony because what gives life to harmony because what gives life to everything what&#x27;s the force that gives everything the mother goddess right everything the mother goddess right Mother Nature okay and so if we think Mother Nature okay and so if we think that there&#x27;s one force the mother gods that gives life to everything that means that for us Trees Animals us are all</p>
+<p><span class="timestamp">[19:31]</span> equal we&#x27;re all the children of modern nature we all have souls okay and so animals how why are we allowed to kill other other animals the other animals are our brothers and sisters right so what gives us permission to kill the other animals why why are we allowed to</p>
+<p><span class="timestamp">[20:01]</span> okay because mother nature mother okay because mother nature mother goddess has a plan okay each thing on goddess has a plan okay each thing on this planet has a function the function is to maintain balance and Harmony if we do not kill the other animals we will die okay but also if you don&#x27;t kill the other animals they&#x27;ll be there&#x27;ll be too many of them you understand so in other words the world is a cycle it&#x27;s a circle and each person each animal has a part</p>
+<p><span class="timestamp">[20:32]</span> to play in this as long as we play our part then the world will be harmonious and balanced and perfect okay does that sense okay does that make sense guys okay so um we have actually a word for this religion and this word this religion and this word is um animism okay animism is um animism okay animism is um animism okay animism and what adamism is it&#x27;s a very it&#x27;s</p>
+<p><span class="timestamp">[21:02]</span> and what adamism is it&#x27;s a very it&#x27;s probably the first religion okay it&#x27;s a belief that each living thing whether it&#x27;s a tree a mosquito a person or anything that&#x27;s living has a anything that&#x27;s living has a soul okay and we&#x27;re all soul okay and we&#x27;re all soul okay and we&#x27;re all interconnected because we all have interconnected because we all have interconnected because we all have souls and so we must maintain balance souls and so we must maintain balance and Harmony and so um many of the pred religions okay if you go religions okay if you go to um talk to Native people in North</p>
+<p><span class="timestamp">[21:34]</span> to um talk to Native people in North America and South America and Australia they all have this belief but also there are many religions such as Buddhism which also has this belief okay and we believe that this is the first religion okay so let&#x27;s go over okay so let&#x27;s go over some um evidence that this is in fact some um evidence that this is in fact what they what they believed Okay so believed Okay so believed Okay so um a recent discovery that we made is um a recent discovery that we made is</p>
+<p><span class="timestamp">[22:07]</span> that trees talk to each other you guys you guys know this so what happens is that trees there are maybe thousands of trees in a forest and their Roots con are connected through mushrooms through are connected through mushrooms through fungi and this allows us allows them to fungi and this allows us allows them to share information so for example what we know is that if one tree in one part of the forest lacks nutrients like water okay the other trees will send nutrients</p>
+<p><span class="timestamp">[22:38]</span> to that tree does that make sense okay so it&#x27;s it&#x27;s almost like the forest is one big brain or one big living organism and they&#x27;re all trying to communicate with with each other another thing that we&#x27;ve discovered is that if there are pths or insects that attack one tree okay this tree will automatically okay this tree will automatically communicate to the other trees and these communicate to the other trees and these trees will start to prepare for the P or the attack Okay the third thing uh which</p>
+<p><span class="timestamp">[23:10]</span> is the most interesting is is the most interesting is that trees will recognize their own that trees will recognize their own children so if the children these children trees need nutrients the mother trees will send the nutrients to the children right away okay does that make sense sense so this is something that we&#x27;ve recently so this is something that we&#x27;ve recently discovered but if you think about it if you&#x27;re um living back then you can sense</p>
+<p><span class="timestamp">[23:43]</span> the um you you can see sense almost how trees communicate because you&#x27;re always trees communicate because you&#x27;re always in touch with nature okay does that make in touch with nature okay does that make right this is um cave right this is um cave painting and you can see painting and you can see painting and you can see that that that these animals okay gazel they&#x27;re going these animals okay gazel they&#x27;re going somewhere and there are two beings here okay we believe that these two beings</p>
+<p><span class="timestamp">[24:14]</span> represent the mother goddess because as we discussed last class the mother goddess comes in the form of a bird right the bird flies around the sky the sky is the mother goddess okay so it&#x27;s almost like the mother goddess is channeling or hurting the animals from the spirit world back into our own world what you also notice is that these um Birds almost like humans okay and so</p>
+<p><span class="timestamp">[24:44]</span> we what we think is that the shaman dress up like birds in order to channel the energy of the mother goddess to control the animals okay okay and there&#x27;s actually a lot of evidence for this so this is this so this is clearly um an animal but this is Al also clearly um an animal but this is Al also a person who&#x27;s an animal who who&#x27;s a human being right because of the figure so these are human beings Shaman who dress up like animals in order to better</p>
+<p><span class="timestamp">[25:15]</span> communicate with animals but also to okay okay and this is actually a more clear picture of Shaman trying to access okay um are we clear so far so from this religion we can guess that the people back then were extremely</p>
+<p><span class="timestamp">[25:48]</span> compassionate they believe that every compassionate they believe that every thing has a soul and every life is thing has a soul and every life is precious okay and one evidence for this this is a skeleton what&#x27;s interesting about the skeleton is that it&#x27;s a dwarf okay so there are some humans back then who are born with diseases or handicaps or physical deformities this person is a</p>
+<p><span class="timestamp">[26:19]</span> dwarf now this is interesting dwarf now this is interesting because dwarfs aren&#x27;t able to contribute because dwarfs aren&#x27;t able to contribute that much to your community right so as a hunter gatherer you need to hunt together to access meat to get meat to feed everyone if you&#x27;re a dwarf you&#x27;re not really doing that much so in theory uh uh because it&#x27;s such a harsh because it&#x27;s such a harsh because it&#x27;s such a harsh life being a hunter gatherer you would life being a hunter gatherer you would think that they would discard the Dwarf</p>
+<p><span class="timestamp">[26:52]</span> kill the dwarf or maybe leave the dwarf behind behind Okay Okay Okay but from DNA analysis is what we know is but from DNA analysis is what we know is this this skeleton okay this person had the same amount of food the same quality of food as everyone else meaning that even though this person was not contributing to the contributing to the community community community everyone worked hard to make sure this</p>
+<p><span class="timestamp">[27:22]</span> everyone worked hard to make sure this person was treated well and was fed as well as everyone else well as everyone else and at the end of this person&#x27;s life he and at the end of this person&#x27;s life he was um granted a elaborate burial okay and we know this from the archaeological research yeah yeah okay okay does does that make sense guys all right so let me ask you this guys all right so let me ask you this question let&#x27;s make the assumption that</p>
+<p><span class="timestamp">[27:55]</span> he was in fact contributing to the community how could he contribute to the how they clearly thought he was special special if you&#x27;re a dwarf you can&#x27;t hunt me okay me okay um okay but what else can you do besides</p>
+<p><span class="timestamp">[28:25]</span> um okay but what else can you do besides why would they why would they think he was a special person what could he do that others couldn&#x27;t that others couldn&#x27;t do yeah thank you yeah thank you okay so maybe the religion back then is okay so maybe the religion back then is that everyone is special everyone&#x27;s the same right so if you&#x27;re different it means it doesn&#x27;t mean you&#x27;re less</p>
+<p><span class="timestamp">[28:58]</span> special it means you&#x27;re more special it means that the mon goddess has given you a special power and maybe this power is to communicate with the spirit world okay so maybe the C paintings as you say were done by people like this who were in a constant state of in a constant state of meditation with the spirit world and meditation with the spirit world and that&#x27;s what that&#x27;s what inspired him to create the cave inspired him to create the cave</p>
+<p><span class="timestamp">[29:28]</span> paintings okay because clearly if you look at the cave paintings they were done by a special done by a special mind and if you are a dwarf you clearly mind and if you are a dwarf you clearly see the world in a different way and being a dwarf it makes the more sense to be a shamon not only because people think you&#x27;re special but because you can invest time into meditation into religious practice that enables you to communicate with a spirit world okay</p>
+<p><span class="timestamp">[29:58]</span> does that make sense does that make sense okay and not only okay and not only okay and not only that um but what what we found is that that um but what what we found is that there are many burials like this okay so this is a passage from the dawn of everything which is a fantastic book okay by David Grabber and David wro they&#x27;re both they&#x27;re both anthropologists and this is a fantastic anthropologists and this is a fantastic book okay but this is a passage from</p>
+<p><span class="timestamp">[30:30]</span> the um book so number two is the dwarf he goes back 10,000 years okay and um it was a pretty elaborate burial and as this paragraph says we know he ate exactly the same food as everyone else okay he was not discriminated against in any way and the last passage here is neither is ratal an isolated case okay we have many examples of this when archaeologists under take balance of archaeologists under take balance of apprais of hund gather burials from the apprais of hund gather burials from the pic okay meaning Ice Age they find</p>
+<p><span class="timestamp">[31:00]</span> high frequencies of health related high frequencies of health related disabilities okay so the people who are disabilities okay so the people who are buried T to be the ones who are disabled they have some form of they have some form of disease which makes us think that maybe disease which makes us think that maybe they&#x27;re shamans okay they were pi to be Shaman because hund Gods fought you&#x27;re different therefore you must be special therefore the monag goddess favors you okay and high levels of care until the</p>
+<p><span class="timestamp">[31:32]</span> time of death sometimes their funerals were remarkably lavish which meant that they were prioritized by the community they were highly valued by the people around them okay the best explanation is well they were shamans they were people who could access the spirit world and communicate with it okay doesn&#x27;t make sense guys all right any any more qu any all all right now what another another amazing</p>
+<p><span class="timestamp">[32:05]</span> right now what another another amazing thing that we found about ice ice H cave paintings is paintings is that they have symbols okay so so we saw that they have symbols okay so so we saw pictures but um a Canadian pictures but um a Canadian Anthropologist named Genevie vanon p uh Anthropologist named Genevie vanon p uh Pinger she went all around the world and she documented symbols she documented symbols in these ice HK paintings and she found in these ice HK paintings and she found</p>
+<p><span class="timestamp">[32:36]</span> recurring symbols for example um the hand okay there&#x27;s the hand is everywhere uh the spiral the uh the spiral the quadrangle the circle okay the quadrangle the circle okay the quadrangle the circle okay the asteris let me ask you this asteris let me ask you this question why would paintings have question why would paintings have symbols why would drawings have symbols why can&#x27;t you just draw the</p>
+<p><span class="timestamp">[33:15]</span> symbols okay so you&#x27;re right okay so we think that this is a written language okay it&#x27;s one of the first written languages which meant that back then they actually had the ability to read and write okay so maybe this is a common language what are what are some other possibilities why would you want to use</p>
+<p><span class="timestamp">[33:51]</span> me to keep the con mysterious okay that&#x27;s interesting okay to keep the con mysterious and so what so where do these from to keep the conent mysterious right you have these symbols and they secret from I know but but but where do they</p>
+<p><span class="timestamp">[34:21]</span> from okay do you understand okay so another theory okay again we don&#x27;t know okay no one knows but like let&#x27;s look at different theories another theory is different theories another theory is that that this is the language of the that that this is the language of the Gods right as you say to keep the C mysterious to give it Divine or holy or sacred sacred meaning okay does that make meaning okay does that make meaning okay does that make sense okay what are some other sense okay what are some other</p>
+<p><span class="timestamp">[35:01]</span> yes exactly okay yeah so this can also be a Shand okay we call this Shand but also like there&#x27;s some you can&#x27;t draw for example love or energy or repetition or balance Harmony cycle right these things you can&#x27;t draw so you have to represent them using symbols okay so there are many different there are many different possibilities which means this okay possibilities which means this okay possibilities which means this okay let&#x27;s just summarize what the let&#x27;s just summarize what the let&#x27;s just summarize what the possibilities are what are the symbols possibilities are what are the symbols in art okay the first is that maybe</p>
+<p><span class="timestamp">[35:34]</span> you&#x27;re trying to visualize an idea okay you can&#x27;t draw energy or life force or cycle repetition so you just have to use a symbol to represent it okay which means what which means that each picture is a mythology it&#x27;s a story okay do you understand the pictures aren&#x27;t trying to show you a picture they&#x27;re trying to tell you a story about the world world that&#x27;s why symbols are important because in in the story there are ideas that you</p>
+<p><span class="timestamp">[36:06]</span> cannot visually Express okay does that make sense okay that&#x27;s the first thing second thing is that you&#x27;re trying to visualize the language of the spirit world okay so this goes back to making the C mysterious okay why do we think this the answer is this okay we think that when they drew the way to access a spirit world is to use drugs okay what we call we call psychedelics so in other words there are psychedelics so in other words there are</p>
+<p><span class="timestamp">[36:37]</span> certain plants that if you drink okay it makes you see makes you see things and the things they see are in things and the things they see are in fact the symbols the geometric signs so in other words they went to the spirit world or they think they went into spirit world and then they&#x27;re just trying to express the language of the spirit world okay does that make sense all right so this is a complicated idea okay but I want to introduce this idea to you like how we perceive or how we</p>
+<p><span class="timestamp">[37:10]</span> understand reality so for most of human history we thought that oh reality was just reality and we are trying just trying to see reality okay reality is something that you must something that you must see and then Along came a philosopher see and then Along came a philosopher and he&#x27;s a very famous philosopher I want you I want you to remember the name but his name is but his name is Emmanuel Emmanuel Emmanuel Kant okay and he is considered the Kant okay and he is considered the greatest philosopher who ever lived greatest philosopher who ever lived Emanuel Khan German and his idea is this</p>
+<p><span class="timestamp">[37:42]</span> Emanuel Khan German and his idea is this his idea is that reality is not something that we experience or we see reality is something that we imagine that we create with our mind the example he uses is time and he uses is time and space okay the idea of time like one two space okay the idea of time like one two three four it does not exist in nature it&#x27;s not doesn&#x27;t exist okay it&#x27;s</p>
+<p><span class="timestamp">[38:12]</span> something that we our minds made up so our reality is something that we imagine every day okay does that make sense now what&#x27;s really interesting is that Emanuel K was writing maybe over 20 years ago okay and today we have a new Neuroscience okay Neuroscience is the Neuroscience okay Neuroscience is the study of the brain and what&#x27;s really study of the brain and what&#x27;s really amazing okay and we will discuss this in</p>
+<p><span class="timestamp">[38:43]</span> future classes is that Neuroscience has confirm Iman meaning like we now know that the that the brain imagines reality okay it projects brain imagines reality okay it projects reality does that make sense so what drugs do is they change the structure of your brain so that you you see a different different reality okay does that make sense guys reality okay does that make sense guys so that&#x27;s what drugs do and so when they see a different reality maybe they&#x27;re seeing symbols okay so that&#x27;s a second</p>
+<p><span class="timestamp">[39:15]</span> thing about symbols in art the last thing is um these symbols are mysterious right and M mystery makes things sacred and divine right so back to child birth child birth is something that back then they couldn&#x27;t understand therefore then they couldn&#x27;t understand therefore they have to believe that child birth is they have to believe that child birth is sacred and div Vine and therefore women are sacred in Divine because only women</p>
+<p><span class="timestamp">[39:46]</span> are allow are able to give birth men are allowed to give birth okay so back then we believed that for most of human history either we were egalitarian history either we were egalitarian meaning like men and women were equal or meaning like men and women were equal or wom had more power than men only in recent history do men have more power okay and how this happened I&#x27;ll explain to you next week okay but just remember like back then there was no separation of sexes if anything women were</p>
+<p><span class="timestamp">[40:17]</span> considered Superior to men remember like the God is a mother goddess a female and therefore female and therefore women are more special than men and they women are more special than men and they know this is because women give birth not men okay and child birth is mysterious does that make sense okay so we understand symbols and art as doing these three things now we have a more comprehensive or complete understanding comprehensive or complete understanding of why they did Art okay the first of why they did Art okay the first</p>
+<p><span class="timestamp">[40:50]</span> reason is what they&#x27;re trying to do is trying they&#x27;re trying to visualize their mythology okay they&#x27;re trying to take this idea they understanding this idea they understanding in of how the world works the religion in of how the world works the religion and they&#x27;re trying to visualize it okay so art is basically religion there&#x27;s no difference second thing is difference second thing is that they&#x27;re trying to that they&#x27;re trying to that they&#x27;re trying to show to themselves how reality works show to themselves how reality works</p>
+<p><span class="timestamp">[41:21]</span> okay they&#x27;re trying to show that the under underlying reality is a soul or God okay does that make sense the last thing which is the most important is they&#x27;re trying to create a common memory and and Imagination a language mythology that Imagination a language mythology that Imagination a language mythology that they all share together okay and this is they all share together okay and this is what we call what we call Society does that make sense so in other Society does that make sense so in other words okay the argument I&#x27;m trying to make you trying to make you the argument</p>
+<p><span class="timestamp">[41:53]</span> I&#x27;m trying to make to you today is one religion has always been there since the dawn of humanity dawn of humanity okay that&#x27;s the first second thing is okay that&#x27;s the first second thing is that that religion allows us to communicate with religion allows us to communicate with each other to be together in society so the third thing the third thing is religion is what allows us to be fundamentally human without religion be fundamentally human without religion we could not be human we could not think we could not be human we could not think</p>
+<p><span class="timestamp">[42:25]</span> we can not communicate we could not imagine does it make sense guys okay any questions about this okay now let&#x27;s look let&#x27;s look at a at a at a quote okay what is religion okay and quote okay what is religion okay and this is from Emil Duram okay and I want you remember the name Eman Emil Duram okay he&#x27;s he&#x27;s just as famous as Emanuel K Emil Duram is considered the founder of of Sociology okay so when you go to Sociology okay so when you go to</p>
+<p><span class="timestamp">[42:57]</span> university and you study sociology guess what you&#x27;ll mainly be what you&#x27;ll mainly be studying uh em doram okay so this is studying uh em doram okay so this is what he says about religion religion is above all okay first and foremost religion is this a system of ideas by which men imagine the Society of which they are members okay it&#x27;s to create society and the Obscure yet intimate relations they have with it okay</p>
+<p><span class="timestamp">[43:28]</span> religion is a way for them to understand world all right does that make sense guys all guys all right so let&#x27;s look at what he right so let&#x27;s look at what he detail okay so the great service that religions have rendered to thought is to have constructed a first representation have constructed a first representation of the relations of kinship between of the relations of kinship between things might be okay so what this is</p>
+<p><span class="timestamp">[44:01]</span> saying is that religion allows us to construct an understanding of the construct an understanding of the world okay so basically the first world okay so basically the first religion was this right and this is just a theory of the world this is important because from this Theory we are able to construct more are able to construct more theories all right given the conditions theories all right given the conditions in which it was tried that Enterprise could obviously could obviously lead only to makeshift results okay lead only to makeshift results okay</p>
+<p><span class="timestamp">[44:33]</span> meaning that okay well listen religion it&#x27;s all about guessing it&#x27;s all about hypothesizing okay so you know a lot of these ideas AR going to work out that doesn&#x27;t that doesn&#x27;t matter but then are the results of any matter but then are the results of any such Enterprise ever definitive and must it not be taken up up again and again okay so our desire to know our curiosity forces us to constantly curiosity forces us to constantly reimagine our reimagine our reimagine our religion furthermore it was less religion furthermore it was less religion furthermore it was less important to succeed than to DARE the</p>
+<p><span class="timestamp">[45:05]</span> important to succeed than to DARE the fact that we try is what was important what has what was essential was not to be to was not to let the mind be dominated by what appears to the senses okay but instead to teach the mind to dominate it and to join together what the senses put a shunder so as human beings we&#x27;re not trying to see the world or trying to imagine the world okay that&#x27;s what makes us human</p>
+<p><span class="timestamp">[45:36]</span> okay going back to uel Kant our ability to imagine reality is what makes us human as soon as men became aware that internal connections exist between internal connections exist between things science and philosophy became things science and philosophy became things science and philosophy became possible so from religion we develop possible so from religion we develop develop philosophy and Science in fact you can say that science today is our religion religion okay there&#x27;s really no difference it&#x27;s okay there&#x27;s really no difference it&#x27;s just an understanding of the just an understanding of the world based on our imagination and some</p>
+<p><span class="timestamp">[46:11]</span> evidence religion made a way for them it is because religion is a social thing that it could play this role to make men take control of sense Impressions and replace them with a new way of Imaging the real a new kind of thought had to be created Collective thought okay so created Collective thought okay so religion is our Collective Consciousness religion is our Collective Consciousness religion is our Collective Consciousness it&#x27;s what every it&#x27;s what allows Society it&#x27;s what every it&#x27;s what allows Society to come into to come into being if Collective thought alone had being if Collective thought alone had the power to achieve this here is the</p>
+<p><span class="timestamp">[46:42]</span> reason creating a whole world of ideals through which the world of sense realities seem transfigured would realities seem transfigured would require a hyper exitation of require a hyper exitation of require a hyper exitation of intellectual forces that is only intellectual forces that is only intellectual forces that is only possible in and through Society okay possible in and through Society okay it&#x27;s only because we are together are we allow are we inspired to come up with religion so religion is fundamental to being to Being being to Being Human without religion there could be no Human without religion there could be no Society without Society there could also be no be no religion okay you understand so the</p>
+<p><span class="timestamp">[47:15]</span> religion okay you understand so the implication of all this is like as a human first of all you are not alone if you&#x27;re alone you&#x27;re not be human you&#x27;re a human because you live in society you&#x27;re with other people and because you&#x27;re with other people you must have a collective Consciousness or an idea you share together and we call this being religion okay does that make religion okay does that make sense is this clear to you sense is this clear to you guys all right any guys all right any questions anything you are not clear</p>
+<p><span class="timestamp">[47:51]</span> about do you see how all this connects together okay the cave paintings is what started cave paintings is expression of a religion then when the ice age ended we had a chance to settle down we created communities to celebrate our created communities to celebrate our religion that&#x27;s what gave R to religion that&#x27;s what gave R to agriculture okay and the religion that we use is probably probably something like this okay the world is interconnected there&#x27;s a mother goddess interconnected there&#x27;s a mother goddess that gives light to that gives light to that gives light to everything everything everything okay any</p>
+<p><span class="timestamp">[48:27]</span> questions anything you are you you you yeah okay so that&#x27;s a good question okay so the question is monotheism okay</p>
+<p><span class="timestamp">[49:00]</span> so the mo the three major religions of today uh Christianity today uh Christianity Islam Islam Islam um and uh Judaism okay they&#x27;re all um and uh Judaism okay they&#x27;re all monotheistic meaning they believe in one God um so this is actually a very recent Innovation okay Innovation okay so um back then they wouldn&#x27;t have a so um back then they wouldn&#x27;t have a concept of power our concept of power our hierarchy you understand they wouldn&#x27;t</p>
+<p><span class="timestamp">[49:30]</span> hierarchy you understand they wouldn&#x27;t hierarchy you understand they wouldn&#x27;t think that the mother mother godess is think that the mother mother godess is the greatest god of all they could only think like the stars right there&#x27;s no hierarchy in the Stars they&#x27;re over the place okay so maybe the mother goddess gives birth to our world but maybe there&#x27;s another God that gives birth to another world okay so they wouldn&#x27;t think in terms of hierarchy we think in terms of hierarch today because of monotheism but back then they wouldn&#x27;t think so does that make think so does that make sense sense sense yeah so maybe maybe today you can think</p>
+<p><span class="timestamp">[50:04]</span> yeah so maybe maybe today you can think of a pyramid okay there&#x27;s people at the top but back then they would think think like it&#x27;s a like it&#x27;s a river okay we&#x27;re all part of the river river okay we&#x27;re all part of the river it&#x27;s a cycle it just goes in circles and there&#x27;s no differentiation circles and there&#x27;s no differentiation or there&#x27;s no power power hierarchy or there&#x27;s no power power hierarchy things go wrong when there&#x27;s conflict inside this River okay when people don&#x27;t do things they&#x27;re supposed to be doing okay so and what and these things</p>
+<p><span class="timestamp">[50:35]</span> are are what what are things that defy the what what are things that defy the mother goddess or go against the the the goddess how about incests right how about killing animals without making the proper proper sacrifices right so you just kill the sacrifices right so you just kill the animals but you don&#x27;t go in the cave to uh pray for them for for for their return okay so in other words in this</p>
+<p><span class="timestamp">[51:10]</span> ritual and this is something that we&#x27;ll study next class how religion is just ritual okay just a just habits and practices and practices and actions any more questions that that&#x27;s a actions any more questions that that&#x27;s a great question by the way but monotheism is something that we will look at very closely in future classes and it&#x27;s very important because it&#x27;s a basis for our society okay society okay any any other any any other any any other questions</p>
+<p><span class="timestamp">[51:51]</span> yes well you can&#x27;t live in a cave though right you can&#x27;t live in a cave you can only go there now and then there there&#x27;s no oxygen in the cave it&#x27;s too dark it&#x27;s too cold you can&#x27;t live there there right so you&#x27;re right in that okay if a right so you&#x27;re right in that okay if a cave were cave were livable they um could build farms around livable they um could build farms around that cave that cave okay okay okay so okay that&#x27;s actually a great question so okay that&#x27;s actually a great question okay besides caves what are some other</p>
+<p><span class="timestamp">[52:23]</span> portals in the portals in the world what are some other portals in the world what are some other portals in the world that have like spiritual energy caves in in nature if you were back then you would think that this place is special because it both connects our world and spirit world and these places would would be mountain tops right mountain be mountain tops right mountain be mountain tops right mountain tops guess what goe was on a Mountaintop tops guess what goe was on a Mountaintop</p>
+<p><span class="timestamp">[52:54]</span> okay where where else would there be portals portals Rivers Rivers Rivers okay Rivers does that make sense these are places that people would think are portals into the out into another world and therefore they are and therefore they are special and we find that when they special and we find that when they settled down and build agriculture they did so on mountaintops and they did so around Rivers okay does that make sense but not caves because you could actually</p>
+<p><span class="timestamp">[53:37]</span> question you can&#x27;t live in a cave there&#x27;s no food and it&#x27;s cold and it&#x27;s wet oh they oh great question okay yeah so they liveed outside in so they liveed outside in tents no no you can&#x27;t live in a cave tents no no you can&#x27;t live in a cave there&#x27;s no there&#x27;s no Oxygen Oxygen Oxygen okay any any more okay any any more okay any any more questions okay so your question actually questions okay so your question actually makes me think of a point I I want to end the class with okay so today we</p>
+<p><span class="timestamp">[54:08]</span> think that we are either economic animals animals economic animals or uh biological economic animals or uh biological economic animals or uh biological animals okay so the person who animals okay so the person who introduced us like who introduced to us the idea that we are economic animals is called marks okay and his argument is that we are driven by our need to have money okay that&#x27;s what what we believe today right you&#x27;re in school because you want to go good grades so you can go get</p>
+<p><span class="timestamp">[54:38]</span> go go get into a good University and then you can go get a good job okay now there are other people who believe that we are biological animals and these are people people are called evolutionary people people are called evolutionary biologists they are inspired by Charles biologists they are inspired by Charles Darwin so the idea here is that we are motivated by our desire to spread our genes okay so if I&#x27;m a man I want to sleep with as many women as possible because if I sleep with as many women as</p>
+<p><span class="timestamp">[55:10]</span> possible I spread my genes right but if you&#x27;re a woman you want to find a man who will be loyal to you because the cost of childbearing child wearing is very high okay does that make sense so and we&#x27;ll be discussing both these theories um more throughout the semester okay the argument I want I I want to make to you today is that no we are first and foremost a first and foremost a religious animal we have the fundamental</p>
+<p><span class="timestamp">[55:42]</span> religious animal we have the fundamental need to understand why we are here we have a fundamental need to connect with everyone okay to connect with other people but that does not mean that we are are not economic and B bologal animals okay not economic and B bologal animals okay they all play together you understand so what we&#x27;ll see later in the semester is that you might have a religion but this religion is not meeting your economic and bial needs then you have to either abandon the religion or change the</p>
+<p><span class="timestamp">[56:14]</span> religion okay but we also know that the economic need is not enough you also need religion so there is an interplay between economics biology and between economics biology and religion okay and that&#x27;s what drives religion okay and that&#x27;s what drives human history something that we we will learn more about uh next week okay sorry next next week okay so um yeah any more</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

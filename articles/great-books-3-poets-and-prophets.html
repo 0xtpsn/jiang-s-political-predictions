@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Books #3: Poets and Prophets — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Great Books #3: Poets and Prophets">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #10b981;
+            --accent-bg: rgba(16, 185, 129, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Great Books #3</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Great Books #3</div>
+        <h1 class="article-title">Poets and Prophets</h1>
+        <div class="article-meta">
+            <span>📖 39 min read</span>
+            <span>📝 7,701 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Great Books #3：  Poets and Prophets</p>
+<p><span class="timestamp">[0:04]</span> So the Iliad is the foundation of Greek civilization which is the greatest civilization which is the greatest civilization in human history. The most civilization in human history. The most creative it gave us um Plato, Fidities, Heroditus, Heroditus, Iselis, Urides, Sophocles Iselis, Urides, Sophocles Iselis, Urides, Sophocles um Greek civilization is essentially the um Greek civilization is essentially the foundation for western civilization. So foundation for western civilization. So the question we will look at today is the question we will look at today is how&#x27;s it possible that one epic poem can</p>
+<p><span class="timestamp">[0:35]</span> give birth to a civilization. give birth to a civilization. Okay. So um the thing to understand Okay. So um the thing to understand about galization is that there are two important concepts. The first is important concepts. The first is sorry. So irrit means virtue, excellence or</p>
+<p><span class="timestamp">[1:06]</span> character. It&#x27;s something that makes you special, what you excel at. Okay. And traditionally um there are two types of In Greek civilization, In Greek civilization, the paragon of the warrior is of course the paragon of the warrior is of course</p>
+<p><span class="timestamp">[1:38]</span> and the paragon of the great orator, the great speaker is Adysius. great speaker is Adysius. So we are reading the Iliad right now. Uh and then after we finish Iliad, we will read the Odyssey. Okay. So these are the two great characters in Greek civilization. Achilles the great Greek civilization. Achilles the great warrior and Odysius the g the great warrior and Odysius the g the great orator. orator. Okay. Udimmonia means flourishing.</p>
+<p><span class="timestamp">[2:09]</span> And the idea of udeimmonia is that you can only be happy. You can only be yourself when you are achieving your when you are expressing your when you are expressing your So for example, Achilles um in Eliad he So for example, Achilles um in Eliad he tells us that before he came to Troy he was given a prophecy. He could either die old at home or die young but a hero</p>
+<p><span class="timestamp">[2:39]</span> on the shores of Troy. And of and he said, &quot;Well, duh. Of course, I&#x27;m going to die young in Troy because only by fighting, only by winning glory can I achieve udimonia.&quot; Okay? And that&#x27;s why he&#x27;s so unhappy when he gets in a fight with Agamenon and he has to set up the war and he figures out different ways of getting back into the battle because without fighting he can&#x27;t be Achilles. He is the paragon of the warrior. Okay.</p>
+<p><span class="timestamp">[3:09]</span> So that&#x27;s the idea of udimonia. I can only be happy when I am be my creative best when my when I&#x27;m achieving my true potential. potential. Okay. Now for the Greeks, war fighting Okay. Now for the Greeks, war fighting and speech making are really the same thing but through different means. Okay? So when you fight a war, what you&#x27;re trying to do is you&#x27;re trying to impose your reality onto the world and make others believe what you believe, right? You do that through force. By uh brute</p>
+<p><span class="timestamp">[3:41]</span> strength, you show that you&#x27;re superior and therefore others must obey you. But speech making is actually trying to trying to achieve the same thing. Okay. But through words, But through words, okay? So rather than through force, okay? So rather than through force, through beauty and through truth, you&#x27;re trying to create a new reality that others submit to. And the example of course is a speech between the speeches between Odysius and Achilles. Okay. between Odysius and Achilles. Okay. Odysius</p>
+<p><span class="timestamp">[4:14]</span> and Achilles. and Achilles. All right. So remember the context. Um All right. So remember the context. Um Achilles gets in front of Egenmenon. He refuses to fight and the Trojans led by Hector are destroying the Greeks. So Agamenon and Adysius and the others Nester have a war council and they agree that they&#x27;ll go and beg Achilles to come back. Okay. and Adysius and Nester and others they go to Achilles and they present an argument to Achilles and AI</p>
+<p><span class="timestamp">[4:46]</span> Adius gives a very long speech. Now the question for us is why are the speeches in the Iliad so goddamn long right because Adas could simply say hey Achilles we&#x27;ll give you a million dollars. Will you fight for us please? He can also say hey Achilles we&#x27;re losing a war. Stop being an Come fight for us. Okay, he can make it very very short. very very short. Why is it so long? Right? And then Why is it so long? Right? And then Achilles his response can be like no.</p>
+<p><span class="timestamp">[5:17]</span> Okay, but he also offers a very long speech speech and the answer is they&#x27;re not trying to and the answer is they&#x27;re not trying to respond to each other. They&#x27;re trying to create their own reality. Okay? So when with his with with a speech, what you&#x27;re really trying to do is you&#x27;re trying to project a movie onto the world. You&#x27;re others must inhabit. others must inhabit. Okay? That&#x27;s why speech making is like Okay? That&#x27;s why speech making is like war fighting. You&#x27;re trying to create your own reality and impose it on others. Right? So remember what Audius</p>
+<p><span class="timestamp">[5:51]</span> is doing. He knows that Achilles for him it&#x27;s really about face, right? He&#x27;s lost face in front of the others and that&#x27;s why he won&#x27;t back down. That&#x27;s why he insists on Eggman on apologizing. Okay. But Adysius also knows that Eggman himself won&#x27;t apologize. himself won&#x27;t apologize. &amp;gt;&amp;gt; [snorts] &amp;gt;&amp;gt; [snorts] &amp;gt;&amp;gt; [snorts] &amp;gt;&amp;gt; So for Adysius because he is the great &amp;gt;&amp;gt; So for Adysius because he is the great orator orator um that is his what he&#x27;s going to do try um that is his what he&#x27;s going to do try to do is try to create a new reality</p>
+<p><span class="timestamp">[6:21]</span> that Achilles inhabits that Achilles inhabits and and and um which will convince him to join um which will convince him to join Odysius in the war. Okay. So how does he do that? What he does is he expands the imagination imagination of Achilles. of Achilles. of Achilles. All right. Right? That&#x27;s why the speech All right. Right? That&#x27;s why the speech is so long because he&#x27;s trying to create a new emotional reality for Achilles. Right? Now, Achilles is selfish, right? So, what does Odysius say to Achilles? The first thing he says is Achilles, I</p>
+<p><span class="timestamp">[6:52]</span> want you to imagine this before us is great feast. We can see this this feast. Now, I want you to imagine what&#x27;s the opposite of this feast. A great desert where we&#x27;re all dying. We&#x27;re all starving. And that&#x27;s the war we&#x27;re fighting right now against the Trojans. That&#x27;s why we need you back. Okay, so it&#x27;s a powerful image. And then he uses imagery to take Achilles to the present where Hector is this giant, this god</p>
+<p><span class="timestamp">[7:23]</span> running around killing all Greeks before him. him. Okay? And then he takes Achilles back to Okay? And then he takes Achilles back to the past and say, &quot;Remember your father Pelas? Before you came to the war, you promised him that you would win glory for him. You promised that you wouldn&#x27;t glory for the Greeks. Okay. Then he takes Achilles to the future, which is let&#x27;s imagine what happens when we win this war. When we win this war, all the riches of Troy, all the treasures will belong to you, Achilles. Again, Manon</p>
+<p><span class="timestamp">[7:56]</span> will give you his daughter for a bride, and you will be the glory of all of Greece. You have treasures and Greece. You have treasures and treasures. Think about the present. treasures. Think about the present. treasures. Think about the present. Think about the present. Think about the Think about the present. Think about the past. Think about the future. Okay? Expand your mind, Achilles. Expand your mind, Achilles. Right? That&#x27;s what Adysius is doing. Right? That&#x27;s what Adysius is doing. He&#x27;s trying to expand Achilles He&#x27;s trying to expand Achilles imagination. And once you enter this imagination. And once you enter this world that Adysius has created, then you will be convinced to join him. Okay? So</p>
+<p><span class="timestamp">[8:27]</span> that&#x27;s what speechm is. Speechm is projecting a movie onto the world that everyone can obs observe and then absorb this new reality. Okay, internalize this new reality, new reality, right? And Achilles right? And Achilles right? And Achilles knows this and Achilles refuses to be knows this and Achilles refuses to be beaten, right? So Achilles for his speech speech counters counters counters this with his own reality which is a this with his own reality which is a very self-absorbed very self-absorbed reality. Okay. Right. So rather than</p>
+<p><span class="timestamp">[8:57]</span> reality. Okay. Right. So rather than expanding outwards like this is once Achilles continues to expand to to contract inwards. Right. He uses the me me me me me me me me me me me me me me me me. This is never uses I or we. me me me. This is never uses I or we. He&#x27;s always like we. Okay. So Achilles says, &quot;Hey, I understand that nefar to you is a god, but when I saw him, he ran away from me.&quot; Right. Oh, Pelus, my dad. I should go home to see him. So,</p>
+<p><span class="timestamp">[9:29]</span> goodbye, guys. And like I got on his daughter for my wife. I spit on her. I don&#x27;t want him this crap. Okay. So, it&#x27;s like so he contracts in words. Okay. So, and that&#x27;s why the speech is too long is so long because so long because in speech making it&#x27;s a war of in speech making it&#x27;s a war of realities. It&#x27;s a war of narratives. And you create narratives through And you create narratives through speeches. Okay. But not only that, but speeches. Okay. But not only that, but there are certain techniques to speeches</p>
+<p><span class="timestamp">[10:00]</span> because the goal of speeches is not just to paint a reality, but you want to paint a reality in which it is internalized by other others. And internalized by other others. And therefore, you must make it memorable. therefore, you must make it memorable. Okay? So remember in the beginning of class, I had you do an assignment which is um write down the speech, right? And even though you didn&#x27;t force yourself to memorize it, you&#x27;re able to memorize a lot. Okay? And that shows you the power of the speech, the question in it is what makes the speech so powerful. And</p>
+<p><span class="timestamp">[10:31]</span> the answer is because it&#x27;s poetry, guys. Okay? Poetry. Okay? Poetry. And the elements of poetry of course are And the elements of poetry of course are um imagery. um imagery. And this is what Odysius does well. This And this is what Odysius does well. This is what he specializes in. Okay? Drawing pictures for you to see, okay? metaphors, metaphors, connections, okay? Metaphors is what we connections, okay? Metaphors is what we call connections call connections and connections are things that and connections are things that and connections are things that help you clarify reality. Okay? And help you clarify reality. Okay? And which shows you connect which shows you things that you couldn&#x27;t see before. So</p>
+<p><span class="timestamp">[11:04]</span> for example, if I say the sky is like the sea, that doesn&#x27;t really surprise you. Okay? If I say the sky is like a snail, well, that surprises you. And because it surprises you, you remember it. Okay, when you remember it, it reorders the way you see reality. All right. Uh you also have um diction, choice of words, syntax. choice of words, syntax. Okay. And these are things that both Okay. And these are things that both Adysius and Achilles specialize in, Adysius and Achilles specialize in, especially um especially Odysius. Okay?</p>
+<p><span class="timestamp">[11:36]</span> especially um especially Odysius. Okay? especially um especially Odysius. Okay? Does that make sense? All right. So Does that make sense? All right. So they&#x27;re trying to they&#x27;re trying to create these narratives create these narratives through their speeches and they have through their speeches and they have these techniques and guess what the Greeks their their education system was very simple. All they had to do was memorize the Iliad. Okay? Because when you memorize the Iliad, you learn how to make a great speech, right? And you understood that for me to make a great speech, I need to have impact. I need</p>
+<p><span class="timestamp">[12:08]</span> people to remember what I say. I need to imprint myself [clears throat] on imprint myself [clears throat] on others. others. others. All right? And this becomes this system All right? And this becomes this system becomes the very basis of visualization, right? Speech making where to have thing done you have to go in front of people and make a speech and create a reality for people to accept. Right? And this what is what leads to democracy. Okay? Are we clear? Okay. Now I want to talk about about um how in fact Homer creates</p>
+<p><span class="timestamp">[12:41]</span> um how in fact Homer creates civilization. Okay. civilization. Okay. All right. All right. [snorts] [snorts] um Emanuel Kant um Emanuel Kant um Emanuel Kant Emio K was a German philosopher and he&#x27;s Emio K was a German philosopher and he&#x27;s primarily concerned with how we primarily concerned with how we understand reality. Why do we see the understand reality. Why do we see the things that we do? What do we think the thoughts that we have? And he wrote a very good book called the critique of</p>
+<p><span class="timestamp">[13:12]</span> pure reason which he outlines this theory. Okay. So what he tells us is this. Traditionally we&#x27;ve understo this. Traditionally we&#x27;ve understo ourselves we&#x27;ve unders ourselves as ourselves we&#x27;ve unders ourselves as ourselves we&#x27;ve unders ourselves as passive observers of reality. Okay. This passive observers of reality. Okay. This thing is before us. We stand before it and we try to understand it. Okay. What caught teaches us is that no we are in fact active participants in reality and we shape and form the reality before</p>
+<p><span class="timestamp">[13:48]</span> us. Okay. So um Kant us. Okay. So um Kant divides the world into two. divides the world into two. divides the world into two. The first world is the world of The first world is the world of objective reality. the things in objective reality. the things in themselves Okay. And what&#x27;s the na? They&#x27;re just vibrations. Okay. We talked about this, right? The entire world is sound vibrations, frequencies. So, we can vibrations, frequencies. So, we can actually see these things. So, we what</p>
+<p><span class="timestamp">[14:19]</span> actually see these things. So, we what we do is we filter the world around us and turn them into things that we can which are the things to us. Okay? Things to us or the things that seem to us. All right? And we do so through a filter called time and space. called time and space. So time and space do not exist outside So time and space do not exist outside</p>
+<p><span class="timestamp">[14:50]</span> of us. They in exist inside of us in order for us to understand reality. Okay. So time what what does time mean? Time just means sequence, Time just means sequence, right? Sequence is just like 1 2 3 4 5. right? Sequence is just like 1 2 3 4 5. We put things in sequence, we create time. time. Space is the idea of sensation. Space is the idea of sensation. Okay. Sensation is just basically the five senses, right? five senses, right? All right. Now, time and space exists All right. Now, time and space exists outside of us because everything outside</p>
+<p><span class="timestamp">[15:23]</span> of us is just pure energy. Okay. But our minds can&#x27;t perceive pure energy. minds can&#x27;t perceive pure energy. Therefore, we use time and space, Therefore, we use time and space, sequence and sensation to understand the world around us to to order the world around us. around us. Okay. Okay. Okay. All right. All right. All right. So, but what this means is that So, but what this means is that if we&#x27;re able to control time and space, we can control reality unto itself. Okay? Does that make sense? And what is</p>
+<p><span class="timestamp">[15:54]</span> this thing that controls time and space? Okay. Okay. Before we we would just eat each Before we we would just eat each perceive our own time and space with language. language. Okay. We&#x27;re now able to come to a Okay. We&#x27;re now able to come to a collective understanding of reality. collective understanding of reality. Right? And who creates language? Poets Right? And who creates language? Poets</p>
+<p><span class="timestamp">[16:27]</span> And therefore poets for their poetry create reality onto itself. That&#x27;s what this is is trying to do. He&#x27;s trying to for his poetry create a new reality for everyone to live in. A reality in which people get along. A reality in which people like Achilles are able to for forget their hatred against Eggman and fight for the common good. Okay. All right. So even though each of us has</p>
+<p><span class="timestamp">[16:58]</span> our own understanding of reality, our own understanding of reality, a poet is able to create a language that a poet is able to create a language that is so beautiful that it comes into us and we internalize the language, we absorb the language and we together create a new reality with the language as the building blocks. Okay? Does that make sense guys? All right. All right. So let me explain now how Homer is able to do this. Okay, let&#x27;s let&#x27;s talk about</p>
+<p><span class="timestamp">[17:33]</span> how&#x27;s how is a how&#x27;s how is a poet able to create reality? Okay, so a poet able to create reality? Okay, so a poet is unique in the world. Poets um are really are really prophets. Okay. So if you look at all these great religious figures of the past including uh Jesus, including Zoroa, they weren&#x27;t religious including Zoroa, they weren&#x27;t religious figures. They were really poets. Okay. figures. They were really poets. Okay. And how and what how they able to work is they have a divine connection to the</p>
+<p><span class="timestamp">[18:04]</span> universe. universe. Okay. What we call Okay. Okay. So [clears throat] So [clears throat] So [clears throat] there are different names for the there are different names for the universe. Okay. So Hegel universe. Okay. So Hegel uh the German philosopher used the term uh the German philosopher used the term gist. gist. Gist. Okay. Gist. Okay. Gist. Okay. What is gist? Well guys, it&#x27;s hard to What is gist? Well guys, it&#x27;s hard to translate because it&#x27;s German. Okay. But think of it as three English words. And</p>
+<p><span class="timestamp">[18:36]</span> in fact actually uh guys will give us three English words. These three words are ghost, gist, gist and uh geyser. Okay, geyser is an eruption. Okay, ghost is the underlying thing and uh the gist, the essence. Okay. Okay, that&#x27;s what the guys is. The guys is all around us. It&#x27;s like the ghost. It&#x27;s always changing. It&#x27;s always becoming. It&#x27;s always It&#x27;s always becoming. It&#x27;s always erupting like a a geyser. And it&#x27;s erupting like a a geyser. And it&#x27;s really the essence of things. The the</p>
+<p><span class="timestamp">[19:07]</span> the gist. Okay. All right. Um Carl Young had the word he uses eclectic unconscious. unconscious. Eclectic unconscious. Uh Plato will use the realm Okay. Christians will say Okay. Christians will say heaven whatever. Okay. [clears throat] heaven whatever. Okay. [clears throat] heaven whatever. Okay. [clears throat] All right. But the these are the the All right. But the these are the the universe. All right. And remember how we said before said before um our memories are stored in the</p>
+<p><span class="timestamp">[19:40]</span> um our memories are stored in the universe. The universe is almost like a divine psychic internet, right? So every single memory is stored inside single memory is stored inside the universe. And what poets do is the universe. And what poets do is they&#x27;re able to access this universe. And as a result, they&#x27;re able to summon the memories of the universe.</p>
+<p><span class="timestamp">[20:11]</span> And they do and when they do that, they create epics of poetry. Okay. create epics of poetry. Okay. All right. The Iliad. [clears throat] All right. The Iliad. [clears throat] Now, as I keep on discussing when we read the Iliad, each character is a real person. person. Okay. Each character has a living past, Okay. Each character has a living past, present, and future. By reading the speech of Petropolis, you understand his</p>
+<p><span class="timestamp">[20:41]</span> memories. You understand where he came from, what he wants, and where he&#x27;s going. Okay? So, everyone in the lab is a living, breathing character. And how&#x27;s Homer able to do that? He&#x27;s able to do that because a he&#x27;s able to summon these people from the universe. Okay? Even though you&#x27;re dead, your consciousness though you&#x27;re dead, your consciousness is still alive in the universe. is still alive in the universe. Even though Homer is no longer with us, his consciousness is still within the universe. So, it&#x27;s possible through universe. So, it&#x27;s possible through intense meditation to actually connect</p>
+<p><span class="timestamp">[21:12]</span> intense meditation to actually connect intense meditation to actually connect with Homer, Dante, Shakespeare, whoever. with Homer, Dante, Shakespeare, whoever. with Homer, Dante, Shakespeare, whoever. Okay? They&#x27;re all there. And that&#x27;s what Okay? They&#x27;re all there. And that&#x27;s what Homer is doing. He&#x27;s able to connect with these people and bring them into the Iliad. Okay? the Iliad. Okay? But because these people are living the Iliad itself is a living memory. Okay. What I mean by that is okay</p>
+<p><span class="timestamp">[21:44]</span> the purpose of the Iliad is to create a memory a living memory for people to Okay. So remember Homer, he is a bard at this time. People don&#x27;t read and write. So what he&#x27;s doing is he&#x27;s doing what this is is doing, which is he&#x27;s going from town to town. People are surrounding him. He&#x27;s there&#x27;s 100 people and then for the entire evening he recites his poetry and he&#x27;s doing what Adysius is doing. He&#x27;s painting a movie</p>
+<p><span class="timestamp">[22:16]</span> for everyone to obs observe together. And it&#x27;s the same thing when you go to a movie theater where yes it&#x27;s the same movie but everyone&#x27;s experience is going to be different. Okay. And how it becomes different is that you implant your own consciousness your own your own consciousness your own understanding into the Iliad. So it understanding into the Iliad. So it becomes a shared creation. And when you do that, what happens is that this is really important guys, you connect really important guys, you connect directly to the universe.</p>
+<p><span class="timestamp">[22:47]</span> directly to the universe. directly to the universe. Okay? So in other words, the Iliad was Okay? So in other words, the Iliad was created because of inspiration from the universe, but it&#x27;s also a portal into the universe itself. the universe itself. And this is what allows for new And this is what allows for new creations. Okay. creations. Okay. [clears throat] Okay. Okay. So as you are observing the Iliad So as you are observing the Iliad because your own experience is different because your own connection to the</p>
+<p><span class="timestamp">[23:18]</span> universe is unique universe is unique by interpreting the Iliad you create a by interpreting the Iliad you create a new universe onto itself. new universe onto itself. Okay. And this what we call together a Okay. And this what we call together a All right. This this is what happened. This is why one poem, the Iliad, was able to give birth to an entire civilization because it was so alive, so</p>
+<p><span class="timestamp">[23:48]</span> powerful, so connected to the universe itself, to the monad that when you observed it, you created your into yourself a portal into the monad, the universe, the heavens that allow you to create your own universe that then connected back to the monad. connected back to the monad. Okay. So, it&#x27;s just one So, it&#x27;s just one dialogue, dialogue, dialogue, right? Any questions? Are are you guys</p>
+<p><span class="timestamp">[24:20]</span> right? Any questions? Are are you guys clear about this? clear about this? All right. And think about this. All All right. And think about this. All right. This is what the Greeks did. And how do we know it&#x27;s true? Because even today, the Ilia speaks to us, right? The Iliad when we read it, we can identify with Odysius. We can understand Achilles. We can we can relate Achilles</p>
+<p><span class="timestamp">[24:50]</span> to ourselves. We can predict how Achilles will behave. Okay? And that&#x27;s proof that this uh proof that this uh Iliad Iliad Iliad is eternal and immortal because it is eternal and immortal because it connects us to the monad. But knowing that, this is most important is that you may not know this, but when the more you read the Iliad, the more it&#x27;s opening your mind. Okay? Your mind is is an antenna. Okay? Your mind is is an</p>
+<p><span class="timestamp">[25:23]</span> antenna to the universe, right? So when you read the Iliad, it&#x27;s as though your download speed is now increasing. download speed is now increasing. You have a faster connection, strong You have a faster connection, strong connection now to the internet. And so they&#x27;re able to absorb more. Okay? When you&#x27;re able to absorb more, you&#x27;re able to create new realities in which you&#x27;re able to observe, able to observe, which you&#x27;re able to analyze deeper. All which you&#x27;re able to analyze deeper. All right? And that&#x27;s why we read the great</p>
+<p><span class="timestamp">[25:54]</span> it allows us connect and talk to God itself. itself. Okay. Does that make sense guys? Right. Okay. Does that make sense guys? Right. So So um yeah, um yeah, um yeah, any questions before I move on? any questions before I move on? All right. Okay. So what I&#x27;m going to do now is we&#x27;re going to read together sorry uh we&#x27;re not going to read together an essay by Porche Shali it&#x27;s called a defense of poetry and he</p>
+<p><span class="timestamp">[26:25]</span> explains how this happens. Okay. All right. So now giving you the theory um we we&#x27;ll we&#x27;ll see how Percy Shelly was a very famous British Romanic poet how he how he explains this. Okay.</p>
+<p><span class="timestamp">[27:08]</span> All right. So this is from his essay the defense of poetry. Okay, it&#x27;s a very long essay but but I&#x27;ll just highlight for you certain aspects. Okay, so he&#x27;s talking about how Homer created talking about how Homer created Greekization and um Homer was a B poet Greekization and um Homer was a B poet but had a heavy influence on the playwrights. Okay. The play the three big players of course are sophocles and ubides [snorts] and the theater will</p>
+<p><span class="timestamp">[27:41]</span> become the very essence of Athenian life. Okay. So what you do what you did for fun was you would go to a theater but the theater was more than just entertainment. It was about education. entertainment. It was about education. It was about enlightenment and vacation. It was about enlightenment and vacation. Okay. So um he talks about the theater in Athens. Okay. The drama in Athens or or who or who wheresever else it may have approached wheresever else it may have approached to its perfection ever cos coincides with the moral intellectual greatness of</p>
+<p><span class="timestamp">[28:11]</span> the age. All right. So the theater at Athens provoked these tremendous Athens provoked these tremendous feelings in people that made them into feelings in people that made them into moral people with ambition with moral people with ambition with creativity. All right. The tragedies of creativity. All right. The tragedies of Athenian poets are as mirrors in which a spectator beholds himself under a thin disguise of circumstance of all but that ideal perfection energy which everyone ideal perfection energy which everyone feels to be the internal type of all feels to be the internal type of all that he loves, admires and would become.</p>
+<p><span class="timestamp">[28:42]</span> All right. Okay. So again the idea of poetry, the idea of truth is that it&#x27;s a mirror in which you can look at yourself and you look at the world around you. Achilles or diaas are in you and you are in them and by observing them objectively you can better understand objectively you can better understand yourself. yourself. yourself. The imagination is enlarged by sympathy The imagination is enlarged by sympathy with pains and passions so mighty that they extend in their conception the capacity of that by which they are conceived. The good affections are conceived. The good affections are strengthened by pity, indation, terror</p>
+<p><span class="timestamp">[29:13]</span> strengthened by pity, indation, terror strengthened by pity, indation, terror and sorrow and exact calm is prolonged and sorrow and exact calm is prolonged from the safety of this high exercise of them into the tumult of familiar life. Okay. So the idea of Greek tragedy is um [clears throat] [clears throat] epiphany epiphany epiphany and cartharsis. So if you look at uh Greek tragedy there&#x27;s a very common pattern. Okay. So there&#x27;s a tragic character and he&#x27;s</p>
+<p><span class="timestamp">[29:44]</span> undone by hubris. undone by hubris. Okay, that&#x27;s a great tragic flaw, his Okay, that&#x27;s a great tragic flaw, his hubris. He&#x27;s arrogant. Achilles has hubris. He&#x27;s arrogant. Achilles has hubris. He thinks he&#x27;s better than hubris. He thinks he&#x27;s better than everyone else. Every man has hubris. He&#x27;s better than everyone else. Okay, but will die because of hubris. Hector will die because of hubris. So it&#x27;s hubris that is the great uh killer of people. Okay? No matter how great you are, you will suffer from hubris. The greater you are, the more you you&#x27;ll suffer from hubris, which can only lead to tragedy. And you&#x27;re observing this</p>
+<p><span class="timestamp">[30:16]</span> and you recognize that, oh, it&#x27;s hubris that leads to tragedy and therefore it will make you a much more humble person. Okay, this is what we call epiphany. But regardless But regardless of your epiphany, you&#x27;re still going to of your epiphany, you&#x27;re still going to face tragedy. face tragedy. Okay, the person is still going to fall. Okay, the person is still going to fall. So Hector, no matter how great he is, he&#x27;s still going to die. Petroas, no matter how innocent he is, he&#x27;s still going to die. Okay? And this will lead</p>
+<p><span class="timestamp">[30:47]</span> and so what happens is you feel a connection with that person, you cry. And this leads to karthis. Okay? Ctharsis is basically purge. Ctharsis is basically purge. Whatever feelings that you have, you Whatever feelings that you have, you cry. You purge your feelings. You you purge your hubris. You purge your hatred. Okay? And this will make you a whole person. But when you commit karthis, what happens is that you now connect with the character itself. So the character now lives in you and you live in the character. live in the character. Okay? And that will make you a much</p>
+<p><span class="timestamp">[31:19]</span> Okay? And that will make you a much better person. Does it make sense guys? All right. Even crime is disarmed of habits horror and all its contagion by being represented as a fatal consequence of the unfathomable agency of nature does diversity of its wolfliness. Men can no longer cherish in it as a creation of their choice. In a drama of the highest order, there is little food for sensor or hatred. It teaches rather than self-nowledge and of self-respect. than self-nowledge and of self-respect. Neither the eye nor the mind can see Neither the eye nor the mind can see itself unless reflected upon that which</p>
+<p><span class="timestamp">[31:51]</span> it resembles. The drama so long as it continues to express poetry is as a prismatic and manysided mirror which prismatic and manysided mirror which collects the brightness rays of human collects the brightness rays of human nature and divides and reproduces them from the simplicity of these elementary forms and touches them with majesty and beauty and multiplies all that it reflects and endows it with the power of propagating its like wherever it may fall. Okay, so this is very long but it&#x27;s a very simple idea. The idea is that that when you watch a tragedy, okay, when you when you watch a tragedy, okay, when you observe a tragedy, [snorts] you&#x27;re observe a tragedy, [snorts] you&#x27;re observing a fundamental truth about</p>
+<p><span class="timestamp">[32:23]</span> observing a fundamental truth about observing a fundamental truth about human nature, okay, which is that we&#x27;re human nature, okay, which is that we&#x27;re all going to be tragic. The classic that classic case is Edypus. Okay, Edypus is a man who killed his father and married his mother. And when he discovers the the truth, he blinds himself and then he goes into exile. goes into exile. Okay. And if you actually read the Okay. And if you actually read the tragedy by Sopes, he did nothing wrong. It was it was just fate. It was just an</p>
+<p><span class="timestamp">[32:53]</span> accident. But unfortunately, that&#x27;s what accident. But unfortunately, that&#x27;s what life is about. Okay. So the you are a life is about. Okay. So the you are a great person when you&#x27;re able to acknowledge your limitations. acknowledge your limitations. You&#x27;re able to acknowledge You&#x27;re able to acknowledge You&#x27;re able to acknowledge um fate and destiny, but you struggle um fate and destiny, but you struggle regardless. Okay, that&#x27;s what irritate. regardless. Okay, that&#x27;s what irritate. That&#x27;s what ud udimon is to recognize That&#x27;s what ud udimon is to recognize your limitations to recognize the your limitations to recognize the universe may have a grudge against you universe may have a grudge against you but you struggle on regardless. but you struggle on regardless. Okay. And that story when you watch it</p>
+<p><span class="timestamp">[33:24]</span> Okay. And that story when you watch it yourself it brings sorrow to you. It brings pity but it makes you also much more wise and reflective about the world that we live in. Okay. And that&#x27;s creates wisdom that creates empathy. creates wisdom that creates empathy. This creates morality. Okay. And that&#x27;s This creates morality. Okay. And that&#x27;s why Greek drama is so important. Okay. Now let&#x27;s look at another another passage. passage. Poets are not only subject to the Poets are not only subject to the experiences or spirits of the most refined organization but they can color all that they combine with the evidence</p>
+<p><span class="timestamp">[33:54]</span> and hues of this ether row. Okay. All right. This is really important idea. Remember how we said that poets have a connection to the vine. Right. So they are absorbing the guys. They are absorbing the monad. Okay. But at the same time they&#x27;re observing the world around us, the material. Okay? They&#x27;re observing human nature. They&#x27;re observing human nature. They&#x27;re observing nature like life itself. And observing nature like life itself. And what they do is they combine these two together. Okay? The present with the eternal, the here with the forever. And</p>
+<p><span class="timestamp">[34:25]</span> they turn it into words that are able to express both the material and the spiritual. The here and the forever, the present and the eternal. Okay. present and the eternal. Okay. A word, a trait in a representation of a A word, a trait in a representation of a scene or a passion will touch the internal cord. Okay. Uh diction or metaphor. metaphor. Internal cord. Internal cord is just Internal cord. Internal cord is just your connection to the line. Okay. So this word because because it&#x27;s so beautiful this sentence so beautiful beautiful this sentence so beautiful will reawaken your memory. Okay. This is</p>
+<p><span class="timestamp">[34:58]</span> will reawaken your memory. Okay. This is a really important idea where we are always in a process of um reincarnation. All right. So why are we here in this world? Because there are things that we can experience that we cannot experience in the spiritual. When we&#x27;re in the spiritual, we are formless. We have we don&#x27;t have any bodies. Therefore, we can have se we cannot have sex. We can&#x27;t have pain. We can&#x27;t love. Okay? But in this world, we can. But what&#x27;s important to understand is that we when we reincarnate into this world, our reincarnate into this world, our memories of our former selves and of the</p>
+<p><span class="timestamp">[35:31]</span> memories of our former selves and of the spiritual world are lost to us. Otherwise, we can&#x27;t actually live the life that that that we live. Okay? But poetry because it connects both to the vine and the present. Certain words will spark your soul and your soul is the forever memory of all your lives and your connection to the spiritual. Okay, that&#x27;s what poetry does. Poetry is a gateway into your soul. gateway into your soul. and reanaminate. Okay. In those who have</p>
+<p><span class="timestamp">[36:03]</span> and reanaminate. Okay. In those who have ever experienced these emotions, the ever experienced these emotions, the sleeping, the cold, the buried image of sleeping, the cold, the buried image of the past. All right? the past. All right? So, you have all these past lives in you So, you have all these past lives in you that you don&#x27;t remember. But a certain word, a certain poem will reignite, reanimate all these past lives in you. And they will sum up and says, &quot;Hey, we remember.&quot; Okay? And this will elevate you. you. poetry does makes immortal all that is poetry does makes immortal all that is best and most beautiful in the world. It</p>
+<p><span class="timestamp">[36:33]</span> arrests the vanishing operations which arrests the vanishing operations which haunt the interaluminations of life and haunt the interaluminations of life and veiling them or in language or in form sends them forth among mankind bearing sweet news of kindred joy to those with whom the sisters abide abide because there is no more portal of expression from the caverns of the spirit which they inhabit into the universe of things. Poetry redeems from decay the visitations of the divinity in man and man. Okay, there&#x27;s God in us. And poetry reminds us there is God in us. There&#x27;s God everywhere. And poetry reminds us</p>
+<p><span class="timestamp">[37:05]</span> there&#x27;s God everywhere. Poetry lets us see the divine everywhere. Okay, we&#x27;re not able to see this because of how our minds work. Because we&#x27;re only see able to see through time and space. But poetry is helps us go beyond time and space and connect immediately to the eternal. eternal. Okay? to the divine, to the spiritual. Okay? to the divine, to the spiritual. [snorts] [snorts] [clears throat]
+[37:37]
+All things exist as they are perceived. Okay, so again the idea of K where where we can only see things through time and space. Okay, these are things we we we can see. But you know what? There are things that we can feel that we can&#x27;t see. It&#x27;s the feelings that matter at least in relation to the recipient. The mind is it own place and of itself can make a heaven of hell, a hell of heaven. Okay? But what this tells us is that if we learn how to control our minds, we</p>
+<p><span class="timestamp">[38:08]</span> can control reality itself. can control reality itself. Okay? But poetry defeats a curse which Okay? But poetry defeats a curse which binds us to be subjected to the asin of surrounding impressions. Okay? Do you surrounding impressions. Okay? Do you understand this idea? The idea is poetry understand this idea? The idea is poetry activates our imagination. activates our imagination. Before we were in a prison of our own Before we were in a prison of our own making. Before we only could only see what we could see. But the poetry gives us a higher sight. It allows us to see the things beyond just time and space.</p>
+<p><span class="timestamp">[38:42]</span> The eternal, the past, the future. And wherever it spreads its own figure curtain or withdraws life&#x27;s dark veil from before the scene of things, it equally creates for us a being within our being. Okay. our being. Okay. All right. So each time we use our All right. So each time we use our imagination, we create our new reality for ourselves. It makes us the inhabitants of a world to which the familiar world is a chaos. It reproduces a common universe of which we are portions and recipients and it purchases from our insight inward insight. The film of familiar with which obscures</p>
+<p><span class="timestamp">[39:13]</span> from us the wonder of our being. It compels us to feel that which we perceive and to imagine that which we know. It creates a new the universe after it has been annalated in our minds by the recreation or impressions blunted by reiteration. It justifies the bold and true words of tassel. None but God and the poet deserve the name of creator. The poet is the creator of our world because the poet has the imagination to see things beyond time and space, beyond this reality. And the</p>
+<p><span class="timestamp">[39:46]</span> poet then distills these emotions into words that help us ourselves words that help us ourselves connect to the divine. Okay? Poetry is a connect to the divine. Okay? Poetry is a This is this is clear, right guys? All right. So we&#x27;ll conclude the most unfilling hero, companion and follower unfilling hero, companion and follower of the awakening of a great people to of the awakening of a great people to work a beneficial change in opinion or institution is poetry. Poetry is the basis of all civilization. basis of all civilization. Okay. It is from poetry that everything Okay. It is from poetry that everything</p>
+<p><span class="timestamp">[40:17]</span> must come from. must come from. At such periods there&#x27;s an accumulation At such periods there&#x27;s an accumulation of the power of communi communicating and receiving intent and passion and receiving intent and passion conceptions respecting man and nature. conceptions respecting man and nature. conceptions respecting man and nature. The person whom this power resides may The person whom this power resides may often as we far as regards many portions of their nature have little apparent correspondence with that spirit of good of which they are the ministers. But even while they deny and objure, they are yet compelled to serve that power which is seated on the throne of their own soul. Okay? So poets don&#x27;t actually know their profits. Poets don&#x27;t know they&#x27;re connected to the monad or the</p>
+<p><span class="timestamp">[40:48]</span> divine. They just do what they do because they have no choice. Okay? There&#x27;s a fire burning in you. You have to let it out otherwise you you can&#x27;t sleep. You can&#x27;t eat. Okay. Poets are prophets who must speak the truth otherwise they will just suffocate. otherwise they will just suffocate. Okay. They&#x27;ll just drown in their own Okay. They&#x27;ll just drown in their own misery. misery. It is impossible to read the comp It is impossible to read the comp compositions most celebrate writers of compositions most celebrate writers of the present day while being startled the present day while being startled with the electric light which burns</p>
+<p><span class="timestamp">[41:18]</span> within their words. Okay. Poets are the flame itself. Poets are not human. They are the messengers of the divine flame. Okay, they just burn. And when you read their words, you can see the flame in them. Okay, so even though Homer, we don&#x27;t even know who this guy is. We have we don&#x27;t know, we don&#x27;t have his picture, but you can see when we read him, he&#x27;s alive still. Okay, his words still burn. still burn. They measure the circum circumference They measure the circum circumference They measure the circum circumference and sound the depths of human nature and sound the depths of human nature</p>
+<p><span class="timestamp">[41:49]</span> with a comprehensive and arpetuating with a comprehensive and arpetuating spirit. And they are themselves perhaps spirit. And they are themselves perhaps the most sincerely astonished at its manifestations. Okay? It&#x27;s all manifestations. Okay? It&#x27;s all inspiration. When Homer is speaking, he inspiration. When Homer is speaking, he doesn&#x27;t know what he&#x27;s speaking. He doesn&#x27;t. Are you telling me like this guy, he&#x27;s able to understand? Oh, this is what Odysius is doing. Odysius is trying to create a reality and he&#x27;s using imagery. He&#x27;s using diction. No, no, he doesn&#x27;t understand anything. He&#x27;s just blah blah blah blah blah. Okay, he&#x27;s a divine fire. he&#x27;s a divine fire. He&#x27;s a chat. He&#x27;s just channeling God. He&#x27;s a chat. He&#x27;s just channeling God.</p>
+<p><span class="timestamp">[42:21]</span> Okay, he&#x27;s just a portal for God to Poets are the hopens of an unprehed inspiration. Okay. The mirrors of the gigantic shadows which future cast upon the present. There are prophets because of future speaking to us today. Okay? Right? God is past, future, pre present. And so when God speaks, And so when God speaks, he&#x27;s also speaking to the future. he&#x27;s also speaking to the future.</p>
+<p><span class="timestamp">[42:53]</span> The words which express what they understand not. The trumpets which sing to battle and feel not what they inspire. The influence which is move not, but moves. Poets are the legislators of the world. Okay? legislators of the world. Okay? Poets are prophets and their words Poets are prophets and their words create our reality. Every everything create our reality. Every everything that we know, everything that we do, that we know, everything that we do, it&#x27;s because of language of the language that the poets create. Okay? Doesn&#x27;t make sense, guys. That&#x27;s how Homer created civilization because God willed created civilization because God willed it that Homer speak truth and willed</p>
+<p><span class="timestamp">[43:26]</span> it that Homer speak truth and willed that this truth will spread across the world through his poetry. Okay? It&#x27;s all by design. Does it make sense? Okay. All right. So, I&#x27;ll see you guys</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

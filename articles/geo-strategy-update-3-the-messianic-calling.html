@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo-Strategy Update #3: The Messianic Calling — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Geo-Strategy Update #3: The Messianic Calling">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #f43f5e;
+            --accent-bg: rgba(244, 63, 94, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Geo-Strategy Update #3</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Geo-Strategy Update #3</div>
+        <h1 class="article-title">The Messianic Calling</h1>
+        <div class="article-meta">
+            <span>📖 22 min read</span>
+            <span>📝 4,317 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Geo-Strategy Update #3：  The Messianic Calling</p>
+<p><span class="timestamp">[0:05]</span> Hello YouTube. So um as you know there&#x27;s been a ceasefire announced been a ceasefire announced um um um in the Middle East in the Middle East in the Middle East and uh many of you are curious as to and uh many of you are curious as to what this ceasefire means. what this ceasefire means. Well, I still believe that the United Well, I still believe that the United States, Israel, and Iran are fully committed to war. committed to war. And the ceasefire, it&#x27;s really about And the ceasefire, it&#x27;s really about</p>
+<p><span class="timestamp">[0:37]</span> attempting to shape the narrative around this war, trying to control the terms, trying to determine how the war war will be fought. be fought. Um, so for Iran, for the Ayatollah, it&#x27;s Um, so for Iran, for the Ayatollah, it&#x27;s very important that the Iranian people understand understand that Iran is forced into that Iran is forced into that Iran is forced into this war. Um, in his speech to the this war. Um, in his speech to the Iranian people right after the um, US</p>
+<p><span class="timestamp">[1:07]</span> bombing, bombing, um, he credited the economy between Iran um, he credited the economy between Iran and the United States. Iran is a nation dedicated to peace. United States is a nation dedicated to war. nation dedicated to war. The Iranian people live the truth. The The Iranian people live the truth. The American people tell the lie. American people tell the lie. And the Iranian people will do all it And the Iranian people will do all it can to achieve peace. can to achieve peace. But if forced to defend sovereignty, if</p>
+<p><span class="timestamp">[1:39]</span> But if forced to defend sovereignty, if forced to defend uh their faith, then the Iranian people will fight to the death. The Iranian people will never surrender. surrender. But if an opportunity for peace presents But if an opportunity for peace presents itself, then the Iranian people, the Iranian nation, the atollah will grasp at that opportunity. at that opportunity. Um Um Um Trump Trump Trump um did launch the um attacks against</p>
+<p><span class="timestamp">[2:11]</span> um did launch the um attacks against Iran, Iran, but he&#x27;s trying to create the narrative but he&#x27;s trying to create the narrative that this is happening not because this is what he wants, but because he&#x27;s forced to do so by the globalists, by the deep state, by the American empire. He himself is a person who only aspires for world peace. Um but these</p>
+<p><span class="timestamp">[2:41]</span> wararmongers, these neocons within his wararmongers, these neocons within his administration, administration, administration, um who are embedded in the deep state um who are embedded in the deep state and who have tentacles all around the world, world, they are undermining him and forcing him they are undermining him and forcing him to act against Iran. But he will fight for the American people. He will fight for world peace. And um that&#x27;s why he is</p>
+<p><span class="timestamp">[3:11]</span> trying as hard as he can to broker a peace deal between Israel and Iran. Um Um both Trump and the Aatollah both Trump and the Aatollah both Trump and the Aatollah can do this. um can try to be the can do this. um can try to be the peacemakers because they know that peacemakers because they know that Netanyahu Netanyahu Netanyahu will continue to push for war that will continue to push for war that Israel will continue to be the aggressor in this uh war. So, Israel is really a</p>
+<p><span class="timestamp">[3:43]</span> scapegoat. But it&#x27;s really important um for us to understand that um all three leaders, Trump, Yatollah, and Nanyahu leaders, Trump, Yatollah, and Nanyahu are committed to war for different are committed to war for different reasons. reasons. So, in today&#x27;s talk, I want to explain So, in today&#x27;s talk, I want to explain to you what&#x27;s really driving these three individuals. Why are they committed to war? And what do they want from this war? war? And for us to understand this, I want to And for us to understand this, I want to</p>
+<p><span class="timestamp">[4:13]</span> introduce to you a new concept. It&#x27;s called the messianic calling. called the messianic calling. Each of these individuals, Trump, the Each of these individuals, Trump, the Aatollah, and Nanyahu, see themselves as historical messianic figures. They&#x27;re on historical messianic figures. They&#x27;re on a mission from God to save the world, to a mission from God to save the world, to save their people, to deliver their people into the promised land. people into the promised land. And if we we need to understand that And if we we need to understand that</p>
+<p><span class="timestamp">[4:46]</span> this is ultimately what&#x27;s driving them. Um not fame, not power, Um not fame, not power, um um um nothing but this misinic calling. that&#x27;s nothing but this misinic calling. that&#x27;s what&#x27;s really um driving them. So let me explain what this meant calling is by explain explain to you it&#x27;s three major characteristics. characteristics. The first major characteristic is that The first major characteristic is that um when you truly believe that you are</p>
+<p><span class="timestamp">[5:16]</span> on a mission from God, that you are the chosen one, that you are the prophet, that God smiles on you, you have access to divine energy. to divine energy. What is divine energy? Um let me give What is divine energy? Um let me give Maybe you&#x27;re a mother and you&#x27;re taking your three-year-old into the forest. your three-year-old into the forest. If you get lost and you&#x27;re wandering the If you get lost and you&#x27;re wandering the woods and then suddenly a black bear</p>
+<p><span class="timestamp">[5:46]</span> pounces on you. Well, as a mother, what&#x27;s going to happen is and and you could be petite, you could be weak. What&#x27;s going to happen is you suddenly when your child is under attack, under threat, you will find unlimited energy, strength, and courage to fight off this bear and you will succeed. And we know because um there&#x27;s been a couple adults um like this. So a mother&#x27;s love for a child is one of the strongest forces in</p>
+<p><span class="timestamp">[6:20]</span> the world. Now to understand divine energy just multiply this mother&#x27;s love for her child by about a million and you can understand how energized how can understand how energized how motivated how powerful motivated how powerful motivated how powerful um people with imaging calling feels. um people with imaging calling feels. The classic example is Trump, right? So Trump during the campaign season, he would get about like four or five o&#x27;clock in the morning, do a lot of tweets, watch a lot of TV. He get he</p>
+<p><span class="timestamp">[6:50]</span> would get on on his plane and go to a campaign rally where he would talk endlessly for a couple hours. Then he would get back on the plane and then fly somewhere else and do another rally. And then he would do another rally um in front of 50,000 people. And then um he would watch the news and then he go he go to bed, sleep soundly and get up the next morning do it again for 2 3 4 months. Um and you have to ask yourself</p>
+<p><span class="timestamp">[7:21]</span> why is he so energetic? He&#x27;s 79. Why is he so motivated? Um, I mean, he&#x27;s not in the best health in the world because he he eats McDonald&#x27;s all the time and he&#x27;s clearly obese for his for for his age. Um but none of this matters because um his faith in his mission, the fact that he knows that he&#x27;s been chosen by God to complete God to complete um his mission um his mission um that fills him with an infinite</p>
+<p><span class="timestamp">[7:53]</span> um that fills him with an infinite energy energy um and that&#x27;s where his strength comes um and that&#x27;s where his strength comes from. from. The second characteristic um of people The second characteristic um of people who are um filled with the messianic calling is that they are absolutely fearless. fearless. Um they know that because God has chosen Um they know that because God has chosen them, God will protect them them, God will protect them and so no bullets can harm them. Okay. and so no bullets can harm them. Okay. So Trump um so the classic example again</p>
+<p><span class="timestamp">[8:26]</span> is Trump. Um he was um almost assassinated at at Butler, Pennsylvania. assassinated at at Butler, Pennsylvania. And remember how um even though the And remember how um even though the bullet came close to him, he was still able to get up and pump his fist and shout to the people, &quot;Fight, fight, fight.&quot; Okay, it&#x27;s this absolute fight.&quot; Okay, it&#x27;s this absolute fearlessness. They know that God will fearlessness. They know that God will always protect them. But also, um even if they were to die, they would go straight to heaven and be with God. They&#x27;re one of the elect. They&#x27;re one of the elect. And then finally um</p>
+<p><span class="timestamp">[8:57]</span> And then finally um And then finally um their bodies no longer matter. Their their bodies no longer matter. Their bodies are just vessels for this divine energy uh to be transplanted on earth. When they die when their vessel this vessel breaks and it fills the followers with divine energy as well they become martyrs and their followers will martyrs and their followers will complete the mission on their behalf. So complete the mission on their behalf. So they&#x27;ve transcended death. They&#x27;ve they&#x27;ve transcended death. They&#x27;ve transcended this material world. They transcended this material world. They transcended this material world. They are now ideas. They are now faith.</p>
+<p><span class="timestamp">[9:29]</span> are now ideas. They are now faith. They&#x27;re now um inspiration They&#x27;re now um inspiration uh for their followers. And so they are uh for their followers. And so they are and therefore they are immortal. They&#x27;re eternal. And they are invincible. eternal. And they are invincible. Um the third characteristic of people Um the third characteristic of people with me calling with me calling um um is um um is the pers persecution complex. The idea the pers persecution complex. The idea is how do you know that you are one of the elect? How do you know that God has</p>
+<p><span class="timestamp">[10:00]</span> chosen you? It&#x27;s because society, the world, everyone around you persecutes world, everyone around you persecutes you. Right? So again the classic example you. Right? So again the classic example is Trump. Trump survived two is Trump. Trump survived two impeachments. Um in his first term, the impeachments. Um in his first term, the deep state um um filled um his cabinet. John Bolton, Mike Pompeo, Nikki Haley. Um Um everyone was part of the deep state and everyone was part of the deep state and they undermined him. In fact, you had</p>
+<p><span class="timestamp">[10:31]</span> generals brag about how they generals brag about how they intentionally intentionally intentionally um um um disobeyed Trump&#x27;s orders. In fact, you disobeyed Trump&#x27;s orders. In fact, you had one general, Mark Millie, who um told the Chinese government, &quot;Don&#x27;t told the Chinese government, &quot;Don&#x27;t listen to Trump. He&#x27;s not really in listen to Trump. He&#x27;s not really in charge. If you have any issues, call us directly.&quot; Okay? So, they were directly.&quot; Okay? So, they were undermining him. Uh the media every day undermining him. Uh the media every day was lambasting him, cursing him. The whole world was cursing him or laughing at him, right? The European elite was</p>
+<p><span class="timestamp">[11:03]</span> laughing at him. Remember when um Trump was talking about the Nordstream was talking about the Nordstream pipeline and how it it would cause pipeline and how it it would cause German dependency on Russian oil? Those German um ambassadors were at the back of United Nations laughing their heads off at uh at Trump. Um after he left office um Trump had to survive lawfare, right? They raided his home at Mer Lago. um they try to bankrupt him. They try to</p>
+<p><span class="timestamp">[11:33]</span> throw him in prison for extremely spirious um offenses. spirious um offenses. So So So um Trump feels he&#x27;s persecuted, but um Trump feels he&#x27;s persecuted, but that&#x27;s good for him. That energizes him because it makes him feel that God is testing him. God wants to know, do you truly believe in your mission? Are you truly committed to your mission? And through this persecution process um through this persecution process um Trump will develop more and more faith, Trump will develop more and more faith, more strength, more power. Um this</p>
+<p><span class="timestamp">[12:06]</span> divine energy is filling him and and um this divine energy will allow him to fulfill his mission. Let&#x27;s look at the Ayatollah. Um right now um the world&#x27;s most sophisticated intelligence agency, most sophisticated intelligence agency, Mossad, is hunting him. They want to Mossad, is hunting him. They want to assassinate him. the American military, assassinate him. the American military, the most powerful military in human the most powerful military in human history, uh, with their precision bombs, with their satellite um, technology, with their satellite um, technology, they&#x27;re hunting the Alatollah as well. they&#x27;re hunting the Alatollah as well. And the at 86. So given all this, how</p>
+<p><span class="timestamp">[12:39]</span> does the Alatia feel right now? And the answer is he feels ecstatic. He&#x27;s never been more alive. He&#x27;s never been more energetic. He&#x27;s never felt more vibrant in his life. Um, he feels as though the moment he&#x27;s been waiting for all his life, life, um, the moment he&#x27;s dreamt of all his um, the moment he&#x27;s dreamt of all his life, the opportunity to kill the great Satan, it is now before him. And so, um, he&#x27;s not going to die. Um, and if you ask him to go run a marathon tomorrow,</p>
+<p><span class="timestamp">[13:10]</span> he could do so. That&#x27;s the power of divine energy combined with the pers persecution complex. Natanya was the persecution complex. Natanya was the same situation. Netanyahu, same situation. Netanyahu, same situation. Netanyahu, his country, Israel, it&#x27;s it&#x27;s divided. his country, Israel, it&#x27;s it&#x27;s divided. Um there are all these corruption charges against him and his family. And right now he um as long as he&#x27;s in office, he&#x27;s immune from these charges. Um but the moment that this war stops, then he would face um corruption charges</p>
+<p><span class="timestamp">[13:41]</span> and he would probably thrown in prison. Um he&#x27;s not faced by any of this. um he knows that this persecution it&#x27;s all a sign that God favors him and this persecution persecution uh will ultimately give him the strength uh will ultimately give him the strength the faith to fulfill his divine mission on earth. on earth. So now what I want to talk about is So now what I want to talk about is what exactly is the divine mission? How do each individual perceive their divine</p>
+<p><span class="timestamp">[14:12]</span> mission? So I&#x27;ll start with theata because that&#x27;s that&#x27;s fairly simple. Um the Persians their belief system is combination of both Zorashinism as well as Shia Muslim. as Shia Muslim. Zorashinism is the world&#x27;s first Zorashinism is the world&#x27;s first Zorashinism is the world&#x27;s first esquetological esquetological esquetological uh religion and in it is a moral uh religion and in it is a moral clarity. The world is divided between good and evil, between light and dark, between the truth and the lie. And this</p>
+<p><span class="timestamp">[14:42]</span> is the very structure of the cosmos. Um, and these two forces have been have been at war since the beginning of time. Eventually, these forces will meet in a final climatic battle. And this at this point, we humans we must make the decision as to what force to join. Will we fight for the side of good or we fight for the side of evil? Uh and clearly the Ayatollah believes that he</p>
+<p><span class="timestamp">[15:15]</span> must unite the Muslim world uh and have them fight on the side of good against the great evil, the great Satan, which is the United States and their vassal state um Israel. The Shia Muslim religion is one that believes that suffering suffering uh persecution and sacrifice, it&#x27;s all uh persecution and sacrifice, it&#x27;s all part of your faith. If you truly believe then you will suffer and you&#x27;ll sacrifice yourself. So sacrifice yourself. So the is willing to die for what he the is willing to die for what he</p>
+<p><span class="timestamp">[15:46]</span> believes in. Um he&#x27;s willing to die for his faith. That for him would be the greatest honor. So the Ayatollah what he wants um it&#x27;s pretty clear. wants um it&#x27;s pretty clear. He wants to lure the great Satan into He wants to lure the great Satan into Iran. He wants to lure the great Satan into his lear where he will take his flaming sword and stab the great Satan to death. Thus freeing his people from</p>
+<p><span class="timestamp">[16:18]</span> oppression, from persecution, from oppression, from persecution, from suffering and and by killing the great suffering and and by killing the great Satan, he will save his people and save the world. Okay, that&#x27;s that&#x27;s the divine mission of the Ayatollah. divine mission of the Ayatollah. Donald Trump, what is his divine Donald Trump, what is his divine mission? Well, he wants to make America great again. So why is America not great? The reason why is for the past 100 years, America has been co-opted by the globalists the globalists and America has been forced to engage in</p>
+<p><span class="timestamp">[16:50]</span> and America has been forced to engage in these forever wars in the Middle East um that has killed thousands of good American soldiers. American soldiers. And this was done at the behests of the And this was done at the behests of the globalists. globalists. Um these globalists have also forced Um these globalists have also forced open American borders and let in millions and millions of illegal millions and millions of illegal immigrants in order to corrupt America immigrants in order to corrupt America in order to destroy civil society in</p>
+<p><span class="timestamp">[17:23]</span> America. These globalists also have in the school curriculum the school curriculum infested infested infested um the teachings of young children with um the teachings of young children with multiculturalism with work politics with multiculturalism with work politics with DEI diversity inclusion DEI diversity inclusion DEI diversity inclusion um equity these ideas so these ideas um equity these ideas so these ideas globalism liberalism and globalism liberalism and multiculturalism are cancers multiculturalism are cancers on the body of the American Republic.</p>
+<p><span class="timestamp">[17:53]</span> on the body of the American Republic. And you can&#x27;t negotiate with cancers. You can&#x27;t wait for cancers to die out. You must purge these cancers from the body body of American republic with blood and fire. blood and fire. So the divine mission for Trump is to So the divine mission for Trump is to destroy the American empire by rolling it into an unwinable war against Iran.</p>
+<p><span class="timestamp">[18:23]</span> But not only that, but to compel the American people to rise up against their globalist oppressors globalist oppressors and overthrow and overthrow and overthrow them, to remove America from the world them, to remove America from the world and to achieve its manifest destiny, which is basically control over North America, which is which is the promised land, uh, which is what God promised to the Americans. And once America the Americans. And once America recognized that it should not interfere</p>
+<p><span class="timestamp">[18:53]</span> recognized that it should not interfere in global affairs, Europe, Asia, Africa, who cares? They&#x27;re hopeless. Um, once America is able to restore its Republican soul and spirit, then America will be great again. And Donald Trump, his mission is to lead the American people um in the revolution against the global elite and to restore the American republic. Okay, that&#x27;s Donald Trump. republic. Okay, that&#x27;s Donald Trump. Then you have Benjamin Netanyahu. Then you have Benjamin Netanyahu. Then you have Benjamin Netanyahu. Um for Benjamin Netanyahu, um like many</p>
+<p><span class="timestamp">[19:25]</span> Um for Benjamin Netanyahu, um like many many um Israelis, um they believe that the golden age of the Jewish people was Kingdom of David, which which occurred about 3,000 years ago. That was when um Israel, the nation was free, Israel, the nation was free, independent, unified and supreme in the independent, unified and supreme in the Middle East. It was a time of peace and prosperity for the world. But after the</p>
+<p><span class="timestamp">[20:00]</span> kingdom kingdom of David um collapsed um um um Israel has been attacked by its Israel has been attacked by its neighbors and has been dismembered and has become a vassel state. has become a vassel state. Um first the Assyrians and Babylon Um first the Assyrians and Babylon Babylons came to dismember uh Israel. Then Israel became a vassal state to the Persians. Then after the Persians came the Tomies of Egypt and after that were the Seucid Empire. Um the Jews were able to rebel against Seucid Empire and</p>
+<p><span class="timestamp">[20:31]</span> establish um the Ma the ring of the Mcabes. But that didn&#x27;t last very long because the Romans came right after that. And the Romans were brutal. The Romans um killed many many uh Jews and they exiled the Jews from Jerusalem. Um their whole their their their place of worship um and they destroyed the um second temple. second temple. So um the Romans were extremely brutal. So um the Romans were extremely brutal.</p>
+<p><span class="timestamp">[21:02]</span> Um um in the 7th century, the Islamic Caliphate restored the Jews to Caliphate restored the Jews to Jerusalem, but they were still not Jerusalem, but they were still not masters of their own land. Um so the entire project of Israel is to return to the glory days of the kingdom of David. And now And now is a historical opportunity to achieve is a historical opportunity to achieve that. Um the only uh opposition against</p>
+<p><span class="timestamp">[21:33]</span> est reestablishing the kingdom of David is Iran and the United States. And if both can be destroyed in a cat cataclysmic war, then you will have the restoration of the kingdom of David. Israel will be a unified nation again. All Jews can now return to Israel and Israel can be the light of all nations which is um what all which is what the nation aspires to. nation aspires to. Of course, this raises a really</p>
+<p><span class="timestamp">[22:05]</span> Of course, this raises a really interesting question. interesting question. For the empire of Israel uh to be born, For the empire of Israel uh to be born, the empire of America needs to be destroyed. So, why would America just sit back and let this happen? Um, why would the global elite allow for uh Israel to become dominant in the Middle East? Remember, the center of global trade is the Middle East. Most of</p>
+<p><span class="timestamp">[22:40]</span> the world&#x27;s oil is in the Middle East. um I think Israel will achieve um its ambition. And the reason why is there are certain elements of the American Empire. There are certain American Empire. There are certain elements of the global elite that want elements of the global elite that want the Kingdom of David to be restored. They want the American Empire to be destroyed and to leave the Middle East.</p>
+<p><span class="timestamp">[23:11]</span> um they they want to help Netanyahu achieve his messianic calling. achieve his messianic calling. These elements are what we can loosely These elements are what we can loosely call Christian Zionists. They believe call Christian Zionists. They believe that for Jesus to return, that for Jesus to return, that for Jesus to return, the nation of Israel has to be the nation of Israel has to be reconstituted. They have to uh rebuild their temple and they have to call back all the Jews from around the world. And there has to be a final battle between</p>
+<p><span class="timestamp">[23:41]</span> Israel and the world. And they believe it. They believe that it is their mess calling to make this prophecy happen. Um and you hear this and you think this is all really silly. But um let me tell you two things. The first thing is this plan, this prophecy has been in place for centuries. place for centuries. Um, this Christian Zionist project has Um, this Christian Zionist project has</p>
+<p><span class="timestamp">[24:12]</span> been around been around um, ever since the Protestant um, ever since the Protestant um, ever since the Protestant Reformation Reformation Reformation and um, these people have been patiently and um, these people have been patiently planning and waiting for today. That&#x27;s the first thing. The second thing you need to know is need to know is there&#x27;s a man who actually conceived there&#x27;s a man who actually conceived this Christian Zionist project who built the intellectual foundations the intellectual foundations for Christian Zionism. for Christian Zionism. And this man um you know his name but</p>
+<p><span class="timestamp">[24:43]</span> And this man um you know his name but you may not really know who he is. His name is Isaac Newton. And you know that yeah he is the founder of calculus and he conceived the foundations for he conceived the foundations for classical mechanics in physics but you classical mechanics in physics but you don&#x27;t know who the real historical Isaac Newton is. The real historical Isaac Newton saw himself as a prophet with a mezanite calling um to understand the</p>
+<p><span class="timestamp">[25:17]</span> mind of God and to prepare for the return of Jesus. And um as you probably know Isaac Newton was a very very smart man. So, um, in my next video, I&#x27;m going to talk about the real historical Isaac Newton and what his plan is. Because once you understand all this, then what&#x27;s happening in the Middle East</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

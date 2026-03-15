@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo-Strategy Update: US-Iran War Incoming — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Geo-Strategy Update: US-Iran War Incoming">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #f43f5e;
+            --accent-bg: rgba(244, 63, 94, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Geo-Strategy Update</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Geo-Strategy Update</div>
+        <h1 class="article-title">US-Iran War Incoming</h1>
+        <div class="article-meta">
+            <span>📖 25 min read</span>
+            <span>📝 5,095 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Geo-Strategy Update：  US-Iran War Incoming</p>
+<p><span class="timestamp">[0:03]</span> Hi. Hi YouTube. Uh this is Professor Jang again. Um I am in Toronto. I&#x27;m still trying to recover from the jetlack and the uh time difference. Um um as everyone knows um it seems this war in the Middle East is uh blowing up and it seems like even though the United States has yet to declare war on Iran um it will probably happen um in the</p>
+<p><span class="timestamp">[0:34]</span> next couple of days with the United States um bombing Iran. States um bombing Iran. Um so Um so Um so um today I&#x27;m going to share with you my um today I&#x27;m going to share with you my impressions, my analysis of what&#x27;s impressions, my analysis of what&#x27;s happened of what&#x27;s happening in the happened of what&#x27;s happening in the Middle East. Um and I hope that um this discussion will be clarifying discussion will be clarifying and illuminating for uh many of you. and illuminating for uh many of you. So, um it&#x27;s very clear what the US</p>
+<p><span class="timestamp">[1:06]</span> intention is. intention is. Um because we&#x27;ve seen what the United Um because we&#x27;ve seen what the United States has done to Iraq, Libya, and Syria. They call it regime change, but it&#x27;s really the destruction of the society. Um the destruction of the capacity as a people to be a nation to work collectively. And the most glaring example of course is Iraq. um in 2003 before the Americans invaded it was a</p>
+<p><span class="timestamp">[1:36]</span> fairly well functioning society. Yeah. I mean there were sanctions that mean there were sanctions that impoverished the people but overall I impoverished the people but overall I mean it was a fairly stable um society in middle middle east. United States goes in over for Osam Hussein. And at that time you had a lot of people who welcome this uh transition and this change and they believe that the Americans will implement democracy which Americans will implement democracy which was a state mission and it will lead to was a state mission and it will lead to</p>
+<p><span class="timestamp">[2:09]</span> a more prosperous Iraq. But very soon afterwards afterwards the Americans implement a policy called the Americans implement a policy called debuffification debuffification uh which is to remove anyone from the uh which is to remove anyone from the Baptist party from government from the military from the police. And the problem with this is these are the elite of society. You remove the elite from society from the pillars of power society um ceases to function properly. And that&#x27;s exactly what happened. It led to massive sectarian violence that to massive sectarian violence that continues even today in Iraq. So, um I</p>
+<p><span class="timestamp">[2:42]</span> continues even today in Iraq. So, um I can&#x27;t believe that anyone&#x27;s stupid to not know the consequences of this policy of deaf. of deaf. Um and so when Americans say regime Um and so when Americans say regime change in the Middle East, think of Iraq 2003 and what happened afterwards. 2003 and what happened afterwards. So um the question now is how will the So um the question now is how will the Americans move forward? Well the Americans move forward? Well the American strategy in the Middle East um American strategy in the Middle East um</p>
+<p><span class="timestamp">[3:15]</span> it&#x27;s been in place for the past 20 years and regime change requires three and regime change requires three pillars. Okay. The first pillar is um pillars. Okay. The first pillar is um um decapitation of the leadership. Just remove the entire leadership. Okay. Uh second is um revolutionary um intent and you do that through economic sabotage, right? For sanctions by by destroying infrastructure that allows uh people to live normal lives which includes water supply, electricity. supply, electricity. Um and the third pillar of the strategy</p>
+<p><span class="timestamp">[3:47]</span> Um and the third pillar of the strategy is to ferment sectarian violence to divide and conquer the people to take advantage of the fact that uh within the societies there are there are these minorities of people who have have traitionally traditionally been traitionally traditionally been suppressed. You give them a promise of a suppressed. You give them a promise of a better life. So in Iraq 2003 you had the Kurds but you also had uh the Shia the Shia the Shiites. um um Iran, there are</p>
+<p><span class="timestamp">[4:19]</span> tons and tons of minorities who are discontent with the way things are right now. So that&#x27;s the American strategy uh moving forward. And if we want to clarify or simplify the strategy, we can use um a metaphor. Okay, Americans to win wars in the Middle East, they use bombs, they use propaganda, and um they use money. Okay, the bombs is basically you have these fighter jets going in to destroy uh any military opposition. destroy uh any military opposition. Propaganda is CNN, BBC, New York Times</p>
+<p><span class="timestamp">[4:51]</span> Propaganda is CNN, BBC, New York Times to create the impression that this is being done in the name of democracy and prosperity and and peace. And then uh money in that you are financing a lot of the opposition groups. You you&#x27;re the opposition groups. You you&#x27;re financing a lot of the internal disscent financing a lot of the internal disscent uh which will overthrow the regime. So um this strategy, bombs, propaganda, um this strategy, bombs, propaganda, money, it&#x27;s also being implemented right money, it&#x27;s also being implemented right now in Iran. Um and in fact, you can make argument that this has been going</p>
+<p><span class="timestamp">[5:23]</span> on secretly underground for many years now. now. Personally, I think the strategy won&#x27;t Personally, I think the strategy won&#x27;t work. Um first of all, bombs don&#x27;t really work with the geography of Iran. Remember Iran, it is a mountainous terrain. Um, so it&#x27;s it&#x27;s a huge huge country. It&#x27;s three times the size of Iraq. So I&#x27;m not I&#x27;m not um convinced</p>
+<p><span class="timestamp">[5:53]</span> that um air strikes will do any real lasting damage to the infrastructure of Iran. Iran. propaganda. New York Times, CNN, BBC propaganda. New York Times, CNN, BBC have absolutely no credibility today. have absolutely no credibility today. Not even among among Western domestic Not even among among Western domestic audiences. Um they they have even less credibility credibility um um in Iran. And then you have uh um um in Iran. And then you have uh money and um I don&#x27;t know how effective</p>
+<p><span class="timestamp">[6:25]</span> money will be because at the end of the day what differentiates Iran from say Libya, Syria and Iraq is the people in Iran consider consider themselves Iran consider consider themselves Persians. In other words, they consider Persians. In other words, they consider themselves heroes to a brilliant themselves heroes to a brilliant creative uh civilization that&#x27;s been creative uh civilization that&#x27;s been creative uh civilization that&#x27;s been around for 5,000 years. And um I can&#x27;t around for 5,000 years. And um I can&#x27;t overstate enough um the motiv how that would energize and motivate the people</p>
+<p><span class="timestamp">[6:57]</span> to resist and to uh unite together. Also what&#x27;s really important is um the Iranians saw exactly what happened to the Iraqis. this once vibrant, the Iraqis. this once vibrant, harmonious, um, brilliant um, nation was harmonious, um, brilliant um, nation was destroyed by American nation by by American sanctions and American air American sanctions and American air strikes. Um, so um, I don&#x27;t think that strikes. Um, so um, I don&#x27;t think that the Americans have a compelling case to</p>
+<p><span class="timestamp">[7:29]</span> make before the Iranian uh, people. So um this another way of say another way of saying this is that even though it seems the Americans have the military advantage um they are they are still the greatest military in human history. greatest military in human history. The the problem though is the Iranians The the problem though is the Iranians have much more strategic flexibility. have much more strategic flexibility. And what I mean by that is the Americans And what I mean by that is the Americans to overthrow this regime need um to decap decapitate uh the leadership. They</p>
+<p><span class="timestamp">[8:00]</span> need to create internal disscent, a revolution, and they need to rally the religious minorities against the um the regime in Tran. Okay. And that&#x27;s really um the main strategy moving forward and really the only Oh, there&#x27;s my son Chris by the way. Um and that&#x27;s the only um real path to victory for the Americans, whereas the Iranians have Americans, whereas the Iranians have much more strategic flexibility. Okay. much more strategic flexibility. Okay. much more strategic flexibility. Okay. So um in other words, America and its So um in other words, America and its</p>
+<p><span class="timestamp">[8:32]</span> allies in the Middle East have major strategic vulnerabilities. strategic vulnerabilities. Um let&#x27;s for example, let&#x27;s take Saudi Um let&#x27;s for example, let&#x27;s take Saudi Arabia. Well, Saudi Arabia has two vulnerable resources that the American vulnerable resources that the American that the that sorry the Iranians at any that the that sorry the Iranians at any time can strike at through the proxies uh the Houthies, right? You have the desalination plants which provides which desalination plants which provides which is the only source of fresh water for is the only source of fresh water for Saudi Arabia. If you knock out the salination plants in Saudi Arabia, uh Saudi Arabia loses all its fresh water in two weeks time and there&#x27;s no way of replenishing that fresh water. Then of</p>
+<p><span class="timestamp">[9:04]</span> course you have the oil fields which are extremely vulnerable to rocket attacks. extremely vulnerable to rocket attacks. So um Saudi Arabia, the main US ally of So um Saudi Arabia, the main US ally of Arab nations in the Middle East, um um it&#x27;s extremely vulnerable to um Iranian attacks. Then you have the trade of humus which controls a great deal of the world&#x27;s trade. If Iran closes that off then that cuts off cuts off not just oil to East Asia uh but it cuts cuts off revenue for American allies like Oman,</p>
+<p><span class="timestamp">[9:35]</span> Saudi Arabia, uh the UAE, Saudi Arabia, uh the UAE, um Qatar. Um, and the last strategic um Qatar. Um, and the last strategic vulnerability is you have all sorts of American bases uh throughout the Middle East, especially in Kuwait, um, East, especially in Kuwait, um, especially in Saudi Arabia, Qatar, and especially in Saudi Arabia, Qatar, and these are legitimate military targets if America declares war on Iran. So, um, another another way of saying this is Americans their ability to inflict pain</p>
+<p><span class="timestamp">[10:08]</span> on Iran. Um, we know it&#x27;s predictable and we know that the Iranians can sustain it because this sanction regime has been on has been going on for the past few decades. But the Iranians ability to inflict pain on American allies as well as the American military as well as American consumers as well as American consumers um, well, they&#x27;re not really um, well, they&#x27;re not really um, well, they&#x27;re not really predictable. And ultimately you can make predictable. And ultimately you can make the argument that because America is not the Americans people are not in favor of</p>
+<p><span class="timestamp">[10:38]</span> this war then it&#x27;s very it&#x27;s less likely that uh American consumers will be able to sustain absorb high oil prices and inflation that this war would inevitably cause. So um I would say the main advantage advantage um um going into this war just from a um um going into this war just from a geopolitical uh anecical perspective I geopolitical uh anecical perspective I would say it&#x27;s very much in favor of the would say it&#x27;s very much in favor of the um Iranians. This not this does not mean</p>
+<p><span class="timestamp">[11:10]</span> that um the Americans and Israelis will not be able to inflict tremendous damage on the nation. Um I I mean if America and Israel continues its bombing and Israel continues its bombing campaign, which I suspect it will for campaign, which I suspect it will for the next few months, then we will see tremendous damage um and economic loss within Iran. Um but ultimately war is not decided by resources, weapons or technology. It&#x27;s not it&#x27;s really decided by a people&#x27;s willingness to fight and die for what they believe in. And I</p>
+<p><span class="timestamp">[11:42]</span> think at um when it comes to this question then I think the Iranians um have a huge advantage over the Americans. Also, let&#x27;s not forget that the Iranians have been studying Sorry, sorry, sorry. The Americans have been studying um the studying um the um American strategy in the Middle East um American strategy in the Middle East for the past 20 years. And I&#x27;m pretty sure they developed counter strategies sure they developed counter strategies against an American attack. And I think against an American attack. And I think the main main um counter strategy is the</p>
+<p><span class="timestamp">[12:13]</span> idea of decentralization. You&#x27;ve got idea of decentralization. You&#x27;ve got these different militias, different these different militias, different these different militias, different cells embedded in different parts of of cells embedded in different parts of of Iran. So even though America and Israel they may be able to decapitate the leadership, they may be able to knock out the central leadership in Tran um they won&#x27;t be able to occupy the country and unless they&#x27;re able to occupy the country and install a military regime that&#x27;s to their liking then um this war is not won then then then Iran is still a functioning um threat to um American</p>
+<p><span class="timestamp">[12:45]</span> Middle East interests. Okay. Um having gone through some broad analysis, gone through some broad analysis, let&#x27;s look at questions that um viewers let&#x27;s look at questions that um viewers have been asking on my discord server. Okay, so the first big question is will nuclear weapons be used in this war at any point? And my intuition tells me it won&#x27;t be okay for many many reasons. Okay, the first major reason is this is huge taboo against the use of nuclear weapons. If America were to detonate a</p>
+<p><span class="timestamp">[13:17]</span> nuke that America would lose all credibility, all authority um um among its allies and among among the world and we we have to remember like a lot like this war is being fought to reestablish American credibility and authority in American credibility and authority in the world. Um Putin&#x27;s invasion of the world. Um Putin&#x27;s invasion of Ukraine did a great deal of damage to Americans reputation and fighting this Americans reputation and fighting this war in Ukraine is to reestablish the war in Ukraine is to reestablish the idea that America is still the global hedgeimon that is still a unipolar</p>
+<p><span class="timestamp">[13:50]</span> world. And so by getting a nuke it shows the desperation, anxiety um and quite honestly incompetence of the American honestly incompetence of the American military. Okay. So I so for that reason military. Okay. So I so for that reason I don&#x27;t think America will use nukes. Also, even though Putin has not publicly stated um that he will he will retaliate if America will use a nuke against Iran, he hasn&#x27;t done this publicly because it&#x27;s not to his advantage to state to say it publicly. But I&#x27;m sure that through back channels through uh inter</p>
+<p><span class="timestamp">[14:21]</span> intermediaries uh Putin has made this very clear to the Americans and Putin will tolerate an American invasion of Iran but he will not tolerate um uh nuclear weapons being used in this war. So I think we can discount um the use of nukes in this war. um we have to we would have to reach a very uh high point in escalation ladder for even nukes to be considered in this war. Okay. So I think like for the purpose</p>
+<p><span class="timestamp">[14:52]</span> purpose of analysis let&#x27;s discount the possibility of nukes. possibility of nukes. Second question is um what are unknowns Second question is um what are unknowns in going into this war? Okay. Well I think there are three big unknowns. The first big unknown is what happens if the Americans kill the supreme leader of Iran. this would trigger a sess cessation crisis. Um his son um is supposed to supposed to uh take over in the case of the death of uh take over in the case of the death of</p>
+<p><span class="timestamp">[15:23]</span> the Ayatollah, but he&#x27;s extremely the Ayatollah, but he&#x27;s extremely unpopular and he&#x27;s he&#x27;s he&#x27;s not that unpopular and he&#x27;s he&#x27;s he&#x27;s not that competent. So I&#x27;m not sure if um the death of the sup supreme leader, the assassination of the supreme leader, assassination of the supreme leader, what that would do to the dynamic of what that would do to the dynamic of this war. But I would assume that this would be a huge advantage for uh for the Americans and the Israelis. So I think that&#x27;s a big question. Are they will they be able to assassinate the supreme leader? Okay, that&#x27;s the first big question. Second big question is what will Putin&#x27;s response be? Um, and I</p>
+<p><span class="timestamp">[15:56]</span> think I think as we know Putin has withdrawn a lot of of his Soviet a lot of his Russian adviserss from Iran and Putin has stayed pretty quiet um in the matter and um so um what he intends um what he will do we just don&#x27;t know right now and I think that&#x27;s the intention. I I think Putin um wants to be the power broker behind the scenes. Um and I think um in many ways he&#x27;s</p>
+<p><span class="timestamp">[16:31]</span> setting up a trap for America because um there&#x27;s really one scenario in which America loses this war. Okay, really badly. Um if America would send in ground troops, it would lose this war. And the reason why is the idea of sunk cost fallacy. All right. So, so if America were to send in the Marines and a ground invasion, we can expect the American military would just bulldoze American military would just bulldoze all position. It would establish um uh all position. It would establish um uh beach heads. It would establish um fort</p>
+<p><span class="timestamp">[17:01]</span> operating bases throughout the interior operating bases throughout the interior of Iran. And at this point, everyone&#x27;s of Iran. And at this point, everyone&#x27;s like cheering on like look how great the American military is. There&#x27;s a surge of patriotism in America. the American patriotism in America. the American media, CNN, New York Times, they are media, CNN, New York Times, they are just placing the American military to the sky. And um it would be it it would seem a repeat of Operation Desert Storm in 2003. The problem though is the American military does not have the death, the strategic death, the death, the strategic death, the resources, the supply lines in order to</p>
+<p><span class="timestamp">[17:32]</span> resources, the supply lines in order to sustain this attack. And what would happen very quickly is this massive blitz crack, shock and all, whatever you call it, um, in Iran would get bogged down really quickly. And at this point, it&#x27; be very easy for the underground militias, these, um, these cell groups to strike at supply lines for the Americans. and and it&#x27;ll become very quickly almost an almost an impossible</p>
+<p><span class="timestamp">[18:05]</span> um war to win for the uh uh for the Americans and um but at the same time they&#x27;ve invested so much and they&#x27;re so close to tan right they&#x27;re so close to taking over the capital so they can&#x27;t give up it&#x27;s sunk cost fallacy and saus fallacy is such a powerful force in geopolitics and so the um the Americans are kind of stuck there and then they&#x27;re just forced to it&#x27;s a black hole for them. They&#x27;re just forced to throw in resources resources um that they don&#x27;t have and this might</p>
+<p><span class="timestamp">[18:37]</span> um that they don&#x27;t have and this might trigger um well this this will definitely trigger protest across definitely trigger protest across America which may lead to a civil war. America which may lead to a civil war. Um so remember it&#x27;s impossible for any nation in this world to defeat America just impossible. All right? Right? Even if the entire world were to get together and attack America, the world the world would still lose. The only way to defeat America is by causing a civil war, a revolution in America that would damage the regime so much that America would be</p>
+<p><span class="timestamp">[19:08]</span> forced to retreat from its obligations in the world. Okay. So my question then is does Putin understand this? And he has set he set up conditions in a way to create this outcome. And my thinking is yes, Putin, this is Putin&#x27;s plan moving forward and Putin will be working behind the scenes in order to create a situation where America is forced to um uh invade uh Iran with ground forces.</p>
+<p><span class="timestamp">[19:39]</span> The these ground forces will seem to be really quickly establish really quickly establish supremacy in Iran, but they get bogged supremacy in Iran, but they get bogged down and then Trump the Americans may be forced to have a draft. Um and this will lead to Vietnam war protests and conflicts across uh America which may in the end trigger an American civil war. So that&#x27;s um Putin and Russia and but again we don&#x27;t know exactly what they</p>
+<p><span class="timestamp">[20:09]</span> will do but if I&#x27;m right about Putin then um I think he will very much be the mass manipulator behind the scenes. The third great unknown is China. Um, China and Iran have very strong economic ties. China gets a third to half its oil from Iran. If Iran were to fall and America were to control the oil supply, then the Chinese economy would be in a lot of trouble. Geopolitically, this would be trouble. Geopolitically, this would be very very bad for China. Um, so that so</p>
+<p><span class="timestamp">[20:41]</span> very very bad for China. Um, so that so China is a great unknown. What what&#x27;s what will China&#x27;s response be? what will China&#x27;s response be? My prediction is we will not hear from My prediction is we will not hear from China in this conflict that much. In fact, we can sort of discount China from uh from this war. And there are reasons why. Okay, the first major reason is China doesn&#x27;t really have a grand geopolitical strategy. It doesn&#x27;t really geopolitical strategy. It doesn&#x27;t really understand its place in the world. It understand its place in the world. It doesn&#x27;t have a theory to explain its place in the world. So remember um</p>
+<p><span class="timestamp">[21:13]</span> previously I discussed the heartland previously I discussed the heartland thesis, the Mckender thesis where both thesis, the Mckender thesis where both America and Britain need to um stop a hedgemon emerging to unite the Eurasian continent. Okay? Because if if a land power would emerge, maybe Germany, maybe Russia were able to unite Europe and Asia together, then um that would destroy America and Britain&#x27;s capacity destroy America and Britain&#x27;s capacity to control global trade, right? You can to control global trade, right? You can</p>
+<p><span class="timestamp">[21:45]</span> have railways connect Eurasia and you really don&#x27;t have to trade for the seas anymore. So that&#x27;s the um that&#x27;s how America and Britain sees the world. Uh Russia understands that it is extremely vulnerable to invasions. It been it&#x27;s been invaded by uh multiple nations in its history which has caused tremendous death and destruction within Russia. So Russia needs to be on the offensive if it is to maintain its if if it is to maintain its territorial integrity. maintain its territorial integrity. Okay. But when we go to China, China</p>
+<p><span class="timestamp">[22:18]</span> Okay. But when we go to China, China doesn&#x27;t really care about the rest of the world. Um for China what&#x27;s important is to maintain its territorial integrity by not participating in the world. Uh China built the great wall and the purpose of the great wall was to prevent outsiders from coming to China but also to prevent insiders from leaving China. Um so for China its main priority is to maintain its inter territory integrity maintain its inter territory integrity and what it understands is um the only</p>
+<p><span class="timestamp">[22:51]</span> and what it understands is um the only way for the communist party to fall in China is if it were to engage itself in an external geopolitical conflict that an external geopolitical conflict that has no way of extruding itself from. has no way of extruding itself from. That&#x27;s why China is not going to get involved in this war in the Middle East. And at the end of the day, if the United States conquers Iran and forces China to pay twice, three, four times as much for oil, then China will just absorb the</p>
+<p><span class="timestamp">[23:21]</span> cost. Uh because for China, what&#x27;s really important is to maintain the stability of the regime. The stability of the regime. The geopolitical geopolitics doesn&#x27;t really geopolitical geopolitics doesn&#x27;t really geopolitical geopolitics doesn&#x27;t really matter. Okay. So, I would say these are matter. Okay. So, I would say these are the three big questions moving forward that we can watch out for. um will the Americans be able to kill the Supreme Leader because that is definitely on the agenda and they&#x27;re investing a lot of resources to ensure this possibility and I&#x27;m not sure if it will happen. Um but if the conse but if it does happen then</p>
+<p><span class="timestamp">[23:52]</span> consequences for Iran will be quite dire. Okay. Um another unknown is Russia what Putin will do. um we um I think it it it will be all almost be impossible to truly gauge his intentions and strategy moving forward. intentions and strategy moving forward. Now known as China will China Now known as China will China participate in this uh conflict on the side of Iran. side of Iran. Um my guess my prediction is if there is Um my guess my prediction is if there is participation it&#x27;ll be much more it&#x27;ll be very limited. So China will supply</p>
+<p><span class="timestamp">[24:25]</span> supplies uh armaments but it will not um intervene on behalf of Iran um to the degree that Iran would would really want. Okay. So um um one last thing I want to talk about is some of you have been curious as to how I&#x27;ve been able to so accurately predict um the contours of this war. And so the quick answer to this is I use a new analytical model</p>
+<p><span class="timestamp">[24:57]</span> called game theory. And um game theory is something that I will discuss in greater detail um over the next few months as I analyze this war even more. Um and um game theory is not a secret. I mean it&#x27;s it is not something that&#x27;s impossible to learn. Uh my hope as we move along is to teach everyone the ability to use game theory to analyze geopolitics in order to anticipate geopolitics in order to anticipate events and to prepare for events. Um so</p>
+<p><span class="timestamp">[25:27]</span> events and to prepare for events. Um so um that&#x27;s it for my first analysis of this war. I&#x27;m hoping to make more more more updates as this war progresses. Um, and um, so there&#x27;s lots of things I could I can&#x27;t really talk about on YouTube because I&#x27;ll be banned or I&#x27;ll be censored. So, as some of you know, I had a German video. I I I I made a um video on the history of Germany and that&#x27;s been banned in Germany by by YouTube because it was flagged by</p>
+<p><span class="timestamp">[26:00]</span> certain users who found some material within the video extremely within the video extremely controversial. Um, so, um, so I need to controversial. Um, so, um, so I need to be really careful about what I say in order to avoid YouTube censorship. I&#x27;ll probably at some point, uh, move to Rumble where I&#x27;ll be more free to discuss what I really think about the world. Um, um, so um, please watch out for that. I&#x27;ll make an announcement if I move on to Rumble. Okay. But, uh, the big announcement is I&#x27;ve set I set up a Discord server. As some of you know,</p>
+<p><span class="timestamp">[26:32]</span> this Discord server will allow us to engage as a community. And what I&#x27;m hoping to do at some point is set up um a time for where we can have question answer where you can like ask me anything and I&#x27;ll tell you how I um how how my thought process works and and and guide you through the process of developing a game theory mindset. So you can for yourself analyze global events using uh game theory. So um the link to my discord server called predictive my discord server called predictive history it&#x27;s it&#x27;s in it&#x27;s in the</p>
+<p><span class="timestamp">[27:04]</span> history it&#x27;s it&#x27;s in it&#x27;s in the description. Uh so please click on that and please join uh the server the discord server and um very quickly we&#x27;ll set up like an hour uh live stream where I&#x27;ll answer some questions that you have posted on the discord server. I apologize if I&#x27;m if I&#x27;m not responding to your messages. Um I have two young boys who are running around the park right now and I have to watch them and um they&#x27;re very active. Um and they&#x27;re</p>
+<p><span class="timestamp">[27:36]</span> suffering from jet lag. So I&#x27;m taking out I&#x27;m taking them out on strolls to the parks every single day. So I&#x27;m usually not at home. I don&#x27;t have internet access um outside uh my my parents house. So I apologize if I&#x27;m responding to you um in in real time to your queries and to your message. Um I am extremely faith thankful and grateful for the community that we we&#x27;re developing right now and I hope to uh build on on this community because as some of you have pointed out the world</p>
+<p><span class="timestamp">[28:07]</span> is moving to a very dark place and the only way to sur survive and to anticipate and to prepare for the chaos that this new world will bring about is to come together as community and to help each other out and to have solidarity. Okay. So, please join the the Discord server and uh I will see</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

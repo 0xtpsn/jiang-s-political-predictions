@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civilization #10: The Trial of Socrates and Plato&#x27;s Allegory of the Cave — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Civilization #10: The Trial of Socrates and Plato&#x27;s Allegory of the Cave">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #06b6d4;
+            --accent-bg: rgba(6, 182, 212, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Civilization #10</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Civilization #10</div>
+        <h1 class="article-title">The Trial of Socrates and Plato&#x27;s Allegory of the Cave</h1>
+        <div class="article-meta">
+            <span>📖 37 min read</span>
+            <span>📝 7,387 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Civilization #10：  The Trial of Socrates and Plato&#x27;s Allegory of the Cave</p>
+<p><span class="timestamp">[0:03]</span> okay so we are doing Socrates and Plato today um last class we did Greek Theater and remember I said that iselis sopes and Ides they&#x27;re really profits of democracy uh they see themselves as teachers who teach Athenians how to practice uh democracy we also said that there are three major benefits to democracy the first major benefit is uh kings are bad okay uh King Kings have</p>
+<p><span class="timestamp">[0:33]</span> hubris and hubis creates all sorts of problems so remember in the play intey um by Sophocles the king Creon sentences Integrity To Death even though it was unjust and that was because of hubris second ma major benefit of democracy is it is a gift from from the gods that teaches citizens individual gods that teaches citizens individual responsibility okay so remember that Ina responsibility okay so remember that Ina ises told us that democracy is a gift</p>
+<p><span class="timestamp">[1:05]</span> from Athena in order to uh promote Justice and Truth in the world and the third ma major benefit is democracy is really the best way to promote Justice and Truth in the world if citizens um come together and they deliberate and act um with um in good faith then the world will be a better place okay so that is the argument from the play rights of Athens now obviously there are</p>
+<p><span class="timestamp">[1:36]</span> people who disagree with this people who disagree with this perspective and one of the most famous perspective and one of the most famous opponents of democracy is opponents of democracy is Socrates Socrates Socrates Socrates um lived during the time of the Socrates um lived during the time of the Golden Age of Pericles in Athens and he was a very vocal opponent of democracy for the following reason in order to practice democracy properly people need practice democracy properly people need to access the truth but to access the to access the truth but to access the truth you need to have truth you need to have reason and his argument was that most</p>
+<p><span class="timestamp">[2:08]</span> reason and his argument was that most people are not capable of exercising reason in their thinking okay and to prove this every day he would be sing outside the Agora which is the marketplace of Athens and this is where everyone came together and he would spend all day arguing with people in something call achronic dialogue something call achronic dialogue and showing the and showing the and showing the flaws in your reasoning okay showing you flaws in your reasoning okay showing you why you don&#x27;t really understand the</p>
+<p><span class="timestamp">[2:41]</span> world when you think you do okay trying to prove that um you are ignorant okay so let me give you a demonstration of what sakes did okay so give me a statement that is statement that is fundamentally and inherently fundamentally and inherently true give me a statement that that you true give me a statement that that you think is fundamentally and inherently think is fundamentally and inherently true the Earth is a spear right the Earth is</p>
+<p><span class="timestamp">[3:13]</span> spear and so this is a segement that we think is true right and so what Socrates would do is he would slowly and meth methodologically uh expose the flaws in this statement okay so the first question for you question for you is what is a sphere is what is a sphere is what is a sphere explain what a spear is okay so a threedimensional round shaped entity okay shaped entity okay um and give me an example of a</p>
+<p><span class="timestamp">[3:45]</span> um and give me an example of a spear a ball right so you&#x27;re saying the the Earth is like a ball is that correct it&#x27;s it&#x27;s all it&#x27;s it&#x27;s all around okay and how do you know around okay and how do you know this I mean you can know a ball is a spear because you hold it in your hand right but you&#x27;re not a God you don&#x27;t</p>
+<p><span class="timestamp">[4:16]</span> hold the Earth in your hand so how do you know it&#x27;s you know it&#x27;s true anyway I can go on like this true anyway I can go on like this obviously for a very long time and so this what socres did this is what it called a psychotic dialogue and actually we still use this in many different places like for example law school so in American law schools if you have if you ever make the stupid mistake of ever applying to law school and you get into law school uh they will uh teach you using the psychotic dialogue okay but but the idea is to show the flaws in</p>
+<p><span class="timestamp">[4:48]</span> your reasoning and obviously if you get an argument with Socrates you come out as a very mad person okay so the reputation of Socrates in Athens during this time was he was either a you could see him as a Bly okay he was intellectual bully or he was a clown or the most common understanding of the most common understanding of Socrates was he was a trickster okay he Socrates was he was a trickster okay he tricked you into making statements that were illogical because fundamentally were illogical because fundamentally language um does not capture the truth</p>
+<p><span class="timestamp">[5:18]</span> language um does not capture the truth okay language is just a convention we have to in order for us to communicate but it&#x27;s not meant to reflect reality okay and Socrates was exposing the fun fundamental fundamental flaws in our language flaws in our language flaws in our language system um so any questions about this so system um so any questions about this so far all right so to give you a sense of how Athenians thought about Socrates at that time let me describe to you a play</p>
+<p><span class="timestamp">[5:56]</span> Aristophanes um Aristophanes was a very famous satus in famous satus in Athens and he made fun of all the very Athens and he made fun of all the very famous individuals of Athens including famous individuals of Athens including Pericles who as we said was the defacto Pericles who as we said was the defacto king of Athens at this time but also Cleon who replaced uh um Pericles as the uh leader of Athens he also made for fun of Socrates of Socrates okay and the play uh was produced in okay and the play uh was produced in 423 BCE and the play was called the</p>
+<p><span class="timestamp">[6:29]</span> clouds so let me first explain the plot of the clouds and then we will interpret what it meant okay so in the clouds this is Athenian farmer a normal Citizen and he&#x27;s he&#x27;s in a lot of trouble because his wife spends a lot of money so he owes a lot of money to creditors and his creditors are banging at the door and demanding their money back so he comes up this with this plan to get rid of his debts there&#x27;s a school called a thinkery okay and it&#x27;s run by a man</p>
+<p><span class="timestamp">[7:00]</span> named named the thinkery proposes to teach you the thinkery proposes to teach you reason logic truth so that you can go and deceive drawers okay you can basically go and manipulate people and deceive them in a in a trial to get out of your debts so he wants to send his son to the thinkery to learn how to lie to juries his son who is a Playboy refuses because he says that Socrates</p>
+<p><span class="timestamp">[7:31]</span> he&#x27;s a chief he&#x27;s a liar he&#x27;s a fraud I refuse to go the man decides to check out the thinkery by himself he goes in and he sees and he sees Socrates okay hanging from a basket from Socrates okay hanging from a basket from the the ceiling and the man&#x27;s curious like what ceiling and the man&#x27;s curious like what are you doing up there and Socrates says well from up here I have a clearer and higher vision of the world I can access truth better also from here I can draw inspiration from the clouds who are the</p>
+<p><span class="timestamp">[8:03]</span> true gods okay not Zeus not Heracles the clouds are the true gods and they&#x27;re the ones who give me inspiration to come up with all these brilant ideas okay so the man in Socrates has they have a very long conversation and he&#x27;s completely long conversation and he&#x27;s completely convinced Socrates is a sage okay he&#x27;s a convinced Socrates is a sage okay he&#x27;s a philosopher he runs back and he tells his son you must go enroll in the thinkery and learn from Socrates okay so the man the son decides this is the path of leas resistance he goes to the</p>
+<p><span class="timestamp">[8:36]</span> thinkery he becomes saulty student thinkery he becomes saulty student meanwhile uh the man&#x27;s creditors are meanwhile uh the man&#x27;s creditors are banging at the door and and saying to him where is my him where is my money and the man says the man is now money and the man says the man is now going to use all the tricks that socres taught him okay so what he says is I don&#x27;t owe you any money and then the Creditor says you swore by zoos that you would pay me back the man said says oh guess what Zeus doesn&#x27;t exist okay he&#x27;s</p>
+<p><span class="timestamp">[9:08]</span> not a God so I swore an oath to nothing therefore I I owe you nothing the creditors the Creditor obviously gets creditors the Creditor obviously gets angry and he leaves okay now the son angry and he leaves okay now the son comes comes back and he and the first thing he does back and he and the first thing he does is start beating his father and the father is like why are you beating me son and then the son says Socrates taught me to beat you and the father&#x27;s like what he didn&#x27;t why is he teaching you that and the son says he taught me</p>
+<p><span class="timestamp">[9:39]</span> Justice now when I was young did you beat beat me the father says yes of course I beat me the father says yes of course I beat you because you were a naughty boy and then the son says therefore I can now beat you because you&#x27;re a naughty person for refusing to pay back your creditors okay the man gets very angry and he decides to go burn down the thinkery with ses inside it okay and that&#x27;s how the play end the play end now um this is not a great play okay now um this is not a great play okay this is not a famous play of Greece but</p>
+<p><span class="timestamp">[10:09]</span> it tells you what Athenians thought of Socrates at this time Socrates at this time okay um and it shows us that Athenians okay um and it shows us that Athenians didn&#x27;t think much of Socrates he worships the clouds right which is nothing so what they&#x27;re saying is Socrates makes things out of fer okay he&#x27;s just a fraud he&#x27;s a manipulator he&#x27;s is a liar but SES did have a lot of fans specifically people who really fans specifically people who really hated democracy and so the people who hated democracy and so the people who really really hated democracy were the</p>
+<p><span class="timestamp">[10:41]</span> children of the rich okay these were Aristocrats uh Born Into the wealthiest most noble aristoc aristocratic families most noble aristoc aristocratic families of Athens who hated the fact that the of Athens who hated the fact that the normal people thought they were their equals okay so what SES did was he taught them basically mental or taught them basically mental or linguistic kung fu right to go beat up linguistic kung fu right to go beat up these commoners who dare to think they&#x27;re equals one one of the most famous uh the most famous of Sak students included Plato who we all</p>
+<p><span class="timestamp">[11:16]</span> know but also um alab 8es who was one of the um wealthiest members of Athenian society and he actually became leader of Athens as well Athens as well okay okay okay so um Socrates had his fans um and and so um Socrates had his fans um and and because Athens were such a wealthy and open and Toler Society they allowed Socrates to basically do whatever he wanted wanted okay until okay until okay until 404 404 404 BC this was the BC this was the BC this was the year that uh Athens lost the pelian war</p>
+<p><span class="timestamp">[11:48]</span> year that uh Athens lost the pelian war to Sparta okay and when Athens lost the war Sparta did not burn Athens down Sparta had the right to burn Athens down but it did not okay okay instead Athens imposed a dictatorship called the 30 tyrants and the 30 tyrants came from the wealthiest uh families of Athens who also happened to be students of Socrates okay soes did not actually participate</p>
+<p><span class="timestamp">[12:19]</span> in a tyranny okay SES refused to participate in the Tyranny but there were many of these tyrants who were soy students and they were terrible people they killed at least 5% of of the Athenian uh population they stole uh a lot of wealth and they were so terrible that ultimately the aan people revolted against them and reinstalled their against them and reinstalled their democracy democracy democracy okay so okay so okay so um when the de when the Tyran was</p>
+<p><span class="timestamp">[12:49]</span> um when the de when the Tyran was overthrown um the 30 tyrants were exiled H but most people were given clemency okay they were forgiven if they participated in the participated in the regime then what happens next is very regime then what happens next is very strange in strange in 399 399 399 BCE Socrates is put on trial remember BCE Socrates is put on trial remember this is after the democracy is rein reinstated and this is when uh people who part particip participated in the</p>
+<p><span class="timestamp">[13:22]</span> Tyranny were forgiven okay but in 399 BCE SES was put on trial and he was put on trial and charged with two crimes the the first is the first is impiety okay which basically means he impiety okay which basically means he was insulting the gods of Athens including Zeus which is what he did in the play clouds okay um the second is corrupting the Youth of Athens okay basically Mis educating the Youth of Athens which is also what he did in the</p>
+<p><span class="timestamp">[13:54]</span> clouds okay so it almost seems like this entire trial was a cruel joke put on by the people of Athens to teach Socrates a lesson okay does that make lesson okay does that make sense so um the people of Athens sense so um the people of Athens expected SES to expected SES to apologize uh make some jokes be be funny apologize uh make some jokes be be funny and then all forgiven right during the trial Socrates refused to defend himself what he said was what he said was this I am not a good speaker I am bad</p>
+<p><span class="timestamp">[14:24]</span> this I am not a good speaker I am bad with words I&#x27;m just a poor person okay who comes from a poor family who spends every day seeking out the truth I spend all my time seeking out the truth thinking about the truth that I have no time to practice rhetoric I&#x27;m not good with words also I should not have to defend myself because you&#x27;re all capable of reason you&#x27;re all capable of logic</p>
+<p><span class="timestamp">[14:56]</span> therefore if you just think for yourself you will realize I&#x27;m not guilty I have abs nothing I had absolutely nothing to do with the 30 tyrants I spent all my life trying to help Athens therefore if you&#x27;re stupid you will vote me guilty if you&#x27;re stupid there&#x27;s nothing I can do about it okay so obviously the jury was insulted by his speech and they voted out of 500 people 280 to 220 to they</p>
+<p><span class="timestamp">[15:27]</span> voted that he is guilty okay they declared he was guilty of these two charges now as you can see it&#x27;s still a pretty clo close vote okay I mean Socrates was basically being a jerk during a trial and they still they put they voted him guilty but it was a pretty close trial 280 to 220 now the second part of the trial is if you are found found guilty um they have to figure out what guilty um they have to figure out what your punishment is okay so they the jury asked Sak to propose a punishment for</p>
+<p><span class="timestamp">[15:59]</span> his crimes and then what Sak said was you have found me guilty and is and the reason why you found me guilty is because I speak the truth I a god Godly okay okay gadfly I go around and I point out the gadfly I go around and I point out the nasty truths of Athenian Society I put a mirror to your face and I show you your warts your pimples your warts your pimples your ugliness therefore you hate me but what ugliness therefore you hate me but what I&#x27;ve been doing all my life has been for</p>
+<p><span class="timestamp">[16:30]</span> the good and better of Athens I&#x27;m a public servant I am the most selfless public public servant okay because because I speak the servant okay because because I speak the truth and by showing the truth I make you a better person therefore I think a just punishment would be a pension okay you guys should pay me to retire in peace but you know what I&#x27;m in generous and forgiving individual therefore if and forgiving individual therefore if you don&#x27;t want to give me a pension I you don&#x27;t want to give me a pension I will understand therefore I am willing</p>
+<p><span class="timestamp">[17:03]</span> to pay a small fine okay I I&#x27;ll pay a fine okay and then we&#x27;re good how about that and and again the Athan jurors were pissed off right so they voted to condemn him to death by Ching Hemlock okay they basically gave him the death penalty after they did so they came to realize that they were perhaps tricked by Socrates okay Socrates was 70 years</p>
+<p><span class="timestamp">[17:33]</span> old um that&#x27;s a that&#x27;s very old for back then okay 70 years years old was probably the age limit uh back then he really didn&#x27;t have much to live for and here was the opportunity for socres to be a mar for the truth right all his life he&#x27;s been trying to convince people democracy does not work because people are incapable of because people are incapable of reasoning out the truth and what this reasoning out the truth and what this trial shows us is he was correct right</p>
+<p><span class="timestamp">[18:04]</span> does that make sense so in in many ways you can make the argument that for Socrates this tribe was a type of art he was a performance artist okay and so the people of Athens realized that they were probably tricked and they were trying to get out of uh condemning SES to death but SES SES to death but SES insisted and and it came to a point insisted and and it came to a point where sakes was was just left alone and</p>
+<p><span class="timestamp">[18:35]</span> he had to demand to be given Hemlock and he had and he had to administr the hemlock by himself and so when he drank it he died okay now it he died okay now um after his death sakes remained an um after his death sakes remained an extremely controversial individual in extremely controversial individual in Athens and he had a student Athens and he had a student Plato who was maybe 28 29 at the time his mentor died okay and he loved Socrates Socrates and he commit the rest of his life to uh and he commit the rest of his life to uh</p>
+<p><span class="timestamp">[19:06]</span> restoring and Redeeming the reputation restoring and Redeeming the reputation of Socrates so when he was 40 years old of Socrates so when he was 40 years old he founded a school called the economy okay which was inspired by the vision of Socrates as a philosopher who sought the truth in sought the truth in 375 BCE he wrote a book called The 375 BCE he wrote a book called The Republic and the Republic is uh the most famous of Plato&#x27;s work it is arguably the greatest work of Western philosophy</p>
+<p><span class="timestamp">[19:36]</span> and many today considered uh the Republic the greatest book ever written okay there are people in this world who read the Republic and it forever transforms the way they see the world okay it&#x27;s a life transforming event to read the Republic and next semester we will actually read the Republic together okay but let me give you a quick introduction to The Republic so in the Republic uh there&#x27;s a very famous</p>
+<p><span class="timestamp">[20:10]</span> cave and this is really the most famous allegory or metaphor or analogy in Western thought okay by far nothing comes second to this so um before I start the allegory of the cave are there any questions so far about what I&#x27;ve discussed anything discussed anything unclear anything you would like to unclear anything you would like to question or doubt or argue with before I</p>
+<p><span class="timestamp">[20:40]</span> cave okay clear so far all right so this is the allegory imagine a cave deep under the Earth okay there&#x27;s a cave now in this cave at the back there&#x27;s a a large fire that shines light on this into this cave okay there are these prisoners who are chained to the floor and they&#x27;re chained so that they cannot move their necks they can&#x27;t move around okay they can&#x27;t move the only thing they can do is steer at a wall in front of</p>
+<p><span class="timestamp">[21:14]</span> them that&#x27;s the only thing they can do okay now there are these people behind them who are like puppeteers they hold up uh cardboard pictures of like maybe like rats and birds okay and the fire will project the these images onto the wall and so these people who again cannot move around and they can only see the wall in front of them they come to think that this wall is the truth it&#x27;s the only reality that exists and they</p>
+<p><span class="timestamp">[21:44]</span> start naming start naming things that they see and that creates things that they see and that creates language and they like to play games and try to figure out who can create the best language okay and then they give Awards to the people who create the best language who are playwrights right um okay so what play is saying is that we may honor art and poetry and drama but</p>
+<p><span class="timestamp">[22:14]</span> they&#x27;re all they&#x27;re all lies okay now one day for whatever lies okay now one day for whatever reason we don&#x27;t know why but one man finds his chains are loosened and he&#x27;s able to get up okay he swims around he sees a light coming from the top so he&#x27;s curious and he climbs all the way to the top and he&#x27;s now outside in the Free</p>
+<p><span class="timestamp">[22:45]</span> World okay and it&#x27;s painful because his eyes are not trained to see the sunlight okay so the sunlight it&#x27;s like burning him okay it&#x27;s like burning him alive and so at first all he&#x27;s all he&#x27;s doing is St at the ground and see he&#x27;s seeing reflections in the pawn in the pool but then he slowly accoma himself to the sunlight and he starts to see the world around him and it&#x27;s beautiful okay but it&#x27;s so beautiful that is beyond language he doesn&#x27;t have the language to</p>
+<p><span class="timestamp">[23:17]</span> describe this world that he&#x27;s in okay this is beyond language then this is beyond language then finally he develops the courage to stare finally he develops the courage to stare up in the sky and he sees the sun okay the the son and he is Amazed by how the Sun is son and he is Amazed by how the Sun is the source of all life and now for the first time he fully understands the truth of the truth of the world okay and when he does he is seized world okay and when he does he is seized</p>
+<p><span class="timestamp">[23:48]</span> by by regret because he remembers he has all regret because he remembers he has all these these friends who are still trapped and in friends who are still trapped and in prison in the cave and he pi them so he swears that he will even though he loves where he is he will still Venture back into the cave in order to show people the truth of the world and to tell them that you&#x27;ve been living a lie all your life okay so he goes back into the cave</p>
+<p><span class="timestamp">[24:20]</span> now remember his eyes are now accustomed to sunlight so in the cave it&#x27;s all dark so he stumbles around he stumbles around he falls and he hurts himself okay and then he goes and talks to the prisoners and say and tells them hey I&#x27;ve been to the outside world I&#x27;ve been to the sunlight I know what truth is and then they&#x27;re like can you describe to us what it&#x27;s like then and he can&#x27;t do it okay and then they&#x27;re like tell us what you</p>
+<p><span class="timestamp">[24:51]</span> see on the wall and because he&#x27;s been so accustom to the truth he can no longer use human language to describe anything okay and so the people are convinced utterly convinced he&#x27;s an idiot he&#x27;s insane he&#x27;s a insane he&#x27;s a clown and so they refuse to follow him clown and so they refuse to follow him and at some point because he insists on revealing the truth to them they kill they kill him okay that&#x27;s Alo to the cave okay and</p>
+<p><span class="timestamp">[25:22]</span> him okay that&#x27;s Alo to the cave okay and you will remember this allegory for the rest of your life now this allegory is powerful for three reasons okay and I I want you to remember these three reasons because we will go into them later on in the course the first reason the course the first reason is who&#x27;s the man who um goes out in the is who&#x27;s the man who um goes out in the sunlight and sees the truth it&#x27;s obviously Socrates right so with this allegory Plato redeems the reputation of Socrates right because remember before Socrates right because remember before Socrates was despised he was laughed at</p>
+<p><span class="timestamp">[25:56]</span> Socrates was despised he was laughed at by the Athenians and what does allegory saying is that&#x27;s because Socrates is a philosopher of the truth okay and people cannot deal with the truth so that&#x27;s why today we celebrate Socrates as the greatest philosopher whoever lived not greatest philosopher whoever lived not only that but we consider him the first only that but we consider him the first philosopher even though he was not the first philosopher okay right so that&#x27;s the power of the allegory of the cave</p>
+<p><span class="timestamp">[26:27]</span> this image forever transforms the way Humanity understands and perceives Humanity understands and perceives socres that&#x27;s the first thing second socres that&#x27;s the first thing second thing is this allegory becomes so powerful that in the powerful that in the imagination of Christians Socrates imagination of Christians Socrates imagination of Christians Socrates becomes Jesus right does that make right does that make sense Socrates is Jesus for Christians sense Socrates is Jesus for Christians because Jesus was God and he came down</p>
+<p><span class="timestamp">[27:01]</span> to our world in order to speak the truth and because we feared the truth we killed killed him him him okay so for Christians aligo the of the okay so for Christians aligo the of the cave is really the story of Jesus as well another martyr for the truth but and the last thing is this allegory the cave becomes the framework for cave becomes the framework for Christianity Christianity Christianity okay it becomes intellectual framework okay it becomes intellectual framework okay it becomes intellectual framework for the religion of of Christianity so</p>
+<p><span class="timestamp">[27:33]</span> for the religion of of Christianity so let let me show you how Okay so this is an allegory and behind the allegory there is an understanding of reality of philosophy a religion okay so here is the platonic understanding of the world there&#x27;s something call the the there&#x27;s something call the the form of the form of the form of the good okay and the obviously the um met good okay and the obviously the um met for would be the sun okay and the form</p>
+<p><span class="timestamp">[28:04]</span> of the good is a source of everything okay it&#x27;s a source of all truth it is the truth it&#x27;s called the form of the good and emanating from the form of the good are Concepts and ideals that structure the universe and they structure the universe and they are uh are uh are uh reason reason reason Beauty and truth and Justice okay and Beauty and truth and Justice okay and that there are others okay okay but these are the main ones reason truth beauty and Justice this they emanate</p>
+<p><span class="timestamp">[28:36]</span> from the form of the good okay and then emanating from these concepts are these forms that are perfect okay so for example maybe the perfect horse which represents Beauty okay or the perfect woman who represents Justice and Beauty as well okay but this all Perfection and from this higher world comes our the Lesser world the reality we live in so everything that we we see</p>
+<p><span class="timestamp">[29:08]</span> here everything that we are here is only an imitation a an imitation a shadow of this world okay does that make shadow of this world okay does that make sense imitation so there there are horses but these horses are just copies of that perfect horse up of that perfect horse up there okay so the major difference is in there okay so the major difference is in this world this world is eternal it has always existed and it will it will always exist it&#x27;s Eternal second is it is IM um immutable immunal just means it</p>
+<p><span class="timestamp">[29:39]</span> will never change okay because and the perfect okay so these are three distin qualities of this higher qualities of this higher World Eternal Immaculate and perfect and World Eternal Immaculate and perfect and everything down here is basically the complete opposite okay we will all die we all feel feel pain but up there no one feels any pain no one dies it&#x27;s all perfect okay does that make sense guess what guys what is this this is a</p>
+<p><span class="timestamp">[30:11]</span> Christian Universe right this is Christian Universe right this is God this is God this is God this is heaven this is heaven this is Earth okay does it make sense this is Earth okay does it make sense this is the allegory of the cave and you can see how it does these three things it redeems the reputation of Socrates it gives Christians understanding of gives Christians understanding of Jesus and it becomes the framework from Jesus and it becomes the framework from which Christians will build their which Christians will build their understanding of the world it becomes understanding of the world it becomes the basis of the Christian the basis of the Christian religion okay so Plato is the real</p>
+<p><span class="timestamp">[30:43]</span> religion okay so Plato is the real founder of the Christian religion not Jesus Jesus okay and we will go more into this we we okay and we will go more into this we we when we discuss when we discuss Christianity in the future all right confused just ask any question let&#x27;s let&#x27;s start having having discussion let&#x27;s start having having discussion okay because because I I know this is a</p>
+<p><span class="timestamp">[31:14]</span> okay because because I I know this is a lot let&#x27;s try to unpack it yep oh great okay the Republic okay okay so um the Republic isn&#x27;t really about the algo of the cave okay the Alo the cave actually appears in the Republic the Republic Republic the Republic itself so Plato is trying to answer the itself so Plato is trying to answer the</p>
+<p><span class="timestamp">[31:45]</span> question what is a good question what is a good Society okay what is a good Society Society okay what is a good Society that&#x27;s a question he&#x27;s trying to answer because it&#x27;s clearly not democracy because it&#x27;s clearly not democracy because democracy kills Socrates okay so because democracy kills Socrates okay so it&#x27;s clearly not democracy so what makes a good Society and the answer is it&#x27;s a society that&#x27;s based on society that&#x27;s based on Justice okay it&#x27;s a it&#x27;s a society Justice okay it&#x27;s a it&#x27;s a society that&#x27;s based on justice but then what is Justice it&#x27;s Justice it&#x27;s truth truth truth okay but then what&#x27;s truth well truth is okay but then what&#x27;s truth well truth is</p>
+<p><span class="timestamp">[32:17]</span> the form of the good then what&#x27;s form of the good it&#x27;s it is the thing that philosophers can access for their own reasoning right therefore a good Society is one that is ruled by philosopher Kings because you&#x27;re the only ones who can access the truth okay and this Society that&#x27;s perfect he calls the Republic that&#x27;s why it&#x27;s called the Republic the Republic and we&#x27;ll read this again next semester is it&#x27;s really</p>
+<p><span class="timestamp">[32:48]</span> trying to figure out what makes a good Society okay and to further his argument uh Plato uses the allegory of the cave and and like I like listen 50 years from now you will still remember the Alo decade maybe you won remember uh the CH sakes or anything else you&#x27;ve learned in this class but you will definitely remember the allegory of the cave okay because it&#x27;s embedded first of all it&#x27;s a beautiful metaphor but it&#x27;s also</p>
+<p><span class="timestamp">[33:21]</span> okay so uh does that answer your question uh Echo okay do you have more all right um something else I want to okay um some some might be interested as to why Plato is considered the greatest philosoph of all time okay all right so um it&#x27;s not because he&#x27;s the bass all right it&#x27;s not because he&#x27;s the bass um I would say there are three good reasons</p>
+<p><span class="timestamp">[33:54]</span> why he&#x27;s so influential today the first is is Plato the way he writes it&#x27;s Unique and Plato the way he writes it&#x27;s Unique and original to him Plato originally trained as a playwright okay so he wanted to be issist he wanted to be Sophocles yides because every wanted everyone wanted to be um a playwright in Athens it was the highest highest honor um so he he he learned the art of honor um so he he he learned the art of dialogue okay because dialogue is the basis for theater and so what he did that was Innovative and no one did this</p>
+<p><span class="timestamp">[34:24]</span> before was he basically took the dialogue of the stage and he transferred onto the page so when you read PL it&#x27;s actually a lot of fun okay because because because it&#x27;s basically Socrates because because it&#x27;s basically Socrates is main character having arguments and is main character having arguments and conversations with other people so in terms of um readability Plato is definitely probably the most one of the most readable most readable philosophers okay he&#x27;s definitely the philosophers okay he&#x27;s definitely the philosophers okay he&#x27;s definitely the most readable famous philosopher uh most readable famous philosopher uh most readable famous philosopher uh later on the semester we will read we later on the semester we will read we</p>
+<p><span class="timestamp">[34:55]</span> will talk about Emanuel Kant and uh Hegel and they are not readable okay they&#x27;re just not but Plato anyone can read Plato and enjoy Plato okay so his readability um the orig origin readability um the orig origin originality of his writing is one really originality of his writing is one really good reason why uh he uh remains so popular today second is popular today second is um he is extremely anti uh um he is extremely anti uh</p>
+<p><span class="timestamp">[35:27]</span> Democratic okay his thinking is because like remember the most traumatic event in his life was the death of his mentor Socrates and so it&#x27;s Athan democracy who killed his mentor so he passionately hates hates democracy okay well you know who else democracy okay well you know who else hates hates democracy Kings hate democracy and democracy Kings hate democracy and democracy Kings hate democracy and throughout most of human history Kings throughout most of human history Kings rule the rule the world right so what&#x27;s amazing about Plato is he&#x27;s the</p>
+<p><span class="timestamp">[35:57]</span> only writer in human history who has been read continuously for 2,000 years does that make sense we lost Homer for a bit uh we lost uh the play rights ises sopes Andes for a long time but Plato has always been read has always been read continuously and he&#x27;s been the most and continuously and he&#x27;s been the most and as a result because it&#x27;s easy to access Plato he&#x27;s become the most influential philosopher of all philosopher of all time okay does that make time okay does that make time okay does that make sense and Third of all uh what was his</p>
+<p><span class="timestamp">[36:29]</span> sense and Third of all uh what was his Academy okay and the academy in Athens at that time it&#x27;s like Harvard right or Oxford today it&#x27;s a place where all the elite children went okay so his students were the most powerful people in the world basically and his most famous student was student was Aristotle and as we will discuss uh in Aristotle and as we will discuss uh in future classes Aristotle is the one who basically um packaged and promoted Greek</p>
+<p><span class="timestamp">[37:01]</span> culture and Plato became a very important individual in in in the spreading of Greek culture in fact he was basically uh the main was basically uh the main hero uh in this process okay so does hero uh in this process okay so does that make sense all that make sense all right feel free to argue with me by the right feel free to argue with me by the way I mean like like if you feel I&#x27;ve said anything controversial or you said anything controversial or you disagree with let me know and I will disagree with let me know and I will rebut we we can have a psychotic dialogue dialogue okay any more</p>
+<p><span class="timestamp">[37:50]</span> okay okay that&#x27;s a br question okay what are the influences of PlayDoh okay so shes was not that much of an intellectual influence on Plato and the reason why is remember Socrates question your wisdom but he himself did not propose any of his own theories okay proposal right so um what we know is this first of all um during this time</p>
+<p><span class="timestamp">[38:21]</span> this was the Golden Age of Greek philosophy right you had lots of philosophers in different Poes different philosophers in different Poes different places proposing all these wonderful places proposing all these wonderful places proposing all these wonderful theories so PL definitely had access to theories so PL definitely had access to them plus they were all all friends okay and we also know this world of Greek thought was heavily influenced by Egypt right because Egypt was really the epicenter of uh learning and philosophy at this time and Egypt was actually very close close to um to Greece also uh Mesopotamia</p>
+<p><span class="timestamp">[38:51]</span> to um to Greece also uh Mesopotamia right uh the uh the Persians okay so um 399 BC Socrates dies and then PL spend the next 12 years Trav traveling around the world and while he&#x27;s traveling he&#x27;s absorbing lots of different philosophy absorbing lots of different philosophy okay so um look we don&#x27;t have access to okay so um look we don&#x27;t have access to Egyptian sources right so we don&#x27;t know know um uh what sources would influence Plato um uh what sources would influence Plato but we know the Egyptians heavily</p>
+<p><span class="timestamp">[39:22]</span> influenced the Greeks so so we can make the assumption that the Egyptians were heavy influence on Plato as well as uh Mesopotamia as well as the other Greek philosophers like Pythagoras and philosophers like Pythagoras and democratus and um so so what&#x27;s really democratus and um so so what&#x27;s really important is um Athens at this time was not an isolated Society it was part of a larger intellectual landscape that and a lot of these places had richer intellectual histories than Athens okay intellectual histories than Athens okay Egypt definitely uh Egypt definitely uh Egypt definitely uh Mesopotamia</p>
+<p><span class="timestamp">[39:53]</span> Mesopotamia Mesopotamia okay so does that answer your question okay so does that answer your question the answer is we don&#x27;t know and the reason again is most of this is loss to us right I I&#x27;m sure there were philosophers at this at this time who were the equal of Plato in terms of originality okay but we don&#x27;t know who these people were because remember these people were because remember censorship sensorship it&#x27;s not really censorship sensorship it&#x27;s not really censorship sensorship it&#x27;s not really just about changing the past it&#x27;s also just about changing the past it&#x27;s also about uh eliminating most of the past</p>
+<p><span class="timestamp">[40:53]</span> it was it was very common it was very common it was it was very common for Greeks to think they should rule the world was just very common so Plato himself um actually went to a place called called Syracuse um Syracuse is a city um on the Syracuse um Syracuse is a city um on the island of Sicily it&#x27;s very prosperous and the king of CIS of ccus invited Plato to come counsel him on how to be a tyrant a good Tyrant right he wanted to be like a philosopher king then Plato basically said to him well you should let me be the king and then you will</p>
+<p><span class="timestamp">[41:24]</span> have a philosopher king and of course the king of SES didn&#x27;t like this idea so he uh almost killed Plato okay but Plato had very again Plato has very wealthy friends and and he was very rich himself so he basically Ransom his way out of Syracuse so as a Syracuse so as a politician as a um practitioner of De of politician as a um practitioner of De of like philosophy sorry as a practitioner of his philosophy he&#x27;s terrible okay right he tried his philosophy in Syracuse didn&#x27;t work out pissed off a lot of people lot of people okay but um everyone everyone wanted to</p>
+<p><span class="timestamp">[41:57]</span> okay but um everyone everyone wanted to be u a philosopher king um um okay any questions okay so um next class we will do um the rise of do um the rise of Macedonia okay so remember these are Macedonia okay so remember these are ideas that are being incubated in Athens and in gree at this time but ultim these</p>
+<p><span class="timestamp">[42:31]</span> ideas conquer the world right uh Greek Theater Greek philosophy spread all Theater Greek philosophy spread all around the world and the main reason is around the world and the main reason is Macedonia uh the main reason are two individuals Philip II of Macedonia and Alexander the Great okay who together will create the helenistic helenistic will create the helenistic helenistic Empire and this is why Greek culture Empire and this is why Greek culture will spread around the world and become</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

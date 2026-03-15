@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civilization #27: Augustine&#x27;s Empire of God — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Civilization #27: Augustine&#x27;s Empire of God">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #06b6d4;
+            --accent-bg: rgba(6, 182, 212, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Civilization #27</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Civilization #27</div>
+        <h1 class="article-title">Augustine&#x27;s Empire of God</h1>
+        <div class="article-meta">
+            <span>📖 46 min read</span>
+            <span>📝 9,253 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Civilization #27：  Augustine&#x27;s Empire of God</p>
+<p><span class="timestamp">[0:02]</span> okay good morning um so we are doing Augustine today and um even though Augustine is not as famous as some other um thinkers we&#x27;ve looked at this semester he&#x27;s actually very important semester he&#x27;s actually very important because he&#x27;s actually the intellectual because he&#x27;s actually the intellectual because he&#x27;s actually the intellectual architect of the Catholic church and in architect of the Catholic church and in this world the Catholic church is the largest organization it has 1.5 largest organization it has 1.5 billion um billion um billion um members it&#x27;s been around for almost</p>
+<p><span class="timestamp">[0:33]</span> members it&#x27;s been around for almost 2,000 2,000 years so and Augustine really is the years so and Augustine really is the individual who individual who conceptualized the idea of the Catholic conceptualized the idea of the Catholic church so for us to understand what the Catholic church is and why it&#x27;s endured for so long I want to introduce a new idea to to you call the end of History this is a concept that was introduced by American State Department introduced by American State Department official named Francis fukayama at the</p>
+<p><span class="timestamp">[1:04]</span> official named Francis fukayama at the end of the Cold War when the Berlin W Berlin Wall fell and his argument is that history has been a struggle of ideology we&#x27;ve had paganism we&#x27;ve had communism we&#x27;ve had socialism we had democracy and through this dialectic democracy and through this dialectic through this constant struggle of ideas through this constant struggle of ideas we have now reached the end of History where liberal consumer democracy is the</p>
+<p><span class="timestamp">[1:35]</span> best idea not only is it the best idea but it&#x27;s the perfect idea that will allow us to endure for the rest of History therefore it is the end of history now of course we we know this idea is wrong what&#x27;s in but what&#x27;s interesting for us is this has been a recurring theme in human history where every major political leader who&#x27;s come to power has announced to power has announced that this is the end of history that all that this is the end of history that all</p>
+<p><span class="timestamp">[2:05]</span> of history has led to this point where I am now ruler and from now on we can enjoy Paradise on uh Earth okay so let&#x27;s look at some examples that we looked at this semester first example is King David right remember that we discussed that when King David came into Power he sponsored the wunning of the Bible as an apology to explain why he&#x27;s King and we ALS Al looked at the story constructed</p>
+<p><span class="timestamp">[2:37]</span> by the Yahweh how Yahweh the god um he builds the world because he&#x27;s a poet because he&#x27;s because he&#x27;s lonely and his history is a journey of lonely and his history is a journey of Yahweh trying to find a good friend that could accompany him for eternity and it turns out eventually he finds David and so when he finds David he anoints the House of David as the permanent rulers of our world okay so that&#x27;s the Bible but then you you have um</p>
+<p><span class="timestamp">[3:09]</span> Augustus who sponsored the writing of the the inad and remember the inad it&#x27;s really inad and remember the inad it&#x27;s really the Journey of the troan heral in is as he leaves Troy and he is um destined by the gods to found the city of Rome and the Roman the Roman Empire and why does he do this because Empire and why does he do this because eventually Rome will become the greatest Empire on Earth with Augustus as the first emperor and so that&#x27;s the end of History once the Roman Empire is</p>
+<p><span class="timestamp">[3:42]</span> constructed then peace Eternal peace is now um is now on Earth okay and then you had had Constantine who um was Emperor after he Constantine who um was Emperor after he fought a brutal Civil War to reunite the Roman Empire and once he rebuilt the Roman Empire he converted to Roman Empire he converted to Christianity and um he organized in 325 Christianity and um he organized in 325 the Council of nessia where they agreed</p>
+<p><span class="timestamp">[4:13]</span> to introduce the idea of the godhead remember we discussed last class how they idea the godhead it marks a major intellectual revolution in human history intellectual revolution in human history it&#x27;s the beginning of monotheism it&#x27;s it&#x27;s the beginning of monotheism it&#x27;s the idea that God is both everything and nothing which is also Al the idea of Empire Empire okay okay okay um there&#x27;s also a major civil war after um there&#x27;s also a major civil war after cone dies another Roman Emperor feel</p>
+<p><span class="timestamp">[4:46]</span> dois comes to the throne and in 380 he issu something called the idct of fonica which established Christianity as the which established Christianity as the official official official religion of the Roman Empire and when he religion of the Roman Empire and when he does that they begin to root um paganism and other um paganism and other um um uh religions and at this point we um um uh religions and at this point we can also think this is the end of History we&#x27;ve discovered Christianity History we&#x27;ve discovered Christianity which will make um Paradise on Earth the</p>
+<p><span class="timestamp">[5:16]</span> which will make um Paradise on Earth the problem though of course is that in 410 Rome is 410 Rome is sacked and this is a problem this sacked and this is a problem this creates something called a crisis of Faith why because Faith why because a lot of people believe that Rome was a lot of people believe that Rome was sacked by The Barbarians by the vovs precisely because Rome converted to precisely because Rome converted to Christianity before Rome was a pagan Christianity before Rome was a pagan society and they believe that by</p>
+<p><span class="timestamp">[5:48]</span> converting to Christianity two things converting to Christianity two things happened the first thing happened was happened the first thing happened was the old Gods uh the old Gods uh Jupiter and uh the others became furious Jupiter and uh the others became furious at the Romans and were determined to punish the Romans by sending the Barbarian Ians okay also they believe that Christianity it&#x27;s a religion of slaves it teaches us to be merciful and kind and compassionate but that&#x27;s not the way the world works okay so now you have a crisis of faith and the Very</p>
+<p><span class="timestamp">[6:21]</span> authority of the Catholic church is challenged and so at this point a a Augustine who is a bishop of the Catholic church in Northern Africa he comes up with this theory that establishes the Catholic Church as establishes the Catholic Church as beyond the world okay so other beyond the world okay so other individuals have introduced the idea of end of history but what atin does is he takes the Catholic church out of History okay out of okay out of History what does that mean it means History what does that mean it means</p>
+<p><span class="timestamp">[6:53]</span> that history is really about Mortals battling for power but the Catholic Church it is a representative of God on Earth therefore it will remove itself from history you guys can battle it out but we will always be the representative of God on Earth okay and to establish this he writes a book called city of God he and he talks about two cities you have have Rome which is the Earthly City it&#x27;s a Rome which is the Earthly City it&#x27;s a city of power and city of power and greed and the sou and then you have a</p>
+<p><span class="timestamp">[7:25]</span> greed and the sou and then you have a city called Jerusalem which is the spiritual City spiritual City it is the city of the of God of spirit it is the city of the of God of spirit of selflessness of of selflessness of paradise okay and the Catholic Church paradise okay and the Catholic Church will always be centered in Jerusalem and if you follow the Catholic church if you&#x27;re obedient to God then your spirit can also enter Jerusalem otherwise can also enter Jerusalem otherwise you&#x27;ll always be trapped in you&#x27;ll always be trapped in you&#x27;ll always be trapped in Rome okay</p>
+<p><span class="timestamp">[8:03]</span> what he also does that&#x27;s very important is by establishing his theory he solves a major problem for uh political leaders remember before um David Augustine remember before um David Augustine Constantine whenever they came into Constantine whenever they came into Constantine whenever they came into power they faced three major problems power they faced three major problems the first is legitimacy why are you the king the second is cultural cohesion how do you un the people behind a common ideology ideology the third problem was cultural the third problem was cultural the third problem was cultural differentiation why are you different</p>
+<p><span class="timestamp">[8:34]</span> differentiation why are you different differentiation why are you different from other people okay and what the from other people okay and what the Catholic church under Augustine proposes Catholic church under Augustine proposes is we&#x27;ll solve all three problems for is we&#x27;ll solve all three problems for you we the Catholic Church will give you legitimacy because you are the legitimacy because you are the representative of God on Earth okay and representative of God on Earth okay and that&#x27;s why even though that&#x27;s why even though um in next in the following few um in next in the following few centuries there will always be power shifts the Catholic Church will always</p>
+<p><span class="timestamp">[9:05]</span> be at the center of these power shifts because they are the ones who are able to provide Authority and legitimacy to provide Authority and legitimacy whoever comes into Power like for whoever comes into Power like for example example Charlamagne okay so that&#x27;s what um Charlamagne okay so that&#x27;s what um Augustine is Augustine is proposing so today what I want to look proposing so today what I want to look at um are some of augustin&#x27;s writings to see what is the ideology or doctrine that underlines the Catholic church this is important for us because it is</p>
+<p><span class="timestamp">[9:36]</span> Augustine&#x27;s ideology that will drive Augustine&#x27;s ideology that will drive European history for the next thousand European history for the next thousand years in fact I will make the argument to you today that it is his ideology that ideology that will um Mark the coming of the Dark Ages will um Mark the coming of the Dark Ages in Europe 500 years when um Society lacked social lacked social Innovation and um you weren&#x27;t allowed to Innovation and um you weren&#x27;t allowed to criticize criticize Authority Authority Authority okay so that&#x27;s the argument to you uh</p>
+<p><span class="timestamp">[10:06]</span> okay so that&#x27;s the argument to you uh today I&#x27;ll sit over here and oh oh thank you okay all all right yeah sorry sorry yeah this is why I don&#x27;t use computers yeah this is why I don&#x27;t use computers okay yeah yeah it&#x27;s it&#x27;s fine okay all right so we are going to look at two major works of um Augustine the first is confessions and confessions is very confessions and confessions is very famous it&#x27;s something that uh most famous it&#x27;s something that uh most people have heard of people have heard of um and it&#x27;s really the biography um and it&#x27;s really the biography autobiography of um Augustine and in</p>
+<p><span class="timestamp">[10:38]</span> fact it&#x27;s considered the first authentic autobiography in the autobiography in the world and in the story he he talks about world and in the story he he talks about his life where he grows up with a pagan father and um a Christian mother Nam Monica and in the beginning he is a very disobedient young man he refuses to follow the wishes of his mother and refuses Christianity and he goes on a long long journey of youthful sin okay he um has a</p>
+<p><span class="timestamp">[11:12]</span> journey of youthful sin okay he um has a mistress who he doesn&#x27;t marry he explores uh heresies like neoplatonism explores uh heresies like neoplatonism and manism but then one day he has a and manism but then one day he has a what we call a Damascus moment right God speaks to him and says Augustine open the B the B he opens the Bible and starts his he opens the Bible and starts his religious journey and in age religious journey and in age 42 um Augustine becomes the uh Bishop of 42 um Augustine becomes the uh Bishop of</p>
+<p><span class="timestamp">[11:43]</span> hippo and from then he begins to construct the ideology that will construct the ideology that will underpin the Catholic underpin the Catholic underpin the Catholic Church okay now um for whatever reason Church okay now um for whatever reason historians think this historians think this Memoir is authentic or he&#x27;s telling the Memoir is authentic or he&#x27;s telling the truth truth and the one thing that you will learn in life is whenever a politician or a power individual writes a memoir it&#x27;s complete BS okay there&#x27;s something authentic or true about it so</p>
+<p><span class="timestamp">[12:13]</span> we&#x27;re going to read a bit of confessions and this is really the most famous part of the confessions it&#x27;s really of the confessions it&#x27;s really Augustine&#x27;s rewriting of the story of Augustine&#x27;s rewriting of the story of The Garden of um Eden okay so this this is this is what he says when he&#x27;s Young a young man or a young boy I wanted to carry out an act of theft and did so driven by no kind of need other than my inner lack of any sense of or feeling for justice okay so one thing that he</p>
+<p><span class="timestamp">[12:46]</span> that he points out over and over again is we are born in sin we are of sin we are evil people okay and that&#x27;s why the Catholic church is important because only the Catholic important because only the Catholic important because only the Catholic Church can steer us into goodness if Church can steer us into goodness if left to our own devices we can only commit sin and this starts from the womb okay we are born in sin we are born of sin I sawo something which I had in plenty of much better quality my desire</p>
+<p><span class="timestamp">[13:17]</span> was not to enjoy not what I sought by stealing but merely excitement of stealing but merely excitement of thieving and the doing of what was wrong thieving and the doing of what was wrong okay what do we sin because we enjoy sinning because that is our nature when we steal it is not because we&#x27;re hungry or because we need something it&#x27;s because we enjoy because we enjoy stealing okay it&#x27;s pure pleasure there&#x27;s stealing okay it&#x27;s pure pleasure there&#x27;s a pure Tree near a Vineyard Laden with fruit though attractive in neither color nor taste okay so again this is the</p>
+<p><span class="timestamp">[13:50]</span> retelling of the garden of of Eden where there&#x27;s a tree of knowledge right well here there&#x27;s a peer tree okay to shake the tree the fruit of the tree and car off the peers I and a gang of naughty adolescents set off late at night after we had continued our game in the streets we carried off a huge load of peers okay so they stole a huge load of peers from someone he doesn&#x27;t tell us who but it&#x27;s someone okay and someone okay and then they didn&#x27;t eat the any of the</p>
+<p><span class="timestamp">[14:21]</span> then they didn&#x27;t eat the any of the pigs okay they just did this because they enjoyed they enjoyed sinning now okay let me make a few sinning now okay let me make a few comments first of comments first of all we would think this it&#x27;s just boys all we would think this it&#x27;s just boys having fun right they don&#x27;t mean any harmed by this they&#x27;re just playing they&#x27;re just being curious they just exploring which is part of human nature right what all is saying is that&#x27;s</p>
+<p><span class="timestamp">[14:52]</span> exactly the problem curiosity can only lead to evil exploration can only lead to sin to sin that&#x27;s why we commit sin because we that&#x27;s why we commit sin because we think curiosity is a good thing when in fact it&#x27;s an evil thing that can will harm that can only harm harm that can only harm others okay okay and the other thing is this is this is and the other thing is this is this is clearly a clearly a retelling of the Garden of Eden story</p>
+<p><span class="timestamp">[15:22]</span> retelling of the Garden of Eden story right where Adam and Eve they um eat that fruit and here what Augustine is saying saying is first of all Adam and Eve are is first of all Adam and Eve are stealing okay that that is not stealing is not a word used in the Bible okay but atin is saying they are stealing that&#x27;s</p>
+<p><span class="timestamp">[15:55]</span> is Augustine is saying that the stealing was intentional they knew what what they were doing was wrong were doing was wrong but they did it because it felt good okay so this is a radical reconceptualization of the idea of reconceptualization of the idea of original sin remember Paul um introduced original sin remember Paul um introduced the idea of original sin to us where why did Jesus have to come to redeem us because we disobeyed God In The Garden</p>
+<p><span class="timestamp">[16:28]</span> of edpt it was a mistake and Jesus had to pay ransom for that mistake okay that was Paul&#x27;s argument what Austin is saying um is something radically saying um is something radically different he&#x27;s saying that first of different he&#x27;s saying that first of all um we didn&#x27;t make a make a mistake we are the we are the mistake all right we are the ones born mistake all right we are the ones born to sin therefore we were always disobeyed and then what else he what else he but what else he&#x27;s saying is this and this is really important this</p>
+<p><span class="timestamp">[16:59]</span> happens in about 350 happens in about 350 right this is about 300 years after right this is about 300 years after Jesus sacrificed himself for us and he&#x27;s still still sinning so he is negating the sacrifice sinning so he is negating the sacrifice of Jesus just because Jesus sacrificed himself does not mean we&#x27;ve stopped sin sin okay okay okay so this is a so this is a so this is a radical radical radical reconceptualization of the Christian reconceptualization of the Christian reconceptualization of the Christian faith we are born Sinners and we will</p>
+<p><span class="timestamp">[17:30]</span> faith we are born Sinners and we will always sin unless we are taught to obey God that is our fundamental mission on okay okay okay okay so let&#x27;s go to the city of God now and</p>
+<p><span class="timestamp">[18:00]</span> so let&#x27;s go to the city of God now and again the city of God becomes the inal AR uh blueprint for the building of the Catholic church and one thing that he talks a lot about in the city of God is that of rape and so what&#x27;s happening um throughout this time and what was very common is if a woman were raped out of wedlock or if a if a woman were raped by her husband what they will often do is kill themselves why because the kill themselves why because the Christian faith taught them that</p>
+<p><span class="timestamp">[18:31]</span> Christian faith taught them that Christian faith taught them that Chastity was very important okay and if Chastity was very important okay and if you&#x27;re the Empire this is a problem for you right because you can&#x27;t have women killing themselves because of rape rape happens all the time if women kill themselves eventually you&#x27;re going to themselves eventually you&#x27;re going to have an a population implosion okay so have an a population implosion okay so actually what Augustin will do is spend a lot of time explaining why rape is um why rape is not a bad</p>
+<p><span class="timestamp">[19:07]</span> thing okay so to do so he talks about Lu lucrecia lucrecia remember who Luccia is Lucia Lucia um we we discussed Luca when we um we we discussed Luca when we discussed the history of the RO Roman Republic uh at first Rome was a uh monarchy and the monarchy and the king the King&#x27;s son he he was a sinful king the King&#x27;s son he he was a sinful person and he liked to rape uh other woman he he he lik to rape woman and</p>
+<p><span class="timestamp">[19:38]</span> lucrecia was was famous in Rome for her Chastity for her virtue so he thought it&#x27;d be fun to rape her after she was raped she called her husband and her husband&#x27;s best friend named Lucius junus Buddhas together and she she made them swear that they will avenge her dishonoring and they did and they make sure that she they would follow out on this she took out a knife and she stabbed herself in the heart killing herself and this marks the beginning of the Roman Republic so in the eyes of</p>
+<p><span class="timestamp">[20:12]</span> Romans her death her suicide is what gave birth to the Roman Republic so she&#x27;s honored and considered a hero by the Roman people and what Augustine will say is no she&#x27;s not a hero because she killed herself not killed herself not for the good of Rome but for her own for the good of Rome but for her own vanity for her own vanity for her own Pride for the fact that she lost faith Pride for the fact that she lost faith she was she was embarrassed she didn&#x27;t have the glory of</p>
+<p><span class="timestamp">[20:43]</span> embarrassed she didn&#x27;t have the glory of being considered the most chased and virtuous woman in Rome and that&#x27;s why she killed herself and this is pride this is arrogance this is ego which goes against the will of God okay so let&#x27;s let&#x27;s look at very quickly what what he saying what he saying her killing of herself or suicide because although not adulterous she had suffered an adulterous she had suffered an adulterous Embraces was due to the adulterous Embraces was due to the weakness of Shame okay the weakness of</p>
+<p><span class="timestamp">[21:16]</span> Shame she died because she felt ashamed not to the high value she set on chass she was ashamed of another&#x27;s foul deed committed on her even though not with her as a Roman woman excessively eager honor okay Pride that&#x27;s what Pride sorry let me Pride sorry let me um I hate</p>
+<p><span class="timestamp">[21:51]</span> computers computers okay but Christian women do not kill okay but Christian women do not kill themselves if you are a true Christian you do not you would never kill yourself why because murder is a worse crime than rape also rape is something that happens in the in the mind it&#x27;s not mind it&#x27;s not mind it&#x27;s not real Christian women do not kill real Christian women do not kill themselves they have the glory of Chasity within them the testimony of their conscience they have this in the</p>
+<p><span class="timestamp">[22:21]</span> sight of God if you were raped but you didn&#x27;t you not consent to it don&#x27;t worry because God knows and and so God will forgive but if you kill forgive but if you kill yourself that&#x27;s yourself that&#x27;s yourself that&#x27;s committing wrong against God okay so committing wrong against God okay so this argument um I mean it&#x27;s really gaslighting okay and he does this a lot in his in his um in his thing in in his logic okay um in his thing in in his logic okay</p>
+<p><span class="timestamp">[22:52]</span> he&#x27;s really gaslighting he&#x27;s making he&#x27;s really gaslighting he&#x27;s making certain points about the nature of certain points about the nature of humans okay first of all we each and every one of us is God&#x27;s Property we are not free of oursel we are God&#x27;s Property therefore when we cure ourselves we are offending God okay that&#x27;s the first thing second thing that he&#x27;s saying is we can do no good because we are burdened by our pride and our sin if we</p>
+<p><span class="timestamp">[23:26]</span> choose to act we can only do wrong okay so what he&#x27;s saying is this if you are walking in the forest and you see a young boy drowning in the lake don&#x27;t jump in the lake to save him because one you might die and two everything is controlled by God therefore everything controlled by God therefore everything has an intention so when you jump and has an intention so when you jump and save the boy you might be interfering in God&#x27;s God&#x27;s plan therefore the only solution to plan therefore the only solution to Salvation how do you make yourself good</p>
+<p><span class="timestamp">[24:01]</span> in the eyes of God don&#x27;t don&#x27;t do anything God knows everything God has a plan just obbey the will of God and the will of God means doing nothing and in fact doing nothing is the best thing you can do because if you are born of sin and you&#x27;re only capable of sin when you do nothing you are doing good in the world okay so again this is gaslighting but this becomes the gaslighting but this becomes the doctrine of the Catholic church and it</p>
+<p><span class="timestamp">[24:32]</span> doctrine of the Catholic church and it begins what we call the Dark Ages because it forces people and most people want salvation most people want to be good in the eyes of God it forces people to be passive and to be passive and obedient and unable to question and obedient and unable to question and explore okay so any questions so far okay let&#x27;s look at another line from the</p>
+<p><span class="timestamp">[25:04]</span> seity of God thus when men lives by the standard of men and not by the standard of God he is like the devil right think about this when you choose to follow your nature you are like the devil it is only by negating yourself it is only by denying yourself can you be good all right if you trust your instincts if you trust your intuition if you use your imagination you are like the devil okay this is exactly what he&#x27;s</p>
+<p><span class="timestamp">[25:35]</span> saying with this sentence the other thing that he does is he&#x27;s very repetitive so he&#x27;ll keep on going like this for a very long this for a very long time all right I mean this is all just time all right I mean this is all just reputation even an angel should not have lived by the angel standard but by gods so I should stand firm in the truth and speak the truth that comes from God&#x27;s truth not the lie that deres from his own falsehood okay even angels must live by God standard so only God has the power to power to choose we can choose but we can only do</p>
+<p><span class="timestamp">[26:07]</span> choose we can choose but we can only do choose choose okay so this is a so so the thing about okay so this is a so so the thing about August that&#x27;s very important for us to understand is he studied understand is he studied rhetoric and so he&#x27;s very good at rhetoric and so he&#x27;s very good at gaslighting okay so twisting things in order to force your order to force your compliance all right so he says when men compliance all right so he says when men lives by the standard of Truth he lives</p>
+<p><span class="timestamp">[26:38]</span> not by his own standard but by God&#x27;s he&#x27;s just repeating himself same he&#x27;s just repeating himself same sentence but he just repeats himself sentence but he just repeats himself over and over and over okay so why is he doing over okay so why is he doing this why is he doing this and any thoughts what the city of God the city of God we Sorry S I could turn the question back to you yeah the like the one thing I&#x27;m curious about like both of the confessions and the City of God yeah is is that at this point like who is his that at this point like who is his</p>
+<p><span class="timestamp">[27:09]</span> audience who is he writing for that&#x27;s a great question that that that&#x27;s exactly it who is his audience exactly his audience is clearly not audience is clearly not for us or Ordinary People because at for us or Ordinary People because at this time most people don&#x27;t read and write right so his audience is actually for the priesthood okay his audience are for those individuals who are about to be anointed by the Catholic Church to preach to the preach to the Layman and as a priest you are uh forced Layman and as a priest you are uh forced</p>
+<p><span class="timestamp">[27:40]</span> to encounter a lot of theological issues right and so what atin is doing when writing Citi of God and confessions is creating a rhetorical manual for the priests to basically Gaslight their priests to basically Gaslight their constituencies does that make sense okay constituencies does that make sense okay so think of this in many ways as the equivalent of the confusion class equivalent of the confusion class in China right so um when when you apply in China right so um when when you apply to become a bureaucrat in China you have to take the confusion examinations right and how do you pass examinations by</p>
+<p><span class="timestamp">[28:11]</span> memorizing this memorizing this crap right and if you look at it uh if crap right and if you look at it uh if you think about it you think about it rhetorically if you think think about rhetorically if you think think about the underlying theories it&#x27;s really the same thing okay the emperor is always right just do what the emperor wants right so this is this is in many ways it&#x27;s all it is is a rhetorical manual that priests have to memorize if they are to become anointed by the church right and once you memorize this then then whatever problems that you may encounter</p>
+<p><span class="timestamp">[28:43]</span> whatever problems that you may encounter you can just recite from this manual right and the main argument is hey we&#x27;re born of sin therefore you can do no good even by asking questions you are exposing the devil in yourself right even by questioning the even by questioning the church by asking me this question you&#x27;re church by asking me this question you&#x27;re showing the devil in showing the devil in you and our responsibility the only path you and our responsibility the only path</p>
+<p><span class="timestamp">[29:15]</span> the only path salvation in this world is by fighting the devil within by fighting the devil within us okay so Focus your attention on the us okay so Focus your attention on the Devil Within you ignore the fact that the world is corrupt and evil you know you know the fact that the landlord is uh exploiting you you know the fact that the Catholic church is stealing from you okay ignore that that doesn&#x27;t matter what matters is the internal World in you life is a constant struggle against sin because the devil</p>
+<p><span class="timestamp">[29:46]</span> is in you and you must purchas the devil if you are to find if you are to find Salvation uh in God okay so that&#x27;s the Salvation uh in God okay so that&#x27;s the logic of the logic of the argument any questions okay are are we are we clear about this okay it&#x27;s not a sophisticated argument but it&#x27;s a clever argument that becomes the basis for the dominance of Catholic Church during the Dark Ages in the Middle Middle Ages right all right now what he&#x27;s going Ages right all right now what he&#x27;s going</p>
+<p><span class="timestamp">[30:18]</span> to do and this is very important is he&#x27;s going to analyze the story of Adam and Eve okay he&#x27;s going to explore why did this happen why did Adam and Eve in Paradise why did they disobey God all right so let&#x27;s let&#x27;s look at this logic it was in secret that the first human beings began to be evil and the result was that they slipped into open Disobedience okay what this is saying is why why did they disobey because Eve</p>
+<p><span class="timestamp">[30:51]</span> and Adam conspired in secret against God does that make sense okay that&#x27;s what he&#x27;s saying here it was in secret okay they conspired that the first human beings and and Eve began to be evil it was because they talked to each other that they conspired to disobey that they conspired to disobey God all God all God all right for they would not have arrived at right for they would not have arrived at the evil act if an evil will had not preceded it why did they do this evil act because they themselves were act because they themselves were Evil all right that&#x27;s important to Evil all right that&#x27;s important to understand they were not tricked by the</p>
+<p><span class="timestamp">[31:23]</span> serpent they were not curious they were just just evil for pride is started every kind of evil for pride is started every kind of sin and what is pride except long for a perverse kind of of exaltation okay they want to become God the serent told them that if you ate this ate the fruit you become God that&#x27;s what Ted them okay the pride for it is a perverse kind of exaltation to abandon the basis on which the Mind should be firmly fixed and to become as it were based on oneself and</p>
+<p><span class="timestamp">[31:56]</span> so remain what this is saying is pride means we are Le in God and becoming more of ourselves okay there&#x27;s two ways you can go you can move towards God which means to obey God or you can move towards towards yourself okay which is to sin this happens when a man is too pleased with himself and a man is self-complacent when he deserts that self-complacent when he deserts that changes good in which rather than him in changes good in which rather than him in himself he ought to have found his</p>
+<p><span class="timestamp">[32:27]</span> satisfaction Pride okay Pride makes us happy makes us ambitious but it will God this desision is voluntary for if the will had been made unshaken its love of the higher changes good which shed on it light to see and Kindle in it fire to love it would not have been diverted from this love to follow its own pleasure okay we abandon God and the will would not have been so darkened in chill in consequence as that the woman belied that the serpent had spoken the truth the man to put his wife&#x27;s will</p>
+<p><span class="timestamp">[33:00]</span> above God&#x27;s commandment okay so here&#x27;s the the problem the man listened to the woman problem the man listened to the woman Adam was tricked by Adam was tricked by Eve all Eve all Eve all right and suppose that this was a venal right and suppose that this was a venal transation when he refused to deser his life&#x27;s companion even though they refus to entail companionship in sin okay so Adam was forced to make a decision Eve had already eaten that fruit so either Adam could follow God and disavow Eve or</p>
+<p><span class="timestamp">[33:33]</span> we could follow her in sin he followed her in sin and that&#x27;s why we are doomed okay so what doomed okay so what doomed Adam what doomed Adam it Adam what doomed Adam it Adam what doomed Adam it was was was love he love he love he loved Eve and that&#x27;s why he decided that loved Eve and that&#x27;s why he decided that yes I am I am yes Eve is doomed but I love her so I must do myself as well that&#x27;s why Adam eat the fruit because he</p>
+<p><span class="timestamp">[34:03]</span> could not stand to leave Eve he was bonded by by his love so what is this telling us this is telling us that there&#x27;s only one true love and that&#x27;s the love of God which is obedience to God every other love a love for each other is a other is a falsehood okay it is a lie it can only falsehood okay it is a lie it can only disaster now let me ask a question who else said who else said this love can only lead you to disaster</p>
+<p><span class="timestamp">[34:34]</span> this love can only lead you to disaster it is a disease you must deny it you must recognize it for the disease that this Virgil right this Virgil right Virgil Virgil in inad remember talked Virgil Virgil in inad remember talked about dle how D fell in love with enas and inas fell in love with ditto but then the gods tell inas obey us go to go</p>
+<p><span class="timestamp">[35:05]</span> to Italy so you may found Rome which is your destiny and inas because he is a Pious man abandoned his love and did his duty so he was honored by the gods but ditto became consumed by her love for inas and so she committed suicide she destroyed herself love will destroy you love will blind you Love is Evil okay</p>
+<p><span class="timestamp">[35:43]</span> good let&#x27;s good let&#x27;s continue thus the evil act the continue thus the evil act the transgression of even the forbidden transgression of even the forbidden fruit was committed only when those who fruit was committed only when those who did it were already evil that bad could only come from a bad tree further the Badness of the tree came about contr in nature because about a fault in the will which is against nature it certainly could not have happened okay but only a nature cre out of nothing could have distorted by fault consequently although distorted by fault consequently although the will derives it its existence as a the will derives it its existence as a nature from its creation by God it&#x27;s falling away from its true being it&#x27;s</p>
+<p><span class="timestamp">[36:14]</span> through its creation out of nothing okay so this this raises a very important question for us if it is true that we are born of sin it is also true that God created created us then is that a contradiction god is us then is that a contradiction god is perfect why would God perfect why would God create a flawed create a flawed create a flawed sinful um person all right and the sinful um person all right and the answer is this because God created us out of nothing we are creation out of</p>
+<p><span class="timestamp">[36:46]</span> nothing in other words we are a failed experiment we are in a science experiment gone experiment gone wrong he created God created Adam out of wrong he created God created Adam out of dust and he created dust and he created Eve out of Adam the Adam&#x27;s Rib basically Eve out of Adam the Adam&#x27;s Rib basically right so he&#x27;s creating us out of experiment and experiment and because we were created out because we were created out because we were created out nothing we were born of sin so the only</p>
+<p><span class="timestamp">[37:17]</span> nothing we were born of sin so the only path the only um Way Forward is for us to embrace God to become more like God by obeying him and to deny who we are because if we were to become more of who we are if we listened to ourselves if we loved if we thought if we were curious we move into our we move into our nothingness but the more we obey God the nothingness but the more we obey God the more we move towards Enlightenment and</p>
+<p><span class="timestamp">[38:04]</span> okay so he concludes that is why humility okay humility just means humility okay humility just means self-denial self- self-denial self- self-denial self- negation right complete obedience forget negation right complete obedience forget negation right complete obedience forget who you are it doesn&#x27;t matter just obey who you are it doesn&#x27;t matter just obey God which is the Catholic church right okay so he so God really means the Catholic Catholic church this is why humility is highly church this is why humility is highly praised in the city of God and especially enjoying on the city of God during the time of its progage in this world and it receives particular world and it receives particular emphasis in the character of Christ the</p>
+<p><span class="timestamp">[38:35]</span> emphasis in the character of Christ the King of that City we also taught by the Sacred Scriptures that the fault of exaltation Pride the contrary of exaltation Pride the contrary of humility exercise Supreme Dominion in humility exercise Supreme Dominion in humility exercise Supreme Dominion in Christ adversary the devil okay so he&#x27;s Christ adversary the devil okay so he&#x27;s creating a deconomy in the city of um Rome in the city of Earth Pride triumphs because that&#x27;s the seat of of the devil in the city of God humility triumphs because that&#x27;s the seat of Jesus this is</p>
+<p><span class="timestamp">[39:06]</span> ass surely the great difference that shers the two cities on which we are speaking the one is community of Dev VA devout man the other company of the IR religious and each has its own Angels attached to it in one city love of God has been given first place in the other love of self pride love of self pride ego will ego will ego will this all this is in found in the city of this all this is in found in the city of</p>
+<p><span class="timestamp">[39:37]</span> Rome but in the city of God the only</p>
+<p><span class="timestamp">[40:15]</span> far yeah far yeah Jesus us oh that&#x27;s a great us oh that&#x27;s a great question okay so Jesus is dead and Jesus question okay so Jesus is dead and Jesus didn&#x27;t really do anything because we&#x27;re still born of still born of sin right so what did God send sin right so what did God send Jesus and the answer is to awaken us to show us that there&#x27;s something wrong and we must correct ourselves to lend us to</p>
+<p><span class="timestamp">[40:47]</span> show us the light but it is we who must walk towards the light okay does that make sense all right so we&#x27;ll conclude with this passage and this is towards the end of towards the end of the city of God okay in the Heavenly the city of God okay in the Heavenly City then there will be freedom of will so this is really curious because for the entire book He&#x27;s talking he&#x27;s been talking about how freedom of will is bad because we&#x27;re born of sin right it will be one and the same freedom in all and indivisible in the</p>
+<p><span class="timestamp">[41:19]</span> separate individuals it will be freed from all evil and filled with all good enjoying unfailingly the Delight of enjoying unfailingly the Delight of Eternal Joys forgetting all offenses Eternal Joys forgetting all offenses Eternal Joys forgetting all offenses forgetting all punishment ments okay so forgetting all punishment ments okay so what&#x27;s the logic here the logic is this when we are on earth we are by ourselves we are separate from God but when we but inste of God we we have achieved reunion with God we will have return to God we</p>
+<p><span class="timestamp">[41:49]</span> will be the same as God God is in us and we are in God and therefore we will be incapable of sin and at that point we will have complete fre freedom of will because our will the same as God&#x27;s okay so I know that it&#x27;s hard life sucks on Earth you&#x27;re getting exploited by the landlord you&#x27;re getting raped by the landlord you&#x27;re getting killed by your neighbors who knows okay life sucks but just focus on your</p>
+<p><span class="timestamp">[42:22]</span> Eternal salvation focus on obedience Eternal salvation focus on obedience because when you do so you will Ascend because when you do so you will Ascend to Jerusalem and at that point you will be one with God and all everything that you suffered on Earth will be forgotten and it will just be endless Paradise you are making a are making a sacrifice so that you may be saved sacrifice so that you may be saved you&#x27;re sacrific you sacrificing yourself you&#x27;re sacrific you sacrificing yourself so that you may be saved okay and this so that you may be saved okay and this</p>
+<p><span class="timestamp">[42:53]</span> is a very powerful logic because this becomes the logic of many powerful movements throughout human history movements throughout human history including that of Communism right think including that of Communism right think about the logic here communism what is communism communism is we work really hard today to build a socialist Paradise but once we build socialist par but once we build the Socialist Paradise we have complete freedom of will we will be one and the same we will be indivisible from</p>
+<p><span class="timestamp">[43:24]</span> each other we have complete freedom to do what we please we can as Mark says we can fish in the afternoon and weed in the evening and discuss politics with our friends whenever okay we will cheap Paradise so it&#x27;s the power of the city of God not only does it provide a framework for the Catholic Church to assert dominion over all of Europe but it becomes the Catalyst for it becomes the Catalyst for revolutionary movements throughout human revolutionary movements throughout human revolutionary movements throughout human history especially communism but but but</p>
+<p><span class="timestamp">[43:57]</span> history especially communism but but but including other movements as including other movements as well well well okay all right so any questions okay you you want to know</p>
+<p><span class="timestamp">[44:27]</span> about more about the biography of aug okay all right okay I I&#x27;ll do so but but but but this is the very ending of the seity of God okay so so let&#x27;s look at the ending together and then I&#x27;ll discuss the biography of discuss the biography of Augustine yet it will not forget its own Augustine yet it will not forget its own Liberation nor be ungrateful to its Liberator okay so we have escaped this world of evil and of sin and we are with God who our great Liberator if we remember even its past evils as far as intellectual knowledge is intellectual knowledge is concerned but it will utterly forget</p>
+<p><span class="timestamp">[44:57]</span> concerned but it will utterly forget them as far as a sense experience is concerned okay so what this means is yes we will remember the pain we suffered on Earth but the pain will mean nothing okay we we will remember what we experience but we not remember the pain it will be Eternal Paradise no more pain no more suffering no more sin okay for the highly trained physician is the highly trained physician is acquainted with almost all diseases as acquainted with almost all diseases as</p>
+<p><span class="timestamp">[45:27]</span> far as it can be known in theory while he&#x27;s ignorant of most of them in respect of personal experience since he has not suffered from them okay we will become Godlike in our Godlike in our understanding we will understand why we understanding we will understand why we suffered and then we will understand suffering means nothing because we are now United with God okay does that make sense so that&#x27;s the logic sense so that&#x27;s the logic of the um sea of God and Augustine all</p>
+<p><span class="timestamp">[45:58]</span> of the um sea of God and Augustine all right so now you want to know who this guy is all guy is all right right right so there&#x27;s a lot of controversy over who so there&#x27;s a lot of controversy over who he is in his biog he is in his biog biography and again remember if if a biography and again remember if if a biography is written by a politician it&#x27;s going to be BS all right just so you know he tells us that he comes from a pretty normal family his father&#x27;s a pagan his mother Monica is a de devout</p>
+<p><span class="timestamp">[46:28]</span> Christian and then then through his own hard work he started to study rhetoric in University he became a professor of rhetoric and then when he was converted when he saw the light when God spoke to him when he had his Damascus moment he um started to to S the Bible rigorously and then he was spotted by his talent by the church and at 42 he was appointed uh to become the bishop of of Hippo okay which is</p>
+<p><span class="timestamp">[46:59]</span> Northern Northern Africa and he&#x27;s he was in that position Africa and he&#x27;s he was in that position until his death one thing that Augustine is known for is the fact that he&#x27;s prolific all right prolific which mean which meant that he wrote a lot of books it&#x27;s possible he wrote hundreds of thousands of thousands of pages and his two most famous are pages and his two most famous are confessions and the City of God okay so um so um most people most Scholars take his</p>
+<p><span class="timestamp">[47:31]</span> most people most Scholars take his story for what it is okay they believe him but one one thing that you learn in this class is to always be skeptical of power okay so if at age 42 he&#x27;s appointed the head of the church in this region what does it tell us it tells us that he comes from an extremely powerful family right because one thing that you learn learn in this class is the way the Catholic Church grew the way that Christian is by marry itself to</p>
+<p><span class="timestamp">[48:02]</span> power Christianity had a very strict hierarchy and that enabled it to be coopted by the power coopted by the power elite okay so this tells us the fact elite okay so this tells us the fact that he was appointed Bishop that he comes from an extremely powerful family his his it&#x27;s possible his father was a governor a Roman governor was possible a general okay but this is not a typical normal middle- class family it can&#x27;t be okay does that make sense that&#x27;s the first thing second thing is he was</p>
+<p><span class="timestamp">[48:34]</span> prolific which meant he he wrote a lot now in our class there&#x27;s also another individual who is extremely prolific who and who was that and who was that person meaning meaning meaning that he person meaning meaning meaning that he wrote a lot like way too much this is Aristotle right the thing that we said about Aristotle is he was a sensor A propagandist for the Macedonian uh uh Empire okay he was trying to justify the Empire okay he was trying to justify the</p>
+<p><span class="timestamp">[49:04]</span> supremacy of Greek supremacy of Greek civilization and so when he wrote he civilization and so when he wrote he probably didn&#x27;t write anything by probably didn&#x27;t write anything by himself but he had like a team of himself but he had like a team of students around him who wrote everything for him so you you can surmise something Augustine as Bishop he had hundreds of scribes hundreds of priests who scribes hundreds of priests who basically took his theories and um basically took his theories and um turned them in into books and that&#x27;s how he was able to be so so prolific so think of think of of him as a professor basically right a university Professor a science Professor who&#x27;s in charge of a</p>
+<p><span class="timestamp">[49:36]</span> lab he doesn&#x27;t actually do his own work he has assistance for that but he&#x27;s the one directing the research and the writing okay you can also see him as a propagandist does that make sense right but he&#x27;s clearly a genius okay there&#x27;s</p>
+<p><span class="timestamp">[50:07]</span> questions okay questions okay so even though this is all so even though this is all genius it&#x27;s only genius it&#x27;s only because um they&#x27;re an Empire and they because um they&#x27;re an Empire and they can uh godlight their people okay so think so the the logic is basically like this the logic is I push you down and you turn around and says hey why did you push me down and I say to you I didn&#x27;t push you down you slipped there&#x27;s a difference all right I can do that</p>
+<p><span class="timestamp">[50:38]</span> because I&#x27;m powerful and you&#x27;re not so this is really the logic of Empire all right Austin is really using the logic of Empire and he&#x27;s trying to force people Empire and he&#x27;s trying to force people to be obedient right because obedient leads to leads to Salvation hey you can disobey me Salvation hey you can disobey me you can fo around but this means you&#x27;ll burn in hell for all eternity do you really want to take that chance most</p>
+<p><span class="timestamp">[51:09]</span> people don&#x27;t okay so uh most people during um most at this time choose to become passive in order to avoid sin and this will Mark the beginning of the Dark Ages in Ages in Europe okay but there are many people Europe okay but there are many people who choose to Rebel there are many who believe that exploration curiosity believe that exploration curiosity intuition imagination is fundamental to intuition imagination is fundamental to intuition imagination is fundamental to Being Human if you refuse to let me be Being Human if you refuse to let me be human then I will go somewhere else so where do they go well they go east okay</p>
+<p><span class="timestamp">[51:42]</span> they go east to two places the first is the um sassanian Persian the um sassanian Persian Empire but the another place they go Empire but the another place they go that&#x27;s very interesting is Arabia why do they go to Arabia because Arabia is basically a lawless desert there&#x27;s no real Authority in the desert and there are lots of Jewish people and Christians who escaped Arabia in order to practice their faith one thing that you learned in class that you will learn in this class or that you have learned in this class is that people think their faith very seriously I rather die than not</p>
+<p><span class="timestamp">[52:13]</span> practice my faith okay so all these people are going to the desert in order to practice their faith why is this important because from Arabia will come a new religious moov called a new religious moov called Islam right so these are the people who Islam right so these are the people who will give birth to a revolutionary new religion called Islam that will religion called Islam that will challenge the authority of the Catholic challenge the authority of the Catholic Church of Church of Augustine okay and this is what we will Augustine okay and this is what we will</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

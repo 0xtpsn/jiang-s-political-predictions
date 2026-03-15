@@ -1,0 +1,10 @@
+# Subtitle raw files
+subs/
+
+# System files
+.DS_Store
+*.pyc
+__pycache__/
+
+# Artifacts
+articles_manifest.json

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive History — Professor Jiang's Teachings & Predictions</title>
+    <meta name="description" content="Explore Professor Jiang's teachings on civilization, geopolitics, and game theory. Track his predictions against real-world events.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Ambient background -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">⏳</span>
+                <span class="logo-text">Predictive History</span>
+            </a>
+            <div class="nav-links">
+                <a href="#hero" class="nav-link active" data-section="hero">Home</a>
+                <a href="#predictions" class="nav-link" data-section="predictions">Predictions</a>
+                <a href="#teachings" class="nav-link" data-section="teachings">Teachings</a>
+                <a href="#about" class="nav-link" data-section="about">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">📡 131 Lectures Analyzed</div>
+            <h1 class="hero-title">
+                <span class="title-line">Professor Jiang's</span>
+                <span class="title-line gradient-text">Predictive History</span>
+            </h1>
+            <p class="hero-subtitle">
+                An independent analysis of geopolitical predictions made by Professor Jiang Xueqin, extracted from his YouTube lecture series and fact-checked against real-world events as of March 2026.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number">33</div>
+                    <div class="stat-label">Predictions Extracted</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">76%</div>
+                    <div class="stat-label">Accuracy (incl. partial)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">131</div>
+                    <div class="stat-label">Lectures Transcribed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Lecture Series</div>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <a href="#predictions" class="btn btn-primary">View Predictions</a>
+                <a href="#teachings" class="btn btn-secondary">Browse Teachings</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Predictions Section -->
+    <section class="section" id="predictions">
+        <div class="section-header">
+            <h2 class="section-title">Prediction Tracker</h2>
+            <p class="section-desc">33 unique predictions extracted, deduplicated, and fact-checked against March 2026 reality</p>
+        </div>
+
+        <!-- Score Overview -->
+        <div class="score-overview">
+            <div class="score-ring-container">
+                <svg class="score-ring" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                    <circle cx="60" cy="60" r="54" fill="none" stroke="url(#scoreGradient)" stroke-width="8" 
+                        stroke-dasharray="339.29" stroke-dashoffset="81.43" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                    <defs>
+                        <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#6366f1"/>
+                            <stop offset="100%" stop-color="#06b6d4"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="score-text">
+                    <span class="score-value">76%</span>
+                    <span class="score-label">Accuracy</span>
+                </div>
+            </div>
+            <div class="score-breakdown">
+                <div class="score-item correct"><span class="score-dot"></span> Correct <strong>7</strong></div>
+                <div class="score-item partial"><span class="score-dot"></span> Partially Correct <strong>6</strong></div>
+                <div class="score-item wrong"><span class="score-dot"></span> Wrong <strong>4</strong></div>
+                <div class="score-item pending"><span class="score-dot"></span> Pending <strong>8</strong></div>
+                <div class="score-item unfalsifiable"><span class="score-dot"></span> Unfalsifiable <strong>5</strong></div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All (33)</button>
+            <button class="filter-btn" data-filter="correct">✅ Correct (7)</button>
+            <button class="filter-btn" data-filter="partial">🔶 Partial (6)</button>
+            <button class="filter-btn" data-filter="wrong">❌ Wrong (4)</button>
+            <button class="filter-btn" data-filter="pending">⏳ Pending (8)</button>
+            <button class="filter-btn" data-filter="unfalsifiable">🔮 Unfalsifiable (5)</button>
+        </div>
+
+        <!-- Predictions Grid -->
+        <div class="predictions-grid" id="predictions-grid">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- Teachings Section -->
+    <section class="section section-alt" id="teachings">
+        <div class="section-header">
+            <h2 class="section-title">Lecture Series</h2>
+            <p class="section-desc">Browse 131 lectures across 6 series spanning civilization, geopolitics, game theory, and more</p>
+        </div>
+
+        <!-- Search -->
+        <div class="search-container">
+            <input type="text" class="search-input" id="search-input" placeholder="Search lectures by title or topic...">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <!-- Series Tabs -->
+        <div class="series-tabs" id="series-tabs">
+            <button class="series-tab active" data-series="all">All <span class="tab-count">131</span></button>
+            <button class="series-tab" data-series="civilization">Civilization <span class="tab-count">62</span></button>
+            <button class="series-tab" data-series="secret-history">Secret History <span class="tab-count">28</span></button>
+            <button class="series-tab" data-series="geo-strategy">Geo-Strategy <span class="tab-count">19</span></button>
+            <button class="series-tab" data-series="game-theory">Game Theory <span class="tab-count">12</span></button>
+            <button class="series-tab" data-series="great-books">Great Books <span class="tab-count">6</span></button>
+            <button class="series-tab" data-series="other">Other <span class="tab-count">4</span></button>
+        </div>
+
+        <!-- Lectures List -->
+        <div class="lectures-list" id="lectures-list">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-header">
+            <h2 class="section-title">About This Analysis</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="about-icon">📥</div>
+                <h3>Step 1: Download</h3>
+                <p>Downloaded auto-generated subtitles from all 131 videos on the <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">Predictive History</a> YouTube channel using <code>yt-dlp</code>.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">🧹</div>
+                <h3>Step 2: Clean</h3>
+                <p>Cleaned VTT subtitle files — removed duplicates, overlapping text, and timestamps — producing 1.4M words of readable transcript across 131 files.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">🔍</div>
+                <h3>Step 3: Extract</h3>
+                <p>Read 9 of the most prediction-dense transcripts and extracted forward-looking claims, analytical frameworks, and specific forecasts.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">🔗</div>
+                <h3>Step 4: Deduplicate</h3>
+                <p>Merged overlapping predictions that appeared across multiple videos into 33 unique, distinct predictions.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">⚖️</div>
+                <h3>Step 5: Fact-Check</h3>
+                <p>Evaluated each prediction against publicly known events as of March 2026, scoring them as correct, partially correct, wrong, pending, or unfalsifiable.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">🌐</div>
+                <h3>Step 6: Publish</h3>
+                <p>Built this website to make the analysis publicly browsable, searchable, and interactive.</p>
+            </div>
+        </div>
+        <div class="disclaimer">
+            <strong>Disclaimer:</strong> This is an independent, unofficial analysis. It is not affiliated with Professor Jiang or Predictive History. Predictions are interpreted in good faith from auto-generated subtitles and may contain transcription errors. Fact-check verdicts reflect publicly available information as of March 2026 and are subject to interpretation.
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <span>⏳ Predictive History Analysis — March 2026</span>
+            <span>by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a></span>
+            <span>Data from <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a></span>
+        </div>
+    </footer>
+
+    <!-- Transcript Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal">
+            <button class="modal-close" id="modal-close">✕</button>
+            <div class="modal-content" id="modal-content">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

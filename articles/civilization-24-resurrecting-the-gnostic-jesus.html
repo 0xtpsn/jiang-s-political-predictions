@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civilization #24: Resurrecting the Gnostic Jesus — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Civilization #24: Resurrecting the Gnostic Jesus">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #06b6d4;
+            --accent-bg: rgba(6, 182, 212, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Civilization #24</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Civilization #24</div>
+        <h1 class="article-title">Resurrecting the Gnostic Jesus</h1>
+        <div class="article-meta">
+            <span>📖 49 min read</span>
+            <span>📝 9,779 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Civilization #24：  Resurrecting the Gnostic Jesus</p>
+<p><span class="timestamp">[0:04]</span> okay uh good morning today we are doing Jesus the most famous man who has ever lived there are about two billion people on this planet about a quarter of the human race who worship human race who worship him so who is he what does he believe him so who is he what does he believe and why is he so important okay so let&#x27;s look at first what we know about the historical Jesus there was a man who lived lived lived um and the these are facts that</p>
+<p><span class="timestamp">[0:35]</span> lived um and the these are facts that Scholars most Scholars agree about Scholars most Scholars agree about him he was born in the year 4 him he was born in the year 4 BC um in a place called Galilee and this is important because Galilee it is in Judea um Israel today and Galilee is a meeting place of many different cultures many different cultures religions and religions and religions and beliefs uh this is part of the Roman</p>
+<p><span class="timestamp">[1:05]</span> beliefs uh this is part of the Roman Empire and this is really a center of much of the world at that time okay then okay then he um was a student of someone called he um was a student of someone called John the John the Baptist John the Baptist is a major Baptist John the Baptist is a major Jewish religious leader who believed in baptism baptism as a way of cleansing you of your sins as a way of cleansing you of your sins</p>
+<p><span class="timestamp">[1:36]</span> so that you prep so that you may prepare for the Kingdom of Heaven God is coming but you must first cleanse your sins and restart yourself in order to be worthy of his of his arrival okay but then um after some time arrival okay but then um after some time with John the Baptist Jesus start to create his own following and Jesus was preaching his own message that um was very very attractive and he developed a very large attractive and he developed a very large</p>
+<p><span class="timestamp">[2:07]</span> following he was pretty well known for his healing powers so if you were sick he could heal you uh through the power belief then what we also know is about the year 30 to 33 um CE so was like when he was like 34 or 37 he was crucified by the Romans the Romans okay okay okay crucification we don&#x27;t know why they crucification we don&#x27;t know why they crucified crucified him but we believe he was</p>
+<p><span class="timestamp">[2:39]</span> him but we believe he was crucified and crucify crucified and crucify crucification was the worst way to crucification was the worst way to die um and crucification was basically reserved only for two types of people people either uh Bandits Pirates either uh Bandits Pirates either uh Bandits Pirates or uh Rebels people who defied the Roman or uh Rebels people who defied the Roman State and it was really reserved for poor illiterate individuals who had no</p>
+<p><span class="timestamp">[3:10]</span> status because status because crucification um you may not know this crucification um you may not know this but when they crucify you okay they na um they nail you to a cross and they put you up okay you don&#x27;t die because of bleeding or because of pain you die because of Suffocation you suffocate to death um so what happens you&#x27;re you&#x27;re on the cross and eventually you start to lose power and you start to you can&#x27;t even hold up your neck okay so you&#x27;re suffocating to death because you can&#x27;t</p>
+<p><span class="timestamp">[3:41]</span> breathe it takes about three days to die so it&#x27;s really the worst way to die okay and that&#x27;s what happened to and that&#x27;s what happened to Jesus and historically this is all that Jesus and historically this is all that we know about we know about him okay this is what&#x27;s been confirmed him okay this is what&#x27;s been confirmed by Scholars by archaeologists by by Scholars by archaeologists by researchers Jesus is the most studied researchers Jesus is the most studied individual in human history no one comes close but we we we really don&#x27;t know much about him much about him okay all right so now that we looked at okay all right so now that we looked at</p>
+<p><span class="timestamp">[4:13]</span> the Historical Jesus let&#x27;s look at the biblical Jesus because these are two very different individuals so Jesus in the Bible is the Son of God okay the Son of of God and he&#x27;s in heaven enjoying his life God and he&#x27;s in heaven enjoying his life but he sees the world Underneath Him and he pies us and he wants to liberate us from our pain and our suffering he wants to redeem us and to atone for our sins and our crimes and</p>
+<p><span class="timestamp">[4:44]</span> he&#x27;s born of a virgin mother named Mary and from a very early age he is a religious genius who religious genius who attracts followers to him and he attracts followers to him and he developed and he has 12 developed and he has 12 Apostles uh 12 Apostles Apostles uh 12 Apostles Apostles uh 12 Apostles and he&#x27;s determined to and he&#x27;s determined to and he&#x27;s determined to preach the coming of the Kingdom of preach the coming of the Kingdom of Heaven okay God is coming and we must be ready for him he also preaches a religion of religion of forgiveness and Redemption and</p>
+<p><span class="timestamp">[5:17]</span> forgiveness and Redemption and forgiveness and Redemption and compassion and generosity and mercy mercy so he will say things like do not judge so he will say things like do not judge others let those who are without fault without without sin without mistakes be the first to sin without mistakes be the first to cast the stone okay so we shouldn&#x27;t judge others because we all have our own</p>
+<p><span class="timestamp">[5:49]</span> faults we should be generous and open and compassionate to others okay so he was pring that message he was also in many ways a social revolutionary because he was upset with the religion of the times at that time uh the Jewish religion was controlled very much by the priesthood so you show your faith by making animal sacrifices by basically making animal sacrifices by basically paying a tribute to God and Jesus paying a tribute to God and Jesus</p>
+<p><span class="timestamp">[6:20]</span> thought that was wrong you show your faith by being a good person by being generous by refusing materialism and generous by refusing materialism and greed and corruption you don&#x27;t do you greed and corruption you don&#x27;t do you don&#x27;t show your faith through animal sacrifice okay and as such he angered the the religious uh Powers at that time religious uh Powers at that time especially the priests of the temple in Jerusalem So eventually he was betrayed</p>
+<p><span class="timestamp">[6:52]</span> by his Apostle named Judas es scariot okay Judas escar okay Judas escar reported uh the crimes of Jesus to the reported uh the crimes of Jesus to the religious religious and in turn the religious Powers the and in turn the religious Powers the priests of the temple turn them over to the Roman governor of that time okay his name is ponus name is ponus pilot ponus pilot and ponus pilate pilot ponus pilot and ponus pilate really didn&#x27;t want to be involved he didn&#x27;t know what crime Jesus committed but the priests insisted the Jewish</p>
+<p><span class="timestamp">[7:25]</span> people insisted and so as a sacrifice Pontius Pilate agreed to crucify Jesus right so Jesus was right so Jesus was crucified and after he was crucified and crucified and after he was crucified and he died he was resurrected how do we know because he appeared before his Apostles and told him look I&#x27;ve CA I&#x27;ve come to this earth in order to redeem and atone for the sins of men I have now I have now done so therefore God will</p>
+<p><span class="timestamp">[7:57]</span> come and cleanse the Earth of all sin spread my message spread my gospel news and I will return to you okay so he there&#x27;s a promise that there will be a second coming and when and when Jesus returns he will come as returns he will come as prophesies um on top of clouds and he prophesies um on top of clouds and he will spite all of God&#x27;s enemies and they will build a will build a paradise Okay so that&#x27;s what the Bible</p>
+<p><span class="timestamp">[8:31]</span> paradise Okay so that&#x27;s what the Bible says and by the way um what&#x27;s really important for us to understand is there are contradictions in the Bible because all that we know about about Jesus comes from four from four biographies in the Bible okay the biographies in the Bible okay the gospels it&#x27;s good news and they&#x27;re written by four different individuals written by four different individuals who we name who we name who we name Mark uh Matthew Luke and John and again Mark uh Matthew Luke and John and again there are inconsistencies within their there are inconsistencies within their biographies okay but if if you put them biographies okay but if if you put them</p>
+<p><span class="timestamp">[9:06]</span> put them together this is a story of um Jesus now when you hear the story there&#x27;s certain problems with the story the biggest story is sorry the biggest problem is if he is in fact the Son of God if he is God if he is divine how do we explain the divine how do we explain the crucification and the crucification and the resurrection why does the Son of God resurrection why does the Son of God have to die have to die and how does a Son of God die okay and and how does a Son of God die okay and this is one of the most perplexing and</p>
+<p><span class="timestamp">[9:38]</span> confusing qu questions in Christianity confusing qu questions in Christianity and it&#x27;s been with us for about 2,000 and it&#x27;s been with us for about 2,000 years okay so no one&#x27;s really resolved this issue but the standard explanation is is this why did Jesus have to come to Earth this why did Jesus have to come to Earth the reason why is God and the children he created us are at War there&#x27;s a religious war going on religious war going on God created us and put us in the Garden God created us and put us in the Garden of Eden Adam and Eve and God told us</p>
+<p><span class="timestamp">[10:09]</span> listen this is Paradise you can do whatever you want but there&#x27;s only one rule you must not break do not eat from the Tree of knowledge of Good and Evil that&#x27;s all we have to do don&#x27;t eat that fruit but we disobeyed him and God in his anger his anger exiled us from exiled us from exiled us from Paradise and in our stupidity in our Paradise and in our stupidity in our ignorance in our in our ignorance in our in our selfishness we never came to recognize</p>
+<p><span class="timestamp">[10:41]</span> selfishness we never came to recognize our own original sin our own failings and so we continue to make more and more mistakes which has led to a uh more a corrupt and decent World God Up in Heaven is Waiting for us to to ask for forgiveness to admit our forgiveness to admit our mistakes and we refuse to do so because mistakes and we refuse to do so because we&#x27;re kids we&#x27;re we&#x27;re kids we&#x27;re stupid but God even though he&#x27;s merciful</p>
+<p><span class="timestamp">[11:12]</span> stupid but God even though he&#x27;s merciful even though he is wise must be asked for forgiveness before he can forgive us okay and Jesus who is the Son of God he recognizes this conflict he recognizes recognizes this conflict he recognizes this in pass and he decides he will come this in pass and he decides he will come to Earth and he will sacrifice himself</p>
+<p><span class="timestamp">[11:42]</span> man and release us from our own stupidity and our stupidity and our ignorance and allow God to forgive us but you think about it this is all because God is allowing us to forgive ourselves ourselves okay and in many okay and in many okay and in many ways what this is doing is solving the ways what this is doing is solving the problem of Achilles remember we talked about The Iliad right and in The Iliad there&#x27;s a central conflict in the in the</p>
+<p><span class="timestamp">[12:14]</span> ilad and it&#x27;s a problem of Achilles remember that AES is this great warrior who refuses to fight for the Greeks because Egon the King has insulted him but he really wants to fight eventually in his uh arrogance he causes the death of his friend of his friend Petras and when Petrus dies it makes Petras and when Petrus dies it makes Achilles even more Achilles even more Angry um at himself okay and that&#x27;s why Angry um at himself okay and that&#x27;s why he takes out his anger on Hector he he</p>
+<p><span class="timestamp">[12:44]</span> doesn&#x27;t recognize his own failings he doesn&#x27;t recognize his own doesn&#x27;t recognize his own sin and it took pram to release him from sin and it took pram to release him from his anger remember pram forgave his anger remember pram forgave Achilles and when Prime forgave Achilles Achilles and when Prime forgave Achilles it released Achilles from his own guilt okay the problem though guilt okay the problem though is if Prime never forgave Achilles then is if Prime never forgave Achilles then Achilles would have been stuck in his depression and his depression and his anger okay so this is Achilles anger okay so this is Achilles</p>
+<p><span class="timestamp">[13:17]</span> problem if we can&#x27;t forgive ourselves who will forgive us and the answer of course is Jesus will forgive you okay and this is the fundamental idea of Christianity do not be angry at yourself do not hate yourself do not feel guilty because Jesus has forgiven you which allows you to be a new you you can now be whoever you want because Jesus has atoned you or taken away your sins and your guilt okay if you believe in him</p>
+<p><span class="timestamp">[13:48]</span> then you will become a new person you can be become whoever you want to be all right so this is the idea of um Christianity Jesus Christianity Jesus made his made the sacrifice in order to made his made the sacrifice in order to release us from our own guilt and our own shame so we can be free to worship God In His glory God In His glory okay any okay any okay any questions not only that but because of questions not only that but because of</p>
+<p><span class="timestamp">[14:20]</span> the sacrifice of the sacrifice of Jesus everyone is now free to worship Jesus everyone is now free to worship God because before God because before remember God was a religion within remember God was a religion within Judaism only Jews had access to God and even within the religion itself really only the high priest had access to God so Jesus came to Earth to tell us all humans the entire human race God is</p>
+<p><span class="timestamp">[14:50]</span> within all of us you don&#x27;t have to be a Jewish person to believe in God you can just be a person who wants to believe in God okay and this is an idea that is beauti beauti y um encapsulated in the gospel of Mark y um encapsulated in the gospel of Mark okay so let&#x27;s read the section together and this is when Jesus has been crucified and he has died okay then Jesus gave a loud cry and breathed his</p>
+<p><span class="timestamp">[15:20]</span> last so the Son of God has died okay he&#x27;s completed his he&#x27;s completed his mission and the curtain of the temple mission and the curtain of the temple was torn into two from top to bottom right this is a extremely important sentence the curtain is the door inside the temple and the curtain is what protects the inner sanctum the holiest room it&#x27;s called the holy of the holies okay from everyone else only the high priest can enter there why because that</p>
+<p><span class="timestamp">[15:52]</span> room is where God room is where God is okay so when the curtain is torn into is okay so when the curtain is torn into two what this is telling us is God is now released into the world God was trapped inside the temple but now that the C has been torn into two because of the sacrif sacrifice of Jesus God can now enter the world and we can all have access to him he&#x27;s no longer trapped inside this curtain okay does that make sense and when the Centurion the Centurion is the Roman not not the</p>
+<p><span class="timestamp">[16:24]</span> Jewish person who stood facing him okay so the Centurian was watching guard to make sure no one came to save save Jesus saw that in this way he breed his last he said truly this man was God&#x27;s son so the first person to recognize who Jesus really is are not his really is are not his Apostles but a Apostles but a Apostles but a Roman who saw him die so he the Roman who saw him die so he the</p>
+<p><span class="timestamp">[16:55]</span> Centurion is history&#x27;s first Christian Centurion is history&#x27;s first Christian because he sees himself this man this because he sees himself this man this Jesus was truly the Son of God a Divine figure who came to Earth in order to liberate us from our sins and to build a okay so this is the very basis of the Christian faith you believe that Jesus came to Earth in order to atone for our</p>
+<p><span class="timestamp">[17:29]</span> sins and to liberate us from the corruption of religion in the world around around us does this make sense guys any us does this make sense guys any continue okay so while this is a beautiful story and it&#x27;s touched people</p>
+<p><span class="timestamp">[17:59]</span> for thousands of years and millions of people it really doesn&#x27;t make much sense okay there are problems within the story the biggest problem is the idea of atonement and original sin remember atonement and original sin remember before we studed the Bible we studied before we studed the Bible we studied this we studyed the story of Adam and Eve and we said very clearly what the Bible says is both God Bible says is both God Yahweh and Adam and Eve were at fault Yahweh and Adam and Eve were at fault</p>
+<p><span class="timestamp">[18:30]</span> okay Adam and Eve did disob disobey God and did eat from from the tree but God lied to them and God we also said recognize his recognize his mistake also mistake also mistake also remember God already punished us for our remember God already punished us for our Disobedience God said to Adam from now on you have to work hard to grow food for your family and he said to Eve from now on you will suffer pain in your labor when you gave birth you will</p>
+<p><span class="timestamp">[19:01]</span> suffer IMM men&#x27;s pain okay so God has already punished us for our original sin right then the last problem is God kicked us out of kicked us out of paradise because he feared that we would paradise because he feared that we would eat from the Tree of Life which would give us eternal life right so this idea of original sin and I told me doesn&#x27;t make any make any sense also why is God angry at us if sense also why is God angry at us if</p>
+<p><span class="timestamp">[19:32]</span> he&#x27;s God he&#x27;s he&#x27;s God he&#x27;s Perfection why does he have to be angry Perfection why does he have to be angry at us what do we do to piss him off would a father be angry at his children always is it the responsibility of the children to ask for forgiveness or the responsibil of the father to responsibil of the father to forgive his forgive his forgive his children okay so this is an children okay so this is an extremely problematic story it sounds extremely problematic story it sounds beautiful when you start think about it beautiful when you start think about it</p>
+<p><span class="timestamp">[20:02]</span> it becomes extremely it becomes extremely problematic problematic problematic also there are things in the story that also there are things in the story that are not historically accurate all right so the biggest problem is this the Bible says very explicitly at times that it was the Jews who killed Jesus and this is problematic because this has been used to justify anti-semetic behavior used to justify anti-semetic behavior and language throughout centuries okay and language throughout centuries okay and language throughout centuries okay but historically this is not what</p>
+<p><span class="timestamp">[20:40]</span> happened all right so let me give you a few reasons why I do not believe this is what happened the first reason what happened the first reason is um what the Bible does not recognize is um what the Bible does not recognize is at this time in Jerusalem there are many different religious many different religious authorities among the Jewish people and authorities among the Jewish people and they are in conflict with each other the three major factions are called the um seduces the seduces the sad uh the Sadducees the</p>
+<p><span class="timestamp">[21:11]</span> sad uh the Sadducees the sad uh the Sadducees the Pharisees and Pharisees and Pharisees and theen okay these are three major theen okay these are three major factions the seduces are the aristocrats they&#x27;re the priests who are in charge of the temple they they&#x27;re basically the central authority of the religion but then you have the then you have the Pharisees who argue that what matters is Pharisees who argue that what matters is not animal sacrifice but obedience to the law of the law of God okay and these are reformers and God okay and these are reformers and eventually from them we emerge what we</p>
+<p><span class="timestamp">[21:41]</span> call the rabbis basically the current leaders of the Jewish faith and then you have the C who have the C who believe that there is um an apop coming believe that there is um an apop coming God is returning to Earth and what&#x27;s important is to deny the matur reality to live frugally to live in peace to live in harmony together okay and guess what guys these three groups hate each other they were always at conflict with</p>
+<p><span class="timestamp">[22:13]</span> each each other but they never went to war with other but they never went to war with each other because they believe that they were all God&#x27;s people therefore we should argue we should kill each other okay so the idea that okay so the idea that these priests these priests these priests would send Jesus to his death doesn&#x27;t would send Jesus to his death doesn&#x27;t really fit into the culture and the practice of people at that time okay that&#x27;s the first that&#x27;s the first problem second problem</p>
+<p><span class="timestamp">[22:44]</span> problem second problem is the Bible makes ponus pilot look to is the Bible makes ponus pilot look to be a re it the be a re it the Bible makes ponus pilot look to be very Bible makes ponus pilot look to be very reluctant and even at times sympathetic towards Jesus it&#x27;s a very pro- Roman attitude but we have a lot of information about P pilot the governor of Judea at this time okay what we know about him is he was a violent Thug like</p>
+<p><span class="timestamp">[23:15]</span> most Roman Romans okay the Romans have a notorious attitude of being violent notorious attitude of being violent first okay they&#x27;re not very political first okay they&#x27;re not very political they&#x27;re not very um strategic they like to kill people okay and at time Pontius Pilate had a major conflict with the Jews of Jerusalem the Jews the first law of the Ten Commandments is you shall not worship false worship false Idols but ponti pilot represent the Idols but ponti pilot represent the</p>
+<p><span class="timestamp">[23:48]</span> Roman Empire and their false idol was their Emperor so the emperor um was the face of the emperor tiberious was in coins and there were flags and posters around him okay and P pilot wanted to bring the Cult of Caesar to Jerusalem which offended the Jews because the Jews are not allowed to have false Idols inside their City their holy city and this created a lot of conflicts between P pilot and the Jews there were some circumstances where the Jews went to pus</p>
+<p><span class="timestamp">[24:19]</span> pilot to complain and pus pilot says if you don&#x27;t get out of my house I&#x27;m going to kill all of you and the Jews start to line up and says come here&#x27;s my neck come come kill me okay and so P pilot had to relent he had no face the Jews were all willing to die to prot protect their religion so ponus pilot was not a very political not a very Savvy individual okay he kep he continued to offend the Jews so the idea that ponus</p>
+<p><span class="timestamp">[24:50]</span> pilate would be sympathetic towards pilate would be sympathetic towards Jesus uh makes no sense if P pilot could Jesus uh makes no sense if P pilot could far okay so I&#x27;m gonna make an argument okay I&#x27;m going to explain to you that</p>
+<p><span class="timestamp">[25:21]</span> the Bible what it says isn&#x27;t really accurate right I&#x27;m going to reconstruct the historical Jesus and I&#x27;m going to tell you based on my reading of the history and of the Bible what he really believed okay and um just to be clear I&#x27;m not a I&#x27;m not a scholar I really haven&#x27;t studed the scholar I really haven&#x27;t studed the Bible that much okay all all I&#x27;ve done is a lot of independent research so take my words we&#x27;re going to Salt okay and feel free to challenge me or</p>
+<p><span class="timestamp">[25:52]</span> question uh my argument at any time just raise your hand all right so um before I talk about Jesus I want to talk about the historical circumstance of about the historical circumstance of Jerusalem and Judea at this time okay so Jerusalem and Judea at this time okay so let&#x27;s do a brief summary of what we learned so far we&#x27;ve learned that um King David was the founder of the religion okay one of the main founders of the religion and at this time in</p>
+<p><span class="timestamp">[26:23]</span> history in about a thousand BCE this is really the height and peak of the state of Israel and they&#x27;re very confident very open very very open very generous okay but after David dies his generous okay but after David dies his son Solomon is not able to keep the kingdom together okay and it splits into two uh the northern two uh the northern kingdom and um kingdom and um kingdom and um Judah over time because Israel is in Judah over time because Israel is in</p>
+<p><span class="timestamp">[26:53]</span> such a strategic location right the Levant is the center of the world both of these places will be conquered by by foreigners the northern kingdom will foreigners the northern kingdom will become conquered by the become conquered by the become conquered by the Assyrians Judah will be conquered by the Assyrians Judah will be conquered by the Babylonians and the elite are sent off into Exile in Babylon where they basically basically develop uh the religion of develop uh the religion of develop uh the religion of Judaism uh of its modern form okay the Judaism uh of its modern form okay the Persians Persians return the</p>
+<p><span class="timestamp">[27:23]</span> return the return the um Jews back to uh Judea um Israel and um Jews back to uh Judea um Israel and there they write the Bible okay and this is comes about is comes about 444 444 444 and but then the pers are conquered by and but then the pers are conquered by the Greeks by alander great in 301 and now 301 and now tmy the Greek General is in charge of tmy the Greek General is in charge of the area and Tommy is in charge of Egypt and Egypt is very wealthy so tommi</p>
+<p><span class="timestamp">[27:55]</span> prefers to use money to resolve disputes so what he does is basically say to the Jewish Elite the priest hey your religion is really interesting when of you guys come to Alexandria the capital of Egypt and translate your Hebrew Bible into the Greek bible so that we can all appreciate the beauty and power of your words okay and we call this Bible the seetu seetu seetu and it&#x27;s it&#x27;s a very important you seetu and it&#x27;s it&#x27;s a very important you don&#x27;t have to know this word but like</p>
+<p><span class="timestamp">[28:25]</span> remember this is the Greek Bible it becomes the basis of Christianity okay because most people by the time Christianity comes won&#x27;t read Hebrew Christianity comes won&#x27;t read Hebrew they&#x27;ll be able to read they&#x27;ll be able to read they&#x27;ll be able to read Greek but then in uh 167 Greek but then in uh 167 BC julus is conquered by the saluan Empire antus and antus is a thug so he comes and he desecrates a temple by offering a sacrifice to Zeus a pig</p>
+<p><span class="timestamp">[28:55]</span> sacrifice to Zeus in their Temple and this offends the Jews so much they want they launch a decades long gorilla Warfare against the saluan empire okay in in 63 63 63 BCE the Romans BCE the Romans BCE the Romans conquer um Jerusalem Pompei the great conquer um Jerusalem Pompei the great the Roman general comes and conquers lay Siege to Jerusalem he kills tens of thousands of Jews and enslaves others and send us across the Empire okay so at this point in history and and</p>
+<p><span class="timestamp">[29:27]</span> Jesus is born um a few decades later at 4 BC 4 BC right the Jews have become extremely right the Jews have become extremely fanatical about the fanatical about the religion okay they need to they need to religion okay they need to they need to explain if they are the chosen people if God their Yahweh is the best God in the world why is this crap happening right why did their uh Kingdom become dissolved and then conquered by dissolved and then conquered by foreigners and not only that but these foreigners and not only that but these</p>
+<p><span class="timestamp">[29:58]</span> foreign powers the Babylonians the um Greeks the Romans they come and they insult their God they burn down the temple they desecrate the temple and they kill a lot of God&#x27;s chosen people so why is this happening and the explanation there&#x27;s a twofold explanation there&#x27;s a twofold explanation the first explanation explanation the first explanation explanation the first explanation is we were not loyal enough to God God is we were not loyal enough to God God sent these foreigners to conquer us because we disobey God we worship</p>
+<p><span class="timestamp">[30:29]</span> foreign idols and we refuse to follow God&#x27;s God&#x27;s Commandments okay that&#x27;s the first Commandments okay that&#x27;s the first Commandments okay that&#x27;s the first explanation the second explanation is explanation the second explanation is explanation the second explanation is the idea of um the idea of um the idea of um apocalyptic apocalyptic apocalyptic eschatology okay apoc sorry apocalyptic eschatology okay apoc sorry apocalyptic eschatology okay apoc sorry apocalyptic eschatology okay this is a very big term eschatology okay this is a very big term and I need you guys to know it because it&#x27;s important for future classes okay so so let&#x27;s look at what this means eschatology is Greek comes from the Greek escaton which means the end</p>
+<p><span class="timestamp">[31:02]</span> okay the end end of the world end times apoc apocalypse is Greek for Revelation or unveiling okay revealing so or unveiling okay revealing so apocalyptic eschatology means telling apocalyptic eschatology means telling apocalyptic eschatology means telling you how the world ends with the return you how the world ends with the return of of God okay so all this crap is happening God okay so all this crap is happening is God is Planning to make his return to Smite all his enemies to destroy all these Empires who have the fire his his name all right and this is what most</p>
+<p><span class="timestamp">[31:34]</span> name all right and this is what most Jews believed at this time of Jesus when Jesus was born it was assumed that God was about to return to the world and destroy all his enemies and there were a lot of prophets running around preaching this message Jesus Jesus was one of them but he was not unique in his message</p>
+<p><span class="timestamp">[32:12]</span> history are you guys history are you guys clear okay let&#x27;s continue all right so clear okay let&#x27;s continue all right so this is the this is the history um but at the same time what&#x27;s history um but at the same time what&#x27;s happening is because the lvon is really the center of the world it&#x27;s a meeting place of the world every single major religion is in the lavant and Jesus is absorbing and trying to understand these different religions okay so let&#x27;s talk about the major religions you have uh</p>
+<p><span class="timestamp">[32:45]</span> the Greeks with Plato okay so let&#x27;s remind ourselves of what platonic remind ourselves of what platonic philosophy is Plato believes God is philosophy is Plato believes God is called the form of the good from the good and from the form the good will emate at other ideas like emate at other ideas like reason truth beauty Justice and then reason truth beauty Justice and then these will emanate physical these will emanate physical manifestations called the forms okay so manifestations called the forms okay so this is called the realm of forms this is basically Heaven okay you can see this as this as heaven we live in a shadow</p>
+<p><span class="timestamp">[33:18]</span> heaven we live in a shadow reality which um is just an imitation of the form of the good and our objective in life is to St philosophy in order to return to the form of the good okay only mathematics will help us return to the form of the good PL got this idea from the Egyptians okay and the Egyptians called this idea sacred called this idea sacred geometry geometry geometry mathematics because sacred geometry is a</p>
+<p><span class="timestamp">[33:51]</span> mathematics because sacred geometry is a language and thought of the Gods okay does that make sense that&#x27;s why it&#x27;s Plato also at this time because of the influence of the Persians you have zor aism okay zor aism okay zor aism remember in Zionism the Creator is aism remember in Zionism the Creator is is a hor Master he is the perfect God of Light and he creates a perfect world where we humans are free to choose whatever we want this world eventually</p>
+<p><span class="timestamp">[34:23]</span> be became corrupted by an evil God who is equal to Azor Masta okay and now we humans must fight for good we can choose to fight for evil but we fight for good that will allow good to win out in the end eventually will emerge a savior a messiah a hero who will lead the army of light into a final battle against the Army of Darkness and in this battle the army of light will army of light will Triumph and then will emerge a river and</p>
+<p><span class="timestamp">[34:55]</span> Triumph and then will emerge a river and then everyone who&#x27;s ever died will be resurrected from the dead and everyone will be forced to cross this River if you have been a good person if you have f for the truth if you&#x27;ve been compassionate you will cross this compassionate you will cross this River and you will feel cleansed of all River and you will feel cleansed of all your sins and your mistakes and you will emerge as a perfect Soul who will live in Paradise forever but if you&#x27;ve been a bad bad person okay you will burn In this River</p>
+<p><span class="timestamp">[35:27]</span> person okay you will burn In this River and then you&#x27;ll be condemned to suffering for suffering for eternity okay this is zorin ISM then you eternity okay this is zorin ISM then you have have Buddhism and Hinduism okay and again Buddhism and Hinduism okay and again guys um remember this world is interconnected so the Greeks know interconnected so the Greeks know Buddhism very well and and the Buddhist Buddhism very well and and the Buddhist know uh the Greeks very well okay so and Jesus will have access to Buddhist and</p>
+<p><span class="timestamp">[35:58]</span> Hindu teachings in in the Buddhist and Hindu Hindu tradition there&#x27;s a true reality called tradition there&#x27;s a true reality called Brahman okay so it&#x27;s F think of this as a form of the good we live in a false reality where we have to suffer in pain but through our good works through Dharma we can achieve Moka what is MSHA Moka means Liberation back into the Brahman okay so uh Hinduism is very</p>
+<p><span class="timestamp">[36:40]</span> platonism all right at the same time besides religions there are also major philosophies that are roaming around philosophies that are roaming around this area okay so you have sism which is this area okay so you have sism which is which is what the Romans believe you have uh have uh cism and you have epicurism okay so cism and you have epicurism okay so these are some of the major ones cism is what Jesus believed which is a rejection of all material reality okay cynics believe that it&#x27;s important to wear bad clothes and to beg for food because</p>
+<p><span class="timestamp">[37:12]</span> material reality is a lie or it&#x27;s evil okay at the same time you also have these um what we call Pagan religions or Pagan rituals usually around the cult of dianis okay um we will talk about this later on in our in our class because this is very important but all I want you to remember is These Are pagan rituals where people come together and they use psychedelics they use drugs to get really high in order to increase their religious their religious ecstasy and this is to create um a a</p>
+<p><span class="timestamp">[37:46]</span> ecstasy and this is to create um a a feeling of Oneness feeling of Oneness interconnectedness what&#x27;s really interconnectedness what&#x27;s really important of the Pagan rituals is to important of the Pagan rituals is to focus on focus on egalitarianism okay so you could be a egalitarianism okay so you could be a Slave you be a rich person but once you enter these rituals you&#x27;re all one the same and they reject the social hierarchy of the real world okay not all but many of these Pagan rituals do that so as you can see at this time there&#x27;s</p>
+<p><span class="timestamp">[38:17]</span> just tremendous religious fever in the world everyone&#x27;s seeking truth world everyone&#x27;s seeking truth everyone&#x27;s seeking a more peaceful more everyone&#x27;s seeking a more peaceful more interconnected a more real interconnected a more real world okay and Jesus is operating within world okay and Jesus is operating within this major climate and Jesus is a major religious sorry Jesus is a unique religious genius who is able to synphase all these ideas into a new</p>
+<p><span class="timestamp">[38:47]</span> religion okay but it&#x27;s not called Christianity right it&#x27;s not called Christianity right it&#x27;s not called Christianity Jesus is not the one who is Christianity Jesus is not the one who is a found of Christianity that person is named Paul we&#x27;ll do Paul next class but Jesus founds a new religion that attracts major attracts major followers okay and so what is this new followers okay and so what is this new religion called okay so um at that time obviously there was not there was not a name for this new religion but today we</p>
+<p><span class="timestamp">[39:23]</span> okay Jesus was the founder of a religion called narcissism not Christianity called narcissism not Christianity narcissism there&#x27;s a difference all narcissism there&#x27;s a difference all narcissism there&#x27;s a difference all right so what is narcissism all right if right so what is narcissism all right if you look at most religions there are three major three major leers there&#x27;s a secret leers there&#x27;s a secret leers there&#x27;s a secret leer okay which is only available to the leer okay which is only available to the founder as well as his closest followers there is a inner leer okay an inner leer which is what he teaches his disciples</p>
+<p><span class="timestamp">[39:56]</span> and there is a public lay an alter ler okay ler okay which is what he preaches to the public which is what he preaches to the public okay do you understand so most religions will have this three tower system a secret ler which is the secret teachings an inner lar which is what the disciples are taught and then there&#x27;s a public lar okay okay so and what&#x27;s important first to so and what&#x27;s important first to understand is these three lers operate at different levels and they speak different truths but they&#x27;re all different truths but they&#x27;re all interconnected okay they&#x27;re coherent</p>
+<p><span class="timestamp">[40:28]</span> interconnected okay they&#x27;re coherent interconnected okay they&#x27;re coherent and they&#x27;re one and the same all right and they&#x27;re one and the same all right so Jesus was a gnostic what does this mean let&#x27;s look at the alter L okay what Jesus was preaching was a religion of compassion of forgiveness of mercy of egalitarianism so let&#x27;s look at Matthew the Gospel of Matthew this is from the uh Sermon on the Mount okay and this is what he says blessed are the poor in spirit for theirs is the kingdom of</p>
+<p><span class="timestamp">[40:59]</span> heaven heaven the people in this world who have value the people in this world who have value are not the rich but the poor because God favors poor because God favors them if you&#x27;re a poor person you will them if you&#x27;re a poor person you will find fallace you will find Solace and comfort in this idea you may be poor you may not be able to eat</p>
+<p><span class="timestamp">[41:32]</span> so this is what Jesus teaches the public but then the question then is why would this be true all right why would this be true and so for this make sense we need to understand the inner and the secret Lear which is not revealed to us in Matthew but there&#x27;s a secret Gospel called The Gospel of Thomas which we recently discovered okay uh this was discovered in 1945 in a in a a town</p>
+<p><span class="timestamp">[42:10]</span> n and this gospel is not in the Bible but it reveals to but it reveals to us what Jesus thinks okay so let&#x27;s look us what Jesus thinks okay so let&#x27;s look at what he says there are two things okay there is light within a man of light and he lights up the whole world if he does not shine he is Darkness okay what does this mean it can mean many things so and as I explained to you you can look at this quotation from three different layers at the public</p>
+<p><span class="timestamp">[42:42]</span> layer there&#x27;s light within a man of the public lar it means we have to be good people okay God favors people who do good things who are generous who are compassionate okay that&#x27;s a public Lear then there&#x27;s an inner lay okay the inner lay is what he&#x27;s saying to his disciples is if you want to follow me you must give up the world if you&#x27;re wealthy give up your wealth if you have if you&#x27;re</p>
+<p><span class="timestamp">[43:15]</span> poor give up your children and your wife and follow me be an example to everyone else okay but there&#x27;s also a secret layer a secret layer and and to and let&#x27;s look at the secret lay the secret lay is a secret knowledge about the world a secret understanding of how the world works that only Jesus and his closest followers understand and closest followers understand and recognize okay and this is what we call recognize okay and this is what we call</p>
+<p><span class="timestamp">[43:45]</span> narcissism the idea is this and it follows it basically follows along along the lines of Plato and Buddhism Hinduism okay all okay all right in the beginning there&#x27;s a God A right in the beginning there&#x27;s a God A perect God Called the perect God Called the monad or the one and he&#x27;s perfect he is monad or the one and he&#x27;s perfect he is eternal he is eternal he is immutable uh and he&#x27;s perfect okay the immutable uh and he&#x27;s perfect okay the the god of the god of Plato the monad creates diads okay peers Plato the monad creates diads okay peers</p>
+<p><span class="timestamp">[44:16]</span> that are perfect one of them is called Sophia and then these peers create with the permission of the Mad um Triads okay and this is all a perfect world because Perfection creates perfection the Perfection creates perfection the problem is one of these Gods Nam Sophia problem is one of these Gods Nam Sophia which is knowledge she decides she can be like a mo monat remember what makes monat special is he creates new things out of his own out of his own thoughts the diads are forced to couple thoughts the diads are forced to couple</p>
+<p><span class="timestamp">[44:47]</span> with each other in order to create new things so sopia wants to create her own thing herself without permission of her partner without permission of the monad okay but when she did that she&#x27;s defying the rules of the universe and therefore she creates a she creates a monster okay this is a monster and monster okay this is a monster and Sophia is ashamed by what she&#x27;s done okay she&#x27;s like oh my God this was a mistake this was a travesty so what she</p>
+<p><span class="timestamp">[45:18]</span> does is she hides this monster in a different reality okay she clouds up this reality and this monster is ignorant of the true reality so the monster doesn&#x27;t monster doesn&#x27;t know um that he&#x27;s a monster and he and know um that he&#x27;s a monster and he and he thinks he&#x27;s a God and he&#x27;s lonely so he starts to create the world us okay the in the Bible the monster&#x27;s name is Yahweh and he Crees Adam and Eve and he creates the creates the world and the world is completely world and the world is completely screwed up because it&#x27;s all being</p>
+<p><span class="timestamp">[45:49]</span> created by a created by a monster monster monster okay and so this is the origin of sin okay and so this is the origin of sin and Corruption and evil in this world because the our God is a Monster who is in defiance of the true okay and that&#x27;s okay and that&#x27;s why blessed are the poor in spirit for why blessed are the poor in spirit for</p>
+<p><span class="timestamp">[46:20]</span> theirs is the Kingdom of Heaven because if you&#x27;re poor you are if you&#x27;re poor you are defying the material reality defying the material reality defying the material reality to win in this game created by a monster to win in this game created by a monster you yourself have have to become a monster therefore the wealthy the monster therefore the wealthy the powerful are evil people if you&#x27;re poor powerful are evil people if you&#x27;re poor you don&#x27;t participate in this evilness and therefore you&#x27;re you are blessed by God and it was God who who will um redeem you and reward you at the end</p>
+<p><span class="timestamp">[46:50]</span> of the of the world okay and who is Jesus Jesus is the world okay and who is Jesus Jesus is the son or a a do a a son of the monad who&#x27;s come to the world to reveal us this truth about our truth about our world world world okay and this is what he says there is a okay and this is what he says there is a light within a man of light and he lights up the whole world if he does not shine he is Darkness okay we our bodies</p>
+<p><span class="timestamp">[47:20]</span> are evil why because we feel pain we die a perfect God would not make us alive because it makes no sense why would a perfect God condemn his children to the suffering we suffer every day that makes no sense only a monster would do this but even though the monster creates us there is still a Divine spark in us that comes from the monad and if we recognize this and we monad and if we recognize this and we choose a life of goodness by seeking true knowledge then this light will let</p>
+<p><span class="timestamp">[47:51]</span> the the world but we CH but if we do not do this world but we CH but if we do not do this then we&#x27;ll continue to suffer in darkness okay and this is what the secret teaching secret teaching is guys in each of us there&#x27;s a Divine is guys in each of us there&#x27;s a Divine spark of the monad and so we can defy or escape this reality created by a monster but you have to recognize this okay and this is a secret teaching of Jesus all right let&#x27;s look at one more quotation from the Gospel of Thomas to</p>
+<p><span class="timestamp">[48:23]</span> truly understand this idea when you make the two one and when you make the inside like the outside and the outside like the inside and the above like the below and when you make the male and the female one the same so that the male not be male or female and when you fashion eyes in the place of an eye then will you enter the kingdom okay how can you escape this world you can escape this world by world by seeing this world everything is seeing this world everything is seeing this world everything is interconnected these categories Rich</p>
+<p><span class="timestamp">[48:54]</span> interconnected these categories Rich interconnected these categories Rich poor male female are poor male female are poor male female are created by the authorities in this world created by the authorities in this world who worship a who worship a monster we must recognize the monster we must recognize the monster we must recognize the connectedness of the humanity in each connectedness of the humanity in each and every one of us that&#x27;s why it&#x27;s important to show Mercy to be compassionate because we&#x27;re all stuck compassionate because we&#x27;re all stuck together and it&#x27;s only by recognizing together and it&#x27;s only by recognizing our common Humanity that will allow us to escape this to escape this world</p>
+<p><span class="timestamp">[49:28]</span> okay when you fashion your eyes in the place of eye okay when you truly escape you have eyes and you and you think that what you see is true but it&#x27;s not true it&#x27;s all fake it&#x27;s all a lie you have to see with your soul with the Divine spark that is in you and then you will see the will see the truth all truth all truth all right in this religion right in this religion right in this religion why did Jesus die well I mean he died</p>
+<p><span class="timestamp">[50:01]</span> why did Jesus die well I mean he died because it&#x27;s a good thing okay if you die you are able to escape back into the true reality but also he died in order to awaken us to inspire us to grab our attention all right because his death was so was so tragic that it all us tragic that it all us tragic that it all us into focus our attention into Jesus and into focus our attention into Jesus and when we focus on Jesus when we focus on Jesus we focus on his teachings and slowly we focus on his teachings and slowly</p>
+<p><span class="timestamp">[50:31]</span> over time for our over time for our own self-discovery process we&#x27;re able to own self-discovery process we&#x27;re able to recognize the true teaching the secret teaching of Jesus and once we recognize the true teaching of Jesus we&#x27;re able to practice a compassionate generous and practice a compassionate generous and merciful life we&#x27;re able to bring light merciful life we&#x27;re able to bring light onto the world and in our death we&#x27;re able to escape back into the true reality okay and that&#x27;s the the true</p>
+<p><span class="timestamp">[51:06]</span> okay so does that make sense guys all right so now that we&#x27;ve Rec constructed his true constructed his true belief let&#x27;s look at his belief let&#x27;s look at his belief let&#x27;s look at his life what happened okay life what happened okay life what happened okay so Jesus at some point he&#x27;s able to so Jesus at some point he&#x27;s able to develop his theory of the world his religion and if you&#x27;re if you believe in your theory you want to spread it out okay you want people to know your</p>
+<p><span class="timestamp">[51:37]</span> theory so he goes to Jerusalem which is the religious capital of the Jews okay if you want people to pay attention to you and you want people to recognize you&#x27;re speaking the truth you have to go to Jerusalem the problem is this first of all the Romans are in Jerusalem and they want to kill prophets because they see Jewish prophets as problematic see Jewish prophets as problematic second problem is when you go to second problem is when you go to Jerusalem you&#x27;re competing against other Jerusalem you&#x27;re competing against other religious religious religious authorities okay you&#x27;re now threatening authorities okay you&#x27;re now threatening authorities okay you&#x27;re now threatening the authority of the seduces the the authority of the seduces the</p>
+<p><span class="timestamp">[52:09]</span> Pharisees and the asens but Jesus doesn&#x27;t have protectors he doesn&#x27;t have like a powerful political faction like a powerful political faction protecting him so the Romans saw an protecting him so the Romans saw an opportunity to teach the Jews a lesson so they arrested him and then they crucified him okay does that make sense but after did so what they didn&#x27;t recognize is this would turn him into a hero okay because at this time everyone is thinking about apoc apocalyptic is thinking about apoc apocalyptic eschatology they&#x27;re thinking the world eschatology they&#x27;re thinking the world eschatology they&#x27;re thinking the world is is ending the Messiah is coming and</p>
+<p><span class="timestamp">[52:41]</span> is is ending the Messiah is coming and they are so shocked by the death of their Pro of Jesus that they start to talk about him okay let&#x27;s do a thought experiment let&#x27;s just say I&#x27;m a king and everyone hates me everyone hates me I&#x27;m a king but everyone hates me and there are three prophets who speak like speak up against me okay the first prophet Prophet a Prophet a says I am a son of a says I am a son of a okay my Mo my mother was a</p>
+<p><span class="timestamp">[53:14]</span> prostitute the prophet B is I killed my brother to use up the throne okay that&#x27;s what prophet B says Prophet C says I steal from the Army okay this the the money not supposed to supposed to go to the Army I steal all right so these are three prophets who talk trash about me and the people are confused as to who to believe who do I follow Prophet a prophet b or Prophet C right so how do you know someone&#x27;s speaking the truth</p>
+<p><span class="timestamp">[53:50]</span> King kills someone right is that make sense if I kill Prophet B it means Prophet B must be speaking the truth and therefore you will start to follow the teachings of Propet B okay so in this time because the Romans killed time because the Romans killed Jesus they turn Jesus into a hero and Jesus they turn Jesus into a hero and people are now interested in the teachings of Jesus and that&#x27;s why he became so became so famous okay and also if you think think famous okay and also if you think think</p>
+<p><span class="timestamp">[54:23]</span> about it narcissism is really appealing okay but then comes the most important question in comes the most important question in Christianity which is this if Jesus himself was a gnostic if this is what he taught that there is a light in us and we must constantly work hard to let let the world to shine the world with our lightness how do we go from here</p>
+<p><span class="timestamp">[54:54]</span> narcissism narcissism to uh the Bible modern day to uh the Bible modern day Christianity which teaches teaches us Christianity which teaches teaches us that Jesus came to the world to redeem that Jesus came to the world to redeem us from our sins and that he will return to save the sins and that he will return to save the world how did we get from here to hear and these are like two radically different different conceptions conceptions conceptions of the world in fact if Jesus were alive of the world in fact if Jesus were alive</p>
+<p><span class="timestamp">[55:27]</span> today and he saw that we worshiped him as a as a redeemer he would be redeemer he would be redeemer he would be appalled by our by by by what he seen appalled by our by by by what he seen he&#x27;ll be appalled by he&#x27;ll be appalled by Christianity okay and so this is what we Christianity okay and so this is what we will discuss next class what I&#x27;ll show you next class is the true found of Christianity the person who developed Christianity the person who developed this religion is not Jesus but this religion is not Jesus but</p>
+<p><span class="timestamp">[56:00]</span> all right so Christianity the religion about Jesus is very different from Jesus okay all okay all right was this clear to you guys any right was this clear to you guys any</p>
+<p><span class="timestamp">[56:37]</span> EO okay so next class we will look at</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Theory #10: The Law of Asymmetry — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Game Theory #10: The Law of Asymmetry">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #f59e0b;
+            --accent-bg: rgba(245, 158, 11, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Game Theory #10</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Game Theory #10</div>
+        <h1 class="article-title">The Law of Asymmetry</h1>
+        <div class="article-meta">
+            <span>📖 49 min read</span>
+            <span>📝 9,713 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Game Theory #10：  The Law of Asymmetry</p>
+<p><span class="timestamp">[0:04]</span> we continue our discussion of the US Iran war that is happening right now. So um as you know I made the prediction that the United States will lose this war and last class we did an overview of the military and strategic position the military and strategic position and today we&#x27;re going to provide some and today we&#x27;re going to provide some theoretical framework for how to theoretical framework for how to understand understand understand how this war will progress and why how this war will progress and why ultimately I believe the United States</p>
+<p><span class="timestamp">[0:36]</span> will lose this war. Today I present to you a very important idea in game theory. And once you understand this idea, then you understand idea, then you understand why things will turn out the way they why things will turn out the way they do. Okay? It&#x27;s called a law of And all this is saying is that the United States and Iran are not</p>
+<p><span class="timestamp">[1:07]</span> peers. They&#x27;re not equals. United States is far stronger than Iran. And we should expect the United States to overwhelm and destroy Iran really easily. But the law of asymmetry states that that&#x27;s usually not the case. It&#x27;s usually the underdog that has the advantage underdog that has the advantage and we see this from history all the and we see this from history all the time. Okay. So when the Persians in</p>
+<p><span class="timestamp">[1:38]</span> about 490 BC invaded mainland Greece against Athens and Sparta, Persia at this at that time was the first world empire. It had infinite resources, empire. It had infinite resources, infinite manpower, infinite wealth, and infinite manpower, infinite wealth, and infinite manpower, infinite wealth, and it lost to the Greeks not once but it lost to the Greeks not once but twice. And and then the Macedonians under ex the Greek and they were like a tribal army, not a very large army. They were able to go into Persia and Persia at the time was basically most of</p>
+<p><span class="timestamp">[2:08]</span> Eurasia and conquered [snorts] it in about 10 years time. about 10 years time. The Romans started off as a tribal The Romans started off as a tribal people which then built the people which then built the Mediterranean Empire. Mediterranean Empire. Mediterranean Empire. Then you have the Aztecs. You have so Then you have the Aztecs. You have so the Vikings. So this happens a lot in human history. A people in the borderlands, a tribe, a small ethnicity are able to conquer a great empire. And</p>
+<p><span class="timestamp">[2:40]</span> the law of asymmetry tells us why. Okay. So, I&#x27;m going to go over uh very slowly in detail how this law symmetry asymmetry works. [snorts] All right. So, um let&#x27;s look at an empire. And there are three major advantages to an empire. All right. The first is mass. This just means that they have a lot of people. Okay? They almost have an infinite amount of people. United States has a population of about 350 million</p>
+<p><span class="timestamp">[3:11]</span> people. But remember the United States can also draw on the populations of its allies which includes the five eyes, the angles but also includes Europe. It also includes uh East Asia, South Korea, Japan. Basically wherever the Americans Japan. Basically wherever the Americans have a military base, right? So most of have a military base, right? So most of the world are either allies of the United States or vassels of the United States. So the United States can basically draw on in billions and billions of people for its wars. Okay. So it&#x27;s mass. Second is this idea of</p>
+<p><span class="timestamp">[3:47]</span> Organization just means a hierarchy of scientific technology. Okay. Science and scientific technology. Okay. Science and technology. technology. technology. which leads to the most advanced which leads to the most advanced weaponry. Okay, so think about the United States, how they fight this war. They have these satellites that provide for precision targeting. They have these um airplanes, these B2 bombers, F-15s</p>
+<p><span class="timestamp">[4:18]</span> that are the most advanced that are the most advanced um weaponry ever in human history. Okay, um weaponry ever in human history. Okay, so organization. The last so organization. The last great strength of the empire is that he great strength of the empire is that he Death is the idea that because your people are infinite, because your people are infinite, because your organization is so strong, because your organization is so strong, because your resources are so vast, you can afford to lose many, many wars. Okay? It&#x27;s not a</p>
+<p><span class="timestamp">[4:49]</span> big deal. United States loses this war in Iran. If they want to go back, they can go back with even more soldiers, even more um weaponry because their wealth is infinite. wealth is infinite. Okay, so these are the three major Okay, so these are the three major advantages of an empire. And in theory, because of these advantages, an empire should be invincible and eternal. But we</p>
+<p><span class="timestamp">[5:20]</span> know for a fact that all empires fall and they fall very, very hard. And quite honestly, they don&#x27;t last a very long time. maybe 28 years, maybe 300 years for most empires. That&#x27;s not a very long time. So, we need to better understand what&#x27;s going on. Okay. Why is it that an empire with these vast resources, they all fall in 20 years, 30 years. Okay. All right. So, um All right. So, um what we need to understand is that all</p>
+<p><span class="timestamp">[5:50]</span> what we need to understand is that all these advantages are ultimately these advantages are ultimately disadvantages in the long term. All disadvantages in the long term. All right. Right? So let let me explain what I mean. Match you have a lot of people. Okay? When you have a lot of people, you Why? Because there&#x27;s competition for Why? Because there&#x27;s competition for resources. There&#x27;s too many people. resources. There&#x27;s too many people. resources. There&#x27;s too many people. Okay? And this often leads to debt and Okay? And this often leads to debt and</p>
+<p><span class="timestamp">[6:22]</span> And as a result, your people become complacent, lazy, indifferent. They&#x27;re complacent, lazy, indifferent. They&#x27;re competing against each other. They competing against each other. They competing against each other. They really don&#x27;t like the government. Okay? really don&#x27;t like the government. Okay? So, they&#x27;re not that really that motivated motivated to do anything to work or to fight wars, to do anything to work or to fight wars, but especially to fight wars. So, this mass looks like looks like an advantage in the beginning, but over time it becomes a disadvantage. Right? becomes a disadvantage. Right? Organization Organization Organization um means an elite. The problem with this um means an elite. The problem with this</p>
+<p><span class="timestamp">[6:55]</span> is that over time the elite become Why? Because the way the way they make their money is through rent seeking. Rentseeking just means that you have power and you seek to monetize your power by exploiting the mass. power by exploiting the mass. All right. So basically landlords All right. So basically landlords All right. So basically landlords are a classic type of ransicking elite are a classic type of ransicking elite and so they don&#x27;t really work but they</p>
+<p><span class="timestamp">[7:25]</span> make a lot of money because they own the land because they control all the resources because they control all the capital and that forces the mass to go into slavery to go into debt which is what&#x27;s happening in America today. The problem with this is that everyone everyone wants to be part of the elite and there are too many elite over time. Okay. So even though you have elite have many many kids the uh power is a zero sum game it&#x27;s a hierarchy and so this leads to the idea of elite over</p>
+<p><span class="timestamp">[7:58]</span> production okay elite over production production okay elite over production this is a term um coined by the this is a term um coined by the historian Peter Turin okay and his theory is that you have turmoil you have wars wars for example the French revolution for for example the French revolution for example uh the follow the woman Roman Republic because there&#x27;s too many elite and they start wars to accumulate power for themselves. for themselves. Okay. So this organization, this elite Okay. So this organization, this elite leads to basically factionalism or leads to basically factionalism or infighting.</p>
+<p><span class="timestamp">[8:29]</span> infighting. infighting. And that&#x27;s what&#x27;s happening in America And that&#x27;s what&#x27;s happening in America today where the Democrats and the Republicans they hate each other. They refuse to get along. refuse to get along. It leads to political polarization. It leads to political polarization. It leads to political polarization. Okay. So another saying this is that an Okay. So another saying this is that an empire over time becomes insular. They don&#x27;t care about what happens outside the world. All they care about is what happens in Washington DC happens in Washington DC and as a result um they make a lot of and as a result um they make a lot of stupid mistakes. Okay. All right. Now</p>
+<p><span class="timestamp">[9:00]</span> last thing is death. Okay. The problem with death is that if there are no consequences to your actions, you become arrogant, you become lazy, arrogant, you become lazy, uh, and you become incompetent. Okay? uh, and you become incompetent. Okay? Because you don&#x27;t care. It doesn&#x27;t really matter. This leads to the idea of Okay? Hubris is just blindness to your own arrogance. a violent arrogance that makes you make silly mistakes, but you</p>
+<p><span class="timestamp">[9:30]</span> don&#x27;t recognize your mistakes and you keep on repeating the same mistakes over and over again, right? So yes, it seems like the empire is invincible, but if you actually think about it, the empire its advantages becomes over time its disadvantages which will lead ultimately disadvantages which will lead ultimately to its downfall. to its downfall. to its downfall. Okay. So the mass leads to inequality. Okay. So the mass leads to inequality. The organization leads to o over production which leads to factionalism. production which leads to factionalism. And death leads to hubris. That&#x27;s why an</p>
+<p><span class="timestamp">[10:02]</span> And death leads to hubris. That&#x27;s why an empire must fall over time. empire must fall over time. But an empire cannot fall by itself. It But an empire cannot fall by itself. It needs an enemy that forces it to collapse. Okay? And so what happens is that an enemy will emerge that will um overwhelm the empire because it is able to take advantage of the weaknesses of the empire, right? And so what are the weaknesses of this empire? Well, the</p>
+<p><span class="timestamp">[10:33]</span> first major weakness of this empire is that the people aren&#x27;t really motivated. So if you as people are really motivated, you have a huge advantage. now as an organ as an empire you become insular. You refuse to omit your mistakes. You refuse to learn from others. others. Well, if you are willing to omit your Well, if you are willing to omit your mistakes, if you&#x27;re willing to learn, if</p>
+<p><span class="timestamp">[11:04]</span> you&#x27;re willing to um promote the best and brightest, if you&#x27;re willing to meritocratic, you have a huge advantage. Now the last idea is this an empire it&#x27;s fractured. So if you&#x27;re able to m maintain cohesion maintain cohesion if people are able to remain united if if people are able to remain united if they&#x27;re able to have a common purpose they&#x27;ll be strong. Okay. So if an enemy of the empire emerges with these three</p>
+<p><span class="timestamp">[11:37]</span> qualities energy openness and cohesion qualities energy openness and cohesion this enemy will defeat the empire. this enemy will defeat the empire. It doesn&#x27;t make sense. Okay. So, what I want you to focus on as you follow the news in this war between United States and Iran is ask yourself a question. Will Iran become an energetic, open, and cohesive society? Because if it does, it will become invincible. will become invincible. The empire won&#x27;t change because of The empire won&#x27;t change because of hubris. It&#x27;s too static. It&#x27;s too</p>
+<p><span class="timestamp">[12:08]</span> stagnant. It&#x27;s too bureaucratic. So, the empire won&#x27;t change. the empire will not omit its own mistakes. omit its own mistakes. And quite honestly, Iran because it&#x27;s a And quite honestly, Iran because it&#x27;s a it&#x27;s a still a country of 92 million people. It still suffers from issues of mass organization and death. mass organization and death. And so if it&#x27;s able to transform itself And so if it&#x27;s able to transform itself into an energetic, open co society, then it will triumph over America. That is the fundamental question in this war.</p>
+<p><span class="timestamp">[12:40]</span> Okay? Don&#x27;t worry about America, its technology. technology. Don&#x27;t worry about the economy. Don&#x27;t Don&#x27;t worry about the economy. Don&#x27;t worry about these things. Okay? Just wor ask yourself one question. Is Iran transforming as a society? Are people becoming much more motivated. becoming much more motivated. Are people in Iran learning from their Are people in Iran learning from their mistakes and innovating and becoming mistakes and innovating and becoming resilient on the battlefield? resilient on the battlefield? resilient on the battlefield? Are the Iranians sticking together as a Are the Iranians sticking together as a people? Okay, because if the answer is</p>
+<p><span class="timestamp">[13:11]</span> yes to all three questions, then Iran will win and America will lose. Okay, doesn&#x27;t make sense? All right, so that&#x27;s just a theory. So let&#x27;s um let&#x27;s now [clears throat] [clears throat] talk specifically about talk specifically about talk specifically about America and Iran. Okay. So, America America and Iran. Okay. So, America will have three major advantages will have three major advantages in this war. Okay. These three in this war. Okay. These three</p>
+<p><span class="timestamp">[13:52]</span> and money, wealth. and money, wealth. These are the three major strengths of These are the three major strengths of the American empire. All the American empire. All right. Technology is just what you see right. Technology is just what you see every day, right? The satellites that are able to position target these airplanes that are the greatest war machines in the world. Okay. So, America is home to the greatest scientists, the most advanced weaponry. Okay. That&#x27;s most advanced weaponry. Okay. That&#x27;s just technology.</p>
+<p><span class="timestamp">[14:23]</span> just technology. just technology. Propaganda means that America controls Propaganda means that America controls Propaganda means that America controls information space. It controls the information space. It controls the information space. It controls the internet. It controls the world&#x27;s most internet. It controls the world&#x27;s most powerful media including the New York Times, CNN, BBC. Times, CNN, BBC. It controls YouTube. It controls Google. It controls YouTube. It controls Google. It controls information landscape. It controls information landscape. America does not want you to know America does not want you to know something. It can hide it from you. America can control the discourse. It can control how you think about the world. That&#x27;s propaganda. The last thing</p>
+<p><span class="timestamp">[14:55]</span> is money. Okay. And it&#x27;s very simple idea. The United States controls the US dollar which is a s which is the reserve currency of the world. And the United States can print as much as much US dollars as it needs in order to win this war. It has an infinite money printer. Okay. And now and then it can use this uh money to bribe people to fight this war. Right. It can it can pay for mercenaries. It can bribe ethnic mercenaries. It can bribe ethnic minorities to rebel against the minorities to rebel against the minorities to rebel against the government in Iran. It can bribe Iranian</p>
+<p><span class="timestamp">[15:27]</span> government in Iran. It can bribe Iranian officials to betray the the government. Okay. Okay. So looking at these three things, you So looking at these three things, you would think that America is invincible, right? But again, we need to think about the laws asymmetry and recognize that these advantages are also disadvantages. these advantages are also disadvantages. All right? So let&#x27;s discuss this All right? So let&#x27;s discuss this technology. technology. Well, you know, if you have the most Well, you know, if you have the most</p>
+<p><span class="timestamp">[15:58]</span> advanced weaponry in the world, you become lazy, arrogant and dependent on the technology, right? So the classic example of course is our school where you have access to chat GPT, right? And like you become smarter because you have access to G chat GPT. No, you become dumber because you become lazy, lazy, right? Same with technology. You would right? Same with technology. You would think that with the most advanced weaponry in the world, America will become invincible. But instead, people become invincible. But instead, people become the American um military becomes</p>
+<p><span class="timestamp">[16:29]</span> become the American um military becomes too dependent on the on the technology. It becomes too arrogant, too complacent. Okay? It&#x27;s like, well, you know, if we if we get in trouble, then we&#x27;ll just send in the Air Force and blow everything up. Okay? So it leads to and this actually hampers innovation and resilience in the battlefield resilience in the battlefield and this is what you need to win. Okay, and this is what you need to win. Okay, you need to be innovative and you need</p>
+<p><span class="timestamp">[17:01]</span> to be resilient on the battlefield but because of technology because of technology you become too lazy you become too lazy you become too lazy to think for yourself. to think for yourself. to think for yourself. All right, so that&#x27;s one problem. All right, so that&#x27;s one problem. propaganda. You would think that, oh, America, America control the debate, America, America control the debate, therefore that&#x27;s a huge advantage. It&#x27;s therefore that&#x27;s a huge advantage. It&#x27;s actually not an advantage, guys. The reason why is that in order for innovation and resilience to happen, you need you need to have open debate,</p>
+<p><span class="timestamp">[17:31]</span> right? You need people to voice dissenting dissenting opinions. opinions. opinions. But if you control the information But if you control the information landscape, what you can do is sensor. And that&#x27;s what America&#x27;s doing right now. It&#x27;s telling people to shut up and obey. You&#x27;re not allowed to point out that this war is stupid and America can&#x27;t win this war. Otherwise, you&#x27;ll be kicked out. Okay? kicked out. Okay? So, this means that there&#x27;s really a So, this means that there&#x27;s really a lack of rigorous debate within the</p>
+<p><span class="timestamp">[18:02]</span> American government, within the American American government, within the American military, with the American elite, which military, with the American elite, which of course will lead to hubris. It will lead to bad decision-m. No one&#x27;s no one will point this out because too they&#x27;re too afraid of pissing off the president and his people. So just shut up and America will keep on making the same mistakes over and over again. Okay. We call this drink drinking your own cool way. Okay. cool way. Okay. Okay. They&#x27;re basically getting high on Okay. They&#x27;re basically getting high on on their own supply is another phrase</p>
+<p><span class="timestamp">[18:34]</span> that that we use. All right. Money and wealth. Yeah. You would think, okay, well that&#x27;s THIS IS THIS IS IT, MAN. We just brought everyone. We just brought the entire world and uh we&#x27;re good, right? The problem is this. The problem is that if you bribe people, they&#x27;re not going to fight for you, right? Because all they all they want is your money. So you bribe them, but then but they&#x27;ll probably take your money and run away. run away. Okay? Or they&#x27;ll figure out how to get Okay? Or they&#x27;ll figure out how to get</p>
+<p><span class="timestamp">[19:05]</span> more money out of you by cheating you. So, right now, the Americans are going to fund these uh militias and ethnic minorities and opposition groups against minorities and opposition groups against Iran. Okay? Guess what, guys? These guys Iran. Okay? Guess what, guys? These guys are hustlers, are hustlers, right? They&#x27;re not fighting because um right? They&#x27;re not fighting because um they want more freedom. They&#x27;re fighting because they want to rip off the US government. government. And so this money issue can be a problem And so this money issue can be a problem in the long term because the people</p>
+<p><span class="timestamp">[19:35]</span> you&#x27;re bribing you can&#x27;t even trust and they&#x27;re not that motivated to actually win this war for you. They&#x27;re actually motivated to to scam you as much as possible and they could be actually a problem in the long term because you&#x27;re putting so much resources into these hustlers. Okay. All right. So hustlers. Okay. All right. So what this means is that America has what this means is that America has three major problems. Okay, it has three major problems. The first major problem</p>
+<p><span class="timestamp">[20:06]</span> is is the lack of political will. American people don&#x27;t want to fight this war. war. The American government doesn&#x27;t even The American government doesn&#x27;t even The American government doesn&#x27;t even know why they&#x27;re fighting this war. No know why they&#x27;re fighting this war. No one cares. Okay? But for the Iranians, it&#x27;s a struggle of life and death, right? If America loses this war, they</p>
+<p><span class="timestamp">[20:37]</span> just go home and forget about it. But the Iranians lose this war, they all get killed or they lose their country, they lose their society, they lose their civilization, they lose identity. They civilization, they lose identity. They cannot afford to lose this war. Okay. So cannot afford to lose this war. Okay. So the first major problem that Americans are facing is they don&#x27;t have any political will to fight this war but they&#x27;re still fighting this war anyway. Okay. The question of course is why why why is this happening? This is actually the most important question and the most complicated. So so so we&#x27;ll save this</p>
+<p><span class="timestamp">[21:08]</span> for later. Okay. Second is the idea of So, America is very good at fighting short wars. Okay. The reason why is they&#x27;re advanced. They have the most advanced weaponry, but they have advanced weaponry, but they have manufacturing issues because as we know, manufacturing issues because as we know, America ship all its factories to China. So, America doesn&#x27;t have that many factories. So, yes, it has most advanced weaponry in the world. But this weapon doesn&#x27;t doesn&#x27;t do any good if you don&#x27;t</p>
+<p><span class="timestamp">[21:40]</span> have any ammunitions, right? you don&#x27;t have any munitions, bombs, bullets, and you need factories for that. America doesn&#x27;t really have these factories. doesn&#x27;t really have these factories. Now, I understand that America is trying Now, I understand that America is trying to is trying to upgrade its manufacturing capacity, but it&#x27;s kind of slow. All right. So, maybe 5 years from now, it will have manufacturing capac capacity to fight this war, but right now it doesn&#x27;t. So, that&#x27;s so that&#x27;s another another um major issue. Okay. And then and then um major issue. Okay. And then and then</p>
+<p><span class="timestamp">[22:13]</span> the last issue of course is All right. America because it doesn&#x27;t have the political will to fight this war cannot afford to lose soldiers on the battlefield. the battlefield. All right. So All right. So it wants to minimize the death. It was it wants to minimize the death. It was minimized battlefield losses because if minimized battlefield losses because if like a thousand tens of thousands of like a thousand tens of thousands of American soldiers are going home to America dead in coffins, I guarantee you</p>
+<p><span class="timestamp">[22:44]</span> because of lack of political will, the American people will revolt. You have protest. You will have um a lot of violence in the streets. It&#x27;ll be like the Vietnam uh era again. the Vietnam uh era again. All right. Okay. So, All right. Okay. So, All right. Okay. So, um, yes, I understand that America has um, yes, I understand that America has technology, propaganda, and money, but technology, propaganda, and money, but as we discussed, these aren&#x27;t really as we discussed, these aren&#x27;t really advantages. And these disadvantages are advantages. And these disadvantages are huge. The lack of political will, the huge. The lack of political will, the</p>
+<p><span class="timestamp">[23:15]</span> lack of manufacturing, and the um lack of um of America cannot afford to lose that many soldiers in the battlefield. Okay? And so this this situation now determines how America will fight this war. And we&#x27;ll discuss this later on. Okay. All right. Now, let&#x27;s about Okay. [clears throat] So, a ran has a</p>
+<p><span class="timestamp">[23:47]</span> lot of disadvantages. Okay. But I I I want to discuss right now there are three major advantages that they need to emphasize if they are to survive this war. All right. The first is the idea of All right. So remember that the Iranians are Shia are Shia and as such it&#x27;s a religion of martyrdom and as such it&#x27;s a religion of martyrdom of esquetology of esquetology of individual sacrifice for the greater of individual sacrifice for the greater good. good. The Shia are not afraid to die. And</p>
+<p><span class="timestamp">[24:20]</span> The Shia are not afraid to die. And because their great religious leader, because their great religious leader, the Alatona Kinai was assassinated by the Alatona Kinai was assassinated by the Americans and Israelis, they are motivated to seek vengeance, to martyr themselves for the greater good, to seek All right, that&#x27;s the first major advantage. The second major advantage is terrain. [clears throat] terrain. [clears throat] And all this means is that</p>
+<p><span class="timestamp">[24:52]</span> And all this means is that [clears throat] [clears throat] Iran is a mountainous Iran is a mountainous Iran is a mountainous country and it&#x27;s huge. It&#x27;s three times country and it&#x27;s huge. It&#x27;s three times the size of Iraq. Um, so it&#x27;s very hard for America to invade the country. In fact, most analysts will will say will tell you it is suicidal for the American military to invade uh Iran. It is a mountain fortress. Okay, it&#x27;s a mountain fortress. Okay, it&#x27;s a fortress.</p>
+<p><span class="timestamp">[25:28]</span> And the last issue is the last event is nationalism. nationalism. Okay. Okay. Okay. All right. [clears throat] All right. [clears throat] All right. [clears throat] So, the Iranians are Persians So, the Iranians are Persians So, the Iranians are Persians and the Persians go back 5,000 years. It and the Persians go back 5,000 years. It is one of the greatest civilizations in human history. And as we discussed last semester in the ancient world, there were three great civilizations, there were three great civilizations, right? The Jews, the Greeks, and the right? The Jews, the Greeks, and the Persians. Persians. And u the Persian culture, it&#x27;s vast,</p>
+<p><span class="timestamp">[25:59]</span> And u the Persian culture, it&#x27;s vast, it&#x27;s beautiful, and it&#x27;s deep. And that&#x27;s what gives the Iranian people a lot of pride. lot of pride. Okay? So when they&#x27;re fighting, they&#x27;re Okay? So when they&#x27;re fighting, they&#x27;re not just fighting for the religion, not just fighting for the homes, they&#x27;re fighting for the entire civilization fighting for the entire civilization that goes back 5,000 years. Right? So that goes back 5,000 years. Right? So these are the three major advantages that the Iranians have. Okay? Fate means</p>
+<p><span class="timestamp">[26:29]</span> that they&#x27;re not afraid to die for what they believe in. Terrain means that the Americans who have a hard problem invading the country. Uh nationalism invading the country. Uh nationalism means that the people of Iran know what means that the people of Iran know what they&#x27;re fighting for. they&#x27;re fighting for. All right. So, but again remember ebing All right. So, but again remember ebing that it seems like an advantage can be a disadvantage as well. All right. So, [clears throat] [clears throat] let&#x27;s go over what the problems are with let&#x27;s go over what the problems are with faith. You might have an issue of blindness. blindness. Okay. or zealatry</p>
+<p><span class="timestamp">[27:02]</span> Okay. or zealatry Okay. or zealatry where you&#x27;re not afraid to die, where you&#x27;re not afraid to die, but that means that you&#x27;re not thinking strategically. Okay? Maybe you&#x27;re going strategically. Okay? Maybe you&#x27;re going to waste too many soldiers on the to waste too many soldiers on the battlefield. They&#x27;re brave, but they&#x27;re battlefield. They&#x27;re brave, but they&#x27;re kind of stupid as well. All right? So kind of stupid as well. All right? So you might have an issue where Iran is not using the optimal um strategy because [clears throat] their soldiers because [clears throat] their soldiers are not afraid of death. And we&#x27;re are not afraid of death. And we&#x27;re</p>
+<p><span class="timestamp">[27:33]</span> already seeing that where the Americans have already blown up and destroyed the Iranian navy. Now any told you that the first thing Americans would do is go destroy the Iranian navy. So you should probably not use the navy or hide the navy or blow up the navy yourself. Okay? because you want to avoid as many casualties as possible. But they didn&#x27;t do that and they and the Americans have now destroyed the Iranian navy. All right? So that&#x27;s the issue of faith terrain. Yeah, it&#x27;s a fortress but it</p>
+<p><span class="timestamp">[28:05]</span> can also be a prison, right? Where you&#x27;re just sort of stuck there and because it&#x27;s a mountainous region, it doesn&#x27;t have that many resources. So Americans can actually disrupt your Americans can actually disrupt your water supply, disrupt your electricity, water supply, disrupt your electricity, water supply, disrupt your electricity, okay, and cause general poverty and okay, and cause general poverty and hardship for your people. Okay? And then nationalism. Yes, Persia is a great culture, but remember that Iran is a ethnically diverse country. In fact, ethnically diverse country. In fact, only 50% of the population of Iran are</p>
+<p><span class="timestamp">[28:37]</span> only 50% of the population of Iran are Persians. Others are different Persians. Others are different minorities. Okay. All right. So, um you minorities. Okay. All right. So, um you have then ethnic have then ethnic divisions, divisions, divisions, right? right? right? Okay. So, looking at this now, we know Okay. So, looking at this now, we know exactly exactly what the American strategy will be. what the American strategy will be. Basically, the strategy will be to inflict inflict as many casualties as possible on the</p>
+<p><span class="timestamp">[29:07]</span> as many casualties as possible on the Iranians. Iranians. All right? To kill as many people as All right? To kill as many people as possible, possible, destroy the infrastructure of Iran of destroy the infrastructure of Iran of Iran so that the people don&#x27;t have enough water, electricity, food to enough water, electricity, food to survive. Okay? And the third of course survive. Okay? And the third of course is to create as much ethnic tension in the country as possible by arming and encouraging and bribing ethnic groups to rebel against central government in rebel against central government in Tran. Right? Tran. Right? Tran. Right? Okay. But again,</p>
+<p><span class="timestamp">[29:38]</span> Okay. But again, Okay. But again, what the law of symmetry, asymmetry what the law of symmetry, asymmetry tells us is that the empire ultimately is not as flexible and open and dynamic as its enemy. Okay? The weaker person is going to engage in much more self-reflection, self-reflection, self-debate than the empire. Okay? Because empire will become arrogant. And so ultimately</p>
+<p><span class="timestamp">[30:11]</span> Iran should triumph over America. And in fact, what&#x27;s going to happen is that this strategy that America will use against the Iranians will lead to Iranians becoming much more energetic, Iranians becoming much more energetic, open, and cohesive. open, and cohesive. open, and cohesive. Okay. So let&#x27;s look at let&#x27;s look at Okay. So let&#x27;s look at let&#x27;s look at let&#x27;s look at American strategy let&#x27;s look at American strategy specifically. specifically. specifically. H. [clears throat]
+[30:44]
+All right. So, this is an ethnic map of Iran. Okay. Now, certain things that you will see is how divide the country is. Yeah. The Persians are in the center, but people you want to watch are the Kurds. Okay. The Kurds and the um Azaris. Azaris. and the bollocks. and the bollocks. and the bollocks. Okay, these are the three major problem Okay, these are the three major problem areas for Iran and it&#x27;s always been the</p>
+<p><span class="timestamp">[31:15]</span> case. Remember the Persians are in the middle. So the Bllocks are first of all Sunni Muslims. Sunni Muslims. As we discussed last class, the Sunnis As we discussed last class, the Sunnis and the Shia have never really gotten along well together. They have different I mean the same religion uh Islam but they have different belief systems they have different belief systems that&#x27;s led to a lot of conflicts in the that&#x27;s led to a lot of conflicts in the past. It&#x27;s almost like the Catholics and the Protestants. Okay. And so the Bulock have been trying to rebel against Iranians for a long time. I guarantee</p>
+<p><span class="timestamp">[31:46]</span> you that there are already Israeli and American special forces embedded in this area. Okay. The reason why is that they want to encourage as much civil conflict as possible, but they also want to prepare the graph the possibility for a ground invasion of America. Okay. So, they would need a um [clears throat] forward operating base and this area could be a very good place for a beginning of a land of of a land invasion. Then you over here you have</p>
+<p><span class="timestamp">[32:18]</span> the Kurds. Okay. The Kurds are another minority that seeks national minority that seeks national sovereignty. sovereignty. sovereignty. And right now what&#x27;s happening is that And right now what&#x27;s happening is that the Americans and Israelis are bombing this area heavily and they&#x27;re targeting police stations. Why? Because they&#x27;re police stations. Why? Because they&#x27;re trying to reduce and eliminate trying to reduce and eliminate trying to reduce and eliminate opposition so that they can arm the opposition so that they can arm the Kurds and have them come into this area and and threaten um Iran. What&#x27;s also</p>
+<p><span class="timestamp">[32:49]</span> happening is that in Iraq happening is that in Iraq there are these Sunni there are these Sunni there are these Sunni uh groups, okay, that the Americans are uh groups, okay, that the Americans are uh basically bribing uh basically bribing and arming and they&#x27;re basically and arming and they&#x27;re basically and arming and they&#x27;re basically fanatics, okay? They&#x27;re ISIS and what fanatics, okay? They&#x27;re ISIS and what the Americans want to do is send them into uh Iran to cause as much problem as possible. Okay. Then you over here you have Azaran. have Azaran. Abrajan. Abrajan. Abrajan. It is a independent country. What&#x27;s</p>
+<p><span class="timestamp">[33:21]</span> It is a independent country. What&#x27;s really odd is that the majority of ethnic uh Azaris are actually in Iran. 60 6% are in the country 40% are in the country of Azaran. Which means that from the perspective of the Arabian people, this war could be an opportunity to reunite reunite the people, okay, and create a greater the people, okay, and create a greater Azure. So these are the three problem</p>
+<p><span class="timestamp">[33:56]</span> areas that you have to watch as this war develops over the next few weeks, over the next few months. Okay. So we already know what the American strategy will be because we&#x27;ve seen it in Libya, in Syria before. Okay. So what is the strategy? All right. So again, the strategy is to both attack without, okay, from outside and inside as well. So what you&#x27;re going</p>
+<p><span class="timestamp">[34:26]</span> to do is this. You&#x27;re going to arm these people in em inbed special forces into these inserting groups to lead them and provide air cover so they have a clear path into Iran and are able to eliminate opposition. Okay. All right. So now you&#x27;re attacking from without you&#x27;re attacking from without attacking from within means to cause as attacking from within means to cause as much pain and suffering in the interior of Iran as possible. All right. And how do you do that? Well, you do that</p>
+<p><span class="timestamp">[34:57]</span> through um decapitation. Okay, let&#x27;s go over the strategies. over the strategies. Okay, decap decap decapitation. Okay, decap decap decapitation. Okay, decap decap decapitation. Okay, and what you&#x27;re doing is you&#x27;re Okay, and what you&#x27;re doing is you&#x27;re removing removing the elite, the elite, the elite, okay? Or what we call command and okay? Or what we call command and Okay, you&#x27;re basically limiting the Okay, you&#x27;re basically limiting the capacity of Iran to govern itself, to capacity of Iran to govern itself, to have a leadership, to have an elite, right? Command and control. Okay, so</p>
+<p><span class="timestamp">[35:28]</span> that&#x27;s the first strategy. Second that&#x27;s the first strategy. Second strategy strategy strategy is um is um is um um area of environment, okay, um area of environment, okay, um area of environment, okay, aerosmreacy. &amp;gt;&amp;gt; [clears throat] &amp;gt;&amp;gt; [clears throat] &amp;gt;&amp;gt; So again, America has the most advanced &amp;gt;&amp;gt; So again, America has the most advanced airplanes in the world. And the way that it&#x27;s using its airplanes is to destroy as much military installation as as much military installation as possible, but it&#x27;s also engaging in acts possible, but it&#x27;s also engaging in acts</p>
+<p><span class="timestamp">[35:58]</span> of sabotage. Okay? So what they&#x27;re doing Okay? So they&#x27;re carpet bombing Tran. um they&#x27;re doing soft targeting. um they&#x27;re doing soft targeting. Soft targeting. Soft targeting means Soft targeting. Soft targeting means Soft targeting. Soft targeting means that instead of attacking military that instead of attacking military that instead of attacking military installations, you attack hospitals. installations, you attack hospitals. installations, you attack hospitals. Why? Because you&#x27;re degrading the Why? Because you&#x27;re degrading the Why? Because you&#x27;re degrading the capacities uh sorry, you&#x27;re degrading capacities uh sorry, you&#x27;re degrading capacities uh sorry, you&#x27;re degrading the state&#x27;s capacity to rejuvenate the state&#x27;s capacity to rejuvenate the state&#x27;s capacity to rejuvenate itself to be resilient. Okay. The last itself to be resilient. Okay. The last</p>
+<p><span class="timestamp">[36:30]</span> thing is something called double tap. Double tap is this. Okay. Uh and it&#x27;s really illegal uh or against um international law. What you do is this. You attack a place, right? You kill some people and then people try to come and help the people who are injured and it could be like um doctors, it could be emergency emergency personnel, it could emergency emergency personnel, it could be relatives, right? And then you strike be relatives, right? And then you strike again to create as much as many civilian casualties as possible, right? And the</p>
+<p><span class="timestamp">[37:00]</span> entire idea is to create as much fear and anxiety in people as possible so that they lose the capacity to resist. All right. And [snorts] the last thing you do um [clears throat] and so the and the last thing of course is to um arm and bribe [clears throat] and bribe [clears throat] insurgents. insurgents. insurgents. Okay. So these are the three main Okay. So these are the three main pillars of the American strategy and you will see this over the next few weeks. The problem [clears throat] The problem [clears throat] with this is that when you do these</p>
+<p><span class="timestamp">[37:33]</span> with this is that when you do these three things, you&#x27;re not actually three things, you&#x27;re not actually hurting the Iranians, you&#x27;re actually hurting the Iranians, you&#x27;re actually hurting the Iranians, you&#x27;re actually helping them. Because remember the law helping them. Because remember the law of asymmetry states that whichever group is able to to create energy, openness, and cohesion will win. And guess what guys, guys, this American strategy is going to this American strategy is going to create a more energetic, more open and more cohesive more cohesive person society. All right, let me show person society. All right, let me show</p>
+<p><span class="timestamp">[38:05]</span> you how. All right, the decapitation. We just said that one major problem for America is elite over production, right? Well, with the countation, Well, with the countation, what you&#x27;re doing is you&#x27;re solving this what you&#x27;re doing is you&#x27;re solving this problem for the Iranians, right? Before the huge problem for the Iranians were, you have too many leaders you have too many leaders and they all have their own stupid and they all have their own stupid opinion and they all want to lead this war, right? But by killing so many leaders, you allow leaders, you allow for more mobility, for more for more</p>
+<p><span class="timestamp">[38:36]</span> for more mobility, for more for more meritocracy, right? you&#x27;re solving the meritocracy, right? you&#x27;re solving the problem of over production for the problem of over production for the radiance. That&#x27;s a huge huge bonus guys. Okay. So, um the leadership will become much more lean, much more mean, much more determined and much more strategic. Okay, that&#x27;s number one. Number two, aeros supremacy. aeros supremacy. Well, when you do this to people, when Well, when you do this to people, when you cover bomb tan, you&#x27;re creating a</p>
+<p><span class="timestamp">[39:07]</span> more cohesive society. more cohesive society. Why? Because the major conflict in Iran Why? Because the major conflict in Iran for many decades was the conflict between the urban areas and the rural areas. The rural areas were very religious, very poor, very backward. And the urban areas were educated, secular and progressive. Okay? And so there&#x27;s this huge conflict that led to a lot of riots, a lot of protests in uh Iran. But when you cover ball the cities which are</p>
+<p><span class="timestamp">[39:38]</span> the main source of of of support for you know progressive western policies you know progressive western policies you make them united with the rural areas. make them united with the rural areas. Okay does that make sense? The Iranian people no longer see themsel each other as enemies. They see the Americans as enemies. You create a much more cohesive society which are who are willing to fight together and that&#x27;s a problem. Okay. All right. The last thing you Yes, you are arming the insurgents, the bulocks, the Kurds, the Zaris. Okay,</p>
+<p><span class="timestamp">[40:11]</span> that&#x27;s fine. The problem with this is that you are now that you are now activating, galvanizing Persian activating, galvanizing Persian activating, galvanizing Persian nationalism, right? right? For the longest time, the Persian For the longest time, the Persian national identity was suppressed by the theocracy because they want to create a more, you know, they want to create a grand religion that unites all grand religion that unites all ethnicities. When you turn the other ethnicities. When you turn the other</p>
+<p><span class="timestamp">[40:41]</span> minorities against the Iranians, then minorities against the Iranians, then the Persian people have to come together the Persian people have to come together and remember their history, celebrate and remember their history, celebrate their identity. And this is the key, their identity. And this is the key, okay? Once the Persian people are able to activate their long-lasting memories, to activate their long-lasting memories, go back in the past and remember the go back in the past and remember the greatness, they come together as an energetic, open, and cohesive society. energetic, open, and cohesive society. Okay? Okay? Okay? So, yes, the Americans have this So, yes, the Americans have this strategy that worked in Libya and Syria</p>
+<p><span class="timestamp">[41:12]</span> and other places, but it&#x27;s not going to work in Iran. In fact, it&#x27;s going to do the opposite in the opposite in Iran. Iran. Iran. Okay. And then you&#x27;re like, well, why Okay. And then you&#x27;re like, well, why don&#x27;t the Americans not do this? And I already told you because it&#x27;s an empire, okay? It doesn&#x27;t care about Iran. It cares about itself. And so, it&#x27;s sort of stuck with this policy because remember, it&#x27;s trying to win this war as quickly as possible because it doesn&#x27;t have the manufactured capacity to fight this war for a long time. It&#x27;s trying to reduce</p>
+<p><span class="timestamp">[41:43]</span> as many civilian cas sorry. It&#x27;s trying to reduce as many casualties among its soldiers as possible because the soldiers as possible because the Americans don&#x27;t have the political will Americans don&#x27;t have the political will to fight this war. America is trying to win this war cheaply and fast. If it doesn&#x27;t, then Americans in a lot of trouble. Okay, does that make sense, guys? All right, let me now um conclude or sorry, let let me now discuss the Iranian strategy. Okay. So, um, what the Americans are using is a</p>
+<p><span class="timestamp">[42:15]</span> classic strategy called siege warfare. classic strategy called siege warfare. Okay. Okay. Okay. And so, what the Iranians are going to And so, what the Iranians are going to do is they&#x27;re going to respond with a classic strategy called guerilla classic strategy called guerilla warfare. Okay? And gorilla warfare, guys, it&#x27;s just simple. Hide and seek. just simple. Hide and seek. All right? So, you come bomb me with all All right? So, you come bomb me with all everything you have, I&#x27;ll just hide in my mountains. And then when you leave, what what I&#x27;m going to do? I&#x27;m going to attack your uh GCC countries. I&#x27;m going to lob drones, rockets at you. I&#x27;m I&#x27;m</p>
+<p><span class="timestamp">[42:48]</span> lo um rockets at Israel, okay? I I I don&#x27;t have I don&#x27;t have to strike that hard. I just have to make I just have to be a pain in the ass, okay? Because then what happens is you&#x27;re forced to come back and bomb the living hell out of me. But guess what? I was hide my mouth again. It&#x27;s hide and seek. Okay? So Iran can do this for years and years and years. But again, remember America is forced to win this war as fast as possible because there is no political will. They don&#x27;t have much manufacturing capacity and they uh don&#x27;t want to uh they don&#x27;t want that many casualties and</p>
+<p><span class="timestamp">[43:20]</span> economic damage. Okay? Does that make sense, guys? All right. So that&#x27;s all Iran is going to do. Iran is just going to be a pain in the ass. Okay? A pain in the ass. It&#x27;s trying to create as much economic damage as possible. is trying to create as much fear as possible, right? Which will force America to attack. The grand question is this, will America launch a ground invasion? Okay? Because if it does, Okay? Because if it does, then then then um they&#x27;ve lost the war. Okay? All</p>
+<p><span class="timestamp">[43:51]</span> um they&#x27;ve lost the war. Okay? All right. Because look look at look at Iran. Okay? Mountains and mountains, Iran. Okay? Mountains and mountains, deserts. It is impossible to occupy this deserts. It is impossible to occupy this country. country. All right. It is impossible to invade. All right. It is impossible to invade. And what they want to do is be so such a pain in the ass to commit so much guilt warfare that America is forced to invade. Okay. from over here and from over here and from over here and from</p>
+<p><span class="timestamp">[44:21]</span> over here and then eventually uh but the problem is that America doesn&#x27;t h does not have the resources the political will the manufacturing capacity to fight this war okay doesn&#x27;t make sense right so now you&#x27;re like okay I understand all this but why the hell is this war happening then happening then if I can tell you this okay I&#x27;m sure if I can tell you this okay I&#x27;m sure that their generals can tell them this as well I&#x27;m sure that they know that this was the case. In fact, for years,</p>
+<p><span class="timestamp">[44:51]</span> America has been planning to invade Iran. And for years, the general was like, &quot;No, that&#x27;s suicidal. Let&#x27;s not do this.&quot; Okay. So, why is this happening? And unfortunately, we don&#x27;t know because the administration is not telling us. At first, Trump is like, &quot;Oh, because the nuclear talks didn&#x27;t go well.&quot; We know for a fact that the Iranians were willing to agree to all terms of the Americans. Americans. And then Marco Rubio, who&#x27;s who&#x27;s the And then Marco Rubio, who&#x27;s who&#x27;s the</p>
+<p><span class="timestamp">[45:21]</span> secretary of state, he came out yesterday. He he said something really moronic. He said that why did we attack Iran? Because we heard the Israelis were going to attack first. Then Iranians were going to respond by by attacking both the Israelis and us, the Americans. And therefore, we have to preempt this really by attacking first. That&#x27;s just Okay. Right. So, they don&#x27;t Okay. Right. So, they don&#x27;t they don&#x27;t know why they&#x27;re doing this. they don&#x27;t know why they&#x27;re doing this. But there has to be a reason, right?</p>
+<p><span class="timestamp">[45:53]</span> Okay. Well, a clue is this. A clue is this. The soldiers are being asked, the American soldiers are being asked to fight this war. And again, no one knows why this war is happening, but there&#x27;s reporting that the generals are telling the soldiers, &quot;This is a war for for Jesus. Jesus. Jesus. This is a war This is a war This is a war to to to create the second coming of Jesus.&quot; create the second coming of Jesus.&quot; Okay, this is um John Larson and he&#x27;s</p>
+<p><span class="timestamp">[46:23]</span> writing this on on selfstack. Okay, US troops were told Iran war is for Armagen, the return of Jesus. What is this? All right. So, um, so sorry. So, um, um, some soldiers who are not Christians some soldiers who are not Christians were told that there&#x27;s a war for Jesus and like, wait a minute, we&#x27;re not we&#x27;re not Christians. We&#x27;re Muslims or we&#x27;re atheists. Why are we fighting this war? And so, they file complaint about this speech. Okay. and we&#x27;re going to read a</p>
+<p><span class="timestamp">[46:55]</span> part of this email that the soldiers who are desenting sent to some other people to complain about this. Okay. So, um I could could you read please? could could you read please? &amp;gt;&amp;gt; Yeah, sure. &amp;gt;&amp;gt; I am a NCO rank withheld in our unit. This morning, our commander opened up the combat readiness status briefing by urging us to not be afraid as to what is happening with our combat operations in Iran right now. Iran right now. &amp;gt;&amp;gt; Stop. Okay. Afraid. That&#x27;s what it tells &amp;gt;&amp;gt; Stop. Okay. Afraid. That&#x27;s what it tells us they&#x27;re losing the war. us they&#x27;re losing the war. &amp;gt;&amp;gt; Okay. Right. Keep on going.</p>
+<p><span class="timestamp">[47:25]</span> &amp;gt;&amp;gt; Okay. Right. Keep on going. &amp;gt;&amp;gt; He urged us to tell our troops that this was all part of God&#x27;s divine plan. And he specifically he specifically &amp;gt;&amp;gt; Wait a minute here. Wait a minute. God&#x27;s &amp;gt;&amp;gt; Wait a minute here. Wait a minute. God&#x27;s divine plan. God&#x27;s not the one ordering them to fight this war. It&#x27;s Trump or or the American military. Okay, this is kind of weird. Keep on going. And he specifically referenced numerous specifically referenced numerous citations out of the book of Revelation citations out of the book of Revelation referring to Armageddon and the imminent return of Jesus Christ. He said that President Trump has been anointed by</p>
+<p><span class="timestamp">[47:57]</span> Jesus to light the signal fire in Iran to cause Armageddon and mark his return to earth. to earth. &amp;gt;&amp;gt; Oh my god. President Trump, the fire in &amp;gt;&amp;gt; Oh my god. President Trump, the fire in Iran, it&#x27;s all part of a grand plan to destroy the world so that Jesus will return. What is this craft? Okay, keep on going. on going. &amp;gt;&amp;gt; He had a big grin on his fa on his face. &amp;gt;&amp;gt; He had a big grin on his fa on his face. &amp;gt;&amp;gt; He&#x27;s happy about this, guys. THE WORLD IS ENDING. YEAH, [screaming] IS ENDING. YEAH, [screaming] KEEP ON GOING. KEEP ON GOING. &amp;gt;&amp;gt; When he said all of this, which made his &amp;gt;&amp;gt; When he said all of this, which made his message seem even more crazy, our</p>
+<p><span class="timestamp">[48:28]</span> commander would probably be described as a Christian first supporter. He has been this way for a very long time and makes it clear that he desires all of us under him to become just like him as a Christian. But what he did this morning was so toxic and over the line that it shocked many of us in attendance at the ops reinous brief briefing. Beside ops reinous brief briefing. Beside besides myself, I am reaching out to besides myself, I am reaching out to MRFF on behalf of 15 fellow troops. I know you asked me about the religious views of our group who has requested</p>
+<p><span class="timestamp">[48:59]</span> help from the MRFF. I can only tell you that I am Christian and at least 10 of the others are also Christians. One of the others is Jewish and one is one is Muslim. I don&#x27;t know the religious or non-religious status for the other three at this time. at this time. &amp;gt;&amp;gt; Okay. So, what is happening is that &amp;gt;&amp;gt; Okay. So, what is happening is that there are some crazy Christians in the American military in American American military in American government, okay, that want to use this government, okay, that want to use this war war to end the world to end the world to end the world to force Jesus to return.</p>
+<p><span class="timestamp">[49:31]</span> to force Jesus to return. to force Jesus to return. That is why this war is happening. Okay? That is why this war is happening. Okay? I&#x27;m not saying I&#x27;m not saying that this is a reason why, but I&#x27;m saying like this is a possibility, okay? All right. This is Trump and these all religious leaders that support Trump because they see him as Messiah. They they see him as this as this great hero who will cause the time of Christianity and the return of Jesus. [music] And that&#x27;s a possibility as to why this war is being</p>
+<p><span class="timestamp">[50:02]</span> fought. Okay? Because quite honestly, fought. Okay? Because quite honestly, there&#x27;s no other reason. It&#x27;s hard for there&#x27;s no other reason. It&#x27;s hard for me to come up with another reason. Okay. All right. So, this is something that we will look at as we go along. What is this crap? What is Christian Zionism? Why would they think that this war in the Middle East will cause the return of Jesus? Okay, we&#x27;ll we&#x27;ll discuss this later on. later on. But I wanted to but now it leads us to But I wanted to but now it leads us to another problem which is our entire</p>
+<p><span class="timestamp">[50:32]</span> class is on game theory. Right guys, this is kind of weird because [snorts] what this suggests is that religion [applause] [applause] is more important. Okay, so what&#x27;s the is more important. Okay, so what&#x27;s the point of game theory if people don&#x27;t play by game theory? If all if they&#x27;re just religious fanatics. just religious fanatics. All right, and the answer is this. And All right, and the answer is this. And the answer is it&#x27;s still game theory. But the problem it&#x27;s still game theory. But the problem is that is that what you think</p>
+<p><span class="timestamp">[51:03]</span> what you think what you think of the game that you think they&#x27;re of the game that you think they&#x27;re playing is not the game they&#x27;re playing. The reward that you think they want want is not the reward they that they want. Okay? We think in terms of material things. Okay? So money, resources, things. Okay? So money, resources, power, we think that the war is being power, we think that the war is being fought over these things fought over these things and it&#x27;s not. and it&#x27;s not. and it&#x27;s not. All right. The grand secret, the grand All right. The grand secret, the grand reveal all the semester, all this course</p>
+<p><span class="timestamp">[51:35]</span> is this. The real power, the real currency in the world is not money. Okay, this is this is it guys. Okay, once you understand this idea, you understand everything. But this is a hard idea to understand. So So I I&#x27;ll need some time to actually explain this.</p>
+<p><span class="timestamp">[52:05]</span> All right. All right. This war is being fought to control the This war is being fought to control the consciousness of the human race because it is our consciousness that creates reality itself. That&#x27;s the source of all wealth and all power in this world. Okay, that&#x27;s why this is happening. In other words, this is a war not just for Iran. This is a war not just for the Middle East. It is a war for the soul of humanity. This is what&#x27;s happening, humanity. This is what&#x27;s happening, guys. All right? This is what World War</p>
+<p><span class="timestamp">[52:37]</span> guys. All right? This is what World War II is. World War II is meant to be the last and final war of all human history. Because whoever win this war will control the very soul of human existence for all of eternity. Okay? That is the end game. end game. And I know this is a hard idea to And I know this is a hard idea to understand. But as we go along, I will explain this to you. Okay? That is the grand secret behind the world. grand secret behind the world. Everything that you believe, everything Everything that you believe, everything Everything that you believe, everything that you see today, it&#x27;s all an that you see today, it&#x27;s all an</p>
+<p><span class="timestamp">[53:08]</span> illusion. illusion. The reality, the truth is that The reality, the truth is that consciousness is a source of all power of reality itself. And so this is a war for human consciousness. It&#x27;s a war for the very soul of humanity. the very soul of humanity. Okay, any questions? Okay, any questions? Okay, any questions? All right, I I will see you guys next All right, I I will see you guys next</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

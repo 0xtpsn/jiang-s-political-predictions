@@ -1,0 +1,325 @@
+# Game Theory #5：  The World Game
+
+[0:03]
+Today we examine the question why is it that states, countries, nations, they that states, countries, nations, they rise and they fall. Okay, so let's start rise and they fall. Okay, so let's start off with an example that you know pretty well. So this is the waring states period and at this point in history there are many powerful states. Okay. So for example the true, the jao, the way. Okay. And if at this point in history,
+
+[0:35]
+this is about 250 uh B.CE. I asked you to figure out using game theory, which state would unite China and become the first great empire of China. Well, there are certain metrics that you would use to figure out which state would win out. Okay, so obviously you would look at population. population. Okay, who has the largest population? Okay, who has the largest population? Okay, so the question of mass. Second question that you would look at is maybe resources, is maybe resources, right? And resources, it's basically
+
+[1:06]
+right? And resources, it's basically right? And resources, it's basically just farmland. just farmland. just farmland. So you would look at basically which So you would look at basically which areas had the most rivers. Okay? And so you would be like, okay, well this area um you know looks very strategic as is this area as is this area. Okay? And then you would also look at maybe technology. So basically which state has the most scientist, which state has the
+
+[1:38]
+most advanced literature, arts and then from from the these metrics then you could do some the these metrics then you could do some analysis and figure out that maybe true would come conquer all of China at some point. Okay. But at no point using any metrics would you assume that Ting would conquer China. And there are certain reasons why. First of all, it's in mountains, so it's pretty poor. Second of all, it's it's pretty away far away
+
+[2:09]
+from the rivers and trade routes. And third of all, it's pretty isolated. Okay, so for you could not possibly imagine that theQing dynasty would imagine that theQing dynasty would conquer China. But in fact, it is conquer China. But in fact, it is theQing that would come and conquer all of China. And not only that, but if you look at most of human history, this pattern repeats itself. If you look at a region, region, the strongest nation does not come out the strongest nation does not come out
+
+[2:43]
+on top. It's usually the weakest most marginalized area that will eventually marginalized area that will eventually come and conquer the entire territory come and conquer the entire territory and create an empire. Okay. So clearly the way that we understand history, it's problematic. It's wrong. So what I want to what I want to do is propose to you a new way to understand how empires come into being. Okay? And this was actually first proposed by um a Muslim scholar
+
+[3:17]
+historian named Ibin Kudan. Okay. historian named Ibin Kudan. Okay. And he proposed the idea of aasayiah. And all this word means is basically cohesion or group solidarity. His theory is that yes, the people in the margins, they're poorer, but because they're they're poorer, but because they're poorer, they're more unified. poorer, they're more unified. poorer, they're more unified. They are more they focus more on They are more they focus more on solidarity, on working together. Whereas solidarity, on working together. Whereas in the rich areas, they become too
+
+[3:47]
+in the rich areas, they become too individualistic. They become too decent, individualistic. They become too decent, too corrupt. And ultimately that's why too corrupt. And ultimately that's why it's always these tribes from the margins that actually [snorts] conquer margins that actually [snorts] conquer the wealthy civilized areas. Okay? And the wealthy civilized areas. Okay? And this is a pattern that repeat repeats itself throughout human history all the time. So it's almost like an iron law of history. So what I want to do is show you that there actually three metrics that you can use to measure how dynamic
+
+[4:19]
+a society is and how likely it is to triumph in the end. Okay, these three and cohesion. and cohesion. Okay, cohesion just follows the idea of Okay, cohesion just follows the idea of aayiah which is just to say how likely is it that these people are willing to work together? Do they see themselves as a team? Are they willing to sacrifice themselves for each other? Are they a
+
+[4:51]
+family? Okay, so that's the idea of cohesion. cohesion. Openness is a very important concept and Openness is a very important concept and openness just means how willing are you willing to adapt? How willing are you wi how much are you willing to accept your limitations limitations and be resilient? Okay, so you you can and be resilient? Okay, so you you can think of openness as um humility as resilience. Energy just means that resilience. Energy just means that you're willing to work hard, you're you're willing to work hard, you're focused, you have a clear goal and
+
+[5:24]
+you're motivated to achieve this goal. Okay, so these three metrics tell us how dynamic society is going to be. And using these three metrics, we can now better understand why that theQing better understand why that theQing dynasty was able to conquer all of dynasty was able to conquer all of China. Okay, so the idea is that if you're rich, okay, you're rich, okay, what happens often is that you have low energy. And what this means is that the elite don't want to work anymore. They
+
+[5:56]
+rather just exploit rather just exploit the other people. Okay, the people. And the other people. Okay, the people. And because the people are being enslaved, they're too much in debt. They have low energy as well. For them, it's not really about building a great nation. It's not really about doing a great job. It's just about getting by. Okay? So, and then the idea of openness is that [snorts] the elite become extremely [snorts] the elite become extremely corrupt. They become very insulated. corrupt. They become very insulated. corrupt. They become very insulated. They become very arrogant. And so they They become very arrogant. And so they refuse to admit that they're wrong. And
+
+[6:27]
+as a result, society becomes snack stagnant. It doesn't really improve. And the idea of cohesion is that because of wealth inequality, because of wealth inequality, because of corruption, people are much more corruption, people are much more corruption, people are much more individualized, people are much more individualized, people are much more individualized, people are much more animized. Okay? And this allows for a uh animized. Okay? And this allows for a uh new group to come in and conquer everyone. everyone. Okay? Does that make sense, guys? All Okay? Does that make sense, guys? All
+
+[6:59]
+I'm going to use actually I'm going to use actually um another example. Okay, um another example. Okay, um another example. Okay, an example is an example is an example is the Greek city states. And remember the the Greek city states. And remember the Greek city states, it's really the height of human civilization. They gave us Homer, Plato, Fidities, uh Sophocles. Okay, just basically the basis for all of western civilization. Now what's of western civilization. Now what's interesting is that for most of the of interesting is that for most of the of their history, the Greek city states and these are basically like this small small cities. Okay, there are thousand
+
+[7:30]
+of them and and on average they're about a thousand people each. There are some big city states like Athens but even Athens is not that big. So at its height Athens had about 50,000 people. Okay, so these city states like Athens, thieves, um, Sparta, okay, these are the major ones and there are other Korean argos, they're always in competition with each other, very much like the Chinese waring states as well. And again, if we look at the year 500 BCE, the year 500 BCE, you would think that maybe Athens or
+
+[8:03]
+you would think that maybe Athens or Sparta would emerge as the grand unifier of the Greek city states. And in fact, what happened was that Athens did become an empire. But then the other Greek the other Greek city states start to attack Athens and Athens declined over time. Okay? And the advantage that Athens had over everyone else was just tremendous. First of all, Athens had the greatest navy. Okay, as you can see, uh the AGN
+
+[8:34]
+is primarily about who controls the seas. So a so was able to control the trade routes in the um Aian. Therefore, it's the wealthiest city state. It have the greatest population, has the most innovation. It has the most strategic location. It has most most wealth. So, you would just assume that Athens would come to conquer all the Greedy states. But in fact, it was the Macedonians,
+
+[9:04]
+okay, who came in and conquered all the city states. And at this time in history, you couldn't possibly imagine history, you couldn't possibly imagine that because the Macedonians were poor. that because the Macedonians were poor. They were isolated. They were not all cultured. They were univilized. Okay. cultured. They were univilized. Okay. But again, they had energy, openness, But again, they had energy, openness, and cohesion. And that allowed them to conquer the citystates. What's most conquer the citystates. What's most what's amazing is that even after this what's amazing is that even after this area was unified, okay, the Maconians
+
+[9:34]
+would then do the impossible and go over and conquer the great Persian Empire, the first great empire in human history. It was huge. It was Egypt, Anatolia, Mesopotamia, the Zagos malt mountains, Mesopotamia, the Zagos malt mountains, Persia. It was everywhere. And in a very Persia. It was everywhere. And in a very quick amount of time, the Macedonians under the Great, they sailed across the Aian. landed a small fort and then very quickly in about 10 years time conquered the entire Persian Empire. And at this point in history is you would think that the Persian Empire sorry you would think
+
+[10:05]
+that the new national empire would be invincible but then what happened a few decades later is the rise of the Romans. Who are the Romans? Well, at this time in history, we don't know who they are. Okay. Okay. Um Um Um uh Rome is probably here somewhere. uh Rome is probably here somewhere. Okay. But as you can see, the entire Italian peninsula is being colonized by the Greeks. And then the Romans, who are, you know, these poor backward tribal people, eventually over time they
+
+[10:37]
+will conquer the entire Italian will conquer the entire Italian peninsula and they're going to go and peninsula and they're going to go and conquer conquer the Greek u mainland and then go go the Greek u mainland and then go go south to conquer uh Carthage as well and they will create the Roman Empire. Okay, so this is a pattern that repeats itself throughout human history. throughout human history. The empire becomes corrupt, lazy, The empire becomes corrupt, lazy, The empire becomes corrupt, lazy, arrogant. This and this gives arrogant. This and this gives arrogant. This and this gives opportunity for a troubled people, opportunity for a troubled people, opportunity for a troubled people, whether it's a Macedonians, whether it's whether it's a Macedonians, whether it's
+
+[11:09]
+aqing, whether it's a Romans to come and conquer all of them. Okay. But now the Um and so let's look at more examples, Let's look at the Aztecs. And the Aztecs is even a more stark example. So this is this is about the 16th century 15th century. Okay, as you can see um the
+
+[11:41]
+Mexican peninsula it's it is Mexican peninsula it's it is divided into divided into divided into different waring city states. Okay, very different waring city states. Okay, very similar situation to the Greek city states and the Chinese city states. Then what's happen is the Aztecs we are going to come in from the north. Okay. And the Aztecs are Aztecs are um a poor tribe that's starving. Okay. um a poor tribe that's starving. Okay. So, they're basically from uh North America. They come in because they're looking for food and they're warrior
+
+[12:13]
+people. So, they're hired by other city states to fight for them. Eventually, they become too powerful. So, they become isolated onto a marsh. Okay? And this marsh, it's poor. And everyone just put them just assumed that they would starve to death in this marsh. What's amazing is that as a people they became very creative and they turn this marsh into farmland and over time they will slowly come to conquer everyone. Okay. And they establish the Aztec Empire which rules over millions and millions.
+
+[12:44]
+And then what happens which is one of the greatest mysteries in human history is you have another group of people called the concquisidors called the concquisidors from Spain and there's only about 500 of from Spain and there's only about 500 of them okay them okay arriving about the year 195 1519 they arriving about the year 195 1519 they come in and in like a very short amount of time they conquer the entire Aztec Empire and Spain comes to rule basically all of South and Latin America. Okay. So
+
+[13:15]
+even though yes we have a formula in place whichever group has the most energy whichever group is the most open the most cohesive will conquer the other groups it still doesn't explain to us how this happened how this guy uh Hernandez with 500 conquisttors was able to come in and conquer a land uh of millions and millions. Okay. Now, there are historical explanations there are historical explanations including of course disease. including of course disease. including of course disease. Uh people from Spain had diseases and
+
+[13:45]
+Uh people from Spain had diseases and the Aztecs were not did not have the immune system to counter uh these these diseases. Another explanation is um the Aztecs believed that these conquesters Aztecs believed that these conquesters were gods and that's why they were gods and that's why they surrendered very quickly. Another surrendered very quickly. Another explanation is that the conquesttors had explanation is that the conquesttors had allies, local allies that were pissed off at the Aztecs. But again, these explanations, they sound okay. these explanations, they sound okay. They sound like they work, but they They sound like they work, but they don't actually give us the full picture
+
+[14:17]
+of what really happened. And in game theory, what we're really trying to figure out is what happened exactly. Okay, it's a game. How are the players um playing the game? What are their motivations? What are their incentives? motivations? What are their incentives? Okay, does it make sense? Okay, that's Okay, does it make sense? Okay, that's that's what we're trying to figure out what actually happened in this instance. [snorts] [snorts] Uh I want to look at one more example Uh I want to look at one more example before we look into the theory of game in in game theory. Okay, this is one of the early civilizations in human the early civilizations in human history. Okay, in fact um it's
+
+[14:49]
+history. Okay, in fact um it's considered the first great civilization considered the first great civilization of human history. It is the Samrians. of human history. It is the Samrians. And what happened was that um you look at a world map. Okay, this is a world map, right? Mesopotamia is a center of the world because you want to access the rest of the world, you have to go through Mesopotamia. And if you look at Mesopotamia, the center of Mesopotenia Mesopotamia, the center of Mesopotenia is a place called Uric. Okay, sorry. U
+
+[15:22]
+okay, [snorts] okay, [snorts] which is here. Okay, as you can see, which is here. Okay, as you can see, Uric is the meeting place of the Euphrates and the Tigris. And if you look at this, the URI uh allows you to access uh the Persian Gulf, which gives you access to India, [clears throat] okay? Or we call the IBC, the Indis Valley civilization. And then um and then you allow and then traders are able to take the goods and cross to Egypt, okay? And then you're able to go north to Anatolia. to Anatolia. So why did Europe become the first great
+
+[15:53]
+So why did Europe become the first great world city? Because it was a center of all global trade. So different people came together into the city in order to establish a trading post. Okay. And over time it grew and it grew and grew because it was very wealthy. because it was very wealthy. Okay. And over time um it colonies Okay. And over time um it colonies elsewhere. Okay. So it's up colonies in other places. And then eventually these different city states came into conflict with with with each other which is the same process as what happened with the
+
+[16:24]
+Chinese waring states as well as the Greek city states. And you would assume that one of these city states would conquer the rest. But in fact again it was these tribal mercenaries was these tribal mercenaries uh from an isolated region called the uh from an isolated region called the Acadians. The Aadians who would come and conquer everyone else. Okay. and the Okay. And after after they they built the first empire, okay, then what
+
+[16:55]
+happened is that other people come over and conquer them as well. And then you had people from the Zagos mountains, the Persians basically come in and unify the entire area and create the Persian Empire. All right. So this is a pattern that emerges throughout human history. that emerges throughout human history. It's a pretty consistent pattern. Okay, It's a pretty consistent pattern. Okay, we have theories as to why this is happening. Yes, we do know that groups that are energetic, open, and cohesive
+
+[17:28]
+are will triumph over other groups. But the idea of game theory is to figure out exactly what happened. Okay. So, let's go over exactly what happened. And I I will show you that what's happening is that as nations rise and fall, the games they play changes. games they play changes. Okay? Does that make sense? Okay? Does that make sense? Okay? Does that make sense? The game changes and therefore their The game changes and therefore their motivations, their incentives, their motivations, their incentives, their strategies change over time. All right. strategies change over time. All right.
+
+[17:59]
+Okay. So, um are are we clear about the So, in the beginning, okay, game theory game. game. Okay. Rise. Okay. Rise. Okay. Rise. Okay. Okay. Okay. In the beginning, you as a people need In the beginning, you as a people need to come together and build a land in which you can all prosper or at least
+
+[18:31]
+have food to eat. Okay? Therefore the and the mechanism cooperation actually and the mechanism cooperation actually religion. religion. religion. So in this first game okay what you're So in this first game okay what you're trying to do is you're trying to create a dynamic religion that motivates people to be energetic to give them reason to work really hard. Okay. And the people who are best able to articulate this religion become the elite. Okay. And
+
+[19:02]
+this includes poets and priests. this includes poets and priests. All right, poets and priests. And at this point in history, it's basically a startup. Okay, everyone's basically a startup. Okay, everyone's enthusiastic. Everyone's working hard. enthusiastic. Everyone's working hard. enthusiastic. Everyone's working hard. Everyone feels as though they're making Everyone feels as though they're making a positive contribution to the world. But over time, what happens is that the elite, okay, elite, okay, become become become hereditary. The game becomes how do I hereditary. The game becomes how do I
+
+[19:33]
+the elite pass on my privileges to my children? Okay. And and the way they do that is by changing the religion. Okay. The religion now becomes Okay. The religion now becomes almost like a bureaucracy. So in the first game, the religion is about energy. It's about creativity. about energy. It's about creativity. It's about working together. Okay. But It's about working together. Okay. But then in the second iteration, the the
+
+[20:03]
+religion becomes like a bureaucracy religion becomes like a bureaucracy which is like you must follow the rules which is like you must follow the rules of the game. Okay. The rules of the game are set. There's a hierarchy and you must obey this hierarchy. must obey this hierarchy. Okay. [snorts] Now then what happens is Okay. [snorts] Now then what happens is Okay, the idea of late over production is that yes, these privileges are being passed on to the children, but now over
+
+[20:34]
+time they have there are too many children. And so what happens is that society breaks up into different society breaks up into different factions. Okay? And usually what happens factions. Okay? And usually what happens is that these factions are divided according to the princes. Okay? So if there are four princes, okay, who are about to inherit the throne, there are four different factions that support four different factions that support them. them. them. That does that does not mean the prince That does that does not mean the prince is the leader of the faction. It just means that the prince is the symbol of a faction. Okay. All right. And at this
+
+[21:04]
+time in history, the way that they reduce the conflict is is the losing factions. What what they do is they move away. Okay? They're exile. Okay? And then they have to set up a new colony. a new colony. And this is a process that continues And this is a process that continues where the losers of the game are forced into exile into exile until there's no more place to colonize. until there's no more place to colonize. Okay? And now you have the waring states
+
+[21:34]
+period. Okay? The waring states period. And in fact, what's interesting is that the waring states period the waring states period is a time of maximum creativity is a time of maximum creativity for a civilization. Why? is the idea of open cooperative open cooperative competition. competition. competition. Okay. So, back to theQing, back to the Okay. So, back to theQing, back to the Greeks, Greeks, uh the um Samrians, there are different
+
+[22:04]
+uh the um Samrians, there are different colonies, okay? And they're all colonies, okay? And they're all competing against each other. competing against each other. competing against each other. And so, you need to be open and And so, you need to be open and innovative if if you're triumph, okay? At the same time, they're trading with each other. So they're sharing best practices. They're sharing innovations practices. They're sharing innovations with each other. Okay? So this leads to with each other. Okay? So this leads to the idea of open competition, which again marks the height of the civilization. So guess what guys, civilization. So guess what guys, China's been around for 5,000 years, but China's been around for 5,000 years, but most of the invasions happened when? It happened during the waring states happened during the waring states period. 100 years when we had k
+
+[22:37]
+period. 100 years when we had k confusious mons uh la confusious mons uh la it's basically everyone. Okay. All it's basically everyone. Okay. All it's basically everyone. Okay. All right. And and [clears throat] if you right. And and [clears throat] if you just look at um other civilizations, it's the same for other civilizations as well where if you look at the Greeks um during the classical period, they during the classical period, they basically created everything that basically created everything that basically created everything that becomes the foundation for western becomes the foundation for western becomes the foundation for western civilization. Okay, does that make civilization. Okay, does that make civilization. Okay, does that make sense? All right. Now what's interesting sense? All right. Now what's interesting is what happens next. is what happens next. Eventually what happens is these city
+
+[23:07]
+Eventually what happens is these city states figure out that you know what yes the game is we compete against each other but we can also choose to work together. Okay. How do you work together? By intermarriage. Okay together? By intermarriage. Okay intermarriage. And the idea of intermarriage creates the idea of equilibrium. the idea of equilibrium. And at this point in history warfare And at this point in history warfare becomes organized becomes organized warfare.
+
+[23:38]
+warfare. warfare. Okay. So remember uh before warfare was Okay. So remember uh before warfare was about innovation but now when these elites from different city states when they intermar with each other okay they have a new equilibrium. So they are above the above the state now. Okay. Does it make sense guys? All right. So now when they fight, it's not really about fighting each other. It's about reducing their population to maintain reducing their population to maintain control. control. control. Okay? It's a way to resolve the elite o Okay? It's a way to resolve the elite o
+
+[24:09]
+over production issue. We have too many people struggling for too many status positions. And the way you do that is through population control. Okay? So through population control. Okay? So warfare becomes a mechanism of warfare becomes a mechanism of warfare becomes a mechanism of population population population control. control. control. All right? So even though these All right? So even though these city states are still in theory competing against each other they competing against each other they essentially now have reach an essentially now have reach an essentially now have reach an equilibrium and equilibrium a no for equilibrium and equilibrium a no for equilibrium is basically they have equilibrium is basically they have empire.
+
+[24:42]
+Okay. Okay. All right. So now the game changes. All right. So now the game changes. Before during the war states period, it was a game to see which state would be the best, the most innovative, and that's why you invite people who um could contribute the most to your city state. Okay, that's that's why you were meritocracy. You only pro promoted the best and the brightest. Once you reach an equilibrium, you don't have to do that. Okay, all you have to do is just maintain the status quo. And so what
+
+[25:12]
+happens is you create this rigid hierarchy. hierarchy. And what matters is who reaches the top And what matters is who reaches the top office hierarchy. And as a result, you create court politics, right? Court create court politics, right? Court politics or factional struggle factions. or factional struggle factions. Okay? Does it make sense, guys? All Okay? Does it make sense, guys? All right. So if you look at any court politics, politics, the faction that triumphs is the one
+
+[25:43]
+the faction that triumphs is the one that's able to solve three problems. secrecy, secrecy, trust, trust, trust, and coordination. and coordination. and coordination. Remember, Remember, Remember, in theory, in theory, in theory, everyone has to obey the bureaucracy, everyone has to obey the bureaucracy, right? [snorts] But if you just play by
+
+[26:14]
+the rules of the game, you're going to lose. So, what you want to do is you want to cheat in the game. The way But if you want to cheat in the game, you have to do so secretly. Okay? You have to do secretly. But if you do so secretly, that creates a problem of like how do you trust each other? If you don't if you and if you if you're doing it all in secret, the problem is like how do you coordinate? How do you move together, right? Because you you can't have meetings where you take notes because if you're discovered, you'll all be executed by the other factions. Okay?
+
+[26:45]
+So, historically, the way we resolve this issue is through the idea of secret Okay. So, um let's figure out how secret societies work. And this is true for China. This is true for the Greeks. This is true for the Aztecs. This is true for everyone. Okay. But like there's certain um aspects of secret societies. Okay. The first is idea of secrecy. Okay. How do you do that? Well, you do that
+
+[27:16]
+through the idea of a hierarchy. And so there are different so within single societies there's a hierarchy as well where only have people at the very top know what's going on and if you want to join you initiate it but you have put at the bottom okay and slowly you climb the ladder okay and this is to maintain secrecy trust how do you get people to trust each other well you get people to trust each other through the idea of
+
+[27:48]
+transgression transgression okay so if we cheat on attached together we are much more likely to trust each other. Doesn't make sense because if you're caught you you you all get punished. Okay. So by bringing the law together we can trust each other. Okay. And the most basic type of um transgression is the idea of ritual Okay. And the idea of ritual sacrifice is you basically decide to go kill
+
+[28:19]
+someone together. Okay. you capture that person then for some um uh ritual you then kill that person. Okay, doesn't make sense and then to solve the problem of coordination you have the idea of Esquetology is just mythology. All Esquetology is just mythology. All right, like why are you guys doing what right, like why are you guys doing what you're doing? Okay. And the answer often is because we're trying to serve a higher god that wants to conquer the world and we are his servants in this
+
+[28:50]
+quest to conquer the world and end the world to make it a paradise. Okay. So different suicides have different different suicides have different esquetologies but the system is the esquetologies but the system is the same. same. Okay. Doesn't make sense. Okay. And what Okay. Doesn't make sense. Okay. And what happens is and this is like really important guys. important guys. Every faction has to form their own Every faction has to form their own secret society. And now the game of empire becomes one of a struggle between different secret societies. Does it make
+
+[29:21]
+sense? Meaning what? Meaning you don't care what happens to the empire. You don't care about the enemies of the empire. All you care about that you your team emerges on top of the game. Okay? And so what does that mean? It means that you become that you become sorry sorry sorry insular. insular. insular. All right. All right. All right. Okay. You become insular. You also Okay. You become insular. You also
+
+[29:54]
+Okay. Because you need resources to play this game. So what you do is you steal from the people. Okay? It's all it's all about trying to steal as much as you can in order to feed your faction. You become insular. you become corrupt. become insular. you become corrupt. Okay. Um and then divided. Okay. Um and then divided. Okay. Um and then divided. Okay. Do you understand? This is what Okay. Do you understand? This is what happens because of different factions happens because of different factions within the empire or the equilibrium. within the empire or the equilibrium. They become insular, they become corrupt and they become and they become uh divided. Okay. which is why
+
+[30:26]
+uh divided. Okay. which is why they ultimately lose to these struggle factions because the opposite of insular of course is open. The the um the opposite of corrupt is energetic opposite of corrupt is energetic and the opposite of divided is of course and the opposite of divided is of course cohesive cohesion. Okay. cohesive cohesion. Okay. Okay. Now we understand why ultimately Okay. Now we understand why ultimately the borderlands the tribes and the borderlands the tribes and borderlands are able to conquer borderlands are able to conquer borderlands are able to conquer the empire or the equilibrium. Okay, the empire or the equilibrium. Okay, does that make sense, guys? All right,
+
+[31:03]
+the and so what happens is that you have okay? Societies fighting against each okay? Societies fighting against each other. And again, from their other. And again, from their other. And again, from their perspective, all they care about is perspective, all they care about is winning against the other factions. So what do they do? What they do is they invite invite other foreigners to come help them. Hey, other foreigners to come help them. Hey, do you understand? Okay. So, these are what are called
+
+[31:34]
+Okay. So, these are what are called mercenaries. mercenaries. [snorts] All right. And these mercenaries come into them and their leadership is absorbed into the societies through um esquetology, through transgression, esquetology, through transgression, through hierarchy. Okay. All right. through hierarchy. Okay. All right. through hierarchy. Okay. All right. So this is what happens. These So this is what happens. These mercenaries actually invited in. Okay. mercenaries actually invited in. Okay. And and and like but there's always And and and like but there's always
+
+[32:06]
+contact. Okay. kind of through trade Okay, doesn't make sense because these people these in the regions they're so poor they'll do anything to survive. So they'll trade of you but they also steal from you and they also come and fight for you. Okay. What's important is that through trade they're becoming through trade they're becoming wealthier. wealthier. wealthier. Through benetry they're becoming Through benetry they're becoming Through benetry they're becoming wealthier as well. And by become by wealthier as well. And by become by working as your mercenaries they're de
+
+[32:39]
+they are learning your best technology, your best fighting skills, your best weapons. Okay. weapons. Okay. Right. And then what happens is that the Right. And then what happens is that the mercenaries eventually take over. Okay. mercenaries eventually take over. Okay. At first they merge, but then the At first they merge, but then the mercenaries just kill everyone and then take over. take over. And that's how what happens. That's why And that's how what happens. That's why theQing were able to conquer the waring states. Okay? They don't teach you this in history class, but according to game theory, what happened was that different factions of these different states factions of these different states actually inviting
+
+[33:14]
+just basically conquered one by one by one. Does that make sense? Same thing with the Macedonians, right? The master came in and helped one city state. Then they call one city state and move on to the next. Okay. But it was always a certain part of that city state, a certain faction of that city state which invite the mark is in the first place. Okay? Okay? Doesn't make sense. Doesn't make sense. Doesn't make sense. And this is a pattern that repeats And this is a pattern that repeats itself throughout itself throughout human history. human history. human history. Okay? So if you want to know what's Okay? So if you want to know what's
+
+[33:44]
+going to happen today, what's going to happen tomorrow, just figure out which areas of the world are the most energetic, most open, and most cohesive, and then figure out which empires are the most corrupt, most insular, and the most divided. Okay? And then you'll figure out who will conquer who. All right? right? Does that make sense, guys? All right? So, I'm going to give you two more examples to better illustrate how this works. All right? So when I was in high school in Canada, we played a game
+
+[34:22]
+And in this game, it's very simple. Okay, you're you're put into a team of maybe four or five players. Okay. And then each team is assigned a country like maybe USA, like maybe USA, Britain, uh India, uh India, Pakistan, Japan and then each team is given an envelope. Okay. And then with within this envelope you're given certain resources. Okay. So
+
+[34:55]
+basically, you know, paper, basically, you know, paper, scissors, scissors, scissors, ruler. Okay. And then there's there's an ruler. Okay. And then there's there's an or organization called the World Bank. And what you're trying to do is you're trying to become the wealthiest country in the world. The way you do that is you take your resources and you turn it into commodities that the World Bank buys from you. Okay? Okay, so maybe like triangles and circles and squares. Okay, but to create these commodities, you
+
+[35:25]
+need resources, right? You need need resources, right? You need scissors, you need rulers, you need scissors, you need rulers, you need paper, you need glue, paper, you need glue, okay, but different countries will have okay, but different countries will have different resource resources. So United different resource resources. So United States has everything. Okay. States has everything. Okay. States has everything. Okay. And Pakistan is interesting because And Pakistan is interesting because And Pakistan is interesting because Pakistan usually gets nothing. Pakistan usually gets nothing. Pakistan usually gets nothing. Okay. There are no resources. Okay. There are no resources. Okay. There are no resources. But you're allowed to trade with each But you're allowed to trade with each other, right? Okay. You're allowed to trade with each other. [snorts] trade with each other. [snorts] Okay. So, even though you have nothing,
+
+[35:57]
+Okay. So, even though you have nothing, you can go to United States and beg and say, "Oh, oh, can I please borrow your ruler for for today?" Okay. You go to Britain says, "Hey, can I can I borrow your paper for today?" Okay? Or, "Hey, I'll come work for you for free." Right? You can trade. And so you play this for for one day and it's really interesting what happens. Okay, usually what happen I'm not saying all the time but I've seen this happen a lot. At the end of the day you you look at who are the wealthiest countries in the world. What
+
+[36:28]
+happens is well the United States becomes number one. Okay. Why? Because United States just has everything in the world. It is the wealthiest country in the world. It has too much resources. Okay. But number two is interesting. You would think it would be Japan and Britain, but it's actually Pakistan, Britain, but it's actually Pakistan, okay? The country that starts out with okay? The country that starts out with nothing at all. Why? Because they're forced to be the most energetic, the most open, and most cohesive. Team members have to go and beg to work for free. Okay? Other team members go and
+
+[37:00]
+lie and cheat and steal. Okay? They're Okay? the world game. And that's how the world works, guys. Just because you have the most resources, just because you have the most people does not mean you'll win the game at the end. What matters is how energetic your people are, how open they are, how resourceful they are. That's what matters. they are. That's what matters. Okay? And often they are open,
+
+[37:31]
+Okay? And often they are open, energetic, and cohesive because they're energetic, and cohesive because they're poor. poor. poor. All right? It's that simple. Pakistan All right? It's that simple. Pakistan has nothing. So they're they're forced to be creative. Poverty leads to creativity. creativity. Okay. Okay. Okay. Another thing this is that if I were to Another thing this is that if I were to surmise the future, I would say right now in in East Asia, I would think that North Korea has a better future than China. China. Okay? Just based on history. And it Okay? Just based on history. And it
+
+[38:02]
+would be like that's impossible. North Korea can feed its own people. Well, I understand that. But if you know game theory, okay, and you understand the principles that we've learned today, principles that we've learned today, then you're forced to conclude that in then you're forced to conclude that in East Asia, North Korea has a better future than China because ultimately future than China because ultimately it's about how open, energetic, and it's about how open, energetic, and cohesive the people are as opposed to how rich and powerful you are. Okay, does that make sense? I will also point out another example. out another example. Okay. [snorts] So before teaching in
+
+[38:34]
+Okay. [snorts] So before teaching in high school, I was teaching uh teachers how to teach STEM. Okay. State STEM education. education. And I usually run two-day workshops. And what I would do is I go into a school and I divide the faculty, the teachers into teams, okay? Like teams of like four or five. There'd be like 10 teams. Okay? There'd be a lot of teachers. And the way I teach is I would give them an assignment and I I I would
+
+[39:06]
+give them resources and I and it would be a competition. Okay, so for example, let's look at which team can build the fastest car. Okay, toy car. Let's look at let's look at which team can build um the best airplane. Uh let's look at which team can build a catapult. Okay, so so I would give them some resources. I give them the assignment and then they would work on a whole day. Okay. Now, what's interesting is at the end of the first day, you would have first day, you would have I would rank the teams. Okay.
+
+[39:38]
+I would rank the teams. Okay. And then number two, and then day two, we would start the competition again On day two, which team would finish first? Do you guys know? first? Do you guys know? So after day one all 10 teams are ranked So after day one all 10 teams are ranked according to their success. Okay. So team one has the best 10 team team 10 has the worst. What happened the second day? Can you guys guess? day? Can you guys guess? &gt;&gt; I think team 10 wins.
+
+[40:09]
+&gt;&gt; I think team 10 wins. &gt;&gt; Yeah. Okay. According to game theory, what happens is team 10 wins. And this this exactly what happens. The results are reversed. Okay. number 10 shoots up to number one and then number one falls all the way down. all the way down. This is what happens a lot. It's it's This is what happens a lot. It's it's actually common sense if you think about it, right? If you're the best student in the school, you never have to reflect. You never have to like think about how to improve because you're always number one. So you become arrogant. You become complacent. So after you graduate from school, what happens? You can't find any
+
+[40:40]
+work because people find you too arrogant. You refuse to learn. You want to be the boss. You want people to just listen to you. Okay. But if you're the worst student in a school, you're used to being laughed at. You're used to um constantly adapting. Okay? So when you go into the workplace, go into the workplace, you are much more likely to you are much more likely to uh learn. You're much more likely to focus on relationships. focus on relationships. Okay? So in China China, there's a joke, Okay? So in China China, there's a joke,
+
+[41:11]
+right? In school, there are two people that everyone hates. Okay? the best student and the worst student. Why do you hate the best student? Because the best student is going to graduate and come back as your principal one day. Why do you hate the worst student? Because he's going to graduate and come back and give you a lecture on how to become rich. rich. Okay? That's why in China, everyone Okay? That's why in China, everyone hates the best student and the worst student. And these are and these are two students who will probably be the most successful. Okay? Especially the worst successful. Okay? Especially the worst student because the worst student, student because the worst student, student because the worst student, regardless of all his problems, he's regardless of all his problems, he's
+
+[41:44]
+openminded. He's willing to work hard and he's willing to help build teams and make make sacrifices so that others become his friend. Okay. Right. Um uh Um so like for example for this case in day two the team 10 becomes the first one and the first team becomes the last but will the like will the previously
+
+[42:15]
+the first team been forced to be open and to be energetic and then be number one again on the third day. That is a great question. Thank you for asking it. Okay so in my experience this is what happens. Okay. happens. Okay. What happens is that What happens is that What happens is that if what happens if we keep on going if what happens if we keep on going day team team day day team team day day three day four. Okay this this this day three day four. Okay this this this what happens. Team one what happens. Team one really screws up on day two, right? They
+
+[42:48]
+really screws up on day two, right? They finish first in day one. Day two, they screw up. screw up. Day three and day four, they continue to Day three and day four, they continue to screw up. Why? Because they don't know what they did wrong and they refuse to to um reflect. Do you understand? Okay. So, um reflect. Do you understand? Okay. So, we see this in history where an empire once it rises, it falls. It never comes back. It never comes back. Do you understand? It never rise up up again.
+
+[43:20]
+Now, it's possible that new people come in and use the name of the empire, okay? But it's not the same people anymore. It's a different team. So, that's a danger of being number one. danger of being number one. Once you're number one, Once you're number one, Once you're number one, you become so arrogant that it's that you become so arrogant that it's that impossible for you to be humble again. Okay. Okay. Um, team two, we go down. Okay. So it's Um, team two, we go down. Okay. So it's
+
+[43:50]
+very unlikely that you have a system where okay uh team one they fall but then they reflect and become number one again. Okay. It doesn't work that way. When societies fall they just die off. Okay. It's possible a new group comes and pretends to be them but they're actually a different people. And and that's just way that humans work. Okay. Does that make sense? Yes.
+
+[44:21]
+Yep. Yep. So on the third day, the team 10 will So on the third day, the team 10 will become the second last group because they fall and the n the group nine will be the first one. Is that the cycle that will go on? will go on? &gt;&gt; Um yeah. So I' I've never run a day &gt;&gt; Um yeah. So I' I've never run a day three so I can't say for sure. Okay. But but that that's what should happen. Okay. Okay. All right, that's what should happen All right, that's what should happen where yes, team 10 will fall off and a new team will come into place. Okay. All
+
+[44:53]
+right. And if you look at history, that's just the way it is. Again, we don't have an example of where an empire fell but then the people decide to like change their um their uh mentality and then they become the best again. Okay. So, in the future, if you if we apply this theory, there should be three countries that will emerge as great empires in our history. Okay, empires in our history. Okay, Germany. Why? Because they lost World Germany. Why? Because they lost World War I and lost World War II. Does that make sense, guys? They were never an
+
+[45:24]
+empire. They were never a world empire. So, Germany, according to this theory, will one day come to rule the world or at least Europe and Asia. Okay? And if you if you actually look at their history, what happened in World War I, World War II, they lost millions of people. Okay? So, Germany will will be one day a great empire. I'm pretty sure of it actually. And then there's another country that would be a great empire and that is that is Japan because Japan lost World War II. Japan because Japan lost World War II. They were never a great empire. So Japan
+
+[45:56]
+should come to dominate East Asia according his theory. Remember the according his theory. Remember the Americans dropped two nukes on Japan, Americans dropped two nukes on Japan, right? And also look at World War II, the Americans destroyed Japan with the Americans destroyed Japan with firebombing. They the Americans killed firebombing. They the Americans killed firebombing. They the Americans killed more fire bombing than actually did with more fire bombing than actually did with the nukes. Okay? But Japan was destroyed. It was humiliated. And and now you go to Japan, you can see how energetic people are, right? You can see how open they are. And you can see how cohesive they are. cohesive they are. You understand? You understand? You understand? Because Japan was destroyed in World War
+
+[46:27]
+Because Japan was destroyed in World War II. It's something that force them to reflect as a people and now they want vengeance basically. All right. And the last country of course is Israel, right? Because Israel, the people in Israel believe that for thousands of years they were persecuted by other people. Okay. So these are three great empires that we we will move towards in our history. Germans, Japan uh uh Japanese and the Israelis. Okay. Does that make sense? &gt;&gt; Mhm. &gt;&gt; Mhm. &gt;&gt; All right. The Americans are done. &gt;&gt; All right. The Americans are done.
+
+[46:58]
+&gt;&gt; How about China? &gt;&gt; How about China? &gt;&gt; Done. Okay. [snorts] &gt;&gt; Done. Okay. [snorts] &gt;&gt; Done. Okay. [snorts] All right. [clears throat] All right. [clears throat] All right. [clears throat] Look, look guys, guys. I mean like like Look, look guys, guys. I mean like like this is all just a theory, okay? But all I'm saying is look around you and ask yourself, are the people here yourself, are the people here open-minded? Are they willing to learn open-minded? Are they willing to learn from their mistakes? Do they ever say I'm wrong? I'm wrong? Are people energetic? Do do they take Are people energetic? Do do they take their work very seriously? If I give people an assignment, will they work really hard to make sure it's done well? Do people feel as though they're all
+
+[47:29]
+part of one big group? Are are they willing to make sacrifices for each other? other? Okay, Japan is. Okay, that's all I'm Okay, Japan is. Okay, that's all I'm saying. and maybe even the North Koreans are. All right, does that make sense, guys? And again, it's all just a theory. All right, I I'm just proposing to you a theory of how to understand the world, but what's actually going to happen, I can't actually tell you, right? But according to this theory, um Germany and Japan and Israel will be the three great nations. nations. Any more questions, guys? Any more questions, guys? Any more questions, guys? &gt;&gt; Yeah. C can you can you
+
+[47:59]
+&gt;&gt; Yeah. C can you can you &gt;&gt; Oh, yeah. But like for example the uh Japan that it did didn't have that much sources. So how could they succeed? [laughter] [laughter] &gt;&gt; I I keep on telling you guys you don't &gt;&gt; I I keep on telling you guys you don't need resources. You can cheat, you can steal, you can beg. All right. Okay. Does that make sense? Okay. Does that make sense? &gt;&gt; Yeah. &gt;&gt; Yeah. &gt;&gt; Yeah. &gt;&gt; Okay. Like like if you just go back to &gt;&gt; Okay. Like like if you just go back to the world game, um whichever team starts off with the least resources are often
+
+[48:29]
+the most creative. Okay. When I mean creative, they'll just like go and like lie to people. Says, you know, like I'll come work to you for free, but then you'll steal some some resources you'll steal some some resources yourself. Okay. All right. Because they yourself. Okay. All right. Because they have actually no choice in the matter, right? Uh yeah. Yeah. So I have a little questions like uh you you say that those who are poorest and like in the most dangerous positions always have the most energy and cohesions to succeed. But I I think eventually think eventually &gt;&gt; All right. So so so so okay. Let me be
+
+[49:01]
+&gt;&gt; All right. So so so so okay. Let me be precise. Okay. Yeah. precise. Okay. Yeah. &gt;&gt; Just because you're poor does not mean &gt;&gt; Just because you're poor does not mean you're open, energetic, and cohesive. you're open, energetic, and cohesive. Okay. Does not mean that. Okay. Does not mean that. Okay. Does not mean that. &gt;&gt; But if you want to go from being poor to &gt;&gt; But if you want to go from being poor to becoming rich, you have to be open, energetic, and cohesive. Does that make sense? sense? &gt;&gt; Yeah. So &gt;&gt; Yeah. So &gt;&gt; Yeah. So &gt;&gt; because in Africa, they're poor, but &gt;&gt; because in Africa, they're poor, but doesn't mean they're open, energetic, doesn't mean they're open, energetic, and cohesive. and cohesive. and cohesive. &gt;&gt; Yeah. So, so my question is like after &gt;&gt; Yeah. So, so my question is like after they become successful and they are eventually re rich, I think like like all society they may fall as like be
+
+[49:32]
+when they reach the their their their higher state, right? higher state, right? &gt;&gt; Yes. &gt;&gt; Yes. &gt;&gt; Yes. &gt;&gt; Yes. &gt;&gt; Yes. &gt;&gt; Yes. &gt;&gt; Yeah. And so my question is uh like you &gt;&gt; Yeah. And so my question is uh like you you say that like the J Japan or Germany will eventually become the like the leader of the of the of their like &gt;&gt; regions &gt;&gt; regions &gt;&gt; regions but like I I understand that &gt;&gt; regions but like I I understand that after World War II the Japan and German really develop very fast but like now
+
+[50:04]
+they are all wealthy societies and also [snorts] They're young the youngesters [snorts] They're young the youngesters the young the the new like people in the young the the new like people in their country forget about the war and they well when they born they born in the wealthy and like happy happy societies. So how can you make sure that the the society those society will continue to cohesions and developed but not like just to fail like other rich societies. societies. &gt;&gt; Okay, you know that's a great question. &gt;&gt; Okay, you know that's a great question. That's a great point. Okay, you're absolutely right because after World War
+
+[50:34]
+[snorts] II uh Japan and Germany become very wealthy. So if they become very wealthy then in theory shouldn't they become also corrupt, insular and become also corrupt, insular and arrogant? And the answer is no. Okay? arrogant? And the answer is no. Okay? And there's good reason why. Because ultimately power means that you're able to impose your game on other people. You're able to make other people play your game and therefore you're able to extract rent from other people. Okay? And that's what and that's what these secret sides are fighting for. They're fighting for power. Who becomes the game master. The problem with Japan and
+
+[51:07]
+Germany is yes became very wealthy but the game master was America. the game master was America. And ultimately America decided that And ultimately America decided that And ultimately America decided that their money belongs to me. Okay. So an their money belongs to me. Okay. So an example of this is something called the plastic courts. Okay. Plac courts. plastic courts. Okay. Plac courts. [snorts] Basically the plastic court just meant that um Japan was was becoming too wealthy. America got very annoyed. So America said to Japan I want you to destroy your economy. And Japan's like
+
+[51:37]
+how? America says just say says I want you to spend too much money. I want you people to stop saving money and start spending money. Go overseas and buy whatever crap you want. Okay? [snorts] Do you understand? So in theory it seemed as though Japan got rich but Japan got rich but it never had any power. It it it could not be a sovereign nation. Okay. Power means that you're able to impose your will on other people. Same with Germany where yes Germany became very wealthy but all that
+
+[52:07]
+money went where? It went to America right? Same with Japan. Japan all that money went to America. H how? Because they were forced to buy US treasury bonds. bonds. Okay. And then America could do stuff to Okay. And then America could do stuff to you. For example, um America could force Japan to sign a plastic cord and force Japan to destroy its own economy. And America could also destroy Germany's America could also destroy Germany's pipeline, North Street. And there's pipeline, North Street. And there's pipeline, North Street. And there's nothing Germany can do about it. Okay? nothing Germany can do about it. Okay? In fact, the German economy has been destroyed right now because Germany is a
+
+[52:38]
+vassal state to America. vassal state to America. So when um Russia invaded Ukraine, So when um Russia invaded Ukraine, America just basically said to Germany, you can no longer do business deals with Russia. But before Germany required Russia. But before Germany required Russian oil and energy to fuel its Russian oil and energy to fuel its economy. Okay. America also said to Germany, you can you can no longer trade with China. But before most of uh German car exports were going to China, right? &gt;&gt; Yeah. And because &gt;&gt; Yeah. And because Germany was forced out of the China Germany was forced out of the China
+
+[53:09]
+market, China was able to develop its own manufacturing industry. own manufacturing industry. &gt;&gt; Okay. Does that make sense? &gt;&gt; Okay. Does that make sense? &gt;&gt; Yeah. &gt;&gt; Yeah. &gt;&gt; So it seems as though Germany and Japan &gt;&gt; So it seems as though Germany and Japan become very wealthy. They were not. They they were just vast states to America. &gt;&gt; Yeah. &gt;&gt; Yeah. &gt;&gt; Okay. Does that make sense? &gt;&gt; Yeah. So I have a &gt;&gt; Yeah. Yeah. Yeah. Uh so like you said that only those society who are very poor but they want to they have the ability to co to to cohisions and be energetic and they can they can like
+
+[53:40]
+eventually become the ruler of the regions. But what decide a society or a poor society to become energetic poor society to become energetic cohesions or not? Like why Japan or cohesions or not? Like why Japan or German uh have that energy but like those other countries that may also like be defeated on in the war or is very poor uh cannot. poor uh cannot. &gt;&gt; Yeah, that's a great question. Yeah. So &gt;&gt; Yeah, that's a great question. Yeah. So the answer the obvious answer is a leader. Okay. So you look at the Mongols, right? the Mongols uh before
+
+[54:12]
+the emergence of of gang of Khan, the Mongols were almost like a vassal state, right? Because the Mongols were divided, they were poor, they were poor, um they they were willing to do whatever um they they were willing to do whatever it took to survive. And so um they became mercenaries to the Song, they became mercenaries to other groups as well. Okay. But then emerg to unify everyone. And once he was able to unify everyone, the Mongols were very quickly able to destroy everyone else. Okay? So
+
+[54:44]
+it's usually a great leader. But leader doesn't necessarily mean a general. It could also mean a poet, could also mean a poet, right? So someone like Homer or a great right? So someone like Homer or a great thinker to give you a new religion. Okay? So for example, the person had someone called Zorah someone called Zorah which who we studied last semester. which who we studied last semester. Okay? Even Jesus. Okay? But it's someone to come in to say that we are a people and it could be a poet, it could be um a general, [snorts] it could be a um prophet, a priest, doesn't matter. Okay.
+
+[55:15]
+But that one person But that one person then unifies the imagination of everyone then unifies the imagination of everyone into one cohesive group. into one cohesive group. &gt;&gt; Okay. Does that make sense? &gt;&gt; Yeah. &gt;&gt; Yeah. &gt;&gt; Okay. But that's a great question. Thank &gt;&gt; Okay. But that's a great question. Thank you. Okay. And that's why some certain groups uh are able to um cohhere together and other groups are not because one um person is able to merge and you know that's why okay we'll talk about this later on but that's why the world is the way it is. Why do we have organizations like the United Nations? organizations like the United Nations? Why do we have international development
+
+[55:46]
+Why do we have international development aid? The goal guys is to identify the possibility possibility of a leader emerging and make sure he of a leader emerging and make sure he does not emerge. You understand? does not emerge. You understand? Okay. If you left Africa alone, Africa Okay. If you left Africa alone, Africa will be a lot better. But because you have all these schools, all these NOS's, all these organizations in Africa, what they're really doing is ensuring that Africa is in a continuous state of development. Okay? If you just left them alone, they might starve. But at the
+
+[56:17]
+same time, a great deal might emerge to unite all of them. unite all of them. You understand? Okay. But we'll talk You understand? Okay. But we'll talk about this next class. How the American

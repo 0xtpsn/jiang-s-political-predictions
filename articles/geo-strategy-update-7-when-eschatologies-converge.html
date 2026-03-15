@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo-Strategy Update #7: When Eschatologies Converge — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Geo-Strategy Update #7: When Eschatologies Converge">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #f43f5e;
+            --accent-bg: rgba(244, 63, 94, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Geo-Strategy Update #7</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Geo-Strategy Update #7</div>
+        <h1 class="article-title">When Eschatologies Converge</h1>
+        <div class="article-meta">
+            <span>📖 38 min read</span>
+            <span>📝 7,644 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Geo-Strategy Update #7：  When Eschatologies Converge</p>
+<p><span class="timestamp">[0:04]</span> Good morning YouTube. Professor Jang Good morning YouTube. Professor Jang here with another uh video. here with another uh video. here with another uh video. Now, some of you in the comment section Now, some of you in the comment section have been asking me why World War II has not started, why the conflict between the United States and Iran has abaded. The answer is because modern warfare is hybrid warfare. 9% of warfare you will not see. So much of warfare nowadays is informational controlling nowadays is informational controlling the media narrative, electronic cyber</p>
+<p><span class="timestamp">[0:36]</span> the media narrative, electronic cyber the media narrative, electronic cyber warfare, psychological weakening the warfare, psychological weakening the warfare, psychological weakening the will of the people to fight you and will of the people to fight you and cover ops uh economic sabotage uh imposing sanctions trying to assassinate imposing sanctions trying to assassinate the leaders of Iran. So the United the leaders of Iran. So the United States and Israel are committed to a policy of regime change in policy of regime change in Iran. Ideally they would like to Iran. Ideally they would like to assassinate the Ayatollah Kami because assassinate the Ayatollah Kami because that would trigger a secession crisis in</p>
+<p><span class="timestamp">[1:09]</span> that would trigger a secession crisis in um Iran. um Iran. Right now their main strategy is is to Right now their main strategy is is to decrease the legitimacy decrease the legitimacy of the regime in Iran. And the best way of the regime in Iran. And the best way to do that is to to do that is to um decrease the capacity of the state to um decrease the capacity of the state to deliver basic services deliver basic services for example water. So what&#x27;s happening for example water. So what&#x27;s happening in Tran right now a city of 10 million is there&#x27;s a water s shortage</p>
+<p><span class="timestamp">[1:41]</span> um because of heat because economic sanctions because of overpopulation sanctions because of overpopulation tan is having problems ensuring water tan is having problems ensuring water supply to its people. you you can bet good money that the Israelis and Americans will take advantage of that to engage in economic sabotage. Basically engage in economic sabotage. Basically trying to destroy as much of um Iran&#x27;s trying to destroy as much of um Iran&#x27;s critical water infrastructure as critical water infrastructure as possible. Uh they would want to possible. Uh they would want to basically create a famine, a drought. Um</p>
+<p><span class="timestamp">[2:12]</span> now the irony of that is that by the Iranian the Iranian people will develop a greater resolve to resist. And once the resolve, once the will to fight has been increased to a certain level, then the Iranian government can close off the straight of Humus, which would compel an American ground would compel an American ground invasion. And if if America were to do invasion. And if if America were to do</p>
+<p><span class="timestamp">[2:43]</span> that, America would send in ground troops. And as I&#x27;ve said in multiple videos before, the American military videos before, the American military would lose this war. Okay? Okay. So, would lose this war. Okay? Okay. So, that&#x27;s how I see the war developing over the next uh few months. the next uh few months. Today, I want to talk about what the Today, I want to talk about what the future&#x27;s going to look like next 10 20 years. I want to take everything we&#x27;ve learned so far and combine it into a grand thesis about how the world will develop. And the argument I want to make</p>
+<p><span class="timestamp">[3:15]</span> to you today is that esquetology drives geopolitics. And to make this argument, I&#x27;m going to ask three questions. First question is why are esquetologies so compelling? Second esquetologies so compelling? Second question is what are the major question is what are the major esquetological esquetological uh traditions and how do they converge uh traditions and how do they converge together? And the third um question is based on these convergence points, what can we predict about the future? Right? So let&#x27;s look at the first question which is why are why are esquetologies</p>
+<p><span class="timestamp">[3:48]</span> so compelling? And as I&#x27;ve said before, esquetologists are compelling because esquetologists are compelling because they are narratives that capture the they are narratives that capture the human imagination. They answer three human imagination. They answer three fundamental questions. Where do we come fundamental questions. Where do we come from? What are we doing here? Where are we going? It&#x27;s a complete story on to itself. You can think of esquetologies as scripts really scripts that have a momentum of their own. Scripts that allow for unconscious coordination, allow for unconscious coordination, scripts that present roles for</p>
+<p><span class="timestamp">[4:20]</span> scripts that present roles for scripts that present roles for individuals to audition for. So just by individuals to audition for. So just by participating in a script, you are helping the estology progress forward. helping the estology progress forward. Okay. And to understand why Okay. And to understand why Okay. And to understand why esquetologies are so powerful, please esquetologies are so powerful, please esquetologies are so powerful, please remember the universal law of game remember the universal law of game theory. Um, in a previous video, I discussed discussed how people win in a game. And the how people win in a game. And the formula that tells us who wins a game is</p>
+<p><span class="timestamp">[4:55]</span> mass times energy times coronation. mass times energy times coronation. As I also said in that video, As I also said in that video, conspiracies, conspiracies, there are plenty of conspiracies, but there are plenty of conspiracies, but they&#x27;re not they&#x27;re not that effective. Uh because it&#x27;s very hard to maintain secrecy. You can&#x27;t maintain possible secrecy. You can&#x27;t maintain possible deniability. deniability. deniability. And because everyone has an ego, it&#x27;s And because everyone has an ego, it&#x27;s hard to maintain uh cooperation because everyone&#x27;s fighting for his or her best uh self-interest. uh self-interest. but with an unconscious coordination but with an unconscious coordination but with an unconscious coordination which is what an esquetology provides.</p>
+<p><span class="timestamp">[5:26]</span> which is what an esquetology provides. Uh that allows for uh secrecy, possible deniability deniability and um frictionless cooperation. And and um frictionless cooperation. And and um frictionless cooperation. And that&#x27;s why esquetologist are so that&#x27;s why esquetologist are so that&#x27;s why esquetologist are so powerful. powerful. powerful. Now some of you may hear this and think Now some of you may hear this and think this doesn&#x27;t make any sense because it&#x27;s really individual self-interest that really individual self-interest that motivates us. And what&#x27;s really motivates us. And what&#x27;s really motivates us. And what&#x27;s really important to understand is these things important to understand is these things esquetologies and individual esquetologies and individual self-interests are not in conflict with self-interests are not in conflict with each other. In fact, they reinforce each</p>
+<p><span class="timestamp">[5:58]</span> other. Now, in school, you may be taught that to succeed in life, you have to work hard, you have to be talented, you have to get uh good grades in school, and you have to be very intelligent. Certainly, that&#x27;s what I believed. And it took me 20, 30 years to recognize I was wrong. It&#x27;s not what you know, it&#x27;s who you know. who you know. to succeed to succeed in life you have to succeed to succeed in life you have to be able to work with others uh in an secretive unconscious co coordinated manner in order to achieve</p>
+<p><span class="timestamp">[6:30]</span> certain uh goals certain uh goals um and that&#x27;s what esquetology provides. um and that&#x27;s what esquetology provides. So when you describe to esquetology when you commit to an esquetology others will help you achieve help you achieve wealth and power. Okay. So that&#x27;s why um wealth and power. Okay. So that&#x27;s why um esquetologies are so compelling and so powerful. Not only are not only do they capture our imagination and inspire us to collective action and sacrifice, they also benefit us materially. Okay. So now</p>
+<p><span class="timestamp">[7:01]</span> let&#x27;s move on to second second question which is what are the major esquetological traditions out there and esquetological traditions out there and how do they converge? how do they converge? how do they converge? So uh before I go into uh the six major So uh before I go into uh the six major traditions um I I want to remind everyone of three caveats. The first caveat is that within each religion esquetology is only a minority extreme view. Okay. Only a small minority of</p>
+<p><span class="timestamp">[7:33]</span> religious devotees will actually believe religious devotees will actually believe in the esquetology. That&#x27;s the first in the esquetology. That&#x27;s the first caveat. caveat. The second caveat is that there&#x27;s The second caveat is that there&#x27;s tremendous diversity within each tremendous diversity within each esquetology. You can interpret the esquetology. You can interpret the esquetology. You can interpret the esquetolo es esquetology allegorically esquetolo es esquetology allegorically esquetolo es esquetology allegorically which is say like it&#x27;s compelling you to which is say like it&#x27;s compelling you to a path of personal redemption and salvation in order to improve the world. Or you can interpret it literally which is that this is this is a true prophecy</p>
+<p><span class="timestamp">[8:04]</span> and everything in it will happen in order for the world to end or for the world to become a better place. Okay. And also And also there are different sequencing of events there are different sequencing of events and different interpretations in the and different interpretations in the esquetology. Okay. So that&#x27;s the second esquetology. Okay. So that&#x27;s the second caveat. Esquetologies within each caveat. Esquetologies within each tradition are very diverse. tradition are very diverse. tradition are very diverse. And the third caveat is that And the third caveat is that esquetologies are dynamic. And the esquetologies are dynamic. And the reason why is esquetologies are are in reason why is esquetologies are are in</p>
+<p><span class="timestamp">[8:35]</span> conflict are in competition in conflict are in competition in communication with different communication with different communication with different esquetologies. Think of esquetologies esquetologies. Think of esquetologies esquetologies. Think of esquetologies as stories that are trying to be the as stories that are trying to be the best possible story in order to capture the imagination of their believers. And to do that, they&#x27;re going to incorporate the best elements from different the best elements from different esquetologies esquetologies esquetologies um into their own. And that&#x27;s why so um into their own. And that&#x27;s why so many of these esquetologies, they follow similar pattern because they&#x27;ve been similar pattern because they&#x27;ve been learning uh and adapting um from each</p>
+<p><span class="timestamp">[9:06]</span> learning uh and adapting um from each other. Okay. So having said these three caveats, let&#x27;s go into the six uh major escalological traditions. And I&#x27;m going escalological traditions. And I&#x27;m going to focus on the most extreme version of to focus on the most extreme version of each tradition because according to game theory, it&#x27;s the fanatics who matter. It&#x27;s the fanatics who are the most energetic, who most committed to energetic, who most committed to achieving achieving achieving um the esquetology. So the first um the esquetology. So the first esquetology is Zoroastrianism which was esquetology is Zoroastrianism which was the original esquetology. In the</p>
+<p><span class="timestamp">[9:37]</span> the original esquetology. In the the original esquetology. In the Zorastrian tradition Zorastrian tradition Zorastrian tradition there&#x27;s the world is divided into good there&#x27;s the world is divided into good and evil. Um the light and the darkness, the truth and the lie. And at the end of the days there&#x27;ll be a final battle between these two cosmic forces. And as humans, we must choose which side to fight for. At the end at at the end of this uh battle when good has triumphed, there&#x27;ll be a day of judgment. Okay? And</p>
+<p><span class="timestamp">[10:10]</span> this structure, this cosmology heavily this structure, this cosmology heavily influenced influenced influenced uh Judaism. uh Judaism. uh Judaism. And so in the Judeic tradition uh And so in the Judeic tradition uh because Jews have been persecuted for um thousands of years thousands of years they believe that eventually a Messiah they believe that eventually a Messiah of war will come to them and he will lead the Jews to victory against all the enemies. He will reconstitute the nation of Israel and bring back all the Jews</p>
+<p><span class="timestamp">[10:41]</span> from the diaspora. He will build the third temple and he will usher in the masonic age of peace, prosperity, masonic age of peace, prosperity, truth, justice. Okay, that&#x27;s the Judeaic truth, justice. Okay, that&#x27;s the Judeaic tradition. The Judeic tradition went on to influence the Christian Zionist or the Protestant tradition. Okay, so uh the pro protestants believe that the Messiah is Jesus and he&#x27;s already come. So in order to usher in his second</p>
+<p><span class="timestamp">[11:11]</span> coming certain conditions have to be met. First condition is the nation of Israel has to be reconstituted and it was in 1948. Um was in 1948. Um then the third temple has to be built then the third temple has to be built and there has to be a war uh of Gog and Magog. The antichrist has to appear. And once these conditions are met, then to save his people, Jesus will descend from heaven on a cloud, destroy all his enemies, and usher in a millennium of</p>
+<p><span class="timestamp">[11:42]</span> peace, peace, truth, and justice before the final truth, and justice before the final judgment. When Jesus returns, there will be a rapture where all Christians will immediately ascend to heaven. So that&#x27;s the Christian Zionist Protestant the Christian Zionist Protestant tradition. Um and again this is the most tradition. Um and again this is the most extreme form of that tradition. extreme form of that tradition. Then you have the Islamic uh tradition Then you have the Islamic uh tradition which is based both on the Judeaic and the Christian tradition and it&#x27;s very</p>
+<p><span class="timestamp">[12:19]</span> similar. Um so the Muslims believe that after an age of tribulation when the world has turned its back on God when the world is divided the world is divided um a great leader will come to unify the um a great leader will come to unify the people and lead the people uh to victory in the war of Gog and Magog. uh Gog and Magog is interpreted as the antichrist and Gog and Magog can be interpreted as maybe western civilization for its maybe western civilization for its materialism but it could also be a materialism but it could also be a</p>
+<p><span class="timestamp">[12:51]</span> certain force. So for example maybe uh the city of London. the city of London. Um Um Um so that&#x27;s tradition. Then you have the so that&#x27;s tradition. Then you have the Orthodox tradition which is what we we talked about in the last video. The orthodox tradition believes that Moscow orthodox tradition believes that Moscow is a third Rome. It has a destiny to is a third Rome. It has a destiny to restore the Basian Empire and to achieve this destiny uh Moscow will fight a war with Turkey. It will destroy Turkey and then res return the Greeks to consenapole thus restoring the Bajin consenapole thus restoring the Bajin Empire and thus unifying the Orthodox</p>
+<p><span class="timestamp">[13:24]</span> Empire and thus unifying the Orthodox Christian world. Now what&#x27;s really Christian world. Now what&#x27;s really interesting is that there is a interesting is that there is a geopolitical theorist named Axen Dugan geopolitical theorist named Axen Dugan who&#x27;s turned this esquetology into a who&#x27;s turned this esquetology into a master plan for Vladimir Putin to implement. If you don&#x27;t know who Axen Dugan is, you have to um watch his interviews. You have to read his books because he&#x27;s probably the most important geo strategic thinker we have today. I&#x27;m going to put his videos and his books in</p>
+<p><span class="timestamp">[13:55]</span> the description below. So please make sure you spend the time to actually research him because so much of what he says helps us understand the world as it is today and how the world will develop over time. So in 1997 uh Dugan published a book called foundations of geopolitics where he describes his master plan for how um Moscow can restore the basin empire. So empire. So what he understands is that for the</p>
+<p><span class="timestamp">[14:25]</span> what he understands is that for the longest time longest time whoever controls the seas controls the whoever controls the seas controls the world because most trade was done through sea. But in a time of nation states, in a time of railways, um if one power can unite the Europe and Asian continents into the Eurasian Asian continents into the Eurasian continent, then that power can negate continent, then that power can negate sea power and uh become the global</p>
+<p><span class="timestamp">[14:56]</span> hedgeimon. And and that&#x27;s why the British the British Empire are committed to two things. The first thing they&#x27;re committed to is maintaining naval power. The second thing they&#x27;re committed to is ensuring that no major power would arise in the Eurasian heartland. And that&#x27;s why um the British basically provoked Germany into World War I because Germany was threatening to be this power and and that&#x27;s why uh Britain is now afraid of Russia because Russia is trying to be</p>
+<p><span class="timestamp">[15:29]</span> that power to unify the entire Eurasian heartland. for Dugan. Um to unify the Eurasian heartland Eurasian heartland uh what what Moscow needs to do is first uh what what Moscow needs to do is first of all create the Berlin Moscow access to reconcile itself with Europe. It must also create the Moscow Tokyo access to reach out to um uh Southeast Asia and also to create the Moscow terrain access</p>
+<p><span class="timestamp">[16:02]</span> uh to control the resources of the Middle East. And by building this alliance, what Moscow is doing is not only not only restoring the Bison Empire, but it&#x27;s also restoring the Pax Mangalaka, the Mongol Empire. So Moscow see itself as the um heers to both the Basin Empire as well as the Mongolian Empire. Empire. Now um Duran thinks this is entirely Now um Duran thinks this is entirely possible because uh the Iranians, the Japanese and the Germans all feel</p>
+<p><span class="timestamp">[16:34]</span> slighted um humiliated by the slighted um humiliated by the Anglo-American Empire. So if you give Anglo-American Empire. So if you give them a choice between sticking with the Anglo-American Empire or joining the new Russian Confederation where they&#x27;ll be Russian Confederation where they&#x27;ll be giving more freedom then they will opt giving more freedom then they will opt for the Russian Confederation. So that&#x27;s the grand plan. Now obviously the Anglo-American Empire is going to oppose this uh plan. And so for Dugan, what&#x27;s important is to create internal chaos</p>
+<p><span class="timestamp">[17:05]</span> and descent and conflict within America and within Britain to destroy the Anglo-American Empire. And that&#x27;s Anglo-American Empire. And that&#x27;s already happening right now because um already happening right now because um you have Brexit in Britain and now you have this mass immigration which is threatening the British identity in threatening the British identity in America. You have Donald Trump who is America. You have Donald Trump who is proposing America first. So all is going to plan. This plan also recognizes that both Turkey and China are also enemies to the rise of this um Eurasian uh</p>
+<p><span class="timestamp">[17:35]</span> unification. unification. Um but as we discussed in the previous Um but as we discussed in the previous video, Turkey itself is not very stable. It&#x27;s kept together uh for the political maneuvering of Eragon. Once he&#x27;s gone, then all these ethnic tensions, then all these ethnic tensions, these geopolitical tensions, these these geopolitical tensions, these these geopolitical tensions, these economic tensions that exist in Turkey economic tensions that exist in Turkey will explode and it will overwhelm Turkey, thus causing it to collapse um as a nation state. It will lose its coherence as a nation state. Dubin is</p>
+<p><span class="timestamp">[18:07]</span> not worried about China as well. He understands that Russia and China can never be allies uh because China is too economic dependent on the Anglo-American economic dependent on the Anglo-American Empire. Basically the point is Russia Empire. Basically the point is Russia has nothing to offer China. China it&#x27;s basically a manufacturing economy which basically a manufacturing economy which must sell its goods to the must sell its goods to the Anglo-American Empire. Russia will Anglo-American Empire. Russia will cannot absorb these goods. Um at the cannot absorb these goods. Um at the same time there are a lot of internal</p>
+<p><span class="timestamp">[18:41]</span> contradictions in China. I can tell you as someone who lives in China for many many decades, China is not going to survive an economic catastrophe. It&#x27;s survive an economic catastrophe. It&#x27;s not going to survive an e ecological not going to survive an e ecological catastrophe. In fact, its economy is uh propelling its the the nation to a ecological catastrophe. ecological catastrophe. China is overpop populated, has very China is overpop populated, has very little resources and it imports onethird</p>
+<p><span class="timestamp">[19:11]</span> of its food. It imports most of its oil. These vonnet industries, EV, uh AI, uh rare minerals, they&#x27;re all uh rare minerals, they&#x27;re all contributing to massive ecological contributing to massive ecological contributing to massive ecological destruction in China. I mean you can say destruction in China. I mean you can say it&#x27;s unsustainable but you can also say these economic policies that um destroy the environment it&#x27;s really suicidal. the environment it&#x27;s really suicidal. Okay. So so China does not have a very Okay. So so China does not have a very bright future ahead of it. So Dan is not</p>
+<p><span class="timestamp">[19:43]</span> worried about China either. Okay. So um that is the master plan of um Alexander Dugan and again it is based on the Orthodox extology which perceives the Orthodox extology which perceives Moscow as a third Rome and perceives Moscow as a third Rome and perceives Vladimir Putin as a lazar as this great unifier of the world of the world. Um in Dugan&#x27;s terms Putin is the Dugan&#x27;s terms Putin is the catacon. Okay, the catacon is Greek word catacon. Okay, the catacon is Greek word</p>
+<p><span class="timestamp">[20:14]</span> meaning the force that restrains the antichrist. Okay, so for Dugan um Moscow has responsibility to be the force for civilization for good for God. civilization for good for God. Okay, now let&#x27;s move on to the last Okay, now let&#x27;s move on to the last esquetological tradition which is the esquetological tradition which is the Catholic esquetology. Catholic esquetology. Catholic esquetology. Now it&#x27;s interesting because Now it&#x27;s interesting because Now it&#x27;s interesting because um if you read Augustine and the city of um if you read Augustine and the city of</p>
+<p><span class="timestamp">[20:47]</span> God, what he argues is that the church is the millennium. Um the church is the embodiment of the mezzanic age. So with the coming of the church, the world has ended because the church is able to step out of history and ensure peace, truth, and justice in the world. And that very much is still the um um official Catholic church line. Um there official Catholic church line. Um there</p>
+<p><span class="timestamp">[21:19]</span> are esqueological elements to are esqueological elements to um the Catholic Church. For example, uh um the Catholic Church. For example, uh Catholics do believe that there&#x27;ll be a second coming of Jesus. And there&#x27;ll be some certain signs that precede the coming of the second coming of Jesus which include the mass conversion of Jews which include the age of tribulation which include the coming of the antichrist. But for the most part, the um Catholic Church is committed to a policy of personal esquetology, which policy of personal esquetology, which argues that it is for our own personal argues that it is for our own personal</p>
+<p><span class="timestamp">[21:50]</span> transformation, our own personal transformation, our own personal salvation, redemption, uh through the salvation, redemption, uh through the salvation, redemption, uh through the guidance of the church that allows for a guidance of the church that allows for a better world. better world. This is the official line, but we can we This is the official line, but we can we can be suspicious that this is actually what they really believe. Um I&#x27;m sure that there are certain elements within the Catholic Church who who do have an esquetological esquetological uh worldview. Okay. And there are three uh worldview. Okay. And there are three</p>
+<p><span class="timestamp">[22:20]</span> reasons why I would think the church uh many elements in the church um want radical global transformation. Okay. So radical global transformation. Okay. So let&#x27;s let&#x27;s look at these three three let&#x27;s let&#x27;s look at these three three reasons. First of all, we have to remember the origins of the Catholic Church. It started out as a secret con conspiracy against against the Roman conspiracy against against the Roman Empire and it succeeded. Okay. So the Empire and it succeeded. Okay. So the Catholic Church is very good at conspiracies. In fact, it really conspiracies. In fact, it really developed the world&#x27;s first intelligence developed the world&#x27;s first intelligence developed the world&#x27;s first intelligence agency, first global intelligence agent agency, first global intelligence agent agency, first global intelligence agent agency. Um there are certain elements</p>
+<p><span class="timestamp">[22:52]</span> agency. Um there are certain elements within the Catholic Church, the Jesuits, Opusai which are which are famous for their effectiveness, the organization. their effectiveness, the organization. um their um strategy. Okay. So, uh um their um strategy. Okay. So, uh that&#x27;s the first thing we have we we have to remember about the Catholic Church. They are very good at conspiracies. In fact, they&#x27;re so good we don&#x27;t even talk about we don&#x27;t even talk about uh their conspiracies. So, if you go uh their conspiracies. So, if you go online on Twitter, on social media,</p>
+<p><span class="timestamp">[23:23]</span> everyone&#x27;s talking about uh the deep state, everyone&#x27;s talking about the state, everyone&#x27;s talking about the Jews, everyone&#x27;s talking about uh the Jews, everyone&#x27;s talking about uh the city of London, but no one&#x27;s talking about the Catholic Church. That&#x27;s really weird. You have books and books and books of all of of how uh Jews have influenced history, but very few books on how the Catholic Church influenced history. I would think that um the most powerful, wealthiest, powerful, wealthiest, and most secretive organization in human and most secretive organization in human</p>
+<p><span class="timestamp">[23:53]</span> history for the past 2,000 years, they would would have a much greater impact on human history than the Jews. Okay. So, the second thing to remember about the Catholic Church is before the Anglo-American Empire, Anglo-American Empire, they were the empire. Okay? They had they were the empire. Okay? They had they had a thousand years from the fall of Rome until uh the rise of the uh British Empire when they were in charge</p>
+<p><span class="timestamp">[24:24]</span> when they were the de facto power in the world. And for many they believe that was the messianic age that was the millennium that was the most perfect age most growing age in human history. And we screwed it up. Uh we threw it away uh with with the rise of the British Empire. And therefore we uh must return to that golden age when the Catholic Church was the dominant empire in the world. world. And um the um third thing to reme</p>
+<p><span class="timestamp">[24:55]</span> And um the um third thing to reme remember the Catholic Church is remember the Catholic Church is they really are the most powerful they really are the most powerful non-state organization in the whole non-state organization in the whole world. They have a global network. They world. They have a global network. They have 1 billion followers. have 1 billion followers. If there is a global catastrophe, If there is a global catastrophe, they are the most ready to rebuild the world after it collapses. So these are major advantages for the Catholic Church</p>
+<p><span class="timestamp">[25:26]</span> and that&#x27;s why I think that um there are many elements within the Catholic Church who who do have an escathological do have an escathological do have an escathological worldview. They have a plan to conquer worldview. They have a plan to conquer the world and they are slowly implemented. Okay. So, having said that, let&#x27;s go over the major opposition, the opponents of the Catholic Church. Well, the first major opponent of course is the AngloAmerican the AngloAmerican Empire. And the Anglo-American Empire Empire. And the Anglo-American Empire Empire. And the Anglo-American Empire represents of course enlightenment represents of course enlightenment represents of course enlightenment principles, uh, neoliberalism, principles, uh, neoliberalism, principles, uh, neoliberalism, uh, materialism, capitalism,</p>
+<p><span class="timestamp">[25:57]</span> uh, materialism, capitalism, Protestantism. Okay? And, and remember, Protestantism. Okay? And, and remember, Protestantism. Okay? And, and remember, the Protestants and Catholics hate each the Protestants and Catholics hate each other. Um, these are the two greatest rivals in human history. Their wars have cost millions of lives. Okay, so that&#x27;s the first major opponent to the Catholic empire that the Cath that sorry that the Catholic Church must destroy. Okay, the Anglo-American Empire. Second opponent Anglo-American Empire. Second opponent is the nation state. Um so in is the nation state. Um so in Augustine&#x27;s formulation, the church is Augustine&#x27;s formulation, the church is outside of history. It is above history.</p>
+<p><span class="timestamp">[26:28]</span> outside of history. It is above history. It controls history. Um but with the French revolution French revolution um um um the idea of a nation state came into the idea of a nation state came into being and the idea of a nation state is that it is above church okay and that&#x27;s why in France there&#x27;s such an emphasis on separation of church and state so um obviously the Catholic church wants to reverse this order and in order to reverse this order it really has to destroy the concept of the nation state okay and the third major opponent um is</p>
+<p><span class="timestamp">[26:59]</span> really modernity itself the cult of the individual ual uh which celebrates individual ual uh which celebrates materialism, hedenism, materialism, hedenism, materialism, hedenism, pleasure, pleasure, pleasure, um multiculturalism. Okay. So the church um multiculturalism. Okay. So the church needs to destroy needs to destroy u all three forces if it is to resume u all three forces if it is to resume the millennium. the millennium. Um and we can suspect that there&#x27;s Um and we can suspect that there&#x27;s already a plan in place and the Catholic Church stands a very good chance of</p>
+<p><span class="timestamp">[27:29]</span> achieving its estology. Um, so let&#x27;s look at the three signs that the Catholic Church is has a plan in motion. Well, the current vice president of the United States, JD Vance, he is a recent Catholic convert. The new pope is an American. Okay, I don&#x27;t think these are coincidences. Um, I think this is much this is all part of a uh larger uh plan. We also have to remember that the Catholic Church is embedded into the</p>
+<p><span class="timestamp">[28:02]</span> institution of power in the United States. So, six of the nine Supreme Court justices are Catholic. Okay. Um, also the CIA was founded with the help of the Vatican. So William Dunovan who was the founder of the OSS the the precursor to the CIA he was a Catholic who was very good friends with the pope also when the CIA came into being it it had a mandate to fight communism around the world the problem is uh the problem</p>
+<p><span class="timestamp">[28:32]</span> was that at that time the CI didn&#x27;t have a global network the Vatican did have a global intelligence network and so the CIA and the Vatican formed a holy alliance against communism and um there have been so many CIA directors who are Catholic that the CIA has been nicknamed Catholics in action or the Catholic intelligence agency. Okay. So, uh the Vatican and the CIA are very very close.</p>
+<p><span class="timestamp">[29:03]</span> Um another sign is that the Catholic religion is growing very very fast in America. Right now it&#x27;s about 22% of the American population. But all those American population. But all those immigrants that are coming to America, immigrants that are coming to America, half of them are Catholic. And these are the legal immigrants. We&#x27;re not counting the illegal immigrants who are majority Catholic. And also remember, Catholics Catholic. And also remember, Catholics um have more children than Protestant um have more children than Protestant families. So um the demographic trend</p>
+<p><span class="timestamp">[29:36]</span> looks very good for looks very good for the Catholic um faith. But we can also the Catholic um faith. But we can also argue that if there&#x27;s American civil war, a second civil war, and the institutions of authority are destroyed, institutions of authority are destroyed, the American Catholics are in the best the American Catholics are in the best position to capture an American state. And if they are able to capture the American state, then they would control the world. Okay? So, um I think there are some fanatics within the Catholic</p>
+<p><span class="timestamp">[30:07]</span> Church who want to initiate a second American civil war. American civil war. because they believe that um this war because they believe that um this war will create the opportunity for the Catholic Church to control America and thus destroy all three of its major opponents, the Anglo-American Empire, opponents, the Anglo-American Empire, the nation state and modernity the nation state and modernity the nation state and modernity uh itself. Okay. Um so having looked at uh itself. Okay. Um so having looked at the major esquetological traditions, I&#x27;m the major esquetological traditions, I&#x27;m going to discuss where they converge. going to discuss where they converge. And what&#x27;s really interesting is there&#x27;s</p>
+<p><span class="timestamp">[30:38]</span> actually quite a few convergence points that are very important. The first convergence point is that there will be a major conflict in the Middle East that will uh suck in the whole world. It will be World War II. Okay. Second convergence point is that America will not be involved in this war. And that&#x27;s very interesting because America is very interesting because America is right now the global hedgeimon. So why right now the global hedgeimon. So why America isn&#x27;t involved in this war, we don&#x27;t know. It could be because they launched a ground invasion of Iran, it</p>
+<p><span class="timestamp">[31:09]</span> failed and they were forced to retreat. It could be the civil war going on in America. Okay, but America is not involved in this war. The third convergence point is that China is not involved in this war either. And I suspect that it&#x27;s because China is facing an ecological catastrophe. It facing an ecological catastrophe. It doesn&#x27;t have enough water. It doesn&#x27;t doesn&#x27;t have enough water. It doesn&#x27;t have enough food. doesn&#x27;t it doesn&#x27;t have um um enough resources for its people and you have internal descent throughout the nation. It&#x27;s China&#x27;s is</p>
+<p><span class="timestamp">[31:40]</span> having a hard time keeping itself together. together. Um the fourth convergence point is Um the fourth convergence point is that that the is that the antichrist will emerge the is that the antichrist will emerge and different traditions understand the and different traditions understand the antichrist differently. Um but they all antichrist differently. Um but they all believe that this powerful force will emerge who is charismatic and who will unify the the the world. unify the the the world. Another convergence point is that um</p>
+<p><span class="timestamp">[32:12]</span> Another convergence point is that um Israel become the dominant power in the Middle East presumably after America Middle East presumably after America leaves the Middle East and we can leaves the Middle East and we can understand why because America leaves understand why because America leaves the Middle East then all of America&#x27;s the Middle East then all of America&#x27;s military infrastructure sencom will military infrastructure sencom will merge with the greater Israel project merge with the greater Israel project thus creating the Israel empire. Another convergence point is that um anti-mitism anti-semitism will will grow around the world compelling Jews to return to</p>
+<p><span class="timestamp">[32:42]</span> Israel. Another uh another uh Israel. Another uh another uh convergence point is that the Dome of convergence point is that the Dome of the Rock will be destroyed and thus uh provoking the Muslim world to take arms against Israel and possibly uh against Israel and possibly uh initiating the war of Gog and Magog. Um initiating the war of Gog and Magog. Um another convergence point is the age of tribul tribulation when the world will face economic ecological uh geopolitical face economic ecological uh geopolitical catastrophe after catastrophe after catastrophe after catastrophe after catastrophe after catastrophe after catastrophe when people&#x27;s faith will be catastrophe when people&#x27;s faith will be tested when the antichrist will emerge</p>
+<p><span class="timestamp">[33:15]</span> to deceive people into believing to deceive people into believing um false prophecies into believing magic um false prophecies into believing magic into believing superstitions in into into believing superstitions in into denying the authority of God and of the denying the authority of God and of the church. Okay, so these are the major convergence points. So this so now let&#x27;s go on to question number three. Based on these convergence points, what can we predict about the future? So based on all this, I&#x27;m going to paint you a</p>
+<p><span class="timestamp">[33:46]</span> picture um of the future and what it looks like. And um some of these will not work out, some of these will work out, but it&#x27;s it&#x27;s an interesting framework for us to think about how geopolitics might geopolitics might um develop over the next 10 to 20 years. um develop over the next 10 to 20 years. Okay. So Okay. So um the United States launched a ground um the United States launched a ground invasion of Iran. Iran is supported heavily by Russia. United States after a</p>
+<p><span class="timestamp">[34:16]</span> few years of fighting, they give up and they retreat. Um, and so the American Empire uh retreats back into the western continent. But this triggers a civil war In Ukraine, In Ukraine, NATO decides Odessa will be the last NATO decides Odessa will be the last dead. So dead. So Russia encircles Odesta and lay siege to Russia encircles Odesta and lay siege to it. All NATO is brought in to defend</p>
+<p><span class="timestamp">[34:48]</span> Odesta. This is the very last stand. And um France, Britain, Romania, Poland, um all the NATO countries are brought in. Turkey is brought in as well. And it&#x27;s a stalemate. This war is going nowhere. But nowhere. But the Europeans don&#x27;t understand why the Europeans don&#x27;t understand why the Europeans don&#x27;t understand why they&#x27;re fighting this war. The European they&#x27;re fighting this war. The European people revolt. And this causes civil war in France, in Britain. It caused a political upheaval in Germany. It causes</p>
+<p><span class="timestamp">[35:21]</span> a political revolution in Turkey. And after these civil wars and these revolutions, Europe becomes more revolutions, Europe becomes more pro-Russian, allowing for reconciliation pro-Russian, allowing for reconciliation pro-Russian, allowing for reconciliation between Putin and Europe. Turkey is between Putin and Europe. Turkey is destroyed in this process. Um Putin allows the Greeks to return to Castanopole, restoring the Bison Empire Castanopole, restoring the Bison Empire and thus unifying the Orthodox world. and thus unifying the Orthodox world. After the United States um leaves the</p>
+<p><span class="timestamp">[35:53]</span> Middle East, the Greater Israel project becomes the Empire of Israel. becomes the Empire of Israel. The Empire of Israel in order to restore The Empire of Israel in order to restore the Davidic Kingdom. In order to usher in the messianic age, they destroy the Dome of the Rock to build the third temple. temple. This causes antitism to explode This causes antitism to explode This causes antitism to explode throughout the world, thus compelling throughout the world, thus compelling throughout the world, thus compelling Jews to uh return to Israel. Jews to uh return to Israel.</p>
+<p><span class="timestamp">[36:25]</span> The entire Islamic world wants vengeance against Israel, but their leadership, against Israel, but their leadership, their political elite have been their political elite have been their political elite have been co-opted, compromised by the co-opted, compromised by the co-opted, compromised by the Anglo-American Empire and by the Israeli Anglo-American Empire and by the Israeli empire. And so this forces revolutions uh and civil conflict in around the Islamic world. And now people are begging for the magdi to return. The mag the magny is um their world unifier.</p>
+<p><span class="timestamp">[36:56]</span> Um at this point there are certain elements within the Islamic world who see Putin as the great savior. Um and in the Islamic esquetology the name for uh Putin is Dao Putin is Dao Kanan which is the same concept as the Kanan which is the same concept as the orthodox idea of the catacon. Okay. The one who stops antichrist from emerging. And so Putin will init initiate uh</p>
+<p><span class="timestamp">[37:27]</span> reconciliation between Islamic world and reconciliation between Islamic world and the orthodox world. there&#x27;ll be an the orthodox world. there&#x27;ll be an alliance between the Orthodox and the Islamic world Islamic world and at this point um Putin can now seek and at this point um Putin can now seek reconciliation between the Islamic reconciliation between the Islamic Empire so the Islamic world and the Empire so the Islamic world and the Israeli empire. He can also seek uh reconciliation between the Orthodox reconciliation between the Orthodox world and the Catholic world and thus world and the Catholic world and thus unifying the world uh under him. Okay.</p>
+<p><span class="timestamp">[37:59]</span> So this is the framework of the world for the next 10 20 years. Now do I think this will actually happen? Do do I actually think that Putin will replace the Anglo-American Putin will replace the Anglo-American Empire? Empire? Empire? Um he thinks he will succeed, but I Um he thinks he will succeed, but I don&#x27;t think he will succeed. And the reason why is because he&#x27;s human. Um and once he dies, then once he dies, then civil conflict will rise within this civil conflict will rise within this Grand Alliance. And um this civil</p>
+<p><span class="timestamp">[38:30]</span> conflict will lead to catastrophe after catastrophe after catastrophe. It will catastrophe after catastrophe. It will be the age of tribulation. Um many many be the age of tribulation. Um many many people will die in this age of tribulation. So the the outlook for humanity is not that great. And this is no different from what happened in about 650 uh 600 common era when Muhammad was this great charismatic figure who were supposed to unite all the supposedly unite the entire world and he would have if he lived another 10 years.</p>
+<p><span class="timestamp">[39:00]</span> Unfortunately he died and this created um uh civil conflict within the Muslim world. world. Okay. So those are my predictions. Okay. Okay. So those are my predictions. Okay. And again the thesis the grand um idea is esquetology drives geopolitics. So if things happen the way they do then it&#x27;s because of esquetology and that gives us proof compelling proof that it&#x27;s really esquetology that drives uh geopolitics. esquetology that drives uh geopolitics. So we&#x27;ll see what happens next 10 20 So we&#x27;ll see what happens next 10 20</p>
+<p><span class="timestamp">[39:34]</span> years. Now having said that all all this um I have to say it&#x27;s not I mean it&#x27;s not secret what I&#x27;m saying it&#x27;s not it&#x27;s not a great secret I&#x27;ve uncovered I mean if you read a Dugan he lays out this plan coherently in his interviews and in his books. So then the question then is given that this is public domain knowledge, why doesn&#x27;t the knowledge, why doesn&#x27;t the Anglo-American Empire respond Anglo-American Empire respond Anglo-American Empire respond strategically strategically strategically to this? Why doesn&#x27;t the Anglo-American</p>
+<p><span class="timestamp">[40:04]</span> to this? Why doesn&#x27;t the Anglo-American Empire have counter measures and counter strategies? Why isn&#x27;t the Anglo-American strategies? Why isn&#x27;t the Anglo-American Empire intent on its own Empire intent on its own Empire intent on its own self-preservation? self-preservation? self-preservation? And the answer is because the people who And the answer is because the people who control the Anglo-American Empire today control the Anglo-American Empire today don&#x27;t care because be dead in 10, 20, 30 don&#x27;t care because be dead in 10, 20, 30 years time. All they want to do until they die is enjoy their life. And they don&#x27;t care what the world what will happen to the world after their death.</p>
+<p><span class="timestamp">[40:34]</span> These people of course are called the baby boomers. They&#x27;re the one to control all the political power, the financial power, the um um influential power in America, the cultural power in America and in the West today. And that&#x27;s why the West is dying. Okay. So, I&#x27;m going to talk about this topic in my next video. So, um I look forward to seeing everyone then. Um everyone then. Um um if you&#x27;re interested uh please join</p>
+<p><span class="timestamp">[41:04]</span> um if you&#x27;re interested uh please join my Discord server. I&#x27;m going to put the link below. If you have the means, please support my work by um donating donating to me on buy me a coffee. I really appreciate all the donations. Um it&#x27;s it&#x27;s real validation of my work. Okay. All right. So, thank you so much</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

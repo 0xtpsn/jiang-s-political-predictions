@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Books #2: Homer and the Invention of the Human — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Great Books #2: Homer and the Invention of the Human">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #10b981;
+            --accent-bg: rgba(16, 185, 129, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Great Books #2</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Great Books #2</div>
+        <h1 class="article-title">Homer and the Invention of the Human</h1>
+        <div class="article-meta">
+            <span>📖 33 min read</span>
+            <span>📝 6,571 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Great Books #2：  Homer and the Invention of the Human</p>
+<p><span class="timestamp">[0:04]</span> So together we&#x27;ve read the first half of the Iliad and today I gave you an assignment, right? So I have three questions for you guys about Achilles. The first one I The first one I um the first question is um imagine yourself um imagine yourself as Achilles. as Achilles. as Achilles. How are you similar? What experience in How are you similar? What experience in your life is very similar to that of</p>
+<p><span class="timestamp">[0:36]</span> Achilles? And you said that Achilles? And you said that um um um Achilles Achilles Achilles is almost a mirror to you where uh you is almost a mirror to you where uh you love playing soccer but one day you felt humiliated so you stopped playing soccer and that tore at your heart. Okay. And and your phrase was pride and vulnerability. vulnerability. And And And that shows that by reading the Iliad, it that shows that by reading the Iliad, it gives you tremendous insight into gives you tremendous insight into yourself as as well as the nature of the</p>
+<p><span class="timestamp">[1:07]</span> yourself as as well as the nature of the human heart where human heart where um arrogance and insecurity are two um arrogance and insecurity are two sides of the same coin, right? They&#x27;re b they&#x27;re they&#x27;re bundled together. Okay. they&#x27;re they&#x27;re bundled together. Okay. Um, another question is imagine Achilles Um, another question is imagine Achilles childhood and you said that Achilles when he was young he was all he was probably very rebellious, very probably very rebellious, very imaginative and that&#x27;s that&#x27;s true. imaginative and that&#x27;s that&#x27;s true. imaginative and that&#x27;s that&#x27;s true. Okay, he&#x27;s always testing boundaries. Okay, he&#x27;s always testing boundaries. Okay, he&#x27;s always testing boundaries. Um, he has a very vivid imagination.</p>
+<p><span class="timestamp">[1:39]</span> Um, he has a very vivid imagination. And then the last question is imagine Achilles today. What would he be doing? Okay. And here the answer is very interesting. The answer is that he&#x27;s pro probably trying to be an Olympian athlete. Okay. So the obvious answer would be he&#x27;s trying to be a soldier because he loves war. But what you recognize is that no. What Achilles really wants to stand out and be admired</p>
+<p><span class="timestamp">[2:10]</span> by everyone. He wants to be famous. And so it makes more sense to be an Olympian Olympian athlete uh than it does to be a soldier. But you also recognize that uh being an Olympian athlete has a lot of restrictions because you need coaches, restrictions because you need coaches, you need sponsors, you need to follow a you need sponsors, you need to follow a certain um regiment and Achilles is a very independent-minded person and so he would rebel against all this authority, all the structure, all this conformity and so he probably fail in today&#x27;s</p>
+<p><span class="timestamp">[2:44]</span> society. Okay. So, um, the entire point of this exercise is to show you that what a great book does is excite your imagination. imagination. It helps your imagination It helps your imagination It helps your imagination peer deeply into your own human heart peer deeply into your own human heart and see how complicated, how complex, how dark it is. It also allows you to imagine Achilles as a whole person. You don&#x27;t know him. You never you&#x27;ve never</p>
+<p><span class="timestamp">[3:15]</span> met Achilles. And Achilles is honestly a fictional character. He never existed, fictional character. He never existed, but he&#x27;s real to you. So that you&#x27;re but he&#x27;s real to you. So that you&#x27;re able to imagine his past, his childhood, and you&#x27;re able to experience what he experienced. What&#x27;s even more powerful experienced. What&#x27;s even more powerful is that you&#x27;re able to imagine Achilles is that you&#x27;re able to imagine Achilles into our world and see him as a living and breathing human being. and breathing human being. So that&#x27;s what a great book is. A great So that&#x27;s what a great book is. A great book is composed of characters book is composed of characters that are real to you and make the world</p>
+<p><span class="timestamp">[3:48]</span> that are real to you and make the world more real to you. They excite your imagination that allows you to think much more deeply into yourself much more deeply into yourself as well as more imaginatively understand as well as more imaginatively understand the world around you. Okay. So now the question then is how does this happen? What are the mechanisms behind all this? Okay, so Okay, so um there was a very famous American um there was a very famous American</p>
+<p><span class="timestamp">[4:19]</span> literary cr uh critic named Harold Bloom. He was at Yale. [clears throat] He actually taught at Yale when I was there. I studied English literature at Yale and I actually sat in on a class of his. Okay. But he is considered the most famous American literary critic. And famous American literary critic. And here in his explanation for what a great here in his explanation for what a great book is, what what is a great book? [snorts and clears throat] [snorts and clears throat] A great book is something that helps us A great book is something that helps us [clears throat] [clears throat] So what he means by that is in a great</p>
+<p><span class="timestamp">[4:52]</span> So what he means by that is in a great book the characters are different book the characters are different because the characters are able to hear because the characters are able to hear themselves speak. Okay. hear yourself themselves speak. Okay. hear yourself speak. Okay, those are his words. What does it mean to hear yourself speak? It means that as I&#x27;m speaking to you, there&#x27;s also a part of me that steps back and analyzes what I say.</p>
+<p><span class="timestamp">[5:23]</span> Okay? It has to make sense to me. It has to make sense to you. And we call this Okay. To be human means to be conscious. But to be conscious is ultimately an act of imagination of imagination because while you&#x27;re speaking, you have because while you&#x27;re speaking, you have to step back. Okay? We we actually call this disassociation. this disassociation. [clears throat] [clears throat] [clears throat] You have to disassociate. Meaning</p>
+<p><span class="timestamp">[5:53]</span> You have to disassociate. Meaning You have to disassociate. Meaning basically that as you are speaking, as basically that as you are speaking, as you are in this world, a part of you almost like a ghost steps away and observes the entire scene. And not only am I imagining myself speaking, but I&#x27;m also imagining what is happening inside your mind, your heart as I&#x27;m speaking, my effect on you. Okay? Right? So let&#x27;s look at how this applies to the Iliad.</p>
+<p><span class="timestamp">[6:23]</span> &amp;gt;&amp;gt; [snorts] &amp;gt;&amp;gt; [snorts] &amp;gt;&amp;gt; Okay. [clears throat] So remember the in &amp;gt;&amp;gt; Okay. [clears throat] So remember the in the first book of the Iliad manon [clears throat] [clears throat] and Achilles and Achilles and Achilles they are having an argument. they are having an argument. they are having an argument. They&#x27;re having an argument because They&#x27;re having an argument because They&#x27;re having an argument because Egamanon stole kidnapped a girl. The Egamanon stole kidnapped a girl. The father demanded a ransom demanded to ransom her back. Eggmanon broke the rules of war of piracy and said, &quot;No, I</p>
+<p><span class="timestamp">[6:55]</span> like her. Screw you. I&#x27;m the king of kings. I&#x27;ll do whatever I want.&quot; The father is a priest of Apollo. Apollo um starts a plague among the Greek soldiers. They&#x27;re all dying. And soldiers. They&#x27;re all dying. And Achilles says and says, &quot;We&#x27;re all Achilles says and says, &quot;We&#x27;re all dying, okay, on the shores of Troy. So, you have to give the girl back.&quot; And Aman says, &quot;Sure, I&#x27;ll give her back, but now I want your girl in return.&quot; Okay. And it starts the main conflict of</p>
+<p><span class="timestamp">[7:25]</span> the Iliad. What&#x27;s interesting is that how conscious they are. Okay. how conscious they are. Okay. So So So what&#x27;s happening is that this is a war what&#x27;s happening is that this is a war and in the war council the Greek generals get together and decide on policy policy and so as Egenmanon is speaking and so as Egenmanon is speaking okay okay if you observe his speech he&#x27;s doing</p>
+<p><span class="timestamp">[7:55]</span> if you observe his speech he&#x27;s doing three things at once Right. The first and most important thing is that he&#x27;s responding to Achilles, responding to Achilles, right? Achilles is says you have to give right? Achilles is says you have to give the girl back and says fine, I&#x27;ll give the girl back, but in return I want your girl. So that&#x27;s that&#x27;s a response to Achilles. He feels as though Achilles made him lose face. So now he wants to make Achilles lose face as well. Okay.</p>
+<p><span class="timestamp">[8:27]</span> But also what&#x27;s important is that Eggman is considering is considering how others are perceiving the how others are perceiving the how others are perceiving the interaction. Right? Why does Eggmanon interaction. Right? Why does Eggmanon interaction. Right? Why does Eggmanon require or demand Achilles girlfriend? require or demand Achilles girlfriend? require or demand Achilles girlfriend? Because Agamenon does not want to lose Because Agamenon does not want to lose face amongst the others. Okay? So he recognizes that if he just says to Achilles, you know what, Achilles, Achilles, you know what, Achilles, you&#x27;re right. you&#x27;re right. you&#x27;re right. He would lose face amongst the other He would lose face amongst the other generals. He would lose respect. And in</p>
+<p><span class="timestamp">[8:59]</span> this world, if [snorts] no one respects you, you could get killed. Okay, these people are gangsters. So he recognizes that in order to save face, I must now demand something from Achilles to show that I am his superior. Okay, he&#x27;s so conscious of that as well. But also he&#x27;s he at the same time he&#x27;s going to step back okay [snorts] back okay [snorts] and he&#x27;s going to be conscious of his and he&#x27;s going to be conscious of his own words to make sure that his words</p>
+<p><span class="timestamp">[9:30]</span> together make sense that for him it is coherent. Okay. And so what he says to Achilles is why am I doing this? Because I love my girlfriend. Okay. You stole from me what I who I love and therefore I must enact a vengeance on you. Okay. So you see how coherent all this he is saying to Achilles to ensure that you</p>
+<p><span class="timestamp">[10:01]</span> understand that I&#x27;m your superior I&#x27;m going to take what you most prize. And then he&#x27;s thinking about the reaction of the works to make sure that they understand that he&#x27;s still the top boss. But he&#x27;s also in his head ensuring that what he says is coherent in itself, okay? That what he&#x27;s doing has a rationale. The rationale is because I love her. Because you you&#x27;re stealing from me. My goodness love. I love her</p>
+<p><span class="timestamp">[10:33]</span> more than my own wife. Kestra. Okay. So you can see how coherent all this and this is amazing if you think about it right and this is what makes Eggmanon a real character to us all right but the other thing is that Achilles behaves the same way okay he&#x27;s he is alive in the scene he is listening to a manon and his response is this why are you stealing from me what is rightfully mine rightfully mine manon I came to Troy not because I hate</p>
+<p><span class="timestamp">[11:06]</span> manon I came to Troy not because I hate the Trojans. I have nothing against the Trojans. I came to Troy because you ordered me to come to Troy. And so I&#x27;m risking my life for you. You gain you gain most of the treasure. You gain most of a profit from this war. I take a little bit and now you&#x27;re stealing that little bit from me as well. Okay. So why is Achilles saying this? Achilles is saying this as response to Agamelon, but he&#x27;s also saying this in order to win sympathy from the others as well, right?</p>
+<p><span class="timestamp">[11:37]</span> And he&#x27;s also doing this because he&#x27;s of who he is. Okay? They&#x27;re trying it&#x27;s a it&#x27;s a battle of world views. Okay? World view. [snorts] What they&#x27;re really trying to do is through their speeches, they&#x27;re trying to control reality. Okay? through their speeches. They&#x27;re trying through their speeches. They&#x27;re trying to impose the reality on others. to impose the reality on others. [snorts] And that&#x27;s why this is such a emotional emotional violent scene between the two. Okay.</p>
+<p><span class="timestamp">[12:09]</span> violent scene between the two. Okay. And then what happens which is even more amazing is that again Menon hears Achilles speak and then what he does is that he responds to Achilles that he responds to Achilles using his own memory. using his own memory. using his own memory. and experience. Okay. And what he says and experience. Okay. And what he says to Achilles is, &quot;Achilles, you say that you came here to fight for me. But we</p>
+<p><span class="timestamp">[12:40]</span> all know that you are vain. You&#x27;re a narcissist. You&#x27;re an You came narcissist. You&#x27;re an You came here to win glory for yourself. You&#x27;re here to win glory for yourself. You&#x27;re just using me as an excuse, as a pretext in order to win glory on the shores of joy. That&#x27;s why you really came. So don&#x27;t give me this crap about you making all these sacrifices for me. You can&#x27;t make sacrifices for others because make sacrifices for others because you&#x27;re a selfish Okay? you&#x27;re a selfish Okay? you&#x27;re a selfish Okay? And then Achilles response is that fine. And then Achilles response is that fine. If you do that, then I won&#x27;t fight for</p>
+<p><span class="timestamp">[13:11]</span> you anymore. you anymore. So you can see how real this is. Okay? So you can see how real this is. Okay? And again what&#x27;s amazing is that this all comes in the mind of one person Okay. So imagine this where as I&#x27;m speaking to you, I&#x27;m able to mentally lift off and absor and observe the entire class where not only [snorts] am I hearing myself speak, okay? And I&#x27;m</p>
+<p><span class="timestamp">[13:43]</span> measuring and observing the effect of my words, but I&#x27;m also able to go into your mind one by one and think about how my words are changing your reality. how they&#x27;re impacting your emotions, how they&#x27;re impacting your emotions, how they&#x27;re impacting your memory, and think they&#x27;re impacting your memory, and think about their impact on you and how they will guide your behavior and actions tomorrow, 10 years from now. Okay? But then what&#x27;s even more amazing is that as</p>
+<p><span class="timestamp">[14:14]</span> this is happening, this is happening, Neestor, right, Neestor, Neestor, right, Neestor, who is the uh one of the older generals, who is the uh one of the older generals, he comes into this scene and he tries to reconcile Eggmanon and Achilles. reconcile Eggmanon and Achilles. Okay. So, not only are the two main Okay. So, not only are the two main characters have a life of their own, but the observers have a life of their own as well. as well. &amp;gt;&amp;gt; [snorts] &amp;gt;&amp;gt; [snorts] &amp;gt;&amp;gt; [snorts] &amp;gt;&amp;gt; So in the Iliad, what&#x27;s amazing is that &amp;gt;&amp;gt; So in the Iliad, what&#x27;s amazing is that</p>
+<p><span class="timestamp">[14:44]</span> not only are the main characters alive, but every single character, whether it&#x27;s Odysius, Odysius, Hector, Pryam, Neestor, they&#x27;re all Hector, Pryam, Neestor, they&#x27;re all Hector, Pryam, Neestor, they&#x27;re all alive as well with real emotions alive as well with real emotions and real feelings and real experiences. Okay? And the reason why and we know this is that we&#x27;re if this is true then we&#x27;re able to look back at how this came</p>
+<p><span class="timestamp">[15:15]</span> into being in the past into being in the past and we&#x27;re also able to make predictions and we&#x27;re also able to make predictions about the future and all this is coherent. Okay. So based on this, we will now know that the major conflict in the Iliad is the one between Egenon and Achilles where they&#x27;re struggling for Achilles where they&#x27;re struggling for control over narrative control over narrative control over narrative where Achilles wants everyone to believe where Achilles wants everyone to believe that he is doing everything he can to</p>
+<p><span class="timestamp">[15:45]</span> save the Greeks. He&#x27;s a hero. And Amen is trying to get everyone to believe that Achilles is just a selfish Okay? And that&#x27;s what leads them to behave the way they do, including suicidal behavior. Because remember, as suicidal behavior. Because remember, as you read, Hector and the Trojans are you read, Hector and the Trojans are coming to burn down the ships of the Greeks. Okay? They do that. Every single Greek will be killed by the Trojans. And even at this point in time,</p>
+<p><span class="timestamp">[16:16]</span> both Agamenon and Achilles refuses to give up their narrative. give up their narrative. Okay? They insist they&#x27;re right. Okay? They insist they&#x27;re right. Okay? They insist they&#x27;re right. So that when Odysius comes to Achilles So that when Odysius comes to Achilles and begs Achilles, please come back and join us. We&#x27;ll give you all the money in the world. Eggman has promised his daughter to you. daughter to you. We&#x27;ll give you all of Troy after we We&#x27;ll give you all of Troy after we conquer Troy. And Achilles says, &quot;No, no, no, no. I want a man to come and apologize. If he&#x27;s not willing to come</p>
+<p><span class="timestamp">[16:47]</span> and apologize to me, then screw all of you.&quot; you.&quot; Okay. So, you can see how human and how Okay. So, you can see how human and how real this is. And this is important for us because now us because now we&#x27;re able to step back and observe we&#x27;re able to step back and observe ourselves ourselves as well as others. We have greater as well as others. We have greater imagination. We have greater empathy. We have greater curiosity. have greater curiosity. Okay? And that&#x27;s a power of a great Okay? And that&#x27;s a power of a great book. And this is how the Iliad created</p>
+<p><span class="timestamp">[17:19]</span> the greatest greatest civilization on the greatest greatest civilization on earth in history, the Greek earth in history, the Greek earth in history, the Greek civilization. Okay. All right. So any civilization. Okay. All right. So any questions be before I move on about this? this? Okay. Now what I want to discuss is Okay. Now what I want to discuss is okay. okay. How did Homer do this? Because this is a How did Homer do this? Because this is a great mystery that has confused scholars for centuries. We all know the Iliad is one of the greatest books ever composed,</p>
+<p><span class="timestamp">[17:50]</span> but we don&#x27;t know who Homer is and we don&#x27;t know how he did this. There are some who speculated that Homer were many people. Okay. Um so there&#x27;s confusion as to who who Homer is. The Greeks themselves call Homer the teacher and he consider they consider him the father of the civilization. So we know that Homer was a was a real person but we know almost nothing about him. Okay. So what I&#x27;m going to do now is speculate as to how he was able to do all this. Okay.</p>
+<p><span class="timestamp">[18:25]</span> How was one human mind able to construct entire universe with real people by himself? himself? Okay. All right. All right. So to understand this So to understand this So to understand this um let&#x27;s discuss how um let&#x27;s discuss how um let&#x27;s discuss how identity how personality how identity how personality how identity how personality how consciousness is created. Okay. So consciousness is created. Okay. So consciousness is created. Okay. So basically what happens is that uh we basically what happens is that uh we</p>
+<p><span class="timestamp">[18:58]</span> Okay. And these experiences become Okay. And these experiences become short-term memory. And then what happens is that our brains will filter will filter these memories into emotions. Okay, these memories into emotions. Okay, these memories into emotions. Okay, they&#x27;re basically you will index your they&#x27;re basically you will index your experiences according to their emotional experiences according to their emotional strength or value. Okay, so happy, strength or value. Okay, so happy,</p>
+<p><span class="timestamp">[19:29]</span> sad, angry, whatever. Okay. sad, angry, whatever. Okay. All right. So in other words, uh All right. So in other words, uh something really important for you to understand is that your memories understand is that your memories are your emotions. Memories that create emotions in you will come into you and help create your identity. But em but memories that have no emotions, you will never remember. You&#x27;ll just throw it out. Okay? And [snorts and clears throat] then together</p>
+<p><span class="timestamp">[19:59]</span> these memories will create your these memories will create your identity. identity. identity. Okay? And different combinations of Okay? And different combinations of Okay? And different combinations of these memories will create different these memories will create different these memories will create different identities. The reason why is that identities. The reason why is that different memories are indexed to different memories are indexed to different locations. Okay? So your different locations. Okay? So your different locations. Okay? So your identity in the in a school will be identity in the in a school will be different from your identity at home or your identity when you go to America. Okay? because you need different Okay? because you need different identities to navigate the different identities to navigate the different identities to navigate the different landscapes. Okay, does that make sense? landscapes. Okay, does that make sense?</p>
+<p><span class="timestamp">[20:31]</span> And together this will create your world view. Your world view is just your identity, who you are, how you perceive the world, how you perceive yourself, and this helps you make decisions. This helps you navigate social relationships. helps you navigate social relationships. U and this determines how you behave. U and this determines how you behave. Okay. Does does it does this make sense, right? Okay. All right. So this is basically the way that we understand how our personality develops. But there are</p>
+<p><span class="timestamp">[21:03]</span> sort of problems with this sort of problems with this understanding. Okay. The first major understanding. Okay. The first major understanding. Okay. The first major problem with this is um the sorting problem with this is um the sorting mechanism. mechanism. Okay. Basically, why do we respond to Okay. Basically, why do we respond to different experiences different experiences with different emotions? It doesn&#x27;t make with different emotions? It doesn&#x27;t make sense. So, you can have the same experience, experience, but you respond, but you can respond um but you respond, but you can respond um with different emotions. Okay? So, you</p>
+<p><span class="timestamp">[21:35]</span> might get a 50 on a test. Some of you will be really sad, but some of you be like really happy like, &quot;Wow, I thought I thought I was going to get 10%.&quot; Now, I got 50%. Okay? All right. Some of you are like glass half empty. Some of you are like glass half full. are like glass half full. So So So that determines how we perceive the that determines how we perceive the world. But the question then is where does this personality come from? does this personality come from? Okay. Okay. Okay. Why are some people optimistic? Why are Why are some people optimistic? Why are some people pessimistic? And people are</p>
+<p><span class="timestamp">[22:06]</span> born like that. born like that. Now people and and your response could Now people and and your response could be like well it&#x27;s just genetic because your both your parents are optimistic. So you&#x27;re optimistic. Both your parents are pessimistic. Okay. Now you think about your parents and ask yourself, does your personality come from your parents? And the answer is it doesn&#x27;t. Okay, the answer is that you&#x27;re actually different from your parents. I have three kids. I know this cuz all three of my kids are different from both my wife and myself. and myself. Okay. So the question is where does this</p>
+<p><span class="timestamp">[22:36]</span> Okay. So the question is where does this personality come from? That&#x27;s the personality come from? That&#x27;s the question number one. We don&#x27;t know the question number one. We don&#x27;t know the answer. Question number two which is more problematic is okay we know how this process works but this process works but where are the memories stored inside the where are the memories stored inside the brain right we know how this works psychologically but psychologically but you could but the question then is where you could but the question then is where in the brain does this happen and the</p>
+<p><span class="timestamp">[23:09]</span> answer is we don&#x27;t know answer is we don&#x27;t know we don&#x27;t No, we know where in the brain we don&#x27;t No, we know where in the brain breathing happens. We know in the brain where language acquisition happens, but where language acquisition happens, but we don&#x27;t know in the brain where we don&#x27;t know in the brain where memories are formed and stored and accessed. We don&#x27;t know. That&#x27;s really weird, guys. weird, guys. Okay. [snorts] All right. So, that&#x27;s that that&#x27;s</p>
+<p><span class="timestamp">[23:49]</span> Okay. And then question number three is This is really theory, but it doesn&#x27;t really help us explain how empathy works, right? It doesn&#x27;t really help us understand how we&#x27;re able to perceive the emotions of others. [snorts] the emotions of others. [snorts] Now, you can say, well, it&#x27;s because we Now, you can say, well, it&#x27;s because we have these different identities and so we just look at our own identity, but</p>
+<p><span class="timestamp">[24:19]</span> that doesn&#x27;t really help us understand what&#x27;s going on. Okay, so have these three major problems created by modern psychology. Okay, the first is where does our personality come from? Because our personality are our filter, right? Our personality determines how we Our personality determines how we perceive the world emotionally. Second perceive the world emotionally. Second perceive the world emotionally. Second problem is problem is problem is where does this all happen inside the where does this all happen inside the brain? We don&#x27;t know. And the third problem is empathy. Okay. How are we</p>
+<p><span class="timestamp">[24:50]</span> able to perceive into the emotions of others? others? All right. Okay. And we don&#x27;t know. So All right. Okay. And we don&#x27;t know. So I&#x27;m going to propose a theory to you today. Okay. Which goes back to last Okay, imagine this. Imagine that we are composed essentially of composed essentially of um two selves. Okay, um two selves. Okay, um two selves. Okay, two selves. two selves. two selves. There is the body and the body comes</p>
+<p><span class="timestamp">[25:21]</span> There is the body and the body comes materially, right? materially, right? Okay, we know that. We know that through Okay, we know that. We know that through evolution. But then our consciousness evolution. But then our consciousness comes from our interactions with the comes from our interactions with the universe. Okay, so our brain it&#x27;s not a storage facility. It&#x27;s an antenna for the vibrations of the universe. Okay? And remember last class we discussed how this consciousness, the universe is this consciousness, the universe is conscious, right? And there are infinite</p>
+<p><span class="timestamp">[25:51]</span> conscious, right? And there are infinite dimensions dimensions to this consciousness. And this is where to this consciousness. And this is where our memories are stored. So a very simple analogy is think about the internet, right? You have a computer, you have a laptop and some memory is stored on the laptop but most of it is actually stored in the cloud and how the computer works is by interacting with the internet your computer becomes more conscious. Okay, does that make sense? Same thing here where if you just use the human brain and just assume that</p>
+<p><span class="timestamp">[26:22]</span> everything comes from the human brain, nothing makes sense. But if you assume that the human brain is merely an antenna to the universal consciousness, antenna to the universal consciousness, it makes a lot more sense. Okay. And how it makes a lot more sense. Okay. And how and not only that, but by imagination, by consciousness, we&#x27;re able to implant ourselves into ourselves into the universe. Okay? And different the universe. Okay? And different the universe. Okay? And different emotions emotions emotions uh implant themselves in different uh implant themselves in different uh implant themselves in different wavelengths, different dimensions. Okay? wavelengths, different dimensions. Okay? wavelengths, different dimensions. Okay? Does that make sense? So the combination Does that make sense? So the combination</p>
+<p><span class="timestamp">[26:55]</span> of your emotions now lead to a unique imprint in the universe. imprint in the universe. Okay? Okay? Okay? And different personalities will And different personalities will And different personalities will obviously have the same imprint in the obviously have the same imprint in the universe. And we call this archetypes. Archetypes. This is um from Carl Young who is a who is a Swiss psychologist. Okay. Carl Young. Swiss psychologist. Okay. Carl Young. Swiss psychologist. Okay. Carl Young. The word he uses archetypes. The word he uses archetypes. The word he uses archetypes. They&#x27;re different personalities and they They&#x27;re different personalities and they They&#x27;re different personalities and they are accessing the same parts of the are accessing the same parts of the</p>
+<p><span class="timestamp">[27:27]</span> universe and so they behave the same. That&#x27;s why certain people look alike. Okay. If you&#x27;re an evil person, you look you have a certain look to your face, right? If you&#x27;re a good person, you have a certain look to your face. Okay? If you&#x27;re clever, you have a certain look. Okay? So, archetypes. And so, what&#x27;s happening is that what Homer is doing is that he&#x27;s opened his mind to the universe and therefore he&#x27;s able to access all archetypes. Okay? We all do</p>
+<p><span class="timestamp">[27:59]</span> this for empathy, but Homer&#x27;s able to do this at a greater level than everyone else. Okay? else. Okay? [snorts] And then he&#x27;s able to [snorts] And then he&#x27;s able to transplant these archetypes into the transplant these archetypes into the world of the Iliad. And that&#x27;s how he&#x27;s world of the Iliad. And that&#x27;s how he&#x27;s able to create what he does. A word we have for these people are prophets, right? What are prophets? Prophets are those who bring the truth. those who bring the truth. &amp;gt;&amp;gt; [snorts] &amp;gt;&amp;gt; [snorts] &amp;gt;&amp;gt; [snorts] &amp;gt;&amp;gt; of the universe onto our world and &amp;gt;&amp;gt; of the universe onto our world and</p>
+<p><span class="timestamp">[28:31]</span> construct it in a language that allows us to access this truth eternally. Okay. So in this time in history poets are prophets are teachers. prophets are teachers. These are the same function. Okay. where where where you&#x27;re accessing the truth of the universe and you&#x27;re spreading this truth through you&#x27;re spreading this truth through words that enable the construction of words that enable the construction of Okay. Okay. So im and we think this is true. Why?</p>
+<p><span class="timestamp">[29:05]</span> So im and we think this is true. Why? Because think about what&#x27;s how amazing it is that the Iliad was written 2500 years ago. Okay? It was written 2500 years ago by this guy Homer living in the Mediterranean, the Aian, the Mediterranean, the Aian, right? Different culture, different right? Different culture, different right? Different culture, different time, but the Iliad is able to speak time, but the Iliad is able to speak directly to you as a Chinese person</p>
+<p><span class="timestamp">[29:36]</span> living in China in the 21st century. Not only that, but you&#x27;re able to imagine Achilles as yourself. Achilles as yourself. So if we assume that the universe is So if we assume that the universe is conscious and it is infinite and eternal and there are archetypes that exist within this universe that Homer is able to draw on then that makes sense now. Okay, this is both spaceless and</p>
+<p><span class="timestamp">[30:09]</span> right? Is this clear you guys? Okay? Okay? Because then because if if this is not Because then because if if this is not true, then you have to ask answer the question, how was Homer able to do this? Right? How was able to construct characters like Achilles, Odysius, Amen characters like Achilles, Odysius, Amen that are so real that they feel alive to that are so real that they feel alive to us? That they&#x27;re so real that we can hear them speak to themselves. so real that they themselves can hear themselves</p>
+<p><span class="timestamp">[30:40]</span> speak to others. speak to others. Okay. Ask a question. Make sure you you understand this theory. Okay. This is Um yeah, Um yeah, sorry.</p>
+<p><span class="timestamp">[31:10]</span> sorry. sorry. &amp;gt;&amp;gt; Yeah, just just speak. &amp;gt;&amp;gt; Yeah, just just speak. &amp;gt;&amp;gt; Yeah, just just speak. &amp;gt;&amp;gt; Mhm. Um the quote unquote prophets. So &amp;gt;&amp;gt; Mhm. Um the quote unquote prophets. So in this series is actually not a technically not a prophet because they are not predicting future, right? are not predicting future, right? Because universe is spaceless or or Because universe is spaceless or or timeless. So that they are actually talking about the truth, right? Right? So they are not making predictions because all of them are already written down in the universe. Okay. down in the universe. Okay. Okay. Okay. Okay. So um the word prophet doesn&#x27;t actually</p>
+<p><span class="timestamp">[31:43]</span> So um the word prophet doesn&#x27;t actually mean someone who who predicts the future. Okay. The pro the word prophet actually means someone who speaks the truth. truth. Speaks truth. Okay. Because throughout most of you of human history, when you say someone&#x27;s a prophet and he speaks truth, what you&#x27;re really saying is that he&#x27;s speaking the word of God, right? Because what is truth? Truth is the universe, truth? Truth is the universe, which is God. which is God. which is God. So when you speak truth, you&#x27;re speaking So when you speak truth, you&#x27;re speaking</p>
+<p><span class="timestamp">[32:15]</span> the universe. And what is the universe? The universe is past, present, and future all together. It is beyond space and beyond time. and beyond time. So when you speak the truth, the truth So when you speak the truth, the truth is what has happened, what is happening now, and what will happen in the future. Okay? So the the way that you test his words is see if it happens. Right? And a lot of this truth is this moral truth where moral truth where if you do evil onto others, evil will</p>
+<p><span class="timestamp">[32:47]</span> if you do evil onto others, evil will come onto you. Okay? So like so the story of Achilles, right? where Achilles he&#x27;s stuck in the situation where he wants a man to apologize so that he can go fight the Trojans. can go fight the Trojans. A man refuses to apologize. A man refuses to apologize. A man refuses to apologize. So Achilles, what does he do? Well, he So Achilles, what does he do? Well, he sacrifices Petroles, right? It&#x27;s a death of Petroles that enables Achilles to go fight the Trojans. So he&#x27;s done evil</p>
+<p><span class="timestamp">[33:19]</span> onto Petetro. And because he&#x27;s done that, evil will not come on to Achilles. Okay. Okay. So yeah, you so we think prophets means So yeah, you so we think prophets means speaking the future, but it&#x27;s really speaking the truth. Okay. Because truth is eternal. If you do evil onto others, then evil will have to come on to you. So it&#x27;s both a prediction as well as a moral judgment. moral judgment. Okay? Does that make sense? And so the Okay? Does that make sense? And so the</p>
+<p><span class="timestamp">[33:49]</span> prophet, the poet, the teacher again same same idea where why why is the person a poet? Because how do you know it&#x27;s truth? You know it&#x27;s truth because it&#x27;s beautiful. Because it speaks to you. Okay? Do you understand? So when Homer is going around because this this is an illiterate culture, right? No, there&#x27;s no writing going on. So what he&#x27;s doing is he&#x27;s going to different places, he&#x27;s telling the story of the Iliad. He&#x27;s speaking and as he&#x27;s speaking it&#x27;s like music to the</p>
+<p><span class="timestamp">[34:22]</span> listeners. It&#x27;s beautiful. It&#x27;s poetry listeners. It&#x27;s beautiful. It&#x27;s poetry but it&#x27;s beautiful because it&#x27;s also but it&#x27;s beautiful because it&#x27;s also truthful. Okay. Because they feel as though Achilles is a real person with real emotions real emotions and then Achilles comes and um helps and then Achilles comes and um helps them better understand themselves. Okay. them better understand themselves. Okay. So that&#x27;s poet. The teacher is like okay So that&#x27;s poet. The teacher is like okay how do you understand yourself? You understand yourself by understanding the understand yourself by understanding the Iliad. Okay, by understanding the Iliad. Okay, by understanding the Iliad. Okay, by understanding the psychology, psychology, psychology, the motivations, the emotions of these</p>
+<p><span class="timestamp">[34:53]</span> the motivations, the emotions of these individuals, you can better understand individuals, you can better understand yourself. And once you do that, once yourself. And once you do that, once you&#x27;re able to hear yourself speak, once you&#x27;re able to have more consciousness, then that gives birth to civilization. Okay? because not only are you able to imagine but you&#x27;re able to imagine with other people as well. So if so if you look at Greek culture uh whether it&#x27;s Plato whether it&#x27;s facilities whether Plato whether it&#x27;s facilities whether it&#x27;s iselist okay this is the greatest it&#x27;s iselist okay this is the greatest</p>
+<p><span class="timestamp">[35:25]</span> thinkers greatest intellectuals of Greek thinkers greatest intellectuals of Greek civilization they&#x27;re all derivative of civilization they&#x27;re all derivative of civilization they&#x27;re all derivative of Homer okay they&#x27;re all operating within Homer okay they&#x27;re all operating within Homer&#x27;s universe and working off that universe okay but their applications are different so for example ficidities what he does is that he writes in a very homer way in that um his characters are always giving speeches. The difference always giving speeches. The difference of course is that Fusidities is writing of course is that Fusidities is writing about real people, real events whereas Homer, he&#x27;s just writing about people.</p>
+<p><span class="timestamp">[35:56]</span> He&#x27;s not right. He&#x27;s singing about people of his imagination that um are part of the Greek cultural uh landscape. Okay. Does that make sense? Okay. Does that make sense? Okay. Okay. Okay. Okay. All right. So in literature, Okay. All right. So in literature, prediction and truth are the same thing, right? If you&#x27;re going to speak truth, you can predict the future, you can predict the future, right? [snorts] Because that&#x27;s what right? [snorts] Because that&#x27;s what right? [snorts] Because that&#x27;s what truth is. Truth is eternal. Past, truth is. Truth is eternal. Past,</p>
+<p><span class="timestamp">[36:27]</span> present, and future collide together. present, and future collide together. They converge [clears throat] on truth. They converge [clears throat] on truth. All right. Any more questions? All right. Any more questions? Okay. Okay. Okay. Okay. So, um, we have we have up to book Okay. So, um, we have we have up to book</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

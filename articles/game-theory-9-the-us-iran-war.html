@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Theory #9: The US-Iran War — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Game Theory #9: The US-Iran War">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #f59e0b;
+            --accent-bg: rgba(245, 158, 11, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Game Theory #9</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Game Theory #9</div>
+        <h1 class="article-title">The US-Iran War</h1>
+        <div class="article-meta">
+            <span>📖 39 min read</span>
+            <span>📝 7,899 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Game Theory #9：  The US-Iran War</p>
+<p><span class="timestamp">[0:03]</span> I hope everyone had a nice break and welcome back to the end of the world. So, as you know, World War II has started. United States and Israel have start to attack Iran start to attack Iran and we are now in the fourth day of this and we are now in the fourth day of this war. And we can expect this war to last for many weeks, possibly also for many years. But I promise you that after this war is done, the world will never be the</p>
+<p><span class="timestamp">[0:34]</span> same again. So what what we will do these next few weeks is use game theory and understand and analyze the and understand and analyze the geopolitical situation. geopolitical situation. geopolitical situation. And so I&#x27;m going to teach you the ideas, And so I&#x27;m going to teach you the ideas, the theories, the techniques to the theories, the techniques to understand the world around you and make understand the world around you and make predictions. and we can know if our analysis is correct because all this is happening in real time and so we can test it against reality. All right, so</p>
+<p><span class="timestamp">[1:04]</span> let&#x27;s go over some basic facts about what&#x27;s happened so far. So in the early morning of Saturday uh in Tran the Israelis and Americans launched a Israelis and Americans launched a decapitation strike against the Alatona decapitation strike against the Alatona decapitation strike against the Alatona uh Hami who is the supreme leader of uh Hami who is the supreme leader of Iran. Now there are Iran. Now there are arguments and and disputes about as to arguments and and disputes about as to what happened. The Americans and what happened. The Americans and Israelis said that they had real Israelis said that they had real</p>
+<p><span class="timestamp">[1:36]</span> intelligence about where the leader was and so they sent airplanes to just bomb the crap out of a place. They also had a spy who was able to record the body of the dead to the dead to this was announced. At first, the this was announced. At first, the Iranians denied this and the Iranians insisted he was still alive. But eventually, state media um admitted that he did die in the air strike. But then what they also said is that they had told he&#x27;s 86 years old and he chose to</p>
+<p><span class="timestamp">[2:09]</span> die. He could have gone to Moscow, but instead he chose to stay in Tran and die for his people. But not only that, but he died along many of his relatives. He died along with his daughter, his son-in-law, his grandchildren. So the son-in-law, his grandchildren. So the entire So many of the family died in entire So many of the family died in this assault. this assault. Also, there&#x27;s been reporting that he had Also, there&#x27;s been reporting that he had prostrate cancer. Okay? So he was going to die fairly soon as well. So what you</p>
+<p><span class="timestamp">[2:40]</span> need to understand first about the war is that even though the Americans and the Israelis claim great success in decapitating the leadership of the decapitating the leadership of the Iranians from the Iranian perspective Iranians from the Iranian perspective Iranians from the Iranian perspective this is a martyrdom martyrdom. Okay. And so the religion of the Iranians is called Shia called Shia um Muslim. And this is different from um Muslim. And this is different from Sunni Sunni Muslim. So uh Sunnis are the majority. Muslim. So uh Sunnis are the majority.</p>
+<p><span class="timestamp">[3:11]</span> They&#x27;re about 9% of all Muslims in the world. The Shia have always been the minority. And as such, they&#x27;ve always been persecuted. So in the Shia faith, the core value, the force that binds everyone together and gives them purpose and meaning in life, that galvanizes them into action is the idea of martyrdom, which forces jihad. to martyrdom, which forces jihad. to sacrifice yourself for your religion. sacrifice yourself for your religion. sacrifice yourself for your religion. Sacrifice yourself for the common good. Sacrifice yourself for the common good.</p>
+<p><span class="timestamp">[3:42]</span> So think of the death of Kam as a sacrifice, a self-sacrifice in order to motivate their radiance in this war. Okay? So that&#x27;s the first thing you need to understand that for the Iranians, this is not a biblical war. This is not an economic war. This is not a war of resistance. This is a jihad. Okay? Right? It&#x27;s a war against the great Satan to avenge their leader. They will fight to the death. All right? That&#x27;s number one. Number two is this.</p>
+<p><span class="timestamp">[4:14]</span> Also, that morning when um the was killed, they really struck a school in the south of Tran killing about 150 school children. These are girls in primary school. And again, there&#x27;s not debate and argument as to what happened. This really said that first of all, the school was next to a military base. We are targeting military base. And second of all, it wasn&#x27;t us which struck the school. It was a air defense missile</p>
+<p><span class="timestamp">[4:45]</span> that went off course. Okay. And the Iranians insisted no. The the Israelis purposefully attacked the school to kill the school children. And then you&#x27;re like, why would the Israelis do that? But then these few years, well, we&#x27;ve seen what they&#x27;ve done in Gaza, in Palestine to the Palestinians, and it&#x27;s pretty consistent what the Israelis have been doing. All right? So this action against the Israelis, it&#x27;s meant to show to themselves in the world that we are</p>
+<p><span class="timestamp">[5:16]</span> now allin. Okay? We&#x27;ve made the sacrifice. We are now committed to this war to win this war at all costs and this action has also provoked the Iranian people to resist with their full might. Okay. So I want you to keep this in mind and again we don&#x27;t have complete evidence that it&#x27;s the Israelis who did this but given past actions from the Israelis this is fairly consistent with what they&#x27;ve done. Okay. So we can</p>
+<p><span class="timestamp">[5:47]</span> assume that this is something that do did why they did this what the purpose is something we we will discuss as we move on okay it&#x27;s very complicated next I want to show you this this is Dubai and Dubai is considered one of the wealthiest safest cities in the world there are thousands tens of thousands of westerners who move to Dubai because it&#x27;s clean you don&#x27;t pay any taxes you make a lot of money and you there are great restaurants and this is really the</p>
+<p><span class="timestamp">[6:20]</span> economic model of Dubai. It&#x27;s one of the Gulf the GCC countries, okay? The Gulf uh coastal countries. And for the longest time, Dubai had a really good deal because they were under the protection of the American military. So they didn&#x27;t have to pay for defense. They and then they were in the Middle East, which is the oil producing um center of the world. And so they focus on aviation, they focus on logistics,</p>
+<p><span class="timestamp">[6:51]</span> they focus on finance, on tourism. They be extremely wealthy, right? I&#x27;m not sure if you&#x27;ve taken Emirates, one of the best airlines in the world. So their airport, Dubai airport, is the busiest in the world. And Dubai for the longest time was flourishing under American time was flourishing under American protection. And Dubai said to the world, protection. And Dubai said to the world, listen, we&#x27;re like Switzerland. We&#x27;re listen, we&#x27;re like Switzerland. We&#x27;re neutral. We don&#x27;t want any involvement neutral. We don&#x27;t want any involvement in any wars. we&#x27;re here just to take care of our citizens, to make sure every has a good time to make money. And then</p>
+<p><span class="timestamp">[7:22]</span> right after the war started, the Iranians attacked Iranians attacked the uh GCC. Okay, Dubai, Abu Dhabi, the uh GCC. Okay, Dubai, Abu Dhabi, uh Ban, Qatar, uh Ban, Qatar, Kuwait, they attacked these places and Kuwait, they attacked these places and these places were like, &quot;What&#x27;s going on? We&#x27;re neutral, man. We&#x27;re not involved in this war.&quot; and the airport was shut down in Dubai. At at one point, rich the rich people in Dubai were</p>
+<p><span class="timestamp">[7:54]</span> willing to pay about 250,000 US dollars just get on a plane and get out of there. Okay. there. Okay. So, um the reality is this. For the So, um the reality is this. For the longest time, Dubai had a reputation for being safe and that&#x27;s why people move their money there. Guess what, guys? After what the Iranians did, it&#x27;s dead. Dubai as a city in the long term it is dead because you&#x27;re a wealthy westerner. You&#x27;re not going to move to a place where it could be attacked any time by the Iranians. You might move to Singapore. You might move to Hong Kong,</p>
+<p><span class="timestamp">[8:25]</span> Japan, South America, but you&#x27;re not moving to Dubai. Okay. So, the big question for us is why do I do this? It would say it&#x27;s really Americans who attack you. Why go after the GCC? All right. and not only that, but they&#x27;re escalating the attacks against the GCC. So, it&#x27;s something that we will look at very closely today. Well, the short answer is because these places, even though they they pretend to be neutral, they house the American military. They</p>
+<p><span class="timestamp">[8:56]</span> allow the Israelis and Americans to use their airspace to attack Iran from. All right. So, this is Bahrain. Now, Bane is interesting, okay? Because I I want you guys to remember this, but Bane will probably be one of the major centers of this conflict because first of all, this is the um American fifth fleet. All right, this is their naval base in the Middle East. And as you can see, the Iranians are attacking it with missiles and it&#x27;s being blown up. Bin is</p>
+<p><span class="timestamp">[9:32]</span> interesting because it has about 50% or even more. Okay. Shia, which is the religion of the Iranians, but the people in charge are the Sunnis. in charge are the Sunnis. And so what is the what makes this And so what is the what makes this strike really important for from our perspective is first of all, not only are the Iranians attacking US military assets, not only are they destroying the economies of the GCC, but they&#x27;re also also trying to ignite a religious war,</p>
+<p><span class="timestamp">[10:03]</span> right? If you&#x27;re Shia, you&#x27;re loyal to the Aatollah. And if he&#x27;s dead, then you must as a religious obligation now commit jihad against your enemies. And it&#x27;s no different in other religions where listen, if you want to kill the Pope, the Catholics would be really angry at you and they would want to kill you, right? So now you have the Shia who will probably eventually arise creating will probably eventually arise creating a revolution a revolution a revolution in Ban. Okay? Okay. So I think Boran in Ban. Okay? Okay. So I think Boran will be the first to fall. Dubai will</p>
+<p><span class="timestamp">[10:34]</span> probably go bankrupt. Okay. But in the long term we can expect the entire GCC area including Saudi Arabia area including Saudi Arabia to eventually collapse. Okay. And this to eventually collapse. Okay. And this something we will use game theory to understand. All right let&#x27;s continue. So we will know how this war develops just based on geography. Okay. So this is a map and this map even even if you don&#x27;t really know the war, even if you don&#x27;t know the participants, even if you don&#x27;t know the weaponry, this map will tell</p>
+<p><span class="timestamp">[11:07]</span> you exactly how this war will progress. All right, so some certain things to keep in mind about this map. This is what we call this area. Okay, really small about it&#x27;s 33 kilometers wide. Okay, people can swim across it. It&#x27;s really really um uh narrow. Okay, this small area guys, it&#x27;s called the str moose. moose. All right, and it&#x27;s important because and it&#x27;s important because it&#x27;s really the center of the world. it&#x27;s really the center of the world.</p>
+<p><span class="timestamp">[11:40]</span> This one area is the nexus, the pivot of the world. Let me explain why. First of all, from the GCC, you have 20% of all the world&#x27;s oil flowing through this narrow straight. Where does it go, guys? It goes to Asia, India, Pakistan, South Korea, China, Japan. South Korea, China, Japan. India depends on 60% of its oil from India depends on 60% of its oil from this area. China depends on 40%. Japan</p>
+<p><span class="timestamp">[12:12]</span> 75%. 75%. Prime Minister Takiichi of Japan has Prime Minister Takiichi of Japan has said that listen if the circle closes we run out of oil in about 8 n months. The entire Japanese economy would collapse entire Japanese economy would collapse in 8 9 months. If the circle moves were in 8 9 months. If the circle moves were to close and guess what the Iranians have closed the circle moves okay so we can expect that the entire global economy will suffer greatly over the next few months. All right. So that&#x27;s</p>
+<p><span class="timestamp">[12:43]</span> point number one. Point number two is okay so the GC sends oil across the shoo and what do they get back in return? Food guys. Food guys. All right so All right so All right so people don&#x27;t appreciate the GCC but it people don&#x27;t appreciate the GCC but it is really the lynch pin of the American empire because what is the American empire? The American empire is the petro dollar. All right. The idea of the petro dollar is this. The US dollar is worth nothing. It&#x27;s only valued when people</p>
+<p><span class="timestamp">[13:14]</span> want it. But the GC says that if you want oil from us, you have to pay us in US dollars. Okay? Then that is the basis of the value of the US dollar. So if the GCC collapses, the American economy and American empire both economy and American empire both collapse at the same time. collapse at the same time. collapse at the same time. The problem though is the GCC is an The problem though is the GCC is an artificial construct of empire. It does not exist naturally. Why? Because that&#x27;s</p>
+<p><span class="timestamp">[13:45]</span> no food. That&#x27;s no oil, no water. Okay guys, no food, no water. So these cities are able to grow in the millions because of all these petrol dollars flowing in. If you close off the moose, there&#x27;s no food coming in, right? They&#x27;re all going How much food does the GCD get from 80% of all the food it consumes comes from overseas that it imports. It does</p>
+<p><span class="timestamp">[14:18]</span> not grow by itself. It imports. All right. All right. So the sugar moose is really key and So the sugar moose is really key and again the Iranians will close it in order to strangle the global economy and therefore bankrupt the American empire. therefore bankrupt the American empire. All right. Second thing you will notice All right. Second thing you will notice is these mountains. is these mountains. These mountains is what we call Iran. These mountains is what we call Iran. All right, this is Iran. All right, this is Iran. This is GCC. This is GCC. This is GCC. Okay, this is not a fair matchup, right? Okay, this is not a fair matchup, right? Because these are mountains. And what</p>
+<p><span class="timestamp">[14:49]</span> can you do in mountains? We can hide rocket bases. You can hide drone bases. You can hide missiles. And that&#x27;s the entire Iranian offensive strategy. All entire Iranian offensive strategy. All right. From here they can hide missiles right. From here they can hide missiles and drones from which to attack the GCC. And what are they attacking? They&#x27;re attacking attacking um um um three things, right? They&#x27;re attacking three things, right? They&#x27;re attacking three things, right? They&#x27;re attacking American military bases. American military bases. American military bases. American American</p>
+<p><span class="timestamp">[15:22]</span> That&#x27;s number one. That&#x27;s number one. Okay. Is it possible for the Durkens to Okay. Is it possible for the Durkens to defend against these hacks? The answer is no. THEY&#x27;RE NOT. IT&#x27;S NOT. IT&#x27;S THE SILLIEST THING IN the world. You have all these bases in the Middle East, but you cannot defend them against the Iranians. That&#x27;s kind of strange. Okay, that&#x27;s number one. Number two is How hard is it to blow up an oil field with a drone? Not hard at all. Can you</p>
+<p><span class="timestamp">[15:52]</span> defend these oil fields? No, you cannot. All right. Number three, and that&#x27;s most important, is water. important, is water. Okay, you guys don&#x27;t know this, but the Okay, you guys don&#x27;t know this, but the GCC GCC has little access to fresh water. So the has little access to fresh water. So the only way that it can produce water is what is what we call dalination plants. Okay, these factories that take salt water and then through electrical water and then through electrical chemical process turn it into fresh chemical process turn it into fresh</p>
+<p><span class="timestamp">[16:23]</span> water for the population to use. 60% of the water supply and as you see comes from the alination plants. Okay, 60%. Is it hard to blow up the dalination plant using a drone? The answer is it&#x27;s very easy. You understand? Okay, so you have this absurd situation where Iran is a mountain fortress where it can hide its offensive capacity its offensive capacity and the GCC it&#x27;s just this desert, this and the GCC it&#x27;s just this desert, this</p>
+<p><span class="timestamp">[16:54]</span> flat desert and it is exposed to attack and there&#x27;s nothing it can do about it. Okay. Okay. So, at any point in this war, the So, at any point in this war, the Iranians can choose to just destroy the entire GCC and there&#x27;s nothing that anyone can do about it. anyone can do about it. Okay? But Iran also has a weakness. Okay? But Iran also has a weakness. Okay? And this is fundamental. So, Iran also has a water problem. Okay? So, for the longest time, they suffer a drought</p>
+<p><span class="timestamp">[17:24]</span> issue. issue. Okay? this climate change. Okay? this climate change. Okay? this climate change. And so what the plan of the Israelis And so what the plan of the Israelis Americans is is destroy the water supply of the Iranians because the fortress it it is a mountain fortress but it can also be a mountain prison as well where people are trapped inside with no access to water. Okay. So what we&#x27;re going to see right now, we&#x27;re we&#x27;re already seeing attacks on civilian seeing attacks on civilian infrastructure, hospitals. In the</p>
+<p><span class="timestamp">[17:55]</span> infrastructure, hospitals. In the infrastructure, hospitals. In the future, you will see attacks on water future, you will see attacks on water supply, on dams, on reservoirs, supply, on dams, on reservoirs, on power plants. The point, the idea is on power plants. The point, the idea is to make Iran so inhabitable that the people will will have to rebel against the people or there&#x27;ll be a refugee crisis in Iran. Okay. So as you can see from this map, this war it is the end of</p>
+<p><span class="timestamp">[18:26]</span> the world. Okay, both sides have the potential to destroy each other. It&#x27;s really a question of how far do they want to go, right? We we can also say this is almost a game of chicken. Okay, Okay, we can blow we can blow each other up. we can blow we can blow each other up. How far do you want to go? And the problem is this. The problem is that the Iranians are Shia that the Iranians are Shia which believes in martyrdom and you&#x27;ve</p>
+<p><span class="timestamp">[18:57]</span> which believes in martyrdom and you&#x27;ve killed the religious leader that K. So they&#x27;re willing to go very very far. The GC the GC countries are Muslim but they&#x27;re materialistic. They love money. they&#x27;re materialistic. They love money. And also most of the population are And also most of the population are expatriots, foreigners. 90% of Dubai are foreigners. Guess guess what&#x27;s going to happen if they suffer? They&#x27;re going to run away. Okay, so this is not a fair matchup. matchup. The big question that people have is</p>
+<p><span class="timestamp">[19:29]</span> The big question that people have is first of all, are the Americans going to use ground are the Americans going to use ground troops? troops? Because the only way that you can defeat Because the only way that you can defeat Iran is by using ground troops. Okay, that&#x27;s a big question we will look at over the next few weeks. Will will America send his army half a million 2 million soldiers to topple the million soldiers to topple the government? Okay, that&#x27;s question number government? Okay, that&#x27;s question number government? Okay, that&#x27;s question number one. Question number two, nuclear one. Question number two, nuclear one. Question number two, nuclear weapons.</p>
+<p><span class="timestamp">[20:00]</span> If you&#x27;re losing a war, If you&#x27;re losing a war, would you choose to use nuclear weapons? would you choose to use nuclear weapons? Okay, that&#x27;s another big question that we have. Okay, another big question that we have is who gets involved? Because this situation is so dire that Europe, okay, specifically Germany, okay, specifically Germany, France and Britain France and Britain are talking about entering this war. And are talking about entering this war. And guess what? If that happens, it is</p>
+<p><span class="timestamp">[20:30]</span> possible that Russia and China possible that Russia and China will also enter this war on the side of will also enter this war on the side of the Iranians. This is World War II, okay? okay? because of the importance of the because of the importance of the political moves, because of the political moves, because of the importance of the Middle East, everyone importance of the Middle East, everyone has to get involved at some point. And we&#x27;re going to use game theory to really try to understand what what&#x27;s happening on the ground and where this could lead us. Okay. could lead us. Okay. All right. You guys understand? All All right. You guys understand? All</p>
+<p><span class="timestamp">[21:02]</span> right. All right. Let&#x27;s continue. Okay. So again, there are American bases all over the Middle East over the Middle East and originally these bases were and originally these bases were and originally these bases were established to protect them from established to protect them from established to protect them from basically their own people. Okay, these basically their own people. Okay, these are monarchies that were imposed on these nations by the Anglo-American these nations by the Anglo-American Empire, the British first and then the Empire, the British first and then the Americans came to support these Americans came to support these monarchies. monarchies. monarchies. And so they provide defense.</p>
+<p><span class="timestamp">[21:34]</span> And so they provide defense. And so they provide defense. But then you&#x27;re like, wait a minute But then you&#x27;re like, wait a minute here. I mean, didn&#x27;t we just say that these American bases can actually defend these people that they&#x27;re exposed? And the and the reason and the answer is yes, that&#x27;s true. But remember that the American military was built during the Cold War. Okay? And the Cold War was a war between the Soviet Union and um America. And so the cold war was defined with something called MAD, mutually with something called MAD, mutually assured destruction, because both had</p>
+<p><span class="timestamp">[22:04]</span> assured destruction, because both had assured destruction, because both had nuclear weapons. Okay? So they didn&#x27;t nuclear weapons. Okay? So they didn&#x27;t really go to war against each other. And so in other words, these bases aren&#x27;t really meant to defend really meant to defend uh these nations from other enemies. uh these nations from other enemies. They&#x27;re really meant to impose American authority in the Middle East. Okay? And it&#x27;s the idea of this. It&#x27;s the idea that empire that empire it is really a it is really a it is really a image. It is a hallucination. It&#x27;s an image. It is a hallucination. It&#x27;s an</p>
+<p><span class="timestamp">[22:37]</span> idea. Empire is the it&#x27;s an aura of invisibility and inability. Okay? If you fear it, then you obey it. But it&#x27;s not really designed to fight a war. Okay? And and so that&#x27;s why we have this absurd situation. this absurd situation. And because there are so many bases in And because there are so many bases in the GCC, that gives the Iranians the perfect pretext to attack them in order destroy the GCC economy, which will destroy the American empire. Right? All right. So this is how the war shipping out. Okay. So So the red is the Israelis</p>
+<p><span class="timestamp">[23:10]</span> and the Americans. The yellow are the Iranians. And as you can see, the Iranians are attacking everywhere, Iranians are attacking everywhere, primarily primarily primarily Israel, okay? But also, as you can see, Israel, okay? But also, as you can see, a lot of focus on Bahrain and Qatar. And again, the intention is to destabilize the economy and the government, okay? It&#x27;s it&#x27;s to try to get as much instability as possible, instability as possible, right?</p>
+<p><span class="timestamp">[23:42]</span> Okay. And as you can see, the Americans and the Israelis are focused on Tran. And so the Americans is use some And the very idea of shock and all is you decapitate you decapitate the enemy. You cut off the head, the the enemy. You cut off the head, the body will fall down. Okay. The problem though is again the Iranians see this as</p>
+<p><span class="timestamp">[24:15]</span> a religious war and so the Iranians have of have announced total war. of have announced total war. Okay. And so what this means is that Okay. And so what this means is that right now command and control in in Iraq is decentralized. is decentralized. There&#x27;s no one person telling everyone There&#x27;s no one person telling everyone what to do. Every region has its own orders, has its own strategy. And so if you knock out Tran, everyone else keeps on going. So you knock off the take off the head, it doesn&#x27;t change anything.</p>
+<p><span class="timestamp">[24:47]</span> Okay? But unfortunately Okay? But unfortunately the um Israelis and Americans use this the um Israelis and Americans use this as a military doctrine. Military as a military doctrine. Military doctrine just means how to how you doctrine just means how to how you design your military for what purpose. And so the even though the Americans seem like an invincible army, they are not equipped to fight a 21st century war against drones, against against drones, against religious fanatics. Okay? They&#x27;re just religious fanatics. Okay? They&#x27;re just religious fanatics. Okay? They&#x27;re just not not not all right. But unfortunately, because of all right. But unfortunately, because of</p>
+<p><span class="timestamp">[25:18]</span> military doctrine, they&#x27;re going to keep on attacking Tran. Now the great irony of all this is that the Iranians who will be most supportive of you of regime change are actually in the cities because they are educated they&#x27;re because they are educated they&#x27;re progressive the people who are most progressive the people who are most fundamentally against you will fight you to the death are religious fanatics the Shia militants living in the rural areas okay so this is a really silly thing where you are actually destroying those</p>
+<p><span class="timestamp">[25:49]</span> who who will most likely support you And you&#x27;re leaving alone those who are most likely to commit jihad against you. All right. right. Any questions so far guys? Are you Any questions so far guys? Are you clear? All right. So another idea that I want you guys to understand is idea of asymmetry. asymmetry. Asymmetry. All right. So what is asymmetry? Asymmetry means that the two sides are choosing to fight different wars using</p>
+<p><span class="timestamp">[26:19]</span> different techniques because different techniques because one is much stronger than the other. one is much stronger than the other. Okay, America has a great empire. It has unlimited resources. It has a USD. It has it controls the world, right? Iran uh is a country that has been under economic sanctions for the past 45 years. It&#x27;s poor. It&#x27;s technology is very limited. Okay. But as we learn in this class, actually those nations that are poor actually have more energy. They&#x27;re more open and they&#x27;re more cohesive. Right? So let me give an</p>
+<p><span class="timestamp">[26:52]</span> example. This is what we call the Shahad drones. Shahad drones. Each of these drones cost $50,000 at most. Okay? At most. It can go as cheap as $35,000 US. But one of them is one of them is $50,000. As you can see, you can fit a lot of these drones to a truck that can go anywhere in Iran and they can hide anywhere. All right, so the thing to understand is first of all, these drones are cheap. They&#x27;re easy and they&#x27;re easy</p>
+<p><span class="timestamp">[27:24]</span> to make. They make about 500 a day. Okay? And estimates are about there&#x27;s 80,000 80,000 um right now that the Iranians have. So um right now that the Iranians have. So they can go on for a long long time. Okay? And one of these drones again can knock out a dissalination plant. It can knock out a oil field. It can knock out a hotel. It can do a lot of damage. Okay. And it&#x27;s easily Okay. And it&#x27;s easily transportable. You can hide it anywhere. transportable. You can hide it anywhere. You can you can use it from anywhere. Okay? And that&#x27;s what the Iranians are</p>
+<p><span class="timestamp">[27:55]</span> using as an offensive weapon. And how do Americans defend against this? They use something called a fad. Right. something called a fad. Right. Right guys, this is what they use. FAD. Right guys, this is what they use. FAD. FAD stands for thermal high altitude air defense. And they also have like Patriot systems. There&#x27;s a lot. Okay. The thing that you will that you need to know know about the system is it&#x27;s really expensive. This missile guys cost $1</p>
+<p><span class="timestamp">[28:30]</span> $1 million. $1 million. So, there&#x27;s this $50,000 drone coming So, there&#x27;s this $50,000 drone coming your way and you throw a million dollar missile at it. Okay? And often these missiles miss, so you have to throw two or three missiles at it. Okay? So, you you&#x27;re spending two to $3 million on each $50,000 that the spend. each $50,000 that the spend. That&#x27;s kind of silly. Second thing That&#x27;s kind of silly. Second thing you&#x27;ll notice is that this thing is really big and really slow and therefore you can&#x27;t really move it around.</p>
+<p><span class="timestamp">[29:01]</span> Therefore, it&#x27;s pretty easy for the Iranians to spot where this is and attack it. And when these planes blow up, that&#x27;s a lot of money, guys. Okay? Then you&#x27;re like, &quot;What? But this makes no sense. You know, the Iranians have drones. They&#x27;ve had drones for like 10 years. You&#x27;ve also seen drones used in the Russia Ukraine war to devastating effect. Why don&#x27;t the Americans know this? Why did they prepare? Okay. And</p>
+<p><span class="timestamp">[29:31]</span> again, it has to do with military military doctrine because military military doctrine because military doctrine determines how you fight a war. doctrine determines how you fight a war. It determines on your bureaucracy and it and it determines how you spend your resources. Okay? And unfortunately, the resources. Okay? And unfortunately, the Americans are used to fighting something Americans are used to fighting something called the cold war, called the cold war, right? And the cold war you can actually right? And the cold war you can actually fight the war. You can actually use uh kill each other because then you people use nuclear weapons. The cold war was</p>
+<p><span class="timestamp">[30:05]</span> Flexing. Okay, you see how big and powerful I am? powerful I am? Okay, that&#x27;s all it was. Okay, that&#x27;s all it was. Okay, that&#x27;s all it was. These weapon systems are designed to These weapon systems are designed to scare the crap out of you. They are designed to impress you and as a result, they cost a lot of money. They don&#x27;t do anything. All right, so that&#x27;s the entire American military. It costs a lot and it doesn&#x27;t really do anything and it&#x27;s not resilient. It&#x27;s not innovative. It&#x27;s not open. All right. Also, the</p>
+<p><span class="timestamp">[30:35]</span> other thing I have to say this, okay, is if you look at the American military, it&#x27;s corrupt. it&#x27;s corrupt. So, this is really about corruption. So, this is really about corruption. So, the Americans don&#x27;t really care about winning a war. What they care about is spending as much money as possible because then they get a cut. It doesn&#x27;t make sense, right? And that&#x27;s why the Americans are in situation as they are. All right, let&#x27;s continue. All right, so um something that people don&#x27;t really talk about, but you need to</p>
+<p><span class="timestamp">[31:08]</span> understand it&#x27;s the water issue in the GCC in the Middle East in Iraq. All right. So, um right. So, um this is a map of the world and if you this is a map of the world and if you are like blue, Brazil, Canada, you have nothing to worry about because you have a lot of water, a lot of fresh water, very little population. very little population. All right? So, um 100% All right? So, um 100% All right? So, um 100% just means 100% water stress just means just means 100% water stress just means</p>
+<p><span class="timestamp">[31:38]</span> that you drink as much water as the environment produces. environment produces. Okay. So, you want to be below 100%. To Okay. So, you want to be below 100%. To be sustainable. Ideally, you you you want to be at 10%. Okay. If it goes above 100%, it means that you are drinking more water, using more water than the environment actually water than the environment actually produces. Okay? So, you&#x27;re putting produces. Okay? So, you&#x27;re putting produces. Okay? So, you&#x27;re putting stress on the environment. stress on the environment. stress on the environment. So, 200% So, 200% So, 200% is really bad, right? Because you&#x27;re is really bad, right? Because you&#x27;re you&#x27;re using twice as much water as</p>
+<p><span class="timestamp">[32:09]</span> environment produces. environment produces. Guess what, guys? Look at the Middle Guess what, guys? Look at the Middle East. Okay, Egypt, East. Okay, Egypt, 6,420%. Saudi Arabia, Saudi Arabia, 883%. All right. Ban almost 4,000%. All right. Ban almost 4,000%. Dubai 17,000%.</p>
+<p><span class="timestamp">[32:42]</span> these. So water is a huge issue. Again, it doesn&#x27;t matter if Iran it doesn&#x27;t matter if Iran kills American soldiers, destroys kills American soldiers, destroys kills American soldiers, destroys American military. It doesn&#x27;t have to do American military. It doesn&#x27;t have to do that. All it has to do is destroy the dissalination plants and then the GCC is destroyed. Okay. destroyed. Okay. But it&#x27;s also true that Iran But it&#x27;s also true that Iran has water issues. 72% is pretty bad. Okay. So even though the Iranians could destroy the GCC much faster destroy the GCC much faster than the Americans could destroy Iran,</p>
+<p><span class="timestamp">[33:14]</span> than the Americans could destroy Iran, Iran is still in trouble. Okay. So so so let let me give you an example of this. This is like so sorry. So this is another map that shows you uh the issue of water scarcity. Okay. And it&#x27;s just basically the Middle East. Okay. Their biggest issue in the future is water. Okay. And that&#x27;s where the geopolitical tensions will rise in the future over water. India is also affected as well. Okay. All right. All right. So, let&#x27;s look at the map,</p>
+<p><span class="timestamp">[33:46]</span> All right. So, let&#x27;s look at the map, guys. This is called Lake Heria in northern Iran. It&#x27;s the sixth largest saltwater lake in the world or it used to be. Okay. This is what it was in 1984. Th This is a shallow. This is a deep. Okay? You guys see that? It&#x27;s really big, right? 20 years later, guys. This is what it looks like. There&#x27;s no more water here. You can walk from here over to there. Okay, there&#x27;s some water over here, but it&#x27;s shallow</p>
+<p><span class="timestamp">[34:18]</span> now. That&#x27;s how serious the water issue is in Iran. And that&#x27;s the weak point that the Americans and the Israelis will attack. All right. They want to make sure that Iran has no access to fresh water which will cause devastation in their nation. Okay, that&#x27;s strategy their nation. Okay, that&#x27;s strategy number one. Strategy number two is this. number one. Strategy number two is this. This is a map of the different ethnic minorities the different ethnic minorities in Iran. As you can see, it&#x27;s a very in Iran. As you can see, it&#x27;s a very</p>
+<p><span class="timestamp">[34:51]</span> diverse place. In the center are the Persians, but you also have Persians, but you also have 10 other groups as well. And in the 10 other groups as well. And in the borderlands, it&#x27;s basically a different borderlands, it&#x27;s basically a different country, right? Like these are basically country, right? Like these are basically different countries. different countries. And so these places have more common And so these places have more common common areas with their neighbors than they do with Iran. Okay. So the second weakness of Iran, the first is the water. The second is the ethnic makeup of the country. So the strategy of the Americans and the Israelis moving Americans and the Israelis moving forward is destroy Iran as a coherent</p>
+<p><span class="timestamp">[35:25]</span> forward is destroy Iran as a coherent nation state divided into ethnic nation state divided into ethnic archives and have them fight over water. archives and have them fight over water. That is the grand plan of the Israelis and the Americans. Okay. and the Americans. Okay. All right. This is this is this is the All right. This is this is this is the vision where Persia is limited and then all these other places are sponsored by the Americans and the Israelis. They&#x27;re given money. They&#x27;re given weapons. given money. They&#x27;re given weapons. They&#x27;re given political support. And They&#x27;re given political support. And They&#x27;re given political support. And then this war will wage over water then this war will wage over water</p>
+<p><span class="timestamp">[35:57]</span> forever. Okay? And this is how you destroy Iran and make sure Iran is no longer a viable threat to you. That is the plan of the Americans. Okay? As as you can see, it&#x27;s pretty evil plan. And that&#x27;s why they have not announced it, right? Because if you announce it, you&#x27;re like, why are you doing this? What the Persians, what did the ever do to you to warrant you coming destroying their civilization? And the answer is nothing. Right? So the Americans will never admit they&#x27;re doing this. But if</p>
+<p><span class="timestamp">[36:28]</span> you look at the map of war supply of ethnic ethnic um tensions, this is the optimal game um tensions, this is the optimal game game theory strategy for them to use against Iran. Okay, does that make sense? This is a long-term plan that they have in place and it&#x27;s all moving towards this plan. But now the question then is how can the Iranians respond to this? And the answer is this. This is a</p>
+<p><span class="timestamp">[36:59]</span> map of the Muslim world. Okay. So the um light green are the Sunni people. Okay. That&#x27;s 90% of the entire Muslim population about two two billion people. Okay. Then you have in dark green the Shia. Shia. So as you can see the main place of the So as you can see the main place of the Shia is Iran. Okay, Iran is one of the few Shia nations in the world. But you can also see from this map that Shia are</p>
+<p><span class="timestamp">[37:30]</span> spread throughout the world. Okay. And so the first thing that the Iranians want to do is create a jihad to unite all the Shia against American Empire. All right. So what they want to do is and it&#x27;s already happening guys. Um the Shia in Pakistan stormed the American embassy in Pakistan and the Americans killed a lot of people. Okay. the Shia</p>
+<p><span class="timestamp">[38:02]</span> have have attacked the American embassy in uh Iraq. in uh Iraq. The American embassy The American embassy uh are being attacked in a lot of uh are being attacked in a lot of places. Right? So the first strategy is to create a international global jihad of the Shia against the American empire and it&#x27;s already happening. it will continue for a long long term long time because the Americans have killed the um</p>
+<p><span class="timestamp">[38:32]</span> Kame okay and that requires vengeance. The other thing though is that it can unify it can unify the Muslim world. Okay, if you look at the Muslim world. Okay, if you look at this map, most of the Muslim world is actually run by dictatorships that are not popular at all. Okay. And they&#x27;re allowed to exist because they&#x27;re like an empire, right? You go to Saudi Arabia, Egypt, uh Algeria, Egypt, uh Algeria, uh uh uh these places, they&#x27;re all run by clients</p>
+<p><span class="timestamp">[39:03]</span> these places, they&#x27;re all run by clients of American Empire, right? So if you rally the people who hate their governments and you overthrow them, then that makes Iran that makes Iran the leader of the the Islamic world. Not the leader of the the Islamic world. Not just the Shia world, but the Islamic world. This creates something called tax That is the end goal, guys. Okay? If you</p>
+<p><span class="timestamp">[39:34]</span> do that, then you don&#x27;t have to worry about the Americans and the Israelis anymore. Right? So the Israeli game plan, the American game plan is to fracture Iran into ethnic enclaves and they&#x27;ll fight over water for the rest of their lives and they all die. The Iranian game plan is to create a religious war, a crusade that unifies the Shia people that overthrows the American Empire and establish something American Empire and establish something called the Pax Islamaka. called the Pax Islamaka. called the Pax Islamaka. All right. All right. All right. All right.</p>
+<p><span class="timestamp">[40:04]</span> All right. All right. So again, So again, So again, the key is the GCC. All right. So the game plan is this. You have to destroy the GCC. Why? Because the GCC is the lynch pin of the American Empire. Empire. So what the GC does is it sells oil. So what the GC does is it sells oil. sells oil and then for US dollars.</p>
+<p><span class="timestamp">[40:34]</span> Where does it put US dollars? It puts US dollars into the American stock market. All right. So this this is investments of the UAE, okay? Saudi Arabia and Kuwait into Kuwait into the US financial markets. As you can see the US financial markets. As you can see up to today, it&#x27;s been exploding. All right? Because the US financial markets is one of the safest places where you can put your money. The intention is this. The intention is,</p>
+<p><span class="timestamp">[41:06]</span> hey, if I cut off oil and these countries no longer have access to US dollars, they&#x27;re forced to spend whatever resources they have on protecting themselves. Okay? And then protecting themselves. Okay? And then guess what happens? The stock market guess what happens? The stock market collapses. The summer collapses. The collapses. The summer collapses. The stock market is the real growth engine stock market is the real growth engine of the US economy. the entire US economy collapses with it. All right, there are about maybe seven companies in uh America that accounts for about a</p>
+<p><span class="timestamp">[41:37]</span> quarter of stock market growth. Okay, these seven countries, these seven uh companies of course are are AI companies. Nvidia, companies. Nvidia, um um um um Microsoft, Google, Apple. Okay, these um Microsoft, Google, Apple. Okay, these are the companies when and then these companies are heavily invested in by the GCC nations. So if these nations are long long no longer able to invest in the stock market, these companies will collapse in value and with that that</p>
+<p><span class="timestamp">[42:07]</span> would lead to economic depression in America. America. It doesn&#x27;t make sense. All right, so It doesn&#x27;t make sense. All right, so that is the situation for today. Today was just an overview, guys. Okay, I know we covered a lot. I know there&#x27;s a lot to take in, but over the next few weeks, we will explore each issue we will explore each issue um in depth and really understand what&#x27;s um in depth and really understand what&#x27;s really going on. Okay? All right. So, Any questions about what we&#x27;ve just</p>
+<p><span class="timestamp">[42:46]</span> Um if other countries such as Italy, France, China or Russia they have also joined this war like what&#x27;s the cause of they join the war because of oil or those resources. oil or those resources. Okay, Okay, Okay, that&#x27;s a great question. Okay, so I that&#x27;s a great question. Okay, so I don&#x27;t want to spend too much time on this question because we will explore this question as we move along. Okay. So the question is what brings the world</p>
+<p><span class="timestamp">[43:17]</span> into this conflict and the easy answer is is um just oil access energy access okay um just oil access energy access okay they need to protect their energy supplies because remember uh it&#x27;s a very complicated situation because Europe is complicated situation because Europe is now fighting Russia. So so Europe is not now fighting Russia. So so Europe is not buying any oil resources energy buying any oil resources energy resources from Russia. Therefore it resources from Russia. Therefore it resources from Russia. Therefore it depends a lot on the on the GCC. So the depends a lot on the on the GCC. So the GC is not providing them energy then the Europe will go bankrupt. Okay. So Europe needs to enter this war on behalf of Americans. Americans. Okay. And then you Russia which cannot Okay. And then you Russia which cannot</p>
+<p><span class="timestamp">[43:50]</span> allow Iran to fall because if Iran falls then they&#x27;ll come after Russia next. Right? China is actually neutral. Right? China is actually neutral. China&#x27;s okay with either scenario. But China&#x27;s okay with either scenario. But that&#x27;s just the way that the Chinese system is set up. Okay. So we&#x27;re going to explore this question as we move along. But it&#x27;s a very complicated issue. All right. Okay. And each nation will have its own different strategic interests to consider. interests to consider. Right. And what we need to know what Right. And what we need to know what what we need to figure out is that this</p>
+<p><span class="timestamp">[44:21]</span> war in the Middle East is actually connected to to the Ukraine war. And as we move along, I&#x27;ll show you how these two two things connect together. Okay. Any other questions, guys? Any other questions, guys? Okay, great. So um we&#x27;ll continue this Okay, great. So um we&#x27;ll continue this</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

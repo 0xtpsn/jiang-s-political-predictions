@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civilization #19: Gilgamesh and Mesopotamia&#x27;s Quest for Immortality — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Civilization #19: Gilgamesh and Mesopotamia&#x27;s Quest for Immortality">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #06b6d4;
+            --accent-bg: rgba(6, 182, 212, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Civilization #19</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Civilization #19</div>
+        <h1 class="article-title">Gilgamesh and Mesopotamia&#x27;s Quest for Immortality</h1>
+        <div class="article-meta">
+            <span>📖 43 min read</span>
+            <span>📝 8,660 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Civilization #19：  Gilgamesh and Mesopotamia&#x27;s Quest for Immortality</p>
+<p><span class="timestamp">[0:01]</span> okay good morning uh we are doing Mesopotamia today this is the Bron age uh we did Egypt last class we are doing Mesopotamia today in the next class we will finish with the indis valley okay so uh before I begin um I want to make three General points about the study of history and how civilizations develop history and how civilizations develop okay the first point is this every culture has a mythology</p>
+<p><span class="timestamp">[0:36]</span> ology and mythology is the collective people that lets them understand the reality around them okay so another idea that we can say is mythology is a sheared sheared reality and every reality and every reality and every civilization has mythology so for civilization has mythology so for civilization has mythology so for example today our mythology would be example today our mythology would be Science and History right we think there</p>
+<p><span class="timestamp">[1:08]</span> are two an objective but they&#x27;re actually mythologies they&#x27;re a sheared actually mythologies they&#x27;re a sheared reality and every civilization would reality and every civilization would reality and every civilization would have its own mythology and that&#x27;s what have its own mythology and that&#x27;s what makes makes the culture unique okay so that&#x27;s the first point so what we will do today to better understand mesop botania is to compare contrast its mythology with that of the Egyptians okay second point okay second point is um there&#x27;s an idea called the</p>
+<p><span class="timestamp">[1:40]</span> is um there&#x27;s an idea called the dialectic and this was an idea proposed by the German philosopher named by the German philosopher named Frederick Hegel in the 19th century he Frederick Hegel in the 19th century he believes that history is driven by opposing opposing ideas so whenever you have one mythology ideas so whenever you have one mythology or one idea there always must arise another opposing idea that challenges it and that&#x27;s what drives history and</p>
+<p><span class="timestamp">[2:10]</span> history is always moving towards a synthesis of synthesis of ideas okay so the example would be ideas okay so the example would be there&#x27;s capitalism and the opposing idea would be communism the synthesis of the idea would be idea would be socialism and what&#x27;s really important to socialism and what&#x27;s really important to understand is that ideas can be living things that change over things that change over time time time okay the third idea I want to introduce okay the third idea I want to introduce</p>
+<p><span class="timestamp">[2:41]</span> is the idea of is the idea of diversity and differentiation and the idea here differentiation and the idea here is we humans have some fundamental is we humans have some fundamental Natures about us so for example we&#x27;re another another fundamental um Instinct about us we fundamental um Instinct about us we strive to be different and that&#x27;s why</p>
+<p><span class="timestamp">[3:13]</span> diversity is the iron law of society okay so the example is in a family all the siblings will be different in a classroom the students will be will be different and you could be a student way different and you could be a student way in a in a classroom and then you go to another classroom and then you go to another classroom you and you figure out the students there are similar to you so you will change as a person to differentiate yourself from other yourself from other people okay so that&#x27;s also another</p>
+<p><span class="timestamp">[3:46]</span> people okay so that&#x27;s also another principle of History societies strive to be different from each other they strive for diversity and for diversity and differentiation we cannot make differentiation we cannot make differentiation we cannot make generalizations about societies the the generalizations about societies the the generalizations about societies the the only thing that we can say only thing that we can say is Societies or cultures fall into a spectrum okay and they&#x27;re usually spectrum okay and they&#x27;re usually defined by the by the defined by the by the defined by the by the elite or generalizations okay so this is elite or generalizations okay so this is</p>
+<p><span class="timestamp">[4:17]</span> another way of saying today I&#x27;m I&#x27;m going to make very broad going to make very broad generalizations about these societies generalizations about these societies generalizations about these societies and and and civilizations civilizations civilizations and um they&#x27;re useful for our purposes and um they&#x27;re useful for our purposes but I want I want you to be aware that these are simplifications these are these are simplifications these are generalizations okay all right so let&#x27;s generalizations okay all right so let&#x27;s start okay so uh start okay so uh Mesopotamia is a very different culture Mesopotamia is a very different culture</p>
+<p><span class="timestamp">[4:49]</span> and civilization than Egypt because of its its Geography okay so if you look at the Geography okay so if you look at the geography of geography of Egypt it has natural boundaries so for Egypt it has natural boundaries so for example example to the um West is a Sahara Desert to the to the um West is a Sahara Desert to the north is the Mediterranean north is the Mediterranean Sea um to the east is the uh Red Sea Sea um to the east is the uh Red Sea</p>
+<p><span class="timestamp">[5:19]</span> okay and then to the South um are the cataracts so it makes it hard to travel up the Nile from the south okay so there are really only two access points into Egypt which can be easily defended the South and also from the lavant okay which is basically Israel Syria which is basically Israel Syria Jordan and because of its natural Jordan and because of its natural boundaries Egypt doesn&#x27;t really feel boundaries Egypt doesn&#x27;t really feel threatened by external enemies threatened by external enemies threatened by external enemies right also it has the now river which is</p>
+<p><span class="timestamp">[5:52]</span> right also it has the now river which is the foundation of its civilization the foundation of its civilization remember last class we talked about how remember last class we talked about how the now uh um was very generous it flooded predictably every season and so it made it made agriculture very productive in Egypt agriculture very productive in Egypt agriculture very productive in Egypt which allowed them to sustain a very which allowed them to sustain a very large large population which then can be used to population which then can be used to create monuments like the create monuments like the pyramid okay so for most of its history</p>
+<p><span class="timestamp">[6:23]</span> pyramid okay so for most of its history prosperous Mesopotamia is completely prosperous Mesopotamia is completely different okay so first of all different okay so first of all Mesopotamia which is in what we call um Iraq today it has no natural boundaries Mesopotamia uh is Greek for the land between two rivers these two rivers are the the Euphrates and the Tigers okay Euphrates</p>
+<p><span class="timestamp">[6:54]</span> Euphrates and the Tigers okay Euphrates Tigers to Tigers to the um west of mesia would be Arabia and the um west of mesia would be Arabia and the the lavant okay to the north would be be Anatolia Anatolia Anatolia to um the east of the Zago to um the east of the Zago</p>
+<p><span class="timestamp">[7:24]</span> mountains the thing about Anatolia is it itself is a very prosperous place so it will become will become eventually um home to certain Empires eventually um home to certain Empires like the high ties who will always threaten Mesopotamia okay so Anatolia is a threat to a threat to Mesopotamia the people of Arabia and the Mesopotamia the people of Arabia and the zaros mountains are nomads and as we</p>
+<p><span class="timestamp">[7:54]</span> know Nomads are a very aggressive people and so they will constantly launch raids against Mesopotamia which threatens its against Mesopotamia which threatens its safety okay safety okay safety okay so so so Mesopotamia throughout its Mesopotamia throughout its Mesopotamia throughout its history has always been at war with its neighbors the other thing about neighbors the other thing about Mesopotamia Mesopotamia Mesopotamia is even though it&#x27;s fertile it&#x27;s part of is even though it&#x27;s fertile it&#x27;s part of something called a fertile crescent okay</p>
+<p><span class="timestamp">[8:27]</span> which extends from Mesopotamia into the Cresent the euph frees and tigers don&#x27;t really really cooperate um they&#x27;re very chaotic they cooperate um they&#x27;re very chaotic they change course all the time and so uh the only way to tame this euph fres and the Tigers is through Tigers is through irrigation okay because if you farm too irrigation okay because if you farm too close to the bed the River Bank you&#x27;re going to get flooded okay so they had to</p>
+<p><span class="timestamp">[8:59]</span> develop Irrigation in order to tame the Tigers Tigers okay so the geography of these two okay so the geography of these two cultures are very different and cultures are very different and therefore the history is very different therefore the history is very different for most of its history Egypt was unified as an Empire it was very stable but but Mesopotamia H was always in flux okay so Mesopotamia H was always in flux okay so the first great civilization of the</p>
+<p><span class="timestamp">[9:31]</span> Mesopotamia were the samarians they were eventually conquered by the acadians and then you have the Assyrians and the Babylonians and these four civilizations Babylonians and these four civilizations are what we call Mesopotamia okay okay any questions so far before I</p>
+<p><span class="timestamp">[10:03]</span> okay yeah that&#x27;s a good question okay but what is the relationship between these four relationships the samarians these four relationships the samarians the the the acadians uh the the Babylonians and the acadians uh the the Babylonians and the Assyrians okay so the very first civilization were the civilization were the samarians and then they were eventually samarians and then they were eventually United by the United by the acadians okay so Samaria was not really acadians okay so Samaria was not really an Empire it was a culture and a civilization that was divided into city states like the Greeks okay before the conquest of the Macedonian conquest of the Macedonian and the acadians under Saron of aad or</p>
+<p><span class="timestamp">[10:33]</span> and the acadians under Saron of aad or Saron the great Saron the great United um the city states and gave us United um the city states and gave us the idea of um saman the idea of um saman civilization after the kinian empire civilization after the kinian empire civilization after the kinian empire fell North Mesopotamia became the fell North Mesopotamia became the fell North Mesopotamia became the Assyrian Empire South Mesopotamia became Assyrian Empire South Mesopotamia became Assyrian Empire South Mesopotamia became the Babylonian Empire they all saw the Babylonian Empire they all saw themselves as hearers to the Samarian civilization so even though they&#x27;re civilization so even though they&#x27;re different civilizations they share a different civilizations they share a different civilizations they share a common mythology okay which I will</p>
+<p><span class="timestamp">[11:04]</span> common mythology okay which I will discuss later in the discuss later in the class okay does that make sense great class okay does that make sense great okay so I&#x27;m gonna talk very briefly about how Mesopotamia develop briefly about how Mesopotamia develop okay so remember that in the beginning okay so remember that in the beginning agriculture first appeared in two places Anatolia and the V Anatolia and the V okay then there was something called the</p>
+<p><span class="timestamp">[11:38]</span> 8.2 kiloyear 8.2 kiloyear event and we can see this as dramatic event and we can see this as dramatic climate climate change that radically changed the change that radically changed the change that radically changed the geography and the geography and the geography and the climate of this climate of this world okay and because of the cooling in world okay and because of the cooling in temperature the people in the lavant and the people in and Anatolia were forced to spread out so went to they went to Europe they went to Egypt they went to</p>
+<p><span class="timestamp">[12:10]</span> Mesopotamia and when they did that they spread spread Agriculture and remember the agriculture Agriculture and remember the agriculture Agriculture and remember the agriculture the mythology is the mother goddess the mythology is the mother goddess which meant that they were mainly peaceful eitan people peaceful eitan people okay who were very artistic so this is a okay who were very artistic so this is a very peaceful very peaceful stable world but then you have the</p>
+<p><span class="timestamp">[12:40]</span> 5.9 kiloyear event okay so this is this is about 6,000 years ago 4,000 BCE and again you saw a radical again you saw a radical change in change in change in temperature temperature temperature which again forc migration and forc um the civilizations to change okay one of the major of the major changes changes changes in Mesopotamia is the founding of a</p>
+<p><span class="timestamp">[13:13]</span> in Mesopotamia is the founding of a place place called called called um iic okay iic and iic is interesting um iic okay iic and iic is interesting sorry it&#x27;s here iic is interesting because it is considered the first city of the world and so this is the beginning of what we call civilization okay the modern idea of okay the modern idea of civilization and has about civilization and has about civilization and has about 40,000 uh 40,000 uh 40,000 uh people and this is what we considered people and this is what we considered</p>
+<p><span class="timestamp">[13:50]</span> civilization and the saman civilization civilization and the saman civilization is considered the cradle of civilization is considered the cradle of civilization it is the beginning of the foundations of modern civilization they gave us irrigation technology they gave us irrigation technology they gave us mathematics they gave us astronomy they mathematics they gave us astronomy they gave us writing okay Kun form writing they gave us the legal system okay they gave us hierarchy and gave us hierarchy and religion so there was an explosion of religion so there was an explosion of innovation uh with the founding of</p>
+<p><span class="timestamp">[14:23]</span> Eric now Eric eventually would become a huge city which compelled the people to migrate and found cities that are similar to ER okay they&#x27;re basically colonies and they&#x27;re and they&#x27;re colonies and they&#x27;re and they&#x27;re scattered throughout Mesopotamia okay scattered throughout Mesopotamia okay scattered throughout Mesopotamia okay these are city these are city these are city states that at first were part of the states that at first were part of the earth civilization but eventually they earth civilization but eventually they became um prosperous became um prosperous became um prosperous and Wealthy uh themselves and so they and Wealthy uh themselves and so they</p>
+<p><span class="timestamp">[14:54]</span> broke away from U and this led to tension and conflict and maybe sometimes even outright right Warfare but please remember like during this time the idea of like massive Warfare that we would see during the Greek and Roman periods it&#x27;s still pretty absent there&#x27;s it&#x27;s still pretty absent there&#x27;s conflict it&#x27;s short term and they&#x27;re and conflict it&#x27;s short term and they&#x27;re and they&#x27;re and they have conflicts in order to reserve to to resolve like territorial disputes okay or trade territorial disputes okay or trade disputes but they&#x27;re not trying to wipe disputes but they&#x27;re not trying to wipe each other each other out out out okay um one of the great</p>
+<p><span class="timestamp">[15:27]</span> okay um one of the great Mysteries is where the Samaran come from we have this problem because when we discovered kuna form and we translated the saman language we discovered the spoken language is very different from the surrounding regions who spoke the surrounding regions who spoke something called a semetic language okay something called a semetic language okay so the language spoken in the area are part of a semetic language group but Sumerian is not part of that group there&#x27;s not enough there&#x27;s not enough similarities</p>
+<p><span class="timestamp">[15:57]</span> similarities similarities also there there is no other language also there there is no other language like Samaran in the world okay it&#x27;s what is called a language is called a language isolate it is unique and so this has puzzled Scholars for decades and quite honestly no one knows why this is the case okay no one knows there are different knows there are different theories one theory is the the saman</p>
+<p><span class="timestamp">[16:29]</span> theories one theory is the the saman People Are People Who Came From Anatolia and and settled uh in the Euphrates because it settled uh in the Euphrates because it was good for agriculture okay so that&#x27;s one Theory but there are other theories there are other people who there are other people who believe uh the Samaritans came from the believe uh the Samaritans came from the zos mountains okay there are other people who believe they came from Arabia and settled and then there&#x27;s another group of people who group of people who believe the Samaran I an are people who</p>
+<p><span class="timestamp">[17:00]</span> believe the Samaran I an are people who came from the indis came from the indis valley okay we&#x27;ll talk about the indis valley okay we&#x27;ll talk about the indis valley next class but all you need to know is the in this Valley it is a very advanc civilization it&#x27;s very large 5 million people and it covers three major areas Afghanistan Pakistan and Northwest areas Afghanistan Pakistan and Northwest India it is larger than Egypt and India it is larger than Egypt and Mesopotamia Mesopotamia combined okay so people believe that the combined okay so people believe that the</p>
+<p><span class="timestamp">[17:31]</span> IND this Valley IND this Valley sent a colony to Mesopotamia which found sent a colony to Mesopotamia which found at uich and it makes sense because it&#x27;s actually pretty easy to get from in this Valley to yor because of the Arabian Sea okay so these are the different theories but then there&#x27;s another theory okay which I think makes the most sense which is is this Samaran is a creole this Samaran is a creole this Samaran is a creole language it was</p>
+<p><span class="timestamp">[18:02]</span> language it was language it was invented by a Melting Pot of cultures invented by a Melting Pot of cultures and languages and and it&#x27;s very similar to the menu we speak today right where menu didn&#x27;t didn&#x27;t exists but because you had so many different cultures coming coming to uh the palace they had to create to uh the palace they had to create their own language in order to communicate with each other we call that language today Mandu okay does that make sense okay sense okay so why do I think this idea makes the</p>
+<p><span class="timestamp">[18:32]</span> so why do I think this idea makes the most sense and again uh just to be absolutely clear no one knows and we&#x27;ll probably never know the answer but I believe the cre that Samaran is a Creo language this Theory makes the most sense because of sense because of this why was Europe able to develop into this why was Europe able to develop into the first city what makes it special the answer is this it is at the center of the world the world okay so let me</p>
+<p><span class="timestamp">[19:10]</span> explain from Yu you&#x27;re able to access the indis valley you&#x27;re able to access the Arian desert you&#x27;re able to go North to Anatolia and the zagas mountains okay and these civilizations we know traded with each with each other because it&#x27;s the Bronze Age right other because it&#x27;s the Bronze Age right because to make bronze you need to to create an alloy between tin and copper but also what&#x27;s important to understand is we humans have been training with with each other since the beginning</p>
+<p><span class="timestamp">[19:40]</span> because we like to explore and we like to experience different to experience different cultures okay so that&#x27;s what explains cultures okay so that&#x27;s what explains why U has was able to prosper so fast because it&#x27;s a center of the world to get anywhere you have to go for your Eric Eric okay but if that&#x27;s the case if it&#x27;s a okay but if that&#x27;s the case if it&#x27;s a trading center of the world it makes sense for it to be also a multicultural and multicultural and multilingual community of people right multilingual community of people right multilingual community of people right because these Traders from Arabia</p>
+<p><span class="timestamp">[20:13]</span> because these Traders from Arabia because these Traders from Arabia Anatolia the zos mountains Also let&#x27;s Anatolia the zos mountains Also let&#x27;s not forget about the Yia okay who are up here in the steps they also trade with these people people from the IND Valley it makes sense for them to come together in a training in a training community and develop their own language community and develop their own language their own culture which their own culture which spreads also because this is a Melting spreads also because this is a Melting Pot it&#x27;s really in immigrant uh culture they&#x27;re able to bring the most advanced ideas from all around the world and</p>
+<p><span class="timestamp">[20:43]</span> combine them together which creates new inventions like writing like legal inventions like writing like legal system like mathematics like system like mathematics like system like mathematics like astronomy okay and that&#x27;s why saman beca astronomy okay and that&#x27;s why saman beca Samaran became the crit of civilization because of the meeting place because of the meeting place of the world&#x27;s cultures and ideas and because of the very inst instability of the environment okay instability of the environment okay meaning they have to tame the Tigers new</p>
+<p><span class="timestamp">[21:19]</span> fres um and because they were always threatened by outside enemies they had to develop a new culture and new mythology based on mythology based on struggle right the Egyptians can afford to be passive and fatalistic let the gods and fatalistic let the gods decide but because this is an immigrant decide but because this is an immigrant Community they have to focus on struggle and achievement which is very much like America today okay does that make sense</p>
+<p><span class="timestamp">[21:49]</span> so again this is my theory of the Samaran people where they came from and why they are what why they are who they are okay any question so far before I continue all right so next next what I want to do is I want to compare Egyptian mythology with mesan mythology to show how the how the geographic and cultural difference geographic and cultural difference geographic and cultural difference translates into the mythology the shared</p>
+<p><span class="timestamp">[22:20]</span> translates into the mythology the shared reality of the people okay so let&#x27;s uh all right so again Egypt is a very ancient ancient civilization and their mythology is civilization and their mythology is civilization and their mythology is extremely complex they have different extremely complex they have different extremely complex they have different versions of the same stories okay but versions of the same stories okay but I&#x27;m going to give you the generalization</p>
+<p><span class="timestamp">[22:51]</span> which will be useful for our purposes okay so let&#x27;s look at okay so let&#x27;s look at Egypt so and then we&#x27;ll look at Egypt so and then we&#x27;ll look at okay Egypt Egypt believed the first God was raah okay there are there are other gods who who they believe to the first God like atum and Aman okay but let&#x27;s just say the first God is Rah who is a son son God he comes to our world and he creates God he comes to our world and he creates</p>
+<p><span class="timestamp">[23:21]</span> life okay he basically gives life to humans and humans and as such we worship as such we worship as such we worship him but eventually we start to become him but eventually we start to become misguided and we start to worship another God a false god Ra becomes angry and kills many of us and but after he kills many of us he has tremendous</p>
+<p><span class="timestamp">[23:51]</span> regret and he decides his time is up he should give his grown to someone else okay this other God becomes okay this other God becomes Osiris asir Asus is a great God because Osiris asir Asus is a great God because he gives people civilization which he gives people civilization which includes cities which includes the includes cities which includes the includes cities which includes the pyramids which includes writing okay so pyramids which includes writing okay so it&#x27;s isiris who gives us it&#x27;s isiris who gives us Civilization now here&#x27;s a brother named Civilization now here&#x27;s a brother named set and Seth is very jealous of the fact</p>
+<p><span class="timestamp">[24:21]</span> that Osiris is worshiped by the people so he plots to usurp the throne from Osiris so what he does is this he builds a sarcophagus a tomb okay he presents presents to Osiris and says Osiris my great king this great king this sarcophagus is the most beautiful and sarcophagus is the most beautiful and comtable sarcophagus in the world you will love lying in here and Osiris is like oh that&#x27;s interesting let me try so</p>
+<p><span class="timestamp">[24:54]</span> Osiris like gets into the sarus and set closes it forever okay then he kills Osiris and dismembers his body Osiris has a wife Isis and when he hears upon he hears about the death of her husband husband she looks for his body and and assembles she looks for his body and and assembles it it together H but she can&#x27;t find the head together H but she can&#x27;t find the head and then Osiris becomes the god of the</p>
+<p><span class="timestamp">[25:24]</span> underworld okay after Osiris is underworld okay after Osiris is reassembled he impregnants Isis they a reassembled he impregnants Isis they a SE they have a son named Horus Horus eventually grows up and he&#x27;s angered by the fact that his uncle Seth has usurped his throne okay so the two are going to are going to battle and the gods who judge all tell battle and the gods who judge all tell them they have to challenge each other to a duel okay so they have a series of</p>
+<p><span class="timestamp">[25:56]</span> duel one duel is they both turn into hippopotamus and they try to to um stay in the river for the longest time possible Horus seizes as an opportunity to kill set he tells his mother Isis while set is while set is distracted while he&#x27;s a hippopotamus distracted while he&#x27;s a hippopotamus distracted while he&#x27;s a hippopotamus take a spear and kill him and Isis take a spear and kill him and Isis agrees but when she tries to kill s she is paralyzed with fear and she fails</p>
+<p><span class="timestamp">[26:29]</span> Horus and anger strikes beheads Horus and anger strikes beheads uh her mother her mother she he she does uh her mother her mother she he she does he doesn&#x27;t kill her but she loses her head that&#x27;s how angry is okay so Isis and Horus continue their challenge and Horus continue their challenge eventually set decides to poison Horus eventually set decides to poison Horus but before he can do so Horus first poisons him okay then the Horus becomes king and he gives Egypt the institution of kingship so every Pharaoh is a direct descendant of Horus or another descendant of Horus or another Reincarnation of Horus okay that is the</p>
+<p><span class="timestamp">[27:04]</span> Reincarnation of Horus okay that is the Egyptian myth of Egyptian myth of creation Now the Mesopotamians okay they creation Now the Mesopotamians okay they have a have a different myth of creation called the different myth of creation called the enuma elesh from up high okay the enuma elesh and this is the story of the enma ales there are two Gods the first God is Tiamat Tiamat who is who is basically</p>
+<p><span class="timestamp">[27:35]</span> salt water okay then you have absu who is fresh is fresh water the two great Gods get together water the two great Gods get together they give birth to other gods okay their children these Gods then give birth to other gods other gods okay eventually absu gets annoyed with okay eventually absu gets annoyed with his children because children are loud and he can&#x27;t see and he can&#x27;t see so he resolves to kill all his children so he resolves to kill all his children and bring peace to the and bring peace to the world Tiamat finds out about abu&#x27;s</p>
+<p><span class="timestamp">[28:08]</span> world Tiamat finds out about abu&#x27;s diabolical plan he warns she warns her children the gods get together and they kill kill absu Tiamat is enraged by the death of absu Tiamat is enraged by the death of her consort and she resolves to raise a great Army and Destroy her children okay the Gods get together and they deci they elect elect mardock who is the son of the god so mardock who is the son of the god so</p>
+<p><span class="timestamp">[28:39]</span> he&#x27;s he&#x27;s basically a third generation God okay they elect mardar to lead them in battle against Tiamat okay so you have these two massive armies converging against each other and then Tiamat turns into a huge water Serpent and challenges mardar to a duel they fight okay mardock unleashes whirlwinds into the mouth of uh Tiamat and that sort of like dizzies</p>
+<p><span class="timestamp">[29:13]</span> her and then Maro strikes her down after he kills her she uses her body to create the world she uses half of her body to create the sky and she uses another half of the body to create the continents okay he creates the moons and he creates the star STS he creates the entire Tiamat Tiamat after after after that the gods all decide to rest in</p>
+<p><span class="timestamp">[29:43]</span> that the gods all decide to rest in peace but they need people to take care of them they need people to watch the land to farm and till the land so they create humans as their slaves okay and that&#x27;s how theem Alish ends okay each city has its own God and the humans in that City must Revere and take care of that God to be their slave for all</p>
+<p><span class="timestamp">[30:13]</span> eternity eternity okay all right so as you can see right okay all right so as you can see right away there are massive differences away there are massive differences between Egyptian mythology and between Egyptian mythology and between Egyptian mythology and Mesopotamia Mesopotamia Mesopotamia mythology okay the first major mythology okay the first major mythology okay the first major difference difference difference is um the gods are benevolent right the is um the gods are benevolent right the gods give us everything we just sit back the gods will give us life they will give us civilization they will give us</p>
+<p><span class="timestamp">[30:44]</span> kingship they will give us a pyramids so all all we have to do is respect and Revere and worship the gods we humans don&#x27;t need to participate in but in the Le we find out that gods are extremely gods are extremely violent and they demand our violent and they demand our violent and they demand our servitude they&#x27;re our masters okay so we servitude they&#x27;re our masters okay so we</p>
+<p><span class="timestamp">[31:17]</span> must constantly work to must constantly work to please the um please the um please the um Gods that&#x27;s one major difference second Gods that&#x27;s one major difference second major difference is as you can see uh from The Egan mythology from The Egan mythology the main the main the main virtue that virtue that virtue that wins out is cleverness okay deception wins out is cleverness okay deception trickery and you can say this is because For the Longest Time Egypt was an Empire So What mattered was not the ability to</p>
+<p><span class="timestamp">[31:50]</span> go to war but the ability to to manipulate um Eternal politics okay what we call Palace we call Palace Intrigue and this is no different from Intrigue and this is no different from China right because remember in China we have something called uh shuna The Art of War by Sha that is a manual on Palace intrig right how to trick other people it&#x27;s not a manual on how to go to</p>
+<p><span class="timestamp">[32:21]</span> okay but okay but here the here the here the value that value that value that is most most prominent in Mesopotamia is is most most prominent in Mesopotamia is bravery or strength okay not cleverness there&#x27;s no trickery going on it&#x27;s just bravery bravery okay and the third major difference is okay and the third major difference is</p>
+<p><span class="timestamp">[32:51]</span> in Egypt they believe the gods are helping each other okay they build on top of each other&#x27;s top of each other&#x27;s legacies that&#x27;s what progress is that&#x27;s legacies that&#x27;s what progress is that&#x27;s what Improvement is but in mesia they believe in something call Creative believe in something call Creative destruction which is to say in order to destruction which is to say in order to create something new you must destroy the the old okay tat represents the old old okay tat represents the old therefore she must be destroyed and from</p>
+<p><span class="timestamp">[33:23]</span> the old you can build a new civilization but you must but you must first destroy the old first destroy the old first destroy the old and conflict is a source of sense and again they have these two different mythologies because they&#x27;re different mythologies because they&#x27;re reflecting the shared reality of the reflecting the shared reality of the different geographies and different geographies and history</p>
+<p><span class="timestamp">[33:53]</span> history history okay okay any questions so far before I are you clear okay right great okay all right let&#x27;s continue all right let&#x27;s continue all right okay right okay right okay so both Egypt and both mopia they are in so both Egypt and both mopia they are in a a struggle to prove NE mythologies are the struggle to prove NE mythologies are the best Okay the reason why is remember that this is a time when all these</p>
+<p><span class="timestamp">[34:26]</span> civilizations are trading with each civilizations are trading with each other but but also what&#x27;s important to other but but also what&#x27;s important to understand is there&#x27;s a lot of migration going going on and people have a choice if you&#x27;re on and people have a choice if you&#x27;re not happy here you can always uh move somewhere else okay there isn&#x27;t any idea of like Nation or culture or race people have have autonomy okay so you need to constantly autonomy okay so you need to constantly prove that your civilization is the best</p>
+<p><span class="timestamp">[34:56]</span> to attract people which provides the right so the Egyptians created something pyramids to show the people around them we are favored by the gods because it&#x27;s only the gods who could Inspire us to build the parids build the parids okay so now the people in M have a</p>
+<p><span class="timestamp">[35:29]</span> okay so now the people in M have a problem because how do you compete against the pyramids against the pyramids right I mean at first they tried they right I mean at first they tried they created things called the Z ziggurats the ziggurats which are temples to house the the gods okay but then they did something gods okay but then they did something that was completely different and which made them Immortal just as the pyramids made the Egyptians Immortal they create</p>
+<p><span class="timestamp">[36:05]</span> and today we celebrate the Epic of gamh as the first work of world literature okay so let me first explain the plot of the Epic of gilgames and show you um how it reflects Mesopotamian culture and values and then explain the meaning of it okay so the EP Mash so there was a king of Eric okay the first city city um uh Eric he&#x27;s and he&#x27;s the king of the</p>
+<p><span class="timestamp">[36:37]</span> um uh Eric he&#x27;s and he&#x27;s the king of the first city and first city and he&#x27;s a demigod he&#x27;s a demigod okay he&#x27;s huge he&#x27;s a giant and he&#x27;s okay he&#x27;s huge he&#x27;s a giant and he&#x27;s very very brave the problem brave the problem brave the problem is even though he&#x27;s built this great is even though he&#x27;s built this great City Eric High walls prosperous City Eric High walls prosperous land uh Advanced civilization he gets land uh Advanced civilization he gets bored very quickly he starts to bully</p>
+<p><span class="timestamp">[37:08]</span> the people around him so he sees young man he challenges challenges them to a fight and he beats them up okay he&#x27;s a bully he also rapes all the young women in in Eric and this drives their parents to Eric and this drives their parents to pray to the gods for Relief so the gods decide TR to create an equal to gash and his name is eadu his name is eadu anadu NAD do is made of</p>
+<p><span class="timestamp">[37:44]</span> clay the two fight and even though gig Mash defeats anadu in Mash defeats anadu in battle gigg Mash is happy because he battle gigg Mash is happy because he thinks he&#x27;s found a good friend someone is equal who he can share adventures with so the two become great friends the best of friends they go on on these adventures adventures together and these together and these together and these Adventures are tremendous challenges for Adventures are tremendous challenges for Adventures are tremendous challenges for example they challenge Gods to battle example they challenge Gods to battle and at first they&#x27;re afraid but through</p>
+<p><span class="timestamp">[38:16]</span> their friendship and through their their friendship and through their bravery they&#x27;re able to Triumph in the bravery they&#x27;re able to Triumph in the ishar and she falls in love with gilam as because he&#x27;s so as because he&#x27;s so heroic but gigle Mash rebuffs isar heroic but gigle Mash rebuffs isar because gig Mash is basically basically knows that isar wants to turn him into her sex slave he doesn&#x27;t want that he wants his freedom he wants to prove he&#x27;s great great hero isar is feels rejected uh feels</p>
+<p><span class="timestamp">[38:46]</span> hero isar is feels rejected uh feels ashamed so she sends something called The Bull of Heaven to destroy Earth gash and eadu fight the both heaven and they kill this great bow the gods now are really pissed off at g match anadu and and they decide that enadu must die so they inflict a disease on enadu which kills him at this point</p>
+<p><span class="timestamp">[39:16]</span> gilam as is heartbroken he&#x27;s lost his best best friend at the same time he knows death friend at the same time he knows death is waiting for him he has all these accomplishments he&#x27;s a great King he&#x27;s built this great City but eventually he must die he does not want to die he fears death so he hears about this Immortal man this man who has lived forever and who will live forever and who will live forever and he decides to seek him out forever and he decides to seek him out</p>
+<p><span class="timestamp">[39:47]</span> on his journey he has to overcome many hurdles and along the journey along the journey everyone implores him gig Mas give up this vant project immortality is for the god Gods we are humans we must die that&#x27;s what makes us different from the gods enjoy your life the gods enjoy your life drink be drink be drink be merry and but G but gilam as refuses to merry and but G but gilam as refuses to turn back and he insists on continuing</p>
+<p><span class="timestamp">[40:19]</span> on his journey eventually he finds this Immortal man who explains to him he was made Immortal because he survived the the God created humans but the humans became too became too loud for the gods so the gods resolved loud for the gods so the gods resolved to kill to kill them but this man this one man was them but this man this one man was favored by one God so he was told about</p>
+<p><span class="timestamp">[40:50]</span> this plot and he built a boat and put a lot of animals in the boat in order to escape and this is this is the basis of the uh story of the North flood in the Bible Bible okay after the flood receded this man okay after the flood receded this man came down and built an altar to worship the gods the gods felt regret for what they did so in compens so so to compensate they promis never to do this again to never destroy Humanity again</p>
+<p><span class="timestamp">[41:21]</span> and also they Grant this man immortality okay so but this is just a oneof the gods will never do this again and so the men tells gig mash the search for immortality it&#x27;s pointless just go home but gig Mash refuses to give up so the man challenges gig Mash to not sleep for seven nights and six days uh sorry six days and seven</p>
+<p><span class="timestamp">[41:52]</span> uh six nights and seven days Okay g tries but he can&#x27;t do it so it&#x27;s all futile futile and then he goes home but the moment he and then he goes home but the moment he goes home he has an epiy he sees the Great Walls of Eric he sees the people happy in Eric and he realizes this is what immortality is immortality is not living forever living forever immortality is to be immortality is to be immortality is to be remembered by the people who love you</p>
+<p><span class="timestamp">[42:32]</span> so the irony of all this is he goes on this search for immortality he fails but because he goes on this search because he goes on on this Quest he becomes struggle is remembered and celebrated by Mas okay so this is a reflection of the values of Mesopotamia the point is in the achievement the point is not in the</p>
+<p><span class="timestamp">[43:05]</span> victory the point is in the exploration struggle and that&#x27;s why the means were so Innovative but that&#x27;s also why they went to war with each other all the okay and this is the beginning of the where memories can be shaped in such a</p>
+<p><span class="timestamp">[43:36]</span> way that become so beautiful that it becomes becomes implanted in the minds of others for implanted in the minds of others for centuries which will inspire them to Greater Heights of achievement okay so now we have the beginning of literature and that is the legacy of Mesopotamia a testament to the tremendous creativity</p>
+<p><span class="timestamp">[44:06]</span> of humans of Egypt okay the humans in Egypt but the Epic of giges is also a testament to the tremendous creativity testament to the tremendous creativity of That civilization and if you think about it the Epic of gigle Mash was written because it is in a dialectic with the pyramids right the Epic of Gil is also saying to the saying to the pyramids immortality it is an illusion pyramids immortality it is an illusion</p>
+<p><span class="timestamp">[44:38]</span> eventually these pyrs will collapse for the pharaoh to seek immortality is a delusion what matters is for the pharoh to look after the well-being of his people here and now because that&#x27;s why he will be loved and remembered for eternity he will die if his people die but if you you people if your people live on because of your live on because of your contributions then you&#x27;ll be remembered contributions then you&#x27;ll be remembered contributions then you&#x27;ll be remembered forever you&#x27;ll become forever you&#x27;ll become forever you&#x27;ll become immortal right and that&#x27;s the story of</p>
+<p><span class="timestamp">[45:09]</span> immortal right and that&#x27;s the story of questions is this all pretty questions is this all pretty clear okay all right so I will make a final point about these stories okay within these stories we can see the evolution of</p>
+<p><span class="timestamp">[45:40]</span> societies over time okay so let&#x27;s go back to the story of the anuma elesh so remember Tiamat in absolute create the world that&#x27;s the first story then um the god are created okay and they they inhabit the world that&#x27;s Second Story and then Second Story and then Tiamat and mud go to war and then from Tiamat and mud go to war and then from the victory of this war M creates the universe okay so basically we&#x27;re seeing</p>
+<p><span class="timestamp">[46:12]</span> three different mythologies ined within three different mythologies ined within this mythology which gives us the idea this mythology which gives us the idea of social change and evolution in mopia at this time okay so the first story is Tiamat right who&#x27;s Tiamat she&#x27;s the mother goddess mother goddess right she&#x27;s the one who gives life so right she&#x27;s the one who gives life so this shows mesopen as an Agricultural Society then you have the emergence of the Gods which the urban people would</p>
+<p><span class="timestamp">[46:45]</span> celebrate okay and then finally you have the battle between Tiamat and uh mardar and this shows the battle between the old Society with the new Society okay the urban and the agricultural the agricultural it is agricultural it is egarian it is peaceful the urban is egarian it is peaceful the urban is patriarchal patriarchal right so right so right so why how do we explain or how do you why how do we explain or how do you</p>
+<p><span class="timestamp">[47:15]</span> justify the transition from an equal Society to a patriarchy the answer is this the answer is embedded in the mythology right theat represents mythology right theat represents chaos Monarch represents order so even chaos Monarch represents order so even though we are letting go of the old we&#x27;re destroying the old it&#x27;s to create a more peaceful and orderly World okay so remember Tiamat is the water Serpent and for the longest time we believe the water serpent the water serpent water serpent the water serpent represent life and Divinity okay why</p>
+<p><span class="timestamp">[47:48]</span> represent life and Divinity okay why because if you think about it the serpent water serpent looks like the river and the river is the basis of all civilization right so and this is true for most civilizations in China what do we call the water we call the water serpent what what do we call the water serpent what what do we call the water serpent in serpent in China China China long long long right the problem right the problem right the problem is the river is the river floods and if you flood too much you floods and if you flood too much you</p>
+<p><span class="timestamp">[48:20]</span> destroy civilization so it&#x27;s destroy civilization so it&#x27;s chaotic chaotic chaotic okay and that&#x27;s why it&#x27;s important to okay and that&#x27;s why it&#x27;s important to have a patriarchy or an urban Elite because they can you they can help us command us to create command us to create irrigation to build walls which will irrigation to build walls which will tame the river and the water serpent okay does that make sense so</p>
+<p><span class="timestamp">[48:50]</span> within this mythology we are seeing the evolution of society from an egalitarian one to a one to a patriarchy okay also we are in the EP gash we are witnessing the transition from a um Society based on a a great king to one</p>
+<p><span class="timestamp">[49:21]</span> that is more organized around a biocracy right because remember the story starts with the King going on all these Adventures okay the story ends with the King coming back and King coming back and recognizing what matters is the recognizing what matters is the recognizing what matters is the well-being of his well-being of his well-being of his people and for that you need a people and for that you need a</p>
+<p><span class="timestamp">[49:52]</span> bureaucracy to manage everyday bureaucracy to manage everyday Affairs Affairs Affairs okay and so this this represents uh this okay and so this this represents uh this you can interpret this as uh representing the beginning of a representing the beginning of a bureaucratic Elite which will help the bureaucratic Elite which will help the king order the world in a way that brings more stability and prosperity to the the people okay but at F but first the king people okay but at F but first the king must recognize his own hubris he must</p>
+<p><span class="timestamp">[50:27]</span> okay so the great Fe okay so the great Fe of the Mesopotamians is their King will of the Mesopotamians is their King will become like the pharaoh who will Channel all resources to building this all resources to building this Monument which will create inequality Monument which will create inequality Monument which will create inequality corruption and waste in society which corruption and waste in society which will lead to massive suffering during times of times of drought</p>
+<p><span class="timestamp">[51:12]</span> um yeah so um mesan the irrigation was very advanc because the tigers and Euphrates were very incorporative okay Euphrates were very incorporative okay they would change course all the time so they would change course all the time so they have to De very very Advanced ARG systems that would change over time the thing about um Samar thing about um Samar is because it&#x27;s trading and because is because it&#x27;s trading and because there different different city states there different different city states this is it becomes a hot bed of this is it becomes a hot bed of innovation because if one city state creates a really good irrigation system another city state could just cop it</p>
+<p><span class="timestamp">[51:44]</span> really easily really easily okay um does that make okay um does that make okay um does that make sense um any more questions okay so next class we&#x27;ll discuss the indis valley indis valley civilization okay and the in valley</p>
+<p><span class="timestamp">[52:14]</span> civilization okay and the in valley civilization if we just use the analysis we did today we&#x27;re basically geography is Destiny you would think the in Valley Civilization is very much like the Egyptian civilization Egyptian civilization where you have a monarchy you have where you have a monarchy you have centralized Authority where they build centralized Authority where they build these great monuments okay the irony is these great monuments okay the irony is uh when you look at the IND valley civilization and it&#x27;s a huge huge civilization they have very advanced civilization they have very advanced technology they have like these big</p>
+<p><span class="timestamp">[52:44]</span> technology they have like these big cities that are very welld cities that are very welld designed um they have Plumbing they have designed um they have Plumbing they have sanitation they even have air sanitation they even have air conditioning these towers that sort of conditioning these towers that sort of like trap hot like trap hot air um people live for a very long time air um people live for a very long time like I think over half of the population will live past 55 which is incredible which is incredible achievement um but what is Starling about the civilization the IND Val civilization is it&#x27;s</p>
+<p><span class="timestamp">[53:14]</span> peaceful and it&#x27;s peaceful and it&#x27;s egalitarian so it&#x27;s complete mystery as egalitarian so it&#x27;s complete mystery as to why they&#x27;re so different from Egypt and Mesopotamia okay because again Egypt it&#x27;s a centralized Empire Mesopotamia is always at always at War okay so next class we will look at War okay so next class we will look at the in this in this valley civilization and try to resolve the Paradox as to why it is it is Advanced um prosperous but at the same Advanced um prosperous but at the same</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

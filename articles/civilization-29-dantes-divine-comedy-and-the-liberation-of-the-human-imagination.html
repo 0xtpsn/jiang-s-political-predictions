@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civilization #29: Dante&#x27;s Divine Comedy and the Liberation of the Human Imagination — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Civilization #29: Dante&#x27;s Divine Comedy and the Liberation of the Human Imagination">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #06b6d4;
+            --accent-bg: rgba(6, 182, 212, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Civilization #29</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Civilization #29</div>
+        <h1 class="article-title">Dante&#x27;s Divine Comedy and the Liberation of the Human Imagination</h1>
+        <div class="article-meta">
+            <span>📖 42 min read</span>
+            <span>📝 8,421 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Civilization #29：  Dante&#x27;s Divine Comedy and the Liberation of the Human Imagination</p>
+<p><span class="timestamp">[0:03]</span> okay good morning so today we do Dante and Dante really and Dante really is the height of civilization it does is the height of civilization it does not get better than not get better than Dante um I&#x27;ve taught Dante for three Dante um I&#x27;ve taught Dante for three years now this is my third time teaching Dante and what&#x27;s amazing about it is that all students love Dante but also each time I teach Dante I&#x27;m able to discover new insights about Dante that I didn&#x27;t realized didn&#x27;t realized before um my theory is</p>
+<p><span class="timestamp">[0:34]</span> before um my theory is before um my theory is that Dante is someone you can spend your that Dante is someone you can spend your entire life studying and you will never truly understand his power his truth his um Beauty okay so um we will do we will spend two classes on spend two classes on Dante um today and next Tuesday and this Dante um today and next Tuesday and this will end the first will end the first semester Dante is extremely complicated semester Dante is extremely complicated semester Dante is extremely complicated I can I want to give you a glimpse into I can I want to give you a glimpse into</p>
+<p><span class="timestamp">[1:05]</span> how wonderful he is these next two classes all right so let me give you a quick introduction into Dante all right so his book his of poetry is called the Comedia the comedy it&#x27;s not called The Divine Comedy Divine Comedy is something that we called later on okay he first refer to as the Comedia why is it called The Comedy well because um in writing epics there are two Styles there&#x27;s the</p>
+<p><span class="timestamp">[1:38]</span> tragic or high and there&#x27;s the comic or low tragic means tragic High means that it usually deals with gods and Kings and it&#x27;s written in extremely sophisticated it&#x27;s written in extremely sophisticated style comic LW means that it deals with style comic LW means that it deals with ordinary people and written in a common vernacular um vernacular um at this um at this period in European at this um at this period in European</p>
+<p><span class="timestamp">[2:08]</span> history this this is the year 1308 to 13 uh 21 okay those are those are the 13 years that he spends writing the the comedy and he will die after he after he finishes finishes it um at this point in European history it um at this point in European history the high language is the high language is Latin and what Donnie does which is very Latin and what Donnie does which is very tusin and this is the of course the um local language of Florence where he is</p>
+<p><span class="timestamp">[2:42]</span> from and because the comeda is so wonderfully produced tuskin will become wonderfully produced tuskin will become the official language of the Italian the official language of the Italian Peninsula okay so in today in Italy they speak the Tusan dialect of the language The Divine Comedy it is an epic Dante goes on a spiritual Dante goes on a spiritual journey um into the cosmos in order to journey um into the cosmos in order to</p>
+<p><span class="timestamp">[3:14]</span> seek truth to seek um God he starts off in with a um midlife in with a um midlife crisis um and so he has a guy named crisis um and so he has a guy named virtual who takes him through Inferno okay and then they go to purgatory and then he goes to Paradise Paradise is heaven Inferno is hell and Purgatory is the land the mountain in between the infernal and between the infernal and Paradise um today we will look at the Paradise um today we will look at the very very ending of the Divine Kony CLE</p>
+<p><span class="timestamp">[3:52]</span> 33 and I want to set up the um po the um po the poem okay give you some context and some poem okay give you some context and some background Dante is imper background Dante is imper and he&#x27;s trying to figure out the and he&#x27;s trying to figure out the spiritual truth underlying the spiritual truth underlying the universe and then as he goes on this universe and then as he goes on this journey he concludes his journey journey by meeting God okay but the problem with God God is no one knows what it is it&#x27;s a is no one knows what it is it&#x27;s a</p>
+<p><span class="timestamp">[4:22]</span> mystery it&#x27;s the biggest mystery in the universe what is God God is there right there but no one knows what it is God God is surrounded by a a Heavenly Host these are angels that have proved themselves worthy to be around God and these include people like Mary the mother of Jesus um as well as Rachel and um and Leah who we uh learned about when we did the Hebrew we did the Hebrew Bible and they have Absolut no idea who Bible and they have Absolut no idea who</p>
+<p><span class="timestamp">[4:54]</span> God is either okay they&#x27;re in a place eperium and Dante is being Guided by a man named Bernard an angel okay St St Bernard and to the left to the left is God and he is this pristine ball of light no one knows what it is not even God knows what it is and over here is the host okay um and at the very center is is Mary what is amazing about Divine carony</p>
+<p><span class="timestamp">[5:27]</span> Mary what is amazing about Divine carony is how d is how d restructures Christian restructures Christian restructures Christian theology remember in Christian theology remember in Christian theology remember in Christian theology Jesus is the theology Jesus is the theology Jesus is the epicenter but in Dante&#x27;s rendering of epicenter but in Dante&#x27;s rendering of Christian theology Mary is at the center and the reason why is I yourself this question is it a greater</p>
+<p><span class="timestamp">[5:59]</span> miracle that a God could come to Earth and die for our sins or is it a greater miracle that a mortal woman is able to give birth to a give birth to a God okay this is something that if you God okay this is something that if you think about it it&#x27;s kind of shocking and beading and that&#x27;s what happens during The Divine Comedy there are two uh literary devices literary devices that D will use throughout Divine Comedy that D will use throughout Divine Comedy the first is the idea of</p>
+<p><span class="timestamp">[6:31]</span> paradox think of Paradox as a puzzle puzzle okay what is the hand what is the sound okay what is the hand what is the sound of one hand clapping okay a paradox a a truth that seems like a contradiction he will use this all the time and the other structure okay the Divine Colony it is mathematically precise it is brilliant mathematically precise it is brilliant it is 100 Kos and there is so much it is 100 Kos and there is so much</p>
+<p><span class="timestamp">[7:02]</span> mathematics Within in The Divine Comedy so to use a metaphor you can see Divine Comedy as almost as an intellectual jakea jakea puzzle the human mind does not like puzzle the human mind does not like contradictions the human mind does not like paradoxes so what happens is this if you are to engage to Divine Comedy you are you become infraed in it you become obsessed with it and then what happens is your mind will slowly over</p>
+<p><span class="timestamp">[7:34]</span> time all by itself you actually don&#x27;t have to do anything okay your mind will start will start to unravel these universe okay and so we are talking about the creation for The Divine Comedy of a of a new mind for Humanity if Homer was the</p>
+<p><span class="timestamp">[8:06]</span> new mind for Humanity if Homer was the father of Western civil oh sorry of Greek civilization then Dante is the father of modern European civilization father of modern European civilization and the reason why is the Divine Kony and the reason why is the Divine Kony because it um is a jigzle that will uh that will unravel the tubs of the universe it becomes inal blue blint for three major movements in Europe the first is the Renaissance remember the</p>
+<p><span class="timestamp">[8:40]</span> Renaissance starts in Florence Renaissance starts in Florence right second is the Protestant right second is the Protestant right second is the Protestant Reformation a religious Revolution Reformation a religious Revolution Reformation a religious Revolution against the Catholic church and the against the Catholic church and the third is the Sonic Revolution okay I will show you today why that&#x27;s the case how implanted or imprinted in the Poetry um are the seeds of these three major major revolutions all right okay any questions revolutions all right okay any questions</p>
+<p><span class="timestamp">[9:10]</span> so far before I before we we look at Divine Divine Comedy all right um dou could you um Comedy all right um dou could you um okay so first thing to know about Divine Comedy is that it is part of a literary genre called apocalyptic literature genre called apocalyptic literature apocalyptic literature just apocalyptic literature just apocalyptic literature just means god reveals reveals the truth to means god reveals reveals the truth to us through a prophet or a poet okay so this is Ezekiel which is one of the</p>
+<p><span class="timestamp">[9:41]</span> earliest books of the Hebrew Bible and um this really starts the tradition and so what happens is Ezekiel he is an um Israelite prophet and he goes to heaven where he meets all these monsters and demons and angels and he meets God himself and then God gives him a scroll puts it in his mouth says eatat it and he eats it and returns to Earth to tell the Israelites the words of God and so</p>
+<p><span class="timestamp">[10:11]</span> this starts the idea that a prophet is someone who speaks the word of God okay he said to me this is God Yahweh oh mortal eat what is offered to you eat this scroll and go speak to the house of Israel so I opened my mouth and he gave me the scroll to me the scroll to eat in my mouth it was as sweet as honey eat in my mouth it was as sweet as honey okay so this is the idea of the apocal tradition what Dante will do is</p>
+<p><span class="timestamp">[10:42]</span> completely completely overturn this overturn this overturn this tradition okay um all right okay yeah tradition okay um all right okay yeah next next slide all right so before we look at slide all right so before we look at Divine Comedy what let&#x27;s review Divine Comedy what let&#x27;s review Augustine because as we discussed Augustine because as we discussed Augustine because as we discussed previously Augustine the city of God is previously Augustine the city of God is what what starts the um Dark Ages right because of starts the um Dark Ages right because of</p>
+<p><span class="timestamp">[11:13]</span> the way that the world is presented okay so let&#x27;s let&#x27;s look at a few quotes from the city of God to remind ourselves of what the mentality of the Dark Ages was first when men man lives by the standard of man and not by the standard of God he is like the devil okay and the idea here is that the devil is within us we must constantly fight against our own nature if we are to be with God okay second is now could anything but Pride</p>
+<p><span class="timestamp">[11:44]</span> have been the start of the evil will and the idea here the idea here is if left to our own devices we will is if left to our own devices we will strive to be like strive to be like God Pride uh in the city of God is used God Pride uh in the city of God is used almost almost um synonymously like the word eego okay um synonymously like the word eego okay basically who we are we humans are are born proud and will strive for godhood if we are allowed to okay third is his</p>
+<p><span class="timestamp">[12:16]</span> was a venal transgression when he refused to Desert his wife&#x27;s refused to Desert his wife&#x27;s companion so he&#x27;s talking about the companion so he&#x27;s talking about the story of Adam and Eve Eve was clearly the disobedient one right but Adam what eat the fruit because he didn&#x27;t want to abandon Eve therefore love is abandon Eve therefore love is sin okay if you love you will commit sin sin okay if you love you will commit sin you cannot trust love it is because Adam</p>
+<p><span class="timestamp">[12:48]</span> loved Eve that he ate the fruit and condemned condemned Humanity Humanity Humanity okay although the will deres it its okay although the will deres it its existence as a nature from its creation by God it&#x27;s falling away from its true being is due to its creation out of nothing its creation out of nothing so the question then is if God created us why are we so bad and the answer is because God created us out of dust he created us out of nothing that&#x27;s</p>
+<p><span class="timestamp">[13:21]</span> why we are so flawed okay again we are experiment we say we see then that the two cities were created by two kinds of of love the Earthly city was created by self-love reaching the point of contempt for God the heavenly City by the love of God okay when we love ourselves we create evil when we love create evil when we love God we do God we do God we do good and the last good and the last good and the last one in the Heavenly City then there will one in the Heavenly City then there will</p>
+<p><span class="timestamp">[13:52]</span> be freedom of will okay this is a hard idea idea to understand what does it mean to have freedom of will in the city of Heaven it means that in heaven we will discard our will discard our bodies and only our souls will remain bodies and only our souls will remain the body is flawed because it&#x27;s created out out of dust out of nothing but the soul is perfect because it was breed into by into by God okay once we are once we are freed God okay once we are once we are freed</p>
+<p><span class="timestamp">[14:22]</span> of our bodies we have no more desire we don&#x27;t want have sex we don&#x27;t want to eat we don&#x27;t want to we don&#x27;t want to fight or tions will all be dissipated fight or tions will all be dissipated therefore we will be perfect okay and what what will be left are to enjoy unfailingly the the light of Eternal Joys okay we will be one with God and we will know an eternal Bliss that&#x27;s what we&#x27;re striving towards okay salvation we&#x27;re striving towards okay salvation everything on Earth does not everything on Earth does not everything on Earth does not matter okay so it is a negation of human</p>
+<p><span class="timestamp">[14:55]</span> matter okay so it is a negation of human will it is a contempt for human love love it it is a distress of all human agency and these ideas are what will Ages Dante is trying to rebut Augustine and free us from the Dark Ages okay so let&#x27;s go to Dante and remember Dante will be a rebuttal to all these</p>
+<p><span class="timestamp">[15:26]</span> ideas all right so this is the Imperium the the final level in the structure of the final level in the structure of the Divine Comedy and Dante has a mission his mission is to meet God and tell us who God is because God doesn&#x27;t know and neither does all the other Angels around him him okay and the reason why okay and the reason why okay and the reason why is if God is omniscient and omnipresent is if God is omniscient and omnipresent if he knows everything and he is</p>
+<p><span class="timestamp">[15:59]</span> everywhere then God by definition lacks imagination okay this is hard I didn&#x27;t understand but I&#x27;ll explain it okay God does not know who he is because he lacks an imagination all right so what&#x27;s happening is this Bernard and Dante are together and they&#x27;re staring at together and they&#x27;re staring at Mary because Bernard will invoke the Mary because Bernard will invoke the</p>
+<p><span class="timestamp">[16:32]</span> okay so he&#x27;s trying to channel Mary&#x27;s energy to empower Dante and not only is by not doing this but everyone the entire Heaven is praying to to Mary to empower Dante okay all empower Dante okay all right virgin mother daughter of your son right virgin mother daughter of your son more humble and Sublime than any creature fixed gold decreed from all eternity you are the one who gave to human human nature so much nobility that</p>
+<p><span class="timestamp">[17:04]</span> its creator did not disdain his being made its creature okay right away what you will see in in The Divine Comedy is paradox after Paradox virgin mother is a paradox right a mother who gives birth without having sex daughter of your son is a is a paradox a creature from its creator is paradox a creature from its creator is also a paradox and you&#x27;ll see this in Divine Community all the time these paradoxes paradoxes then this is the Paradox then this is the Paradox then this is the Paradox okay you are the one who gave to human okay you are the one who gave to human</p>
+<p><span class="timestamp">[17:36]</span> nature so much nobility that its creator did not distain his being made its Creature if we agree with Augustine and say and believe that everyone is born in sin and we are incapable of redeeming ourselves from our sin then how do we explain Mary right Mary gave birth to Jesus if Mary had sin then then God had sin in him sin in him how do you explain that well the only how do you explain that well the only explanation is Mary gave birth about Sin</p>
+<p><span class="timestamp">[18:08]</span> therefore she cleansed herself of her sin before giving birth to Jesus and how did she do that a mother&#x27;s love for her child right so this is what D say love is about love cannot have sin now I mean you hear this and you&#x27;re like no that&#x27;s that doesn&#x27;t sense let&#x27;s just say that I love this woman okay she&#x27;s beautiful and I say to her I love you will you marry me and then she says to</p>
+<p><span class="timestamp">[18:39]</span> me I will but I want $10 million so I go and I rob a bank right that&#x27;s love right what Donna is saying is that&#x27;s not love that is not love ask yourself this question if your mother and your child says to you mother I only love you if you let me eat chocolate every day is that love every day is that love as a mother you will say back to him I as a mother you will say back to him I love you therefore I will not allow you chocolate every day I care about your</p>
+<p><span class="timestamp">[19:10]</span> health I care about your happiness that&#x27;s what I care about I don&#x27;t want to degrade you okay that&#x27;s what Donnie is saying saying here love is the ultimate here love is the ultimate here love is the ultimate power all right and because she cleansed power all right and because she cleansed herself she has so much herself she has so much nobility that she was able to give birth nobility that she was able to give birth to God okay that&#x27;s where nobility is nobility is not in being free of sin but redeeming yourself from sin through redeeming yourself from sin through sheer sheer sheer willower through love okay let&#x27;s</p>
+<p><span class="timestamp">[19:43]</span> willower through love okay let&#x27;s willower through love okay let&#x27;s continue all right this man this is continue all right this man this is Dante of course who from the deepest Hollow in the universe he came from hell okay up to this height has seen the lives of spirits one by one now pleads okay he&#x27;s been on this amazing spiritual Journey he&#x27;s seen Journey he&#x27;s seen everyone through Grace to Grant him so everyone through Grace to Grant him so much virtue that he may lift his vision higher still May lift it toward the ultimate salvation the UL salvation is God right but look but look at this</p>
+<p><span class="timestamp">[20:13]</span> phrase Vision higher still okay what does it mean it means hey you cannot see God you have to imagine God God is something that you do not see God is something that you imagine through your will all right next one please thank you and I who never burned for my own Vision more than I burned for this is radical this is Bernard he is the highest of the angels and he angels and he says his vision I burn for his vision I</p>
+<p><span class="timestamp">[20:46]</span> says his vision I burn for his vision I want to know the truth and only this man Dante can give us the truth even though we are we are angels only Dante Immortal man has angels only Dante Immortal man has access to truth we Angels do not have access to truth this is radical and revolutionary this is radical and revolutionary this is radical and revolutionary okay and honestly if the Catholic Church okay and honestly if the Catholic Church actually could understand any of this then Don would have would his manuscript would have been burned okay this is this is Revolution is Revolution idea do you offer you all my prayers and idea do you offer you all my prayers and</p>
+<p><span class="timestamp">[21:18]</span> pray that they may not fall short that with your prayers you may dispar all the clouds of his mortality so that the highest Joy be his to see the clouds of his mortality B just basically means his fear his doubt fear his doubt okay this to O Queen who can do what you okay this to O Queen who can do what you would I ask of you that after such a vision his sentiments preserve their vision his sentiments preserve their perseverance preserve the perseverance perseverance preserve the perseverance perseverance preserve the perseverance just means he&#x27;s able to remember what he just means he&#x27;s able to remember what he saw okay so imagination is one thing you can imagine God but then you must turn</p>
+<p><span class="timestamp">[21:48]</span> this imagination into a memory and what is radical about this is that the our most advanced Neuroscience our most most advanced Neuroscience our most advanced scientists who understand how advanced scientists who understand how advanced scientists who understand how the brain the brain the brain works they will tell works they will tell works they will tell you this is exactly how the brain works you this is exactly how the brain works you imagine the world and then over time you turn the world into a story and the story becomes your memory okay story becomes your memory okay so 800 years before Don knew our so 800 years before Don knew our Neuroscience how our brain actually Neuroscience how our brain actually works uh next slide please thank</p>
+<p><span class="timestamp">[22:21]</span> works uh next slide please thank you and I who was now nearing him who is the end of all desires as I ought live my longing to its Ardent limit okay now Donnie is turning towards God now is the time for him to experience God for the first time Berard was singling he smiled to me to turn my eyes on high but I already was doing what he wanted me to do because my sight becoming pure was able to penetrate the ray of light more deeply that light Sublime which in</p>
+<p><span class="timestamp">[22:51]</span> itself is true from that point on what I could see was greater and than speech can show at such a sight it it fails and memory fails when faced with such excess he is he&#x27;s being blinded okay his mind is being blown apart he does not know what he&#x27;s seeing it is so vast it is so beautiful it&#x27;s so powerful that he&#x27;s being blinded being blinded okay okay next slide please in this okay okay next slide please in this profound ending I saw and gather and</p>
+<p><span class="timestamp">[23:23]</span> bound my love into one single volume what in the universe seem separate scattered substances accidents and scattered substances accidents and disposition as a conjoin in such a way disposition as a conjoin in such a way that what I tell is only rudimentary what he&#x27;s seeing is this he&#x27;s seeing God as the universe before the Big Bang when the universe was this pool of substances that was chaotic okay and then the Big Bang released all of it into the universe creating our universe</p>
+<p><span class="timestamp">[23:56]</span> Don is Experiencing God as the universe before the Big Bang and he&#x27;s seeing how everything is connected but he&#x27;s everything is connected but he&#x27;s Immortal he cannot connect all the Immortal he cannot connect all the pieces he doesn&#x27;t not know what he&#x27;s seeing he just knows what he&#x27;s seeing is so vast and so vast and interconnected okay all right any interconnected okay all right any interconnected okay all right any questions so far all right are we clear questions so far all right are we clear about what&#x27;s happening keep on about what&#x27;s happening keep on going so was my mind completely wrapped going so was my mind completely wrapped intent steadfast and motionless gazing intent steadfast and motionless gazing and it would get GRE ever more enkindled</p>
+<p><span class="timestamp">[24:27]</span> and it would get GRE ever more enkindled as it watched okay so he meditating he&#x27;s trained all his life for this one moment and he&#x27;s trying his best whoever sees that light is soon made such that it would be impossible for him to see that light aside for other sight because said good the object of the will is fully gathered in that light outside that light what there is perfect is defective okay God is good they a very goodness okay is in God okay so think</p>
+<p><span class="timestamp">[24:58]</span> back to Plato goodness it&#x27;s in encapsulated embod in God okay it is what is perfect and good keep on going what little I recall is to be told from this point on in words more weak than those of who of one whose infant tongue still bathes at the breast okay so this is complicated okay what he&#x27;s saying is this this is now 10 20 years after his experience of God and what he&#x27;s doing is he&#x27;s standing by himself</p>
+<p><span class="timestamp">[25:28]</span> trying to write down what he saw he&#x27;s spent the past 10 20 years wunning writing Divine colony to share with the world the truth of world the truth of God and God and God and so it&#x27;s not that experience okay that is so it&#x27;s not that experience okay that is now gone it is now his imagination of that that experience all experience all experience all right and not because more than one right and not because more than one simple semblance was in the living light at which i gaze for it is always what it</p>
+<p><span class="timestamp">[25:59]</span> was before but through my sight which as i gaze grew stronger that so appearance even as I altered seemed to be changing in the deep and bright okay can you continue continue please essence of that exalted light please essence of that exalted light three circles appeared to me they had three different colors but all of them were of the same Dimension okay so he spent 20 years trying to figure out what he saw and now he&#x27;s able to slowly put</p>
+<p><span class="timestamp">[26:29]</span> the T puzzle together and what sees are three circles and this of course is the Holy Trinity so he&#x27;s figured it out okay he&#x27;s figured figured that the very essence of the essence of the universe the very foundation of the universe the very foundation of the universe is the Holy Trinity universe is the Holy Trinity okay one Circle seem reflected by the okay one Circle seem reflected by the second as rainbow is by rainbow and the third seem fire breath equally by those two circles separate but equal okay these are separate but they&#x27;re the same the Holy Trinity the Holy Trinity how incomplete is speech how weak when</p>
+<p><span class="timestamp">[27:01]</span> how incomplete is speech how weak when set against my thought and this to what I saw is such to C little is too much okay he&#x27;s figured out next next one please but he keeps on looking what does he see Eternal Light you only dwell within yourself and only you know you self- knowing self known you love and smile upon yourself that Circle which begotten Soul appeared in you as light reflected when my eyes had watched it with attention for some time within</p>
+<p><span class="timestamp">[27:33]</span> itself and colored like it in itself to me seem painted with our igy Effigy so that my sight was set on it completely there&#x27;s a problem here Effigy means a mirror means a mirror image okay what he&#x27;s saying is this image okay what he&#x27;s saying is this within the Holy within the Holy Trinity there is an image of Trinity there is an image of us we are in God us we are in God we are at the very essence of God we we are at the very essence of God we</p>
+<p><span class="timestamp">[28:06]</span> are within God how is that possible that should not be this should not be happening happening okay this is the deepest darkest secret okay this is the deepest darkest secret of the universe now how is it that a human is within God itself that should not be possible we are not be possible we are separate God is good we are evil right separate God is good we are evil right as the geometer intently seeks to square the circle if you want to know where the phrase Square the circle comes from it</p>
+<p><span class="timestamp">[28:38]</span> comes from this okay um but he cannot reach through thought onth thought the P principle he needs so it&#x27;s a paradox he can&#x27;t figure it out this is the ultimate Paradox he cannot figure out what&#x27;s going on so I search that strange site I wish to see the way in which our human effigy stood the circle and found place in it how is it we are in God what is going on God what is going on here and my own wings were far too weak here and my own wings were far too weak for that okay so he&#x27;s he&#x27;s been for the past 20 years trying to figure out why this is the this is the case but then my mind was struck by</p>
+<p><span class="timestamp">[29:11]</span> case but then my mind was struck by light that flash and and with this light received what he had been asked he now has an inspiration he now can imagine what God is he now knows the answer he knows the answer he&#x27;s figured out the universe he&#x27;s figured it out okay and this is it this is it here Force failed my high fantasy but my here Force failed my high fantasy but my designed will were moved already like a wheel revolving uniformly by the love</p>
+<p><span class="timestamp">[29:43]</span> that moves the sun and the other stars uh oh this is the ending guys he doesn&#x27;t tell us anything he doesn&#x27;t tell us what he he saw saw saw okay we spent I don&#x27;t know years okay we spent I don&#x27;t know years reaching this point reaching this point and Don has figured it and Don has figured it and Don has figured it out and he&#x27;s not going to tell us why out and he&#x27;s not going to tell us why us because it&#x27;s a jigsaw puzzle right because it&#x27;s something that you have to figure out for figure out for yourself this thing only works if you</p>
+<p><span class="timestamp">[30:15]</span> yourself this thing only works if you spend the time putting the pieces together okay and it&#x27;s a lifetime it&#x27;s a lifetime Journey D has SP 20 years doing this okay this okay so I encourage you all to on this so I encourage you all to on this journey but you know what this journey is way too long so I&#x27;ll give you the my version of the jiga puzzle answer today okay it may not be the best answer it may not even the right answer but it is an answer okay to what joh is saying</p>
+<p><span class="timestamp">[30:46]</span> remember this is a mystery this is a paradox this is a puzzle it&#x27;s something that you will have to unravel for yourself but I will tell you my understanding all right understanding all right okay okay so let&#x27;s go back to the okay okay so let&#x27;s go back to the beginning of paradise and this is when Dante is with beatric who is beatric beatric is someone that Dante has loved all his life they met when they were 10 years old they and they their families were friends but their families were friends but unfortunately beus came from a very unfortunately beus came from a very</p>
+<p><span class="timestamp">[31:17]</span> wealthy High status family and Dante was wealthy but not as wealthy as beatric family so beatric was betrothed to someone of her social status and she died when she was 24 giving birth okay D never forgot about her she wrote poetry after poetry reminiscing about poetry after poetry reminiscing about her celebrating her he wrote Divine her celebrating her he wrote Divine Comedy for her Comedy for her and to basically pay him back she invite and to basically pay him back she invite</p>
+<p><span class="timestamp">[31:47]</span> to visit him in heaven okay so now they&#x27;re in heaven and you would think like okay they they&#x27;re in heaven they love each other they can do whatever they want maybe they don&#x27;t have sex Maybe they&#x27;ll just snuggle maybe they&#x27;ll I don&#x27;t know eat chocolate together who knows okay but what they do is they start asking themselves questions about start asking themselves questions about the universe they&#x27;re in heaven and they the universe they&#x27;re in heaven and they want to know about the secrets of the</p>
+<p><span class="timestamp">[32:17]</span> universe how how do the stars work how does the moon work okay does the moon work okay so so this what beus says to Dante so so this what beus says to Dante direct your mind to God in gratefulness she said beatric he has brought us to the first star which is the moon okay in in this cosmology the first star is the moon I answered with the most devotion I can summon I thank him who has brought me far from the mortal world but now tell me okay the first thing he does is hey I want to ask you a question what</p>
+<p><span class="timestamp">[32:48]</span> are the dark Mar marks on this planet&#x27;s body body okay why is where the dark marks on the okay why is where the dark marks on the moon next slide moon next slide please okay please okay please okay okay so they okay so they okay so they talk and beus says your mortal mind talk and beus says your mortal mind can&#x27;t possibly comprehend the truth but try tell me what you think causes the dark spots on the moon and Donnie answers what seems to us diverse up here</p>
+<p><span class="timestamp">[33:19]</span> is caused I think by matter dense and rare okay what what do he mean by this let me explain what what he&#x27;s saying is this the this the moon um has parts that are dense and moon um has parts that are dense and rear dense just means there&#x27;s lots of rocks okay rear means like there&#x27;s an opening so light will pass through what is rear what H what is hollow and so it become dark but light will hit dense Parts like mountains and it&#x27;ll be reflected back okay and that&#x27;s why there are dark spots on the moon and this is the generally accepted Theory but the generally accepted Theory but beatric says no no no you&#x27;re wrong okay</p>
+<p><span class="timestamp">[33:55]</span> beatric says no no no you&#x27;re wrong okay you&#x27;re absolutely wrong there are two possible explanations for this the first explanation is the moon there&#x27;s some parts that are completely Hollow light just pass completely through but then ask yourself a solar eclipse in a solar eclipse the Moon is able to cover the sun completely right but in solar eclipse there should be some light that if the moon there are some parts of the Moon that is hollow there&#x27;s some be there should be some holes in the solar</p>
+<p><span class="timestamp">[34:26]</span> eclipse right and then and then she and then she&#x27;s like okay then your theory is there&#x27;s some caverns in the Moon that go deep okay but I&#x27;m going to show you that&#x27;s not the case that&#x27;s not the case either in the spiritual Universe he&#x27;s either in the spiritual Universe he&#x27;s not talking about the physical Universe he she&#x27;s talking about the spiritual Universe all light reflects brightly no matter where it is because light comes from the essence of God okay move on all right um so uh can you skip this</p>
+<p><span class="timestamp">[35:05]</span> okay you can skip this as well actually all right so then then then she just says this okay you don&#x27;t believe me so here&#x27;s what you&#x27;re going to do we will do an experiment guys they&#x27;re in heaven and they&#x27;re an experiment why because Dante doesn&#x27;t believe her Dante thinks she&#x27;s full of crap okay so this this she&#x27;s say Let&#x27;s do an experiment right this is Revolution if you don&#x27;t believe someone do an experiment all right it&#x27;s</p>
+<p><span class="timestamp">[35:36]</span> okay to doubt doubt is Heavenly it&#x27;s divine yet an experiment were you to try it could free you from your caval if the caval is all light reflects just as okay and the source of your Arts core Springs from experiment taking three Springs from experiment taking three mirrors okay this is the experiment and mirrors okay this is the experiment and you guys can actually do this at home as well place a pair of them at equal distance from you set the third in midway between those two but further</p>
+<p><span class="timestamp">[36:07]</span> back then turning toward them at your back have plac a light that Kindles those three mirrors and returns to you reflected by them all okay although the image in the farthest glass will be of lesser size there you will see that it must match the brightness of the rest all right so here&#x27;s experiment okay all right there&#x27;s a right there&#x27;s a candle there&#x27;s candle and there&#x27;s three candle there&#x27;s candle and there&#x27;s three mirrors the third is the farthest okay</p>
+<p><span class="timestamp">[36:38]</span> within and you&#x27;re holding the candle within the F three candles are these images of you holding the candle now in the third mirror you&#x27;ll be smaller what be is saying is the candle will just be as bright is that true as bright is that true physically it is true physically okay physically it is true physically okay you you can actually do this at home now what&#x27;s really fun about this experiment is you can keep on going this is a first layer right let&#x27;s do another layer okay let&#x27;s do another layer five mirrors all</p>
+<p><span class="timestamp">[37:10]</span> back okay are they still as bright the candle the answer is yes how about a ler okay are they just as Bri the answer is yes let&#x27;s go a million layers will they just be as bright as the first candle the answer is yes right that&#x27;s experiment it shows it proves that no matter how far how far the candle is if it is reflected by the first candle it will just be as bright</p>
+<p><span class="timestamp">[37:42]</span> as the other candles all right that&#x27;s experiment sorry hold on now guys let me remember it&#x27;s a God had it&#x27;s what Donnie saw when he experienced God remember he saw three circles and inside were three humans in humans in effigy this is experiment okay so he&#x27;s effigy this is experiment okay so he&#x27;s</p>
+<p><span class="timestamp">[38:13]</span> telling telling us that God us that God us that God is that candle that burns in you and is that candle that burns in you and reflects the ultimate good it reflects the the good and it burns in good and it burns in good and it burns in everyone and it unifies everyone together the more you love the bre of the kandle burns and the bre of the kandle burns the closer you are to God</p>
+<p><span class="timestamp">[38:44]</span> when you love you experience God that is why you are without sin when you godhead okay does that make sense okay go back all right sorry sorry can you go back please okay sorry next slide all right next slide no no no no no no no no forward yes okay this is the</p>
+<p><span class="timestamp">[39:14]</span> ending of the Divine commy all right let&#x27;s read it again now that we have this this information here force spiled my high information here force spiled my high fantasy but my desire and will were moved already like a wheel revolving uniformly by the love that moves the Sun and the other stars he tells us here God is love love is God love is the univ is the force that binds everything together it is the unifying force of the universe it is the force that makes</p>
+<p><span class="timestamp">[39:44]</span> things move things move brightly okay the problem is before we brightly okay the problem is before we could only see but could only see but now we can now now we can now now we can now imagine okay God is I mean you can not imagine okay God is I mean you can not see God is something that you imagine okay imagine okay so that&#x27;s Divine common any</p>
+<p><span class="timestamp">[40:18]</span> questions questions about this so far um that&#x27;s a really good question who is he writing to um who is his audience um so he&#x27;s writing in Tuscan rather than Latin and he calls it the kadia um so I think he&#x27;s trying to avoid the Catholic church right because at</p>
+<p><span class="timestamp">[40:50]</span> this time um the Catholic Church writes mainly in Latin so he&#x27;s trying to avoid the Catholic church that&#x27;s his main enemy okay because if the Catholic Church actually understood what he was doing they would have basically burned his his manuscript right so I I know it sounds manuscript right so I I know it sounds strange but he&#x27;s really strange but he&#x27;s really writing for the universe if that makes writing for the universe if that makes any sense he&#x27;s leaving it any sense he&#x27;s leaving it here as a secret box and then someone in here as a secret box and then someone in</p>
+<p><span class="timestamp">[41:21]</span> the future is going to come and they&#x27;re going to read it and it&#x27;s going to entice them it&#x27;s it&#x27;s it&#x27;s like they&#x27;re curious as to what this is and at first they can&#x27;t figure it out but they stick at it and over time it begins to transform how they see the world okay does that make sense he&#x27;s a prophet he&#x27;s a poet and so he&#x27;s not really writing it to make money or uh because he has to he&#x27;s running because he has a moral mission to speak the</p>
+<p><span class="timestamp">[41:53]</span> truth when you speak the truth you&#x27;re speaking to the universe not to an have a or did the manuscript circulate in yeah no no I&#x27;m sorry sorry yeah duck thank you yeah okay so thank you yeah okay so okay at this time um remember before we okay at this time um remember before we we said that all running projects had to be sponsored by a patron and before it was Kings um so he does have a</p>
+<p><span class="timestamp">[42:23]</span> patron um it&#x27;s it&#x27;s like a account or something and clearly there are Parts in the Divine colony which are appealing to his Patron right but um he&#x27;s really using this as a pretext in order to speak the truth okay does that make sense he he needs he needs funding he needs a patron but what drives him is obviously not the money what drives him</p>
+<p><span class="timestamp">[42:53]</span> is he believes God has spoken to him and he believes that he knows God he believes that it in the Divine Harmony are the secrets of the of the universe he himself probably doesn&#x27;t know all the secrets but he believes that they&#x27;re all there if someone is willing to look hard enough does that make enough does that make sense okay but but but but you&#x27;re right sense okay but but but but you&#x27;re right he did have a patron yeah okay any any questions questions okay just just a small one with I really</p>
+<p><span class="timestamp">[43:27]</span> okay just just a small one with I really like the translation here oh like the translation here oh yeah yeah yeah yes okay um so there have been multiple yes okay um so there have been multiple translations of Divine Comedy um this man is named Alan man is named Alan manobal and um um he he&#x27;s the one I manobal and um um he he&#x27;s the one I prefer the most just because he&#x27;s the most um relatable he he&#x27;s the most accessible I mean there are there are these translations by um Long Fellow which is uh beautiful but it&#x27;s really</p>
+<p><span class="timestamp">[43:57]</span> complicated um complicated um I I I think um extra pound has also done a think um extra pound has also done a translation and then there are translation and then there are translations which AR okay so so there translations which AR okay so so there are different translations uh mum is is I just think I think just the easiest to teach okay and and so um um because of translation issues this this again was written in Tuscan I&#x27;ve tried I try to avoid a close reading okay uh because with Clos reading you want to analyze the word specifically the dition but I I I can&#x27;t do that because it depends on</p>
+<p><span class="timestamp">[44:29]</span> the translation okay but the ideas are the same okay but but but thanks so this trauma okay we we&#x27;ll do a lot of Clos reading when we get to English literature which is like Shakespeare and Milton okay because then because then you can actually do close reading but with translation uh you can&#x27;t do close reading it it it it&#x27;s too dependent on</p>
+<p><span class="timestamp">[44:59]</span> on the trans translation okay any more questions okay so so um so so so so so can we do one more Slide the Augustine end end yeah okay yeah so let&#x27;s go to Augustine yeah okay yeah so let&#x27;s go to Augustine okay Augustine says here man lives by the stand of man not by the stand of God he is like the devil okay guys we are in God because God is in us God is the candle the love that Burns in us if we</p>
+<p><span class="timestamp">[45:30]</span> love the candle burns brighter it brings us closer to God okay this is how we know we&#x27;re doing good because we know okay our hearts will know your faces will know people will know everyone knows what good knows what good is pride will be the start of the evil is pride will be the start of the evil will no pride is who we are we all better is was a Veno transation when he refused to Desert his wife refused to Desert his wife life love is</p>
+<p><span class="timestamp">[46:01]</span> life love is life love is sin love is without sin love is the sin love is without sin love is the greatest force in the universe because it is it is God we&#x27;re created out of nothing no God we&#x27;re created out of nothing no we&#x27;re created out of God okay God is in us God is with us God is with us the Heavenly city was created by us the Heavenly city was created by self-love the love of God uh was created by contempt of self all right so this is a really important idea but the idea is this love only exists between humans it does not exist outside of humans you can love money you cannot love money you</p>
+<p><span class="timestamp">[46:31]</span> cannot love chocolate you can only love each other because God is within us okay if you love God you don&#x27;t love God because God is an idea you have to love each other you have to love beus you have to love your mother you have to love your son love your son okay um in heav say there will be okay um in heav say there will be freedom of will enjoying unfilling the Delight of Eternal Joys sorry guys okay Divine commedy says this there is no end to the to the Universe at no point will we know</p>
+<p><span class="timestamp">[47:05]</span> everything we exist because we are contining God&#x27;s contining God&#x27;s Legacy when we imagine things we are C Legacy when we imagine things we are C we are engage engaged in the Act of Creation that is God we are like God and when when we imagine when we love okay that is our ultimate mission in life to love and to imagine because then we create new worlds for God to celebrate okay all right all okay all right all right so that was the first lecture on</p>
+<p><span class="timestamp">[47:36]</span> right so that was the first lecture on Dante next Tuesday we will um do the</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

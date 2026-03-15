@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civilization #22: The Literary Genesis of the Yahwist — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Civilization #22: The Literary Genesis of the Yahwist">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #06b6d4;
+            --accent-bg: rgba(6, 182, 212, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Civilization #22</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Civilization #22</div>
+        <h1 class="article-title">The Literary Genesis of the Yahwist</h1>
+        <div class="article-meta">
+            <span>📖 52 min read</span>
+            <span>📝 10,375 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Civilization #22：  The Literary Genesis of the Yahwist</p>
+<p><span class="timestamp">[0:02]</span> okay so good morning we are continuing the Hebrew Bible the Hebrew Bible today um last class we talked about King today um last class we talked about King David of Israel and how he created the Bible the the project of the Bible in order to create legitimacy and Authority okay we&#x27;re continuing along this theme today so let&#x27;s go over the chronology of the Bible okay chronology of the Bible okay um so in the um so in the um so in the beginning there was God okay in the</p>
+<p><span class="timestamp">[0:35]</span> beginning there was God okay in the world and then he created Adam and Eve in the Garden of Eve in the Garden of Eden and people who took the Bible Eden and people who took the Bible literally believe this was about 4,000 BC BC okay as we know Adam and Eve because okay as we know Adam and Eve because they they disobeyed God they were banished from</p>
+<p><span class="timestamp">[1:07]</span> disobeyed God they were banished from the Garden of Eden and then they had two sons K and Abel and then uh their family start to populate the Earth but then humans start to misbehave we went to war we were we were greedy and so God decid decided to greedy and so God decid decided to destroy the world something called The Great Flood and this is a story of Noah&#x27;s Noah&#x27;s Arc remember Arc remember Arc remember Noah uh was beloved by God so God told</p>
+<p><span class="timestamp">[1:40]</span> Noah uh was beloved by God so God told him to build a great ship and then he will be able to live okay um after Noah&#x27;s Ark um came along a man named Abraham and this was about 2,000 BC Abraham was born in the city of of er in Mesopotamia and he was beloved by God because he was a righteous and decent man and God made a covenant with him</p>
+<p><span class="timestamp">[2:12]</span> Covenant and a covenant is a contract it&#x27;s a promise and the contract is this if you Abraham swear allegiance to me Yahweh I will make you and your descendants founders of a great nation called Israel that will stretch from the Nile to the frates that&#x27;s a promised land and return uh as a mark of this Covenant Abraham and his ancestors will engage in circumcision okay basically engage in circumcision okay basically the foreskin of their penis will be</p>
+<p><span class="timestamp">[2:44]</span> the foreskin of their penis will be surgically surgically removed at Birth surgically surgically removed at Birth okay so that&#x27;s the Covenant Abraham had a son named Isaac and Isaac had a son named Jacob okay um Jacob is the younger son of um Isaac so asau should have inherit the birthright and the blessing from his father Isaac but Jacob played a trick on</p>
+<p><span class="timestamp">[3:15]</span> ASA and stole the birthright ASA was very angry so Jacob had to run away and live with a relative for um a couple of decades and while there he married two sisters sisters named Leah and named Leah and named Leah and Rachel and then together they had 12 Rachel and then together they had 12 sons and these became the 12 sons became the 12 founders of the 12 tribes of</p>
+<p><span class="timestamp">[3:45]</span> Israel Jacob will be renamed by God as Israel so Jacob really is the founder of the nation of the nation of Israel Jacob Jacob&#x27;s youngest son is Israel Jacob Jacob&#x27;s youngest son is named Joseph and he is beloved by um Jacob so much that his brothers became jealous of him and sld him into slavery in slavery in Egypt Joseph was also beloved by God and Egypt Joseph was also beloved by God and he had a special gift of reading dreams</p>
+<p><span class="timestamp">[4:16]</span> and he became a special advisor to the Pharaoh and he became very wealthy meanwhile back in the land of Israel Jacob and his sons their family are facing this massive famine so Jo Joseph comes and rescues them and the entire nation of Israel moves down to Egypt okay where they become very wealthy and prosperous and because they have many have many children eventually after a couple children eventually after a couple children eventually after a couple decades they become a threat to the</p>
+<p><span class="timestamp">[4:48]</span> decades they become a threat to the establishment so the new theough who has no memory of the contributions of Joseph enslave the enslave the Israelites and he wants them to die so Israelites and he wants them to die so he basically forbids them to have uh sons and he um um basically tries to sanction the Israelites as much as possible eventually a man named possible eventually a man named Moses is Born Into the Israelites in Moses is Born Into the Israelites in</p>
+<p><span class="timestamp">[5:21]</span> Egypt and because he&#x27;s a boy he has to be killed so his mother puts him in a basket and then this basket drifts down the Nile and into the hands of Egyptian princess so Moses grows up to become um Egyptian prince but eventually God Egyptian prince but eventually God informs them of who he really is and informs them of who he really is and he&#x27;s the prophet um who will deliver the Israelites back into the promised Israelites back into the promised land the Pharaoh refuses to let the land the Pharaoh refuses to let the</p>
+<p><span class="timestamp">[5:53]</span> Israelites go there&#x27;s a major contest dual between Moses and the Pharaoh and then God sends down like 10 plagues okay 10 plagues 10 plagues to force the pharaoh to release the to force the pharaoh to release the Israelites Moses is taking the is the Israelites into the promised land and then Pharaoh CH has a change of heart and he wants to destroy the Israelites before they can escape so the Pharaoh chases them Moses causes the sea to part they they cross the valley and when</p>
+<p><span class="timestamp">[6:26]</span> pharaoh and his army are about to enter the sea the sea closes in on them and D them them okay and then when Moses and the okay and then when Moses and the Israelites are in the desert Moses ascends the mountain to receive the law of God and this is what we call the Ten Commandments but while Moses is Commandments but while Moses is away the away the away the Israelites created an idol to celebrate Israelites created an idol to celebrate</p>
+<p><span class="timestamp">[6:57]</span> Yahweh and Yahweh hates this because Yahweh does not want to be represented on Earth so Yahweh um sends him to a long Exile in the desert and he tells Moses you will deliver the people from Egypt and that is your mission but you will not enter the promised land you can see the promised land but you will not enter the promised land so the mission goes to Joshua who is Moses deciple and</p>
+<p><span class="timestamp">[7:27]</span> Joshua and the Israelites start a massive military campaign in into the land of canine which is a promised land and over the span of years they basically Massacre the people and they create the nation of create the nation of Israel and then we enter the period Israel and then we enter the period called the judges and these are 12 individuals who become the tribal individuals who become the tribal leaders of Israel and Israel at this leaders of Israel and Israel at this time is at war with all the neighbors the moabites the the the moabites the the Philistines the</p>
+<p><span class="timestamp">[7:57]</span> Philistines the Philistines the Canaanites um and this perod last for a Canaanites um and this perod last for a long time until the Israelites pick a king named Saul to lead them okay King Saul and then as we know from King Saul will come David who will use up the throne from Saul and be the great king of Israel that we that we remember today okay and David is considered the real founder of the state of Israel as well</p>
+<p><span class="timestamp">[8:28]</span> as the Jewish faith so that&#x27;s the chronology chronology of the Bible now because the Bible is of the Bible now because the Bible is written almost like a historical written almost like a historical document for most of in human document for most of in human history people believe this to be literally true okay but in the past 400 years 300 years there are many archaeologists who have tried to archaeologists who have tried to prove the events in the Bible for prove the events in the Bible for example Noah&#x27;s Ark If there really was a</p>
+<p><span class="timestamp">[9:00]</span> flood well there would be a a geological record there would be a ship okay there would be a memory of this but there was never but but we have never been able to found any concrete evidence to support North Art okay how about the garden of of Eden well if the Garden of Eden really existed well we could also find it and we&#x27;ve never been able to find it all right how about Abraham Isaac and Jacob again no evidence that any of</p>
+<p><span class="timestamp">[9:31]</span> these IND indviduals ever these IND indviduals ever existed how about existed how about existed how about Moses well we would think if Moses Moses well we would think if Moses really did exist there would be some records of him in the Egyptian history right I mean 10 plagues is a travesty and a disaster on the Egyptian people no record of that uh The Parting of the sea no record of that uh the judges uh Joshua nothing okay it&#x27;s only</p>
+<p><span class="timestamp">[10:02]</span> it is only until we get to David when we begin to see historical records and proof that David actually existed but before that nothing in the before that nothing in the Bible um has proven to be um Bible um has proven to be um historical okay and so this is very confusing so what I will show you today is If you see the Bible as a historical record you will only get confused if you see this as as a chronology this makes no this makes no sense if you see this as a work of</p>
+<p><span class="timestamp">[10:33]</span> sense if you see this as a work of fiction like a lot of people do this doesn&#x27;t make much sense either okay because when you read the Bible these events aren&#x27;t actually interconnected events aren&#x27;t actually interconnected with each other David has no memory of with each other David has no memory of Moses for example that&#x27;s weird Moses has no memory of Abraham okay so these stories are not stories are not interconnected so if this is not a interconnected so if this is not a historical record if this is not a work of pure of pure fiction what is this thing okay what I fiction what is this thing okay what I</p>
+<p><span class="timestamp">[11:06]</span> will show you today is this is not a chronology this is a cosmology chronology this is a cosmology cosmology okay it remember last class we talked about why things are written down in the ancient past and as I said King sponsor writing projects for three major reasons the first reason is to create legitimacy</p>
+<p><span class="timestamp">[11:40]</span> Authority the second reason is to create a national identity cohesion among the people the third reason is the idea of differentiation to tell people who they are not we&#x27;re Israelites we&#x27;re not Egyptians we&#x27;re not Canaanites we&#x27;re not Philistines okay so these are the three major reasons why major reasons why Kings Kings Kings sponsor writing sponsor writing sponsor writing projects and for the Israelites and projects and for the Israelites and David these David these three um imperatives are particular</p>
+<p><span class="timestamp">[12:15]</span> three um imperatives are particular three um imperatives are particular Salient okay they&#x27;re really necessary Salient okay they&#x27;re really necessary Salient okay they&#x27;re really necessary right so let me explain why that&#x27;s the right so let me explain why that&#x27;s the case so case so legitimacy legitimacy legitimacy remember David usurped the throne from remember David usurped the throne from Saul Saul came from a noble family and he was elected by The he was elected by The Chieftains to be their Chieftains to be their Chieftains to be their King and then David launched a rebellion King and then David launched a rebellion and eventually user the throne so David</p>
+<p><span class="timestamp">[12:45]</span> has a major legitimacy problem so how he solves the problem as we discussed last class is the Bible presents him as a poet King okay this is very important concept poet King there have been Warrior Kings right Kings who go to war and they win legitimacy by defeating all their enemies there have been priest Kings Kings who are head of a major religion but David is the first poet</p>
+<p><span class="timestamp">[13:16]</span> King okay he writes poetry he sings songs he&#x27;s a sensitive Soul that&#x27;s that&#x27;s what explains his affair with basiba and that&#x27;s that and that tells us he could never have possibly been ambitious and want to kill Saul okay he&#x27;s the first poet King so why is he king of Israel because guess what guys God is the poet guys God is the poet God okay poet God Yahweh is the poet</p>
+<p><span class="timestamp">[13:48]</span> God so this is a radical conception of divinity in the ancient divinity in the ancient world Gods previously have been priests world Gods previously have been priests or Warriors and this is the first time in human history where God Yahweh is presented as a poet God when you read the Bible it&#x27;s very interesting how he creates the world he speaks and things are are created okay he says let there be light created okay he says let there be light Let There Be Heaven and Let There Be Heaven and Earth he speaks and when he speaks a new</p>
+<p><span class="timestamp">[14:20]</span> Earth he speaks and when he speaks a new world is created and he and then he looks at at this word and says and this is good okay so he&#x27;s like a writer who speaks words and who edits his words in order to create something much more beautiful he&#x27;s a poet and as a poet he&#x27;s very poet he&#x27;s very sensitive okay which means he creates sensitive okay which means he creates Adam and Eve because he&#x27;s lonely he wants wants friendship</p>
+<p><span class="timestamp">[14:50]</span> friendship friendship okay so in other words the Bible is okay so in other words the Bible is fundamentally A Story of Friendship of two poets who are alone in the world and who found friendship and comfort in the existence in each existence in each other okay and the way the Bible other okay and the way the Bible accomplishes is through the idea of Covenant so in their Bible there are four covenants promises so the first</p>
+<p><span class="timestamp">[15:20]</span> Covenant um is between Noah and Yahweh it&#x27;s what we called a Noah had Covenant the Noah Covenant the idea of this is this after Yahweh destroys the world he feels tremendous remorse for what he&#x27;s done he promises Noah as long as humans are not too evil I will not destroy the world okay if humans stay good I will not destroy the world the second Covenant is between Abraham and Yahweh it&#x27;s called The abrahamic Covenant and</p>
+<p><span class="timestamp">[15:53]</span> in this Covenant Yahweh says to Abraham if you and your ancestors sorry if you and your descendants stay true to me I will create a great nation out of you I will give you the nation of Israel the third Covenant is between Moses and Yahweh it&#x27;s called The mosc Covenant and the idea is if the Israelites Israelites follow the ten follow the ten follow the ten commandments and worship Yahweh only commandments and worship Yahweh only commandments and worship Yahweh only yahwe then Yahweh will protect them as a</p>
+<p><span class="timestamp">[16:26]</span> yahwe then Yahweh will protect them as a nation Yahweh will show them favor okay so so those are the three covenants but when we went get to David called The davidic Covenant something interesting davidic Covenant something interesting happens all three previously are what we happens all three previously are what we call conditional covenants if you do this then I will do this but when we get to David it&#x27;s to David it&#x27;s unconditional I Yahweh will promise that unconditional I Yahweh will promise that</p>
+<p><span class="timestamp">[16:58]</span> you David and your descendants will forever forever rule rule rule Israel the House of David will forever Israel the House of David will forever rule Israel okay it&#x27;s an unconditional Covenant that shows his Everlasting Covenant that shows his Everlasting friendship with David in other words the friendship with David in other words the divinite Covenant marks the end of Biblical history Yahweh this great God poet God who&#x27;s been who searched a universe for universe for friendship has now found his great friendship has now found his great</p>
+<p><span class="timestamp">[17:29]</span> friend in David friend in David and so his search has ended and Biblical and so his search has ended and Biblical history has history has ended ended ended okay so this is a radical new idea in okay so this is a radical new idea in human history how a king and a God can be poets and how the world how reality reality can be constructed through words okay and that&#x27;s why in the Bible there&#x27;s a very famous phrase called in the beginning there was the word and that&#x27;s</p>
+<p><span class="timestamp">[18:01]</span> why um Jewish people are so literary okay because that&#x27;s part of the tradition if you look at some of the most famous writers the most some of the most famous thinkers in the world um they&#x27;re mainly Jewish and again a lot of it is because um the Jewish faith is a creation so that&#x27;s the idea of legitimacy cohesion all cohesion okay legitimacy cohesion all cohesion okay the second purpose is create cohesion the second purpose is create cohesion</p>
+<p><span class="timestamp">[18:32]</span> and as we discussed after the Bron age collapsed the land of canine was in complete chaos you had all these Des you had all these different groups within canine you had uh the nomads from the desert okay the the the bans you have the Hill People of canine you have um refugees from the cities of canine whove been and these cities have been destroyed you have Egyptian priests you have four have four mercenaries and now you have sea peoples mercenaries and now you have sea peoples the these Greeks and these other peoples</p>
+<p><span class="timestamp">[19:02]</span> who are coming into canine because they&#x27;ve lost their lands um back at home okay so you&#x27;ve got this very different group of people together they&#x27;re in competition with other groups like the Philistines so now they need to create a national identity out of all this right and that&#x27;s what the Bible is doing guys okay remember there&#x27;s a concept we learned that&#x27;s very important in class</p>
+<p><span class="timestamp">[19:38]</span> stiz it means when you bring different religions together and create a new religion so for example let&#x27;s say my God is Zeus and your God is Hera and I conquer uh you and I make you part of my people okay so what we do in this instance is we marry our Gods to each other other so now Zeus is married to Hera and they so now Zeus is married to Hera and they have children like Aphrodite and Athena okay and this is a way to soo the</p>
+<p><span class="timestamp">[20:10]</span> process of Conquest because even though I&#x27;ve conquered you I still have to live with you with you okay so we have to blend in our okay so we have to blend in our different cultures this is also true for the idea of genealogy family history every tribe has a every tribe has a patriarch okay and the reason why that patriarch okay and the reason why that patriarch is to to tell the people we&#x27;ve been in this land for the longest time and that&#x27;s why we have legitimacy and control over this land because we were</p>
+<p><span class="timestamp">[20:42]</span> here first okay now when tribes get together they into marry they form alliances what they do that&#x27;s very common is their ancestors merge together and they become sons and fathers of each other so as though it&#x27;s like one family history okay you take these different family history and you merge them into one line the same process of synchonization okay so if you look at this instance Abraham Isaac and Jacob it&#x27;s basically three major tribes of</p>
+<p><span class="timestamp">[21:13]</span> Israel coming together to form one family history in this instance the most powerful family is that of Jacob because Jacob Israel gives his name to the new nation of Israel the second most important person or tribe is Abraham because he&#x27;s the progenitor of this family okay and third will be Isaac and in fact in the Bible Isaac receives the the least amount of the least amount of attention attention attention Okay but the synchronization process</p>
+<p><span class="timestamp">[21:47]</span> Okay but the synchronization process Okay but the synchronization process also helps us also helps us also helps us explain explain explain Moses because we&#x27;ve been looking for Moses because we&#x27;ve been looking for hundred years and we have not found any evidence that MO Moes ever existed or anyone like Moses existed anyone like Moses existed in Egypt okay so what&#x27;s Moses doing well in Egypt okay so what&#x27;s Moses doing well what Moses is doing is explaining why there are Egyptian there are Egyptian priests in the nation of Israel right priests in the nation of Israel right</p>
+<p><span class="timestamp">[22:18]</span> and why are priests important because if you&#x27;re David and you&#x27;re now King you want to create legitimacy and you want to create Authority and the best way you create Authority is by centralizing your power back then the best and easiest way to centralize power is by to centralize power is by centralizing religious ritual does that centralizing religious ritual does that centralizing religious ritual does that make sense so what he did was this he make sense so what he did was this he created he made this new capital Jerusalem and he built something called</p>
+<p><span class="timestamp">[22:50]</span> the Temple of Jerusalem which became the house of Yahweh this is where Yahweh lived so if you wanted to worship Yahweh and you had to because he your God you have to come all the way to Jerusalem to offer a sacrifice and who controlled the sacrifice process sacrifice process priests priests priests okay and why did the priest sacri and okay and why did the priest sacri and why did the priest Egyptian priests why are they controlling the sacrifice are they controlling the sacrifice process because they&#x27;re the ones Moses process because they&#x27;re the ones Moses who led the people of Israel out of</p>
+<p><span class="timestamp">[23:22]</span> Egypt the ones who Egypt the ones who delivered the the Israelites into delivered the the Israelites into delivered the the Israelites into Freedom Moses is an Egyptian name it Freedom Moses is an Egyptian name it means son of means son of okay so it&#x27;s a very common Egyptian name okay so it&#x27;s a very common Egyptian name so for example Ramses means son of Rah okay so ramse is a is a very famous Egyptian Pharaoh Ramses means son of Rah the son the son God so both Moses and his brother Aaron God so both Moses and his brother Aaron these are Egyptian names for Egyptian</p>
+<p><span class="timestamp">[23:53]</span> priests okay so David was heavily reliant on these Egyptian priests in Authority also the idea of circumcision it is an ancient Egyptian practice that PRI specialized in right so if the new law is to be a member of Israel to be an Israelite means you have to get circumcised you have to circumcise your</p>
+<p><span class="timestamp">[24:23]</span> children you&#x27;re going to go to an Egyptian priest to circumcise your Egyptian priest to circumcise your children because they&#x27;re good at that children because they&#x27;re good at that and they know how to do that okay does that make sense so by making circumcision the major Mark of what it means to be an Israelite it gives Authority and power to these Egyptian priests okay does that make sense okay um the judges what we believe is the judges are these Local Heroes that bring</p>
+<p><span class="timestamp">[24:55]</span> in all the other tribes of Israel together okay so in other words if you are a member of this new nation of Israel you have a diety or an ancestor within the cosmology of the within the cosmology of the Bible okay and that&#x27;s this explains why Bible okay and that&#x27;s this explains why the history of Israel is so con convoluted contradictory and complex convoluted contradictory and complex because it&#x27;s trying to create a national because it&#x27;s trying to create a national</p>
+<p><span class="timestamp">[25:30]</span> identity where everyone all tribes all everyone is able to contribute everyone is able to contribute effectively to the creation of the effectively to the creation of the nation of nation of Israel okay any questions before I Israel okay any questions before I continue is this clear to you guys what&#x27;s what&#x27;s going what&#x27;s what&#x27;s going on any other on any other questions all right now the last questions all right now the last question is differentiation and this is the most important okay because remember you have Egyptian priest in Israel how do we know they&#x27;re loyal to Israel and</p>
+<p><span class="timestamp">[26:01]</span> not to Egypt because the Egyptian priest went to war with a went to war with a pharaoh we have Canaanites within the pharaoh we have Canaanites within the state of Israel how do we know they&#x27;re loyal because they went to war with the Canaanites okay so in the Bible what&#x27;s interesting read the Bible is the Israelites in in their history went to war with everyone okay the Egyptians the Philistines the Canaanites went to war with everyone why because they had members from every members from every single geography and location in that single geography and location in that area and so they need to differentiate</p>
+<p><span class="timestamp">[26:31]</span> themselves the best way you themselves the best way you differentiate yourself is by going to differentiate yourself is by going to war with them does that make sense oh also like also guys um when I use the word use the word Nation um I have to warn you this is not Nation um I have to warn you this is not the modern sense okay Nation it&#x27;s a loose political affiliation that is loose political affiliation that is fluid today the nation state uh you&#x27;re fluid today the nation state uh you&#x27;re Chinese you&#x27;re stuck being Chinese okay</p>
+<p><span class="timestamp">[27:02]</span> but back then if you&#x27;re an Israelite guess what you could walk across the street and become a moabit okay so the IDE the idea of identity back was extremely loose and fluid so when we use the term mulite or canite basically we&#x27;re talking talking about a geographic location that has some political location that has some political force but it&#x27;s not a fixed identity okay force but it&#x27;s not a fixed identity okay the very idea of ethnicity the very idea of ethnicity race group identity back then was race group identity back then was</p>
+<p><span class="timestamp">[27:33]</span> extremely fluid was basically extremely fluid was basically non-existent okay so Israel the very non-existent okay so Israel the very idea of Israel it&#x27;s a literary creation the idea of Israelite it is a political guys any questions so far before I move okay are you okay are you clear okay all right clear okay all right clear okay all right all right so this explains why the Bible all right so this explains why the Bible</p>
+<p><span class="timestamp">[28:05]</span> is structured the way it is okay but then the question then is and this is a very important question is okay you know what this was standard cultural practice back then everyone did this to create uh identity so why is it we have a Bible today and not say other text from Egypt or or Mesopotamia why is it that the Bible was Mesopotamia why is it that the Bible was able to conquer the world basically right because you have two billion</p>
+<p><span class="timestamp">[28:36]</span> Christians you have a billion um Muslims the Bible was able to conquer the world and capture the imagination of and capture the imagination of humanity and here I want to explain why humanity and here I want to explain why powerful it was how it was written that made it so made it so powerful okay so last class we talked powerful okay so last class we talked about the ology of David about the BBA story about the Abner story and we believe the person who wrote those</p>
+<p><span class="timestamp">[29:09]</span> stories are what we call the court historian we have absolutely no idea who he is he&#x27;s basically the official historian of the court of David okay and historian and those stories are good but they&#x27;re not they&#x27;re not literary okay they&#x27;re just propaganda and spin they&#x27;re just propaganda and spin but the person who wrote the Bible but the person who wrote the Bible especially Genesis was a unique literary</p>
+<p><span class="timestamp">[29:41]</span> genius of the Statue of Homer and Plato and Dante okay the person who wrote the Bible who first wrote the Bible was an incredible literary genius and we call yahwist okay why do we call the her the yahs it&#x27;s just convention because yahs it&#x27;s just convention because because she because she because she uses uses uses um Yahweh as the name of God and other um Yahweh as the name of God and other writers don&#x27;t actually use Yahweh as the name of God okay so so by convention we call her the Yahweh now the question</p>
+<p><span class="timestamp">[30:12]</span> then is who is then is who is she and we&#x27;re fairly certain she&#x27;s a she and we&#x27;re fairly certain she&#x27;s a well it&#x27;s a she okay and as I show you we&#x27;re fairly certain it&#x27;s a she because she focuses not on she focuses not on war not on war not on war not on conflict but on domestic tragedy and conflict but on domestic tragedy and Affairs child birth marriage love and this is unique in human history okay so we&#x27;re fairly confident it&#x27;s a we&#x27;re fairly confident it&#x27;s a she there are many who believe she is of</p>
+<p><span class="timestamp">[30:46]</span> she there are many who believe she is of the court of David the reason why is uh first of all um what she writes is very favorable to the court of favorable to the court of David also back then as you can imagine David also back then as you can imagine in um only arist aristocratic woman had the privilege of reading and writing okay she clearly had access to uh the mythology of Egypt Mesopotamia Anatolia mythology of Egypt Mesopotamia Anatolia she has access to a great she has access to a great education uh so we believe she&#x27;s a</p>
+<p><span class="timestamp">[31:18]</span> princess I will go further and make the argument that she must be either the daughter or the granddaughter of the king of King David okay I would I would I would make this argument that she has has to be the daughter or the granddaughter of King David and the reason why is what she wrote and I I&#x27;ll show you what she wrote what she wrote was so controversial and so unique and so imaginative that the so imaginative that the priesthood could not possibly accept priesthood could not possibly accept priesthood could not possibly accept what she did if she was just if she was</p>
+<p><span class="timestamp">[31:49]</span> what she did if she was just if she was just a priest or she if she was just an aristocratic of low birth there there was no was no way her writings would become way her writings would become way her writings would become um part of the Bible okay so she must um part of the Bible okay so she must have been someone of high Authority and there is actually a president for this so so for example we know that in about 2000 BC this this is a you know at least a thousand years before the Yahweh began to write the Sargon of aad who is the</p>
+<p><span class="timestamp">[32:21]</span> first great Empire Builder okay the first emperor basically and this is someone that back then during the time of King David ever knew and worshiped okay King David knew about him and he knew about his knew about his practices when King s of adad conquered practices when King s of adad conquered Mesopotamia he appointed his daughter Mesopotamia he appointed his daughter name um and name um and name um and her her her du to be like The High Priestess of du to be like The High Priestess of their religion but what&#x27;s interesting their religion but what&#x27;s interesting about her is she&#x27;s a poet and she is the</p>
+<p><span class="timestamp">[32:53]</span> about her is she&#x27;s a poet and she is the first name author in human history okay okay this is 2000 BC she wrote a lot of poetry so there is a history a president for these Kings to appoint their daughters to be the official poet of their Nation okay so that&#x27;s why I think the jaw is the Yahweh is but honestly we&#x27;ll never know and it&#x27;s not important okay we we just have to know she was an exceptional literary exceptional literary genius who made the Bible what it is</p>
+<p><span class="timestamp">[33:26]</span> genius who made the Bible what it is today all right so let&#x27;s go over some of her literary contributions very her literary contributions very shortly and again because the Bible has shortly and again because the Bible has been reducted for about 2,000 years 3,000 years we&#x27;ve lost a lot of her original writings okay so I will I we we analyze a couple of stories that we know for sure she wrote the first is called Adam and Eve the second is the story of</p>
+<p><span class="timestamp">[33:57]</span> Jacob and Rachel okay all right so you think you know the story of Adam and Eve but I guarantee you it&#x27;s wrong okay I guarantee you even you know the story of Adam and Eve it&#x27;s Adam and Eve it&#x27;s wrong all right so let&#x27;s go over the wrong all right so let&#x27;s go over the official or the mainstream understanding official or the mainstream understanding of the story of Adam and of the story of Adam and Eve God told Adam and Eve listen this is the Garden of Eden it&#x27;s Paradise you can do whatever you want you life is easy apples fall from the sky okay you can</p>
+<p><span class="timestamp">[34:29]</span> pick tomatoes and carrots from the ground life is easy it&#x27;s Paradise for you but there&#x27;s one rule and only one rule in the Garden of Eden the rule is do not eat do not eat from the Tree of knowledge of Good and from the Tree of knowledge of Good and poison and of course Adam and Eve had to disobey God and God became so angry that he he banished Adam and Eve from the Garden of banished Adam and Eve from the Garden of</p>
+<p><span class="timestamp">[35:01]</span> Eden and that was the our Act of Disobedience the First Act of Disobedience the First Act of Disobedience our first sin the original Disobedience our first sin the original sin that um has doomed us forever until the Redemption of Jesus right that&#x27;s a story we all story we all know the story is completely and utterly know the story is completely and utterly wrong that&#x27;s not what it says in the Bible okay so I&#x27;ll explain first what the what the Bible says and then I&#x27;ll</p>
+<p><span class="timestamp">[35:38]</span> story okay so God says to Adam and Eve don&#x27;t eat that fruit don&#x27;t eat that fruit okay and then Adam and Eve are curious okay and then Adam and Eve are curious why can&#x27;t you eat that fruit and then Eve meets a serpent on the ground and Eve and the serpent Eve and the serpent talk and Eve says basically says we talk and Eve says basically says we can&#x27;t eat that fruit and the serpent says says why Eve says it&#x27;s why Eve says it&#x27;s why Eve says it&#x27;s poisonous so says no it&#x27;s not poisonous poisonous so says no it&#x27;s not poisonous you&#x27;re being lied you&#x27;re being lied to the reason why Yahweh does not want</p>
+<p><span class="timestamp">[36:10]</span> to the reason why Yahweh does not want you eat from the fruit is once you eat it you&#x27;ll become like God your eyes will open you have the knowledge of Good and Evil and then Eve gets angry because she feels manipulated and she convinces Adam to eat the fruit as well so the the fruit and their eyes are open now they have not of Good and Evil Yahweh visits them in the garden and he discovers they&#x27;re hiding from him they&#x27;re hiding from him and Yahweh commands them to come out and</p>
+<p><span class="timestamp">[36:42]</span> and Yahweh commands them to come out and he sees right away they&#x27;re embarrassed about their nakedness they&#x27;re about their nakedness they&#x27;re embarrassed about being confronted by embarrassed about being confronted by embarrassed about being confronted by Yahweh so Yahweh knows they&#x27;ve eaten the fruit Adam says to Yahweh it&#x27;s Eve&#x27;s fault Eve says to Yahweh it&#x27;s the Serpent&#x27;s fault and Yahweh decides to punish all three he says to the serpent from now on you will Slither on</p>
+<p><span class="timestamp">[37:13]</span> the ground and you&#x27;ll be hunted by men Eve from now on you and all your descendants will suffer the Pains of childbirth child birth will be an extremely painful process and then he says to Adam from now on on you must sweat to grow food to feed yourself from now on life will be hardship it will be a a it will be toil and pain and suffering okay and then he does this</p>
+<p><span class="timestamp">[37:43]</span> okay this is very interesting and this is where the is where the Bible demonstrates its genius okay and Bible demonstrates its genius okay and the Lord God made garments of skins for the man and his wife and clothed them then the Lord said see the man has become like one of us knowing good and evil and now he might reach out his hand and take also from the Tree of Life and</p>
+<p><span class="timestamp">[38:14]</span> live forever okay this is where the Bible is genius because it&#x27;s telling us why God is banishing Adam and Eve from the Garden of Eden it&#x27;s telling us it&#x27;s because there&#x27;s another tree God didn&#x27;t mention to them it&#x27;s called The Tree of Life Life and it allows you to live and it allows you to live forever so why is this a problem well there are two things that differentiate God from us humans the first thing is God has knowledge of Good and Evil</p>
+<p><span class="timestamp">[38:44]</span> second thing is God lives forever that&#x27;s the that&#x27;s the that&#x27;s it okay that&#x27;s the only difference so if it okay that&#x27;s the only difference so if Adam and Eve now now know good and evil if they eat from the Tree of Life they can live forever so God&#x27;s afraid will be become like become like God therefore to protect the tree of God therefore to protect the tree of life he has to banish us from the garden</p>
+<p><span class="timestamp">[39:24]</span> me yeah exactly think okay okay what is good and evil okay so this is what this so this is a really comp complicate idea okay but but good and evil does not mean you know God and you know de you know Satan that&#x27;s that&#x27;s not what it means it means you know what&#x27;s good for you and what&#x27;s bad for you so for example before I knew good and I knew good and evil I hit this table okay I feel pain evil I hit this table okay I feel pain right and I&#x27;m like what pain what is that is that good or is that bad I don&#x27;t know so I do it again okay and I do it again I cannot learn from my mistakes</p>
+<p><span class="timestamp">[39:55]</span> because I cannot differentiate what&#x27;s because I cannot differentiate what&#x27;s good for me and what&#x27;s bad for me good for me and what&#x27;s bad for me but now I know good and evil I&#x27;m like oh I hit this thing it&#x27;s I feel pain therefore it&#x27;s evil therefore I therefore it&#x27;s evil therefore I shouldn&#x27;t do it again therefore I should shouldn&#x27;t do it again therefore I should avoid this table so knowing good and evil means you have the capacity to self-reflection once you have judgment self-reflection once you have judgment once you&#x27;re able to differentiate what&#x27;s once you&#x27;re able to differentiate what&#x27;s</p>
+<p><span class="timestamp">[40:26]</span> good for you and what&#x27;s bad for you you can always grow as a person does that make sense and if you can do this forever the tree of life and live forever it means you become God because infinite okay does that make sense that&#x27;s what knowledge of Good and Evil is the ability to differentiate for yourself what is good for you and what is bad for you to engage in a process of</p>
+<p><span class="timestamp">[41:05]</span> okay so God&#x27;s okay so God&#x27;s afraid that if we continue to grow we afraid that if we continue to grow we will become as powerful will become as powerful as God himself any question any more questions continue okay the key line is this and the men his wife and clothed them this this is right after he punishes Adam and Eve this is right after he scolds</p>
+<p><span class="timestamp">[41:35]</span> them them right this is God giving pitying them right this is God giving pitying them and giving and giving them a them a them a present this is very strange this is present this is very strange this is paradoxical why would God do this okay there are different ways to interpret this but I think this is God showing okay this is a radical idea but this is God saying to Adam and Eve I&#x27;m sorry for</p>
+<p><span class="timestamp">[42:07]</span> this this is God showing remorse and regret what is God showing remorse and regret you show remorse and regret you when you just say wrong right but what did God do did God do wrong what did God do wrong why why is God in the wrong here it&#x27;s a radical idea but can you figure it figure it out okay God lied to Adam and Eve God</p>
+<p><span class="timestamp">[42:37]</span> out okay God lied to Adam and Eve God said to Adam and Eve do not eat from this tree because it&#x27;s this tree because it&#x27;s poisonous right so imagine this imagine poisonous right so imagine this imagine you&#x27;re my two daughters okay and you&#x27;re like six or seven years old and you see me at night drinking whiskey or beer I&#x27;m really happy because I&#x27;m drinking really happy because I&#x27;m drinking whiskey and beer so you two are curious whiskey and beer so you two are curious and you say to me dad what what is this</p>
+<p><span class="timestamp">[43:08]</span> and I say it&#x27;s um and I say it&#x27;s um poison and then you&#x27;re like why are you poison and then you&#x27;re like why are you drinking poison dad like well because because I&#x27;m older than you are when you&#x27;re as old as I am you can drink this poison okay you two are now curious right you&#x27;re curious right you&#x27;re curious why is dad drinking poison curious why is dad drinking poison so your uncle comes to the house one day and you ask your uncle hey is alcohol poisonous your uncle&#x27;s like of course it&#x27;s not poisonous what are you talking</p>
+<p><span class="timestamp">[43:39]</span> about and so of course what you two do is you break into is you break into the uh alcohol cabinet right and you the uh alcohol cabinet right and you drink whiskey and you&#x27;re very you become very happy and you throw up I come home and I shut at you you guys are terrible I told you not to drink that go to your room and you&#x27;re suspend it for a month okay you go to your room you cry and then I come knocking and say hey uh do you guys want to go out to McDonald&#x27;s and have a hamburger and have a hamburger together you do you understand the story</p>
+<p><span class="timestamp">[44:10]</span> together you do you understand the story because I know I&#x27;m not wrong I should have said to you alcohol is poisonous okay I&#x27;m a bad parent so what&#x27;s remark about the story is it&#x27;s about the story is it&#x27;s basically a basically a basically a domestic domestic domestic comedy you understand this is what comedy you understand this is what happens happens among families all the time this is a among families all the time this is a power of the story of Adam and Eve it&#x27;s a domestic comedy it&#x27;s something we can all relate to something we can all</p>
+<p><span class="timestamp">[44:42]</span> understand what&#x27;s also really powerful understand what&#x27;s also really powerful about the story is God is is God is fallible God is M has made a terrible mistake what&#x27;s important is this God understands he&#x27;s made a mistake that&#x27;s regret regret okay so again Yahweh he&#x27;s a poet God okay so again Yahweh he&#x27;s a poet God</p>
+<p><span class="timestamp">[45:13]</span> he&#x27;s curious about the world he wants to have friends but he&#x27;s have friends but he&#x27;s inexperienced he&#x27;s naive he&#x27;s a new inexperienced he&#x27;s naive he&#x27;s a new father so he&#x27;s going to make mistakes making mistakes is a mistakes making mistakes is a process of going up what makes humans process of going up what makes humans exceptional what makes humans unique exceptional what makes humans unique from animals is our capacity to make from animals is our capacity to make mistakes and to learn from them because we ate from the knowledge we ate from the knowledge of from the Tree of knowledge of Good of from the Tree of knowledge of Good and and Evil Evil Evil okay you see how radical all this is</p>
+<p><span class="timestamp">[45:45]</span> okay you see how radical all this is these are radical new ideas in human history God is history God is fible what&#x27;s important is to understand fible what&#x27;s important is to understand and admit your mistakes and grow from okay the story continues because now Adam and Eve are banished from the</p>
+<p><span class="timestamp">[46:16]</span> Garden of Eden they have two sons named Cain and Cain and Abel Abel Abel Abel is a Abel is a Abel is a Shepherd okay and Kane is a a farmer Shepherd okay and Kane is a a farmer both they both love God they both want the respect the attention of the respect the attention of God so they present they they they give God so they present they they they give presence to God um presence to God um Abel Abel Abel um is a Shepherd so he offers mutton</p>
+<p><span class="timestamp">[46:48]</span> um is a Shepherd so he offers mutton okay to God and then Cain is a farmer so he he offers I don&#x27;t know like wheat or offers I don&#x27;t know like wheat or vegetables to God God tastes both and then God&#x27;s like this then God&#x27;s like this mutton it&#x27;s tasty awesome thank you uh mutton it&#x27;s tasty awesome thank you uh Abel and then he eats Cain&#x27;s offering and kan&#x27;s very anxious he&#x27;s very excited</p>
+<p><span class="timestamp">[47:19]</span> then Cain&#x27;s like and Abel&#x27;s like sorry sorry and then God Yahweh is like this fot sucks man all right and this is what it says in the Bible and the Lord had regard for Abel and his offering but for Cain and his offering he had no regard he hated Cain&#x27;s present he loved Abel&#x27;s present so Cain was very angry and his countenance fell the Lord said to Cain why are you angry if you do well will you not be will you not be accepted</p>
+<p><span class="timestamp">[47:51]</span> accepted accepted okay so again it&#x27;s a domestic comedy okay so again it&#x27;s a domestic comedy you&#x27;re my girls you&#x27;re my you&#x27;re my daughters you go to school and you work very hard on presenting a present to me right and I say to one of you oh this is an awesome present thank you and I say to the other you suck man okay I&#x27;m being a bad parent God is being a terrible parent parent okay if you do well will you not be</p>
+<p><span class="timestamp">[48:21]</span> okay if you do well will you not be accepted you suck man the problem isn&#x27;t suck suck okay and of course what happens next is okay and of course what happens next is Cain kills abble but then what happens next is interesting because Yahweh finds out about this he out about this he banishes Cain and then Cain says to God banishes Cain and then Cain says to God hey if you banish me people will know I</p>
+<p><span class="timestamp">[48:51]</span> committed wrong and therefore I will be killed by other people then Yahweh says to Cain okay I will put a mark on you The Mark of on you The Mark of Cain and if anyone touches you then I Cain and if anyone touches you then I will punish that person I will protect you with The Mark of Cain and this is again God showing remorse and regret for what he&#x27;s done because God knows in his heart he&#x27;s not wrong heart he&#x27;s not wrong here but what allow God</p>
+<p><span class="timestamp">[49:22]</span> here but what allow God here but what allow God to understand he committed wrong is to understand he committed wrong is because Cain argued with because Cain argued with him okay Cain argued him okay Cain argued him okay Cain argued back so this is a radical conception of back so this is a radical conception of faith in the in the Hebrew Bible Bible Faith love of God requires you to argue Faith love of God requires you to argue with God because it&#x27;s only through the</p>
+<p><span class="timestamp">[49:53]</span> process of argument that God who&#x27;s fallible will learn and grow fallible will learn and grow so when you argue when you fight back so when you argue when you fight back grow okay any questions about this story before I move on as you&#x27;re going to see it&#x27;s a powerful story that reveals so much about the idea of faith and</p>
+<p><span class="timestamp">[50:26]</span> Justice and Divinity okay and any more on okay so again the yahs is a literary genius and there are two things that make her stand out that make that make her unique in the history of literature the first is her economy economy just means using as few words as possible possible to express as much as possible okay you to express as much as possible okay you can see the story of Adam and Eve the</p>
+<p><span class="timestamp">[50:57]</span> story of canil it&#x27;s very economical she&#x27;s using very few words but within these words are a universe of ideas almost infinite meaning you can okay the second idea is okay the second idea is irony irony just means she&#x27;s irony irony just means she&#x27;s irony irony just means she&#x27;s funny funny funny okay if you tell your kids don&#x27;t eat okay if you tell your kids don&#x27;t eat</p>
+<p><span class="timestamp">[51:28]</span> that Apple don&#x27;t eat that fruit because it&#x27;s poisonous guess what your kids are going to eat that fruit okay and then you&#x27;re going to look like an idiot ironic she&#x27;s making fun of Yahweh she&#x27;s making fun of the highest Authority in the Israelite the Israelite faith and again that&#x27;s why if she were faith and again that&#x27;s why if she were not not the daughter of David or grand daughter</p>
+<p><span class="timestamp">[51:58]</span> the daughter of David or grand daughter of David there&#x27;s no way this story would have gone into the Bible have gone into the Bible okay but it&#x27;s a great story that has okay but it&#x27;s a great story that has infinite literary infinite literary power does that make sense the last story I will mention is a story of um Rachel and Jacob it&#x27;s a very short story okay so what happens is this jacob runs away from his brother</p>
+<p><span class="timestamp">[52:30]</span> Asa because Jacob stole asa&#x27;s Birthright and and blessing and Jacob ends up with relative blessing and Jacob ends up with relative named named leban and leban has two daughters Leah leban and leban has two daughters Leah and Rachel uh Leah is the eldest Rachel is the younger is the younger one and Jacob falls in love with Rachel one and Jacob falls in love with Rachel right away and he says to Lebon I will work for you for free for seven years and then I will want your daughter Rachel&#x27;s daughter Rachel&#x27;s hand uh in return for my for my work</p>
+<p><span class="timestamp">[53:02]</span> hand uh in return for my for my work lean says well you&#x27;re a relative and it&#x27;s better for me to give her to you than to complete stranger so yeah okay seven years seven years pass and there&#x27;s a wedding between pass and there&#x27;s a wedding between Rachel and Rachel and Jacob that Jacob that Jacob that night Jacob has sex with a woman he night Jacob has sex with a woman he wakes up and sees it&#x27;s not Rachel it&#x27;s Leah he slept with Leah he is now</p>
+<p><span class="timestamp">[53:33]</span> married to Leah then Jacob says to Laban you&#x27;ve tricked me and then Laban says it is the custom of our people to marry the firstborn first we have to marry Leah off first before we can marry off Rachel if you continue to work for me for seven years I will give you Rachel as well and Jacob Jacob agrees okay so it&#x27;s a very short agrees okay so it&#x27;s a very short story and there&#x27;s a lot of economy and irony in the irony in the story but again within the short story</p>
+<p><span class="timestamp">[54:06]</span> story but again within the short story there&#x27;s a universe of ideas and emotions if you&#x27;re able to think very clearly and closely about the story we will discover that discover that a Rachel and Leah hate each other how do a Rachel and Leah hate each other how do we know that because Leah we know that because Leah stole Jacob from Rachel we can stole Jacob from Rachel we can [Applause] [Applause] imagine that when Leon announced that imagine that when Leon announced that</p>
+<p><span class="timestamp">[54:39]</span> Rachel would marry Jacob Leah was very jealous and for seven years every night at dinner Leah would cry and scream at her her father how could you embarrass me like father how could you embarrass me like this I&#x27;m your first point do I needan nothing to you we can imagine the family drama and the comedy right is like you know what if after seven years Jacob Mar&#x27;s Rachel they&#x27;re going to run off together right and for the rest of my life I&#x27;m stuck with Leah screaming at me</p>
+<p><span class="timestamp">[55:10]</span> and hitting me in the and hitting me in the head head head for the rest of my life right so he&#x27;s for the rest of my life right so he&#x27;s like I need to figure out how to get out of this deal right so that&#x27;s why he tricks tricks Jacob we can also figure out that Rachel Jacob we can also figure out that Rachel and Jacob love each other their love is the greatest love in the world because first of all Jacob&#x27;s willing to put up with this crap for another seven years in order to be with Rachel right second</p>
+<p><span class="timestamp">[55:42]</span> of all Rachel is willing to wait for Jacob she could at any time just run off and be with someone else but she&#x27;s suffer okay so we suffer okay so we imagine the entire family Dynamic and imagine the entire family Dynamic and history based on just a few sentences in the Bible that&#x27;s that&#x27;s the power of the Yahweh the power the Yahweh she&#x27;s really</p>
+<p><span class="timestamp">[56:14]</span> writing about what it means to be human what it means to have a family and that&#x27;s why the Bible endures to this day because there are these powerful stories in the in the Bible that tell us that reveal to us Bible that tell us that reveal to us what it means to be human what it means to love what it means to forgive what it family and that&#x27;s why the Bible has</p>
+<p><span class="timestamp">[56:45]</span> inspired people for thousands of inspired people for thousands of years because in these stories you are years because in these stories you are part of the writing process it&#x27;s co-creation okay your meaning co-creation okay your meaning co-creation your meaning your co-creation your meaning your co-creation your meaning your understanding your interpretation is understanding your interpretation is understanding your interpretation is what gives what gives what gives life to these words they that many words life to these words they that many words but your understanding of these words is</p>
+<p><span class="timestamp">[57:15]</span> you and again these stories are unique in human history the story of Adam and Eve is everyone knows the story of Adam and and Eve okay because it&#x27;s just a powerful Eve okay because it&#x27;s just a powerful story you can also argue story you can also argue the power of Adam and the power of Adam and the power of Adam and Eve is Eve is Eve is because it makes us nostalgic for the because it makes us nostalgic for the ice age right remember the Ice Age were we were in egalitarian society where</p>
+<p><span class="timestamp">[57:47]</span> equal and the garden of Edom is a metaphor a symbol for that time okay so it is provoking or activating our Nostalgia for that time within each of us must be that a long lost memory of a time when we humans were alone in the world there wer that many of us but life was fairly Pleasant okay food was plentiful we were all friends with with each each other we didn&#x27;t really struggle against</p>
+<p><span class="timestamp">[58:17]</span> other we didn&#x27;t really struggle against each other we really didn&#x27;t struggle against nature we were one with nature and and with each and and with each other okay questions so who do the Christians believe to have written the Bible okay who do the Christians believe to have written the Bible well God right this is the exact these are the words of</p>
+<p><span class="timestamp">[58:50]</span> God and so in uh the Bible um there are people called people called prophets prophets prophets prophets and prophets and prophets and how prophets work is they visit heaven how prophets work is they visit heaven or they visit by an Angel and there&#x27;s one scene where the angel or God takes a parchment and puts it into the mouth of the Prophet so the prophets is speaking every every word that&#x27;s a direct word of God does word that&#x27;s a direct word of God does that make that make sense like it it&#x27;s it&#x27;s almost sense like it it&#x27;s it&#x27;s almost</p>
+<p><span class="timestamp">[59:21]</span> like he&#x27;s like he&#x27;s just a male man I&#x27;m God I put a just a male man I&#x27;m God I put a parchment in your mouth you come back to earth and you earth and you basically uh announce the word of God basically uh announce the word of God okay so there are people who believe God wrote Every Word okay but this is only minority of Christians most Christians believe that whoever wrote Christians believe that whoever wrote the Bible was inspired by</p>
+<p><span class="timestamp">[59:52]</span> God that these are um prophets who were inspired by God to write down the truths of God of God but if you actually try to read the but if you actually try to read the Bible by yourself it&#x27;s impossible okay because it&#x27;s been redacted so many times as I explained to you last class there are at least four different sources in the Bible that have been splashed together randomly and it&#x27;s been edited constantly um over the constantly um over the centuries okay but honestly no one reads centuries okay but honestly no one reads</p>
+<p><span class="timestamp">[1:00:23]</span> the Bible in its the Bible in its entirety what usually happens is people entirety what usually happens is people only read sections of the only read sections of the Bible most people get Bible most people get Bible most people get their get understanding from the Bible their get understanding from the Bible from preachers okay and preachers will explain to you what these stories mean but you won&#x27;t actually have to read them together does that make sense so what I&#x27;m offering you today is not a scriptural interpretation of the Bible scriptural interpretation of the Bible I&#x27;m offering you a uh what we call a I&#x27;m offering you a uh what we call a</p>
+<p><span class="timestamp">[1:01:12]</span> questions are you guys clear about this okay so um we&#x27;ll continue this the Bible next class and next class we will look at the religion of zor aism because when the Persian Empire conqu the world World Zionism their religion will start to merge with the Bible which creates new ideas okay that will eventually become the basis of</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

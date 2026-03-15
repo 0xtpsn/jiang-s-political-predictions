@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo-Strategy Update #4: Newton&#x27;s Divine Plan — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Geo-Strategy Update #4: Newton&#x27;s Divine Plan">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #f43f5e;
+            --accent-bg: rgba(244, 63, 94, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Geo-Strategy Update #4</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Geo-Strategy Update #4</div>
+        <h1 class="article-title">Newton&#x27;s Divine Plan</h1>
+        <div class="article-meta">
+            <span>📖 28 min read</span>
+            <span>📝 5,595 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Geo-Strategy Update #4：  Newton&#x27;s Divine Plan</p>
+<p><span class="timestamp">[0:04]</span> Hi YouTube. Uh, Professor Dang here with another um update. another um update. So things seem to have quiet down in the So things seem to have quiet down in the all sides, United States, Iran, and Israel have committed to war. And the ceasefire, it&#x27;s really a way to attempt to control the narrative. to control the narrative. Now, um, as you know, the Iranians have Now, um, as you know, the Iranians have</p>
+<p><span class="timestamp">[0:38]</span> responded to the American bombing. Um, the Iranians notify the Americans that they would send missiles against US bases, empty US bases in Qatar. And um that seemed to be the full extent of the Iranian retaliation. of the Iranian retaliation. And Donald Trump was very pleased with And Donald Trump was very pleased with this very tet response. this very tet response. And um many of you might be wondering And um many of you might be wondering why was the Iranian response so tipp</p>
+<p><span class="timestamp">[1:11]</span> tippid and so muted. And um there&#x27;s a lot of speculation online. lot of speculation online. And so what I&#x27;ll do is I&#x27;ll I&#x27;ll offer And so what I&#x27;ll do is I&#x27;ll I&#x27;ll offer you my explanation. If you&#x27;re fully committed to war, why would you uh launch such a tippet response to US aggression? Well, the main reason is you want to infuriate want to infuriate your population. Okay, so um let me your population. Okay, so um let me explain what I mean. uh Libby the Roman historian um he wrote the his entire</p>
+<p><span class="timestamp">[1:41]</span> history of the Roman Republic and he wrote about one incident where um a Roman legion went off to the frontier and the natives um confronted them and they were outnumbered. So the Roman legion built fortifications and every legion built fortifications and every day uh the natives would come and taunt day uh the natives would come and taunt uh the Roman soldiers and at this point um the Roman soldiers really wanted to go out and fight the natives but the commanders commanders um refused. The commanders ordered them um refused. The commanders ordered them</p>
+<p><span class="timestamp">[2:14]</span> to show restraint and to maintain defense and as a result the natives thought that the Romans were cowards. Um and so the tonic became worse and worse and it became so bad that the Roman soldiers were about to mutiny. And at this point the commanders agreed for the Roman legion to attack the natives and the uh Roman legion were so angry uh and so infuriated and so insulted that they</p>
+<p><span class="timestamp">[2:45]</span> slaughtered the natives. So that&#x27;s slaughtered the natives. So that&#x27;s what&#x27;s happening um in Iran today. Uh what&#x27;s happening um in Iran today. Uh the Iranian people are clearly insulted um and humiliated by this US bombing and the Iranian government is holding them back which even makes them more angry and um as US aggression as Israeli aggression increases the Iranian aggression increases the Iranian response will become more and more response will become more and more tippet more and more mute and thus angering the population to the extent that uh the population will force the</p>
+<p><span class="timestamp">[3:17]</span> Iranian regime to declare war on the United states in Israel. So that&#x27;s the game plan moving forward. game plan moving forward. Um so I would think that um over the Um so I would think that um over the next month things will be a bit quiet. There&#x27;s still going to be a lot of incidents. Um so the Chinese media is reporting that um the Iranian uh intelligence agency has uncovered an intelligence agency has uncovered an Israeli false flag operation in the Israeli false flag operation in the</p>
+<p><span class="timestamp">[3:48]</span> United States. Um, so over the next couple weeks, we will still see some news regarding the Middle East, but I expect things to stay quiet for now. So, I will use this opportunity to provide you some, um, important background as to what&#x27;s going on in the Middle East. So um last video I mentioned that um there are certain elements within the American</p>
+<p><span class="timestamp">[4:18]</span> Empire uh that want um America to lose a war against Iran in the Middle East and they want Israel to become the empire of the Middle East. And these people these elements are are called Christian elements are are called Christian Zionists. Zionists. Zionists. And so I want to today explain to you um And so I want to today explain to you um what Christian Zionism is and how it fits into this war in the Middle East. So the tendable term for Christian Zionism is premillennial Zionism is premillennial dispensationalist. Okay? So it&#x27;s a very</p>
+<p><span class="timestamp">[4:49]</span> dispensationalist. Okay? So it&#x27;s a very hard term um but I&#x27;m going to explain what it means. And by the way um I will explain a lot of uh new terms in this video. So I will provide u wiki wiki links and some background reading in the description below. Okay. So please check the description if you want to further your understanding of the terms I introduced today. So premillennial introduced today. So premillennial dispensationalism dispensationalism dispensationalism dispensationalism is premillennial is dispensationalism is premillennial is dispensationalism is premillennial is the understanding that um when Jesus</p>
+<p><span class="timestamp">[5:19]</span> the understanding that um when Jesus returns he will initiate a thousand years of peace in the world called the messianic age. Okay, that&#x27;s that that&#x27;s why we have the term premillennial because um when Jesus returns we will have a thousand years of peace. Dispensationalist is the understanding Dispensationalist is the understanding that the world history is divided into that the world history is divided into certain stages. In each stage, the relationship between God and humans relationship between God and humans change. Um, and we are now approaching</p>
+<p><span class="timestamp">[5:50]</span> change. Um, and we are now approaching the final stage, which is the full reconciliation with God through the reconciliation with God through the second coming of Jesus. But for this second coming of Jesus. But for this second coming to happen, certain second coming to happen, certain elements need to be in place. Okay, the elements need to be in place. Okay, the first major element is that Israel needs to be reconstituted as a nation which has already happened in 1948. Then all the Jews from around the world have to return to Israel. Um and then they have</p>
+<p><span class="timestamp">[6:22]</span> to destroy the Dome of the Rock which is the third holiest site in Islamic tradition and build the third temple. Um then there has to be a war of Gog and Magog when Israel is besieged by a fierce enemy. Um and then this will lead to Agamea sorry uh uh Arga Madan uh which is the final battle. Uh and at the very last minute when uh all</p>
+<p><span class="timestamp">[6:54]</span> hope is lost, when Israel is about to defeat it, Jesus will return defeat it, Jesus will return um and he will initiate the Misianic um and he will initiate the Misianic age. He will save Israel and he will initiate the Mesic age. If you&#x27;re a Christian, um upon Jesus&#x27; return, you will be immediately sent to heaven. This is called the rapture. is called the rapture. Um, so that&#x27;s the idea of Christian Um, so that&#x27;s the idea of Christian Zionism. Zionism. And Christian Zionism, as I explained And Christian Zionism, as I explained</p>
+<p><span class="timestamp">[7:25]</span> before, is one of the main drivers of this war in the Middle East. And if Christian Zionists have their way, then certain things will happen. Okay. The most important thing that must happen is the United States send ground troops against Iran. Because as I mentioned, if the United States were to send ground troops into Iran, the American empire would fall and uh which will give birth to the to the empire of Israel. This is important because in the</p>
+<p><span class="timestamp">[7:57]</span> Christian Zionist framework, America is Christian Zionist framework, America is not involved in this prophecy. So you not involved in this prophecy. So you need to take America out of this equation somehow. Okay? So that&#x27;s the first thing that um must happen. Second thing that must happen um is the Dome of the Rock must be destroyed. the Rock must be destroyed. Um if the Dome of the Rock were Um if the Dome of the Rock were destroyed, um the Jews could rebuild the third temple. But most but more importantly, importantly, um it would unify the Islamic world um it would unify the Islamic world</p>
+<p><span class="timestamp">[8:27]</span> against Israel, thus initiating the war of Gog and Magog. Another thing that must happen is the Jews um must return to Israel. And right now to Israel. And right now most Jews are living very nice lives in most Jews are living very nice lives in the Western world. So why would they want to return to Israel? Well, the answer is um America has been defeated uh in Iran and Americans are pissed</p>
+<p><span class="timestamp">[8:57]</span> about this loss. And so about this loss. And so who do they blame? um who do they who do they blame? um who do they persecute persecute and who will who who would be the and who will who who would be the scapegoats and so you have this global surge of anti-semitism and so now you have um major Jewish intellectuals have um major Jewish intellectuals coming out and say listen we should all coming out and say listen we should all return to Israel because that&#x27;s where we&#x27;ll most be saved. Okay. So um if I&#x27;m correct and and I if I&#x27;m correct in believing that Christian Zionism is a very powerful force in the world then</p>
+<p><span class="timestamp">[9:28]</span> these three things will happen over the next few years. Uh a US grand invasion of Iran the Donald Rock will be destroyed somehow. I don&#x27;t know how. Um and the third thing is a uh movement to um return Jews to Israel. um return Jews to Israel. Um, so why is Christian Zionism so Um, so why is Christian Zionism so strong? Well, what I will show you today is Christian Zionism is embedded is Christian Zionism is embedded into the very foundations of the</p>
+<p><span class="timestamp">[9:59]</span> into the very foundations of the AngloAmerican Empire. It&#x27;s been there AngloAmerican Empire. It&#x27;s been there since the beginning. And it&#x27;s been there since the beginning. And it&#x27;s been there since the beginning thanks to the contributions of one man, Isaac Newton. So let me tell you about Isaac Newton and then you will better understand how Christian Zionism came to being and how it influenced the Anglo-American Empire. it influenced the Anglo-American Empire. Um Isaac Newton as you know was Um Isaac Newton as you know was probably the most brilliant man who ever lived. He was an extraordinary man who</p>
+<p><span class="timestamp">[10:32]</span> lived an extraordinary life. Um he was born into a common family. His family was not nobility, not royalty. Uh very common. His father died when he was very young and his mother remarried and essentially abandoned Newton. essentially abandoned Newton. But Newton was extremely gifted student But Newton was extremely gifted student and he eventually got scholarship to stud at Cambridge University where he began to make the major contributions development of science. Um he made major contributions to optics. He invented contributions to optics. He invented calculus. um he um discovered the three calculus. um he um discovered the three</p>
+<p><span class="timestamp">[11:05]</span> laws of planetary motion which proved conclusively uh once and for all that that our solar system was helocentric as opposed to geocentric. In many ways Newton embodied the sonic revolution. Newton embodied the sonic revolution. Um when he died he was given a state Um when he died he was given a state funeral. Only the second person in British history at that time uh who was non- royalty to be given a state funeral. Um and he was one of the and and he was uh one of the only scientists to be given a state funeral. Um and even</p>
+<p><span class="timestamp">[11:37]</span> today uh the British remember um Isaac Newton as the most brilliant um Englishman who ever um lived. But there are three things that you may not know about um Isaac Newton. And once I explain these three things, then you have a much more um have a much more um uh complete understanding of this uh complete understanding of this uh complete understanding of this brilliant man. The first thing that you brilliant man. The first thing that you probably don&#x27;t know about him is that um he was fascinated by the occult. He was</p>
+<p><span class="timestamp">[12:09]</span> a major practitioner of the occult, mainly alchemy. mainly alchemy. Um so um Newton spent most of his life Um so um Newton spent most of his life in search of the philosopher stone. Um because the philosopher stone promised because the philosopher stone promised the ex the um elixir of immortality the ex the um elixir of immortality which would grant immortality. It also promised to turn lead into gold and Newton was Newton was positive that existed. So he spent um positive that existed. So he spent um most of his life in search of it. And we</p>
+<p><span class="timestamp">[12:40]</span> know about this because 1930s the economist John Maynor kings um he bought um Newton&#x27;s papers on an auction and he really believed that within these papers he would discover mathematical secrets he would discover mathematical secrets of the universe. Instead uh what he what of the universe. Instead uh what he what he discovered was all this religious gibberish from Newton. News spent most of his life studying the Bible and trying to figure out um the divine messages embedded in the uh Bible. So um</p>
+<p><span class="timestamp">[13:12]</span> if you were to ask Newton like what is your profession? Newton would never say he was a scientist um or a philosopher. He would say first and foremost he was a theologian. He was most interested in discovering the mind of God. of God. And that&#x27;s why he developed his And that&#x27;s why he developed his mathematical and physical systems in mathematical and physical systems in order to better decipher the mind of order to better decipher the mind of God. Okay. So let me give you an example of this. Um at this time in history most Christians understood that history was Christians understood that history was theological. Um theological comes from theological. Um theological comes from theological. Um theological comes from the Greek tilos which means purpose. So</p>
+<p><span class="timestamp">[13:44]</span> the Greek tilos which means purpose. So history is moving towards the end which is second coming of of of Christ. Newton&#x27;s great great insight was to understand that if history is indeed theological theological then it has um structure and order and then it has um structure and order and therefore it can be expressed therefore it can be expressed mathematically mathematically mathematically and so if you can figure out the and so if you can figure out the mathematical underpinnings of the world mathematical underpinnings of the world then you&#x27;ve proven that history is then you&#x27;ve proven that history is theological and therefore you&#x27;ve proven theological and therefore you&#x27;ve proven that God uh exists. Newton&#x27;s three laws</p>
+<p><span class="timestamp">[14:17]</span> that God uh exists. Newton&#x27;s three laws of motions, right? Let&#x27;s let let&#x27;s let&#x27;s re we re summarize Newton&#x27;s three laws of motions. Law number one, things that are at rest stay at rest. Number two, force is force equals mass times acceleration. Number three, for every acceleration. Number three, for every action, there must be an equal reaction. action, there must be an equal reaction. Okay? So what people don&#x27;t understand is these three laws are not physical laws. There are first and foremost an ontological ontological argument which proves existence of God.</p>
+<p><span class="timestamp">[14:47]</span> argument which proves existence of God. So the first law things that are rest must stay at rest. Okay. So we can imagine that at the beginning of time everything was at rest. If everything&#x27;s at rest it can&#x27;t move by itself according to the first law. Therefore something must have moved things to put things in motion. And this is what Aristotle calls the prime mover. Aristotle calls the prime mover. Um second and third law implies that Um second and third law implies that there&#x27;s a structure and order and</p>
+<p><span class="timestamp">[15:18]</span> purpose to the universe. And who designed the structure, order and designed the structure, order and purpose? It must be God. Okay. So what&#x27;s purpose? It must be God. Okay. So what&#x27;s interesting is that these three laws of motion um they prove that God exists but much more importantly they are the basis for a new religion, a new religious movement called theism. And theism is important uh because theism is the main religion of the founding fathers of</p>
+<p><span class="timestamp">[15:49]</span> America. Okay. So um having proven that God in fact does exist, Newton&#x27;s next step is step is what does God want? What is God&#x27;s what does God want? What is God&#x27;s purpose? Well, for him it was easy to understand God&#x27;s purpose. Read the understand God&#x27;s purpose. Read the Bible. So Newton would spend decades Bible. So Newton would spend decades um reading the Bible and trying to and trying to imagine its mathematical trying to imagine its mathematical underpinnings. For him, every sentence underpinnings. For him, every sentence underpinnings. For him, every sentence was a mathematical formula. was a mathematical formula. was a mathematical formula. And he was trying to take the Bible and And he was trying to take the Bible and</p>
+<p><span class="timestamp">[16:20]</span> compare and contrast it with history. And um he wrote a book, it was not published in his lifetime, but it was published after his death. It was called um um observations upon the prophecies of Daniel and uh the apocalypse of St. John and um it&#x27;s it&#x27;s something you you have to look at. Okay. So so what what I&#x27;m going to do is I&#x27;m going to put a link down description below which will</p>
+<p><span class="timestamp">[16:51]</span> um and you can read it online for free. Okay. So um this is a major work and it&#x27;s a foundational text for Christian Zionism because it argues first of all that history is theological that God has a purpose and second of all this is really important really important um the Bible is literal. Okay. So even um the Bible is literal. Okay. So even though Daniel and John were different people they both as prophets spoke the mind of God. They were divinely inspired</p>
+<p><span class="timestamp">[17:21]</span> and so whatever they wrote came from God himself. So by examining their himself. So by examining their prophecies, you are deciphering God&#x27;s prophecies, you are deciphering God&#x27;s prophecies, you are deciphering God&#x27;s purpose for humanity. Okay? And this is purpose for humanity. Okay? And this is a foundation for Christian Zionism. a foundation for Christian Zionism. Okay? Okay. So that&#x27;s the first thing Okay? Okay. So that&#x27;s the first thing you need to understand about um Newton that he was first and foremost um a theologian and not a scientist. Okay.</p>
+<p><span class="timestamp">[17:51]</span> Second thing that you must um understand about Newton is that he was a member of secret societies in England at that time. Now today when we think of secret societies we think of nefarious societies we think of nefarious underground conspiracies. At that time underground conspiracies. At that time underground conspiracies. At that time secret societies were actually very secret societies were actually very secret societies were actually very common and very well accepted. Secret common and very well accepted. Secret societies were platforms for men of education of wealth and of status to get together to engage in religious together to engage in religious speculation outside the purview of the</p>
+<p><span class="timestamp">[18:22]</span> speculation outside the purview of the Anglican church. Um at that time the Angling church had an orthodoxy and by law you could not transgress transgress against this orthodoxy. So for example uh Newton got a lot into a lot of trouble uh during his lifetime because he did not believe in the holy trinity. He thought that Jesus was not co-equal to God. He thought that Jesus was subordinate to God and this was a heresy</p>
+<p><span class="timestamp">[18:53]</span> at that time. So um new Newton um got in a lot of trouble but he had powerful friends, powerful backers and so they bailed him out from the uh church authorities. Um so um these societies were a platform for people to discuss religious matters. Um they also had their origins uh from the Knights Templars. The night templars during the crusades were in Jerusalem. And because they were in Jerusalem, they could engage in uh world religions engage in uh world religions like Zorastronism, like um m like Islam,</p>
+<p><span class="timestamp">[19:26]</span> like Zorastronism, like um m like Islam, uh like Judaism, like paganism. And as such they uh and because these these were extremely educated men uh with deep intellectual curiosity uh they collected intellectual curiosity uh they collected all the secret teachings that they were all the secret teachings that they were exposed to in Jerusalem and they brought it back to them in Europe and so they ran a foul of the Catholic Church which outlaw them eventually but their outlaw them eventually but their teachings went underground in and they teachings went underground in and they became embedded in these secret became embedded in these secret societies. Okay. So when Newton joined societies. Okay. So when Newton joined</p>
+<p><span class="timestamp">[19:57]</span> the secret societies and when he was able to discover the laws of the universe, well I imagine that these men celebrate Newton as a prophet, as a messiah, as a chosen one, as someone who um reveal who would who would reveal the secret uh teachings of God to the world. And because the world was not ready for these teachings, then they would make it their mission uh to keep it secret and</p>
+<p><span class="timestamp">[20:28]</span> wait for the day when they could reveal these teachings to the world. Um so Newton&#x27;s teachings that um God has a purpose and this purpose is literally embedded into the Bible and uh this um this purpose will lead to second coming of of Christ. It now becomes the framework for these secret societies and as they spread to America as they spread to America um it becomes embedded in the secret um it becomes embedded in the secret</p>
+<p><span class="timestamp">[20:59]</span> societies of America as well. And guess who were members of the secret societies? The founding fathers of societies? The founding fathers of America. Right? So um that&#x27;s second America. Right? So um that&#x27;s second thing you need to know about Newton that he was uh a member of the secret societies who celebrated him and who treated his theological understandings treated his theological understandings as the word of God. Okay. And the third as the word of God. Okay. And the third thing that you have to um understand about Newton is for 30 years he was</p>
+<p><span class="timestamp">[21:31]</span> master of the royal mint and he was in and he was his purpose was to maintain the sanctity, the value um and the credibility of royal coinage against credibility of royal coinage against counterfeits. Um and so to deal with counterfeits. Um and so to deal with counterfeits he set up a network of spies to identify to identify these counterfeits. counterfeits. um sometimes to torture them for um sometimes to torture them for information and for the most egregious offenders um they&#x27;ll be executed. Okay. So in other words, Newton established</p>
+<p><span class="timestamp">[22:01]</span> England&#x27;s England&#x27;s very first intelligence agency, very first intelligence agency, very first intelligence agency, intelligence apparatus. In 1865, the intelligence apparatus. In 1865, the intelligence apparatus. In 1865, the United States Treasury Department United States Treasury Department United States Treasury Department established a secret service. What was established a secret service. What was their job? Their job was to identify um counterfeits. Why were they called counterfeits. Why were they called Secret Service? Because the Treasury Secret Service? Because the Treasury Secret Service? Because the Treasury Department didn&#x27;t want people to know Department didn&#x27;t want people to know they existed. Because if they existed, it meant that counterfeiting was a huge problem in America, which which it was at that time, which is it still is today. And so that would undermine the</p>
+<p><span class="timestamp">[22:35]</span> credibility of the currency. Okay. So, um, so Newton had his own intelligence agency. So in many ways Newton um built the foundations um built the foundations of the British Empire which eventually of the British Empire which eventually became the Anglo-American Empire which became the Anglo-American Empire which controls the world today and it and so controls the world today and it and so um let&#x27;s summarize and I&#x27;ll give you</p>
+<p><span class="timestamp">[23:05]</span> three takeaways from today&#x27;s talk I want you to remember. Okay, the first talk the first takeaway is the first takeaway is because Isaac Newton saw himself as a because Isaac Newton saw himself as a prophet because he was he was convinced that um only through divine favor could he arise from being a poor abandoned child to becoming one of the leading intellectuals of British society, the intellectuals of British society, the leading scientist of British society. It leading scientist of British society. It could only be through divine favor. Um</p>
+<p><span class="timestamp">[23:35]</span> then he had a mission to spread God&#x27;s message and that message um will become the foundations of Christian Zionism. So Christian Zionism is embedded into the very fabric, the very foundation very fabric, the very foundation of the Anglo-American Empire. Okay, of the Anglo-American Empire. Okay, of the Anglo-American Empire. Okay, that&#x27;s the first major takeaway. Second that&#x27;s the first major takeaway. Second major takeaway is major takeaway is Israel is a creation of the Israel is a creation of the AngloAmerican AngloAmerican Empire. Empire. Empire. Zionism is a creation of Christian Zionism is a creation of Christian Zionism. Zionism. Um, which leads us to the third</p>
+<p><span class="timestamp">[24:07]</span> Um, which leads us to the third takeaway. Judaism and Zionism are not the same thing. Christian Zionism and Judaism are in fundamental conflict. Let me explain why. The people who are most who are most opposed to the creation of the state of Israel are Orthodox Jews. Because in their tradition, in their religion, um the plan is for God to send a Messiah, the anointed one who will lead the Jewish people. And this Messiah</p>
+<p><span class="timestamp">[24:39]</span> will bring the Jews back to the promised land, create the nation of Israel, uh build the third temple, and create the Messianic age. Okay? The Jews don&#x27;t know who this Mazai is, and they don&#x27;t know when he will come. And so they must be patient, have faith in God. patient, have faith in God. Christian Zionism is an attempt to Christian Zionism is an attempt to manipulate history, manipulate God to manipulate history, manipulate God to force the second coming of Jesus. In the force the second coming of Jesus. In the</p>
+<p><span class="timestamp">[25:12]</span> mind of Christian Zionist, if the um nation of Israel is reconstituted, if all the Jews return to Israel, if the third temple is built, if there&#x27;s a war of Gog and Magog, then Jesus is forced to return. They will force the hand of God and create the Messianic age. So for Orthodox Jews, this is a blasphemy. This is um counterfeiting. This is this is the export. This is stealing their</p>
+<p><span class="timestamp">[25:43]</span> religion and that&#x27;s why Orthodox Jews are most opposed to the state of um Israel. Israel. So um I know this was um an extremely So um I know this was um an extremely um controversial, very confusing talk. um controversial, very confusing talk. So, what I&#x27;ll do again is I will um in So, what I&#x27;ll do again is I will um in the descript description below um put all the links and the references you will need to truly understand um</p>
+<p><span class="timestamp">[26:14]</span> Christian Zionism. So, please look at um Newton&#x27;s book uh prophecies um Newton&#x27;s book uh prophecies upon sorry observations upon the upon sorry observations upon the upon sorry observations upon the prophecies of um Daniel and the populace prophecies of um Daniel and the populace of St. John. Uh please look at the Scoffield Bible which it which um um frames the Bible in the lens of Christian Zionism Christian Zionism and please look at wiki entries for and please look at wiki entries for Christian Zionism pre premillennial Christian Zionism pre premillennial dispensationalism</p>
+<p><span class="timestamp">[26:46]</span> dispensationalism dispensationalism um Newton. Okay. So um if you really um Newton. Okay. So um if you really want to understand what&#x27;s going on in the Middle East, then you really need to get a good uh handle on these um ideas. I&#x27;m sure this talk has raised a lot of questions for you. Some of you like why is Christian Zionism so powerful? Some of you may disagree and say what&#x27;s driving this war in the Middle East is not Christian Zionism. It&#x27;s um not Christian Zionism. It&#x27;s um international finance. It&#x27;s a city of international finance. It&#x27;s a city of</p>
+<p><span class="timestamp">[27:19]</span> London. It&#x27;s um the Great Reset. Um it&#x27;s American Empire. Okay. Um so what I will do in my next talk is explain to you these things are not mutually exclusive. They&#x27;re all one thing. And you can make the argument that they are one big conspiracy. And the only people who don&#x27;t know that this is a great conspiracy are the conspirators conspiracy are the conspirators themselves. Okay? I will in in in my themselves. Okay? I will in in in my next talk I use game theory to explain to you what&#x27;s going on and when I do</p>
+<p><span class="timestamp">[27:50]</span> then things will be extremely clear to you as to why Christian Zionism is able to drive the history of the Middle East. Okay. What I&#x27;ll also show you next in u in my next talk is that um um Christian Zionism Christian Zionism Christian Zionism um what&#x27;s happened in the Middle East. um what&#x27;s happened in the Middle East. It&#x27;s happened before and it will happen again. Okay. So, 1,500 years ago in the Middle East, it seemed as though</p>
+<p><span class="timestamp">[28:22]</span> biblical prophecy was about to be fulfilled. The world was at war against each other. Empires were fighting over Jerusalem and the millions were dying. The world seemed to be ending. It really seemed the end of history. And at this time, the Jews were praying for the Messiah. Messiah. and they really believed the Messiah had and they really believed the Messiah had come to them. Okay, a man came and they really believed he was the anointed one</p>
+<p><span class="timestamp">[28:53]</span> and he was able to rally not just Jews but everyone around him. He was so charismatic and it really seemed as though the meant age would um come and these Jews were willing to die for for him. That&#x27;s how much they believed in him. Um him. Um this man&#x27;s name well actually we don&#x27;t this man&#x27;s name well actually we don&#x27;t know this man&#x27;s name but today we refer to this man as Muhammad okay Muhammad</p>
+<p><span class="timestamp">[29:25]</span> was the Messiah of the Jews. So in my in in my next video I will explain to you uh how this came about. uh how this came about. Um just a quick announcement. Um just a quick announcement. Um just a quick announcement. Um, I want to thank everyone for Um, I want to thank everyone for subscribing to my channel. I&#x27;m really flattered by all the attention, but I&#x27;m not really um set up for this. Uh, this summer I was I I brought my two kids back to Toronto and I uh and I&#x27;m every day I&#x27;m I&#x27;m from like 8:00 a.m. until</p>
+<p><span class="timestamp">[29:58]</span> 400 p.m. I take them outside to play. So, I really don&#x27;t have that much time to make these videos. But at the same time, I want to do the best possible job in presenting uh really interesting uh perspectives to you about what&#x27;s going on in the world today. I I if you if you spend the time to watch my videos, then I have an obligation to make sure these videos are insightful for you. Um so, um I&#x27;m going to need more time to spend on</p>
+<p><span class="timestamp">[30:30]</span> these videos. So, these videos. So, um I&#x27;m sorry, but I might have to take a um I&#x27;m sorry, but I might have to take a pause for about 2 weeks in order to um really uh delve deep into the research necessary in order to create the next video. video. But if this war in the Middle East But if this war in the Middle East breaks out again for whatever reason, I don&#x27;t think it will, but if it breaks out for whatever reason, then rest assured I will make a video helping you analyze what&#x27;s going on um and giving</p>
+<p><span class="timestamp">[31:00]</span> you some insight as to why this is happening and where the and where things might be going. Okay, so um thanks so much for watching. I really appreciate</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

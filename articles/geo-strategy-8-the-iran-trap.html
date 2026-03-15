@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo-Strategy #8: The Iran Trap — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Geo-Strategy #8: The Iran Trap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #f43f5e;
+            --accent-bg: rgba(244, 63, 94, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Geo-Strategy #8</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Geo-Strategy #8</div>
+        <h1 class="article-title">The Iran Trap</h1>
+        <div class="article-meta">
+            <span>📖 54 min read</span>
+            <span>📝 10,751 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body">
+        <p># Geo-Strategy #8：  The Iran Trap</p>
+<p><span class="timestamp">[0:05]</span> okay let&#x27;s start class so um let us summarize and review where we are so far in the story so um there are three major interest forces that are pushing the United States towards war with United States towards war with Iran um the first is the Israel Iran um the first is the Israel Lobby remember that the Israel Lobby is composed of both Jew Jewish interest as well as Christian interests right well as Christian interests right representing the Jewish interest is</p>
+<p><span class="timestamp">[0:36]</span> representing the Jewish interest is representing the Jewish interest is something called something called something called APAC uh and they have a membership of APAC uh and they have a membership of about a about a 100,000 but they&#x27;re very wealthy there 100,000 but they&#x27;re very wealthy there are many billionaires in this group so this group has Financial power in fact APAC is considered the second most powerful lobbying organization in in the United States the first is um the pensioners okay there&#x27;s about 30 million</p>
+<p><span class="timestamp">[1:07]</span> of them um and their lobbying organization is the most powerful but APAC is second but also in the Israel Lobby are the Christian Zionist right so for example the organization uh for example the organization uh Christians United for Israel has 7 Christians United for Israel has 7 million million people um in its membership so together people um in its membership so together the Christian Zionist and APAC um are extremely powerful force in government extremely powerful force in government and they want a war in the middle ease and they want a war in the middle ease</p>
+<p><span class="timestamp">[1:39]</span> in order to advance Israel&#x27;s in order to advance Israel&#x27;s interest also remember that America is interest also remember that America is now addicted to Empire because Empire represents easy money all money has to be uh channeled through the be uh channeled through the US and so there are many people in the US and so there are many people in the US who just make make basically make their money by speculating on money okay so for example Wall Street and that has made Wall Street extremely powerful uh</p>
+<p><span class="timestamp">[2:10]</span> right now in US right now in US politics and the third um force is Saudi Arabia um remember that in our discussion of Saudi Arabia we learned that the major conflict in the Middle East is actually not between Israel and Iran but between Saudi Arabia Iran but between Saudi Arabia and and and Iran for Israel Iran is a security Iran for Israel Iran is a security threat because it it supports hasah and</p>
+<p><span class="timestamp">[2:41]</span> Hamas but for Saudi Hamas but for Saudi Arabia um Iran represents a threat to Arabia um Iran represents a threat to its very existance okay so Saudi Arabia must resolve the Iran must resolve the Iran problem soon right now how these three problem soon right now how these three forces manifest themselves is uh through champion and champion and privately um there&#x27;s a man named Jared privately um there&#x27;s a man named Jared</p>
+<p><span class="timestamp">[3:13]</span> Kushner who is Trump&#x27;s son-in-law he&#x27;s married to um Trump&#x27;s fa daughter um Ivanka Trump okay and Char Jerry Kushner happens to be very good friends with both Benjamin with both Benjamin nanyu who is of Israel as well as nanyu who is of Israel as well as Muhammad bin Salon who was the leader of Saudi Arabia now uh Jer kushner&#x27;s father tus Kushner was a very prominent uh</p>
+<p><span class="timestamp">[3:47]</span> sponsor of APAC in fact when Benjamin Nan yahu comes to State United States he lives with the kushna family so one night uh Benjamin natany had to stay in Jer crusher&#x27;s bedroom and Jer kusher had to sleep in the in the uh basement okay that&#x27;s how close they are and Jared Kushner is friendly with MBS the leader of Saudi Arabia so friendly that when Jer Kushner started a private Equity Fund Saudi Arabia invested two billion</p>
+<p><span class="timestamp">[4:20]</span> dollars okay so through jar Kushner uh these three forces are able to exert influence on Trump as we also discussed it&#x27;s very likely that Trump will become president of the United States again um um in November and he will pick Nikki Haley as his Haley as his VP and that means that Nikki Hy will be VP and that means that Nikki Hy will be the one in the Trump White House pushing for war against um Iran as we discussed uh niiki heli makes most of her money</p>
+<p><span class="timestamp">[4:53]</span> from the um Israel Lobby okay the lobby we know from the first Trump Administration that these forces are Administration that these forces are able to exert tremendous influence on able to exert tremendous influence on Trump okay and the evidence is one Trump withdrew from the Iran nuclear deal that would have secured peace between United States and Iran okay Trump moved the United States Embassy from T aiv to</p>
+<p><span class="timestamp">[5:28]</span> Jerusalem in Israel which um was a major um which caused major friction in the Middle East okay we also know that um Trump ignore the fact that NBS killed a killed a journalist okay so we also know that journalist okay so we also know that Trump um has been very friendly with Saudi Arabia we also know that Trump sponsored the Abraham Accords which is trying to bring peace between Israel and</p>
+<p><span class="timestamp">[5:59]</span> other Arab countries and unite them against Iran okay the last thing that Trump did which is the most important is that in January 2020 Trump ordered the assassination of General Kasam salamani assassination of General Kasam salamani who who is the leader of the who who is the leader of the Revolutionary sorry who is the leader of the Iranian Refuge the Iranian Refuge guards okay so from all this we can guards okay so from all this we can suspect that a second in a second Trump term uh war with Iran will be a major</p>
+<p><span class="timestamp">[6:30]</span> priority priority so is this clear so far all right now we so is this clear so far all right now we also discussed that okay even though there are there are these forces that want war with want war with Iran ultimately it is the US military Iran ultimately it is the US military that must implement this war and if the US military refuses to go to war then the war can&#x27;t happen so we discussed that unfortunately the US military is very different from what it was 30 years</p>
+<p><span class="timestamp">[7:00]</span> ago okay 30 years ago ago okay 30 years ago the US military maintain very standard the US military maintain very standard military Doctrine okay they maintain military Doctrine okay they maintain three very important principles that all three very important principles that all militaries must maintain in a time of war the first is mass war the first is mass forces uh B is um avoid encirclement forces uh B is um avoid encirclement right and the third is protect supply</p>
+<p><span class="timestamp">[7:33]</span> now the the important idea is that when you fight a war like this okay which is traditional Warfare you must have the consent of the public okay because it is the public that sends soldiers that provides money that gives you political support but in 2003 the US military changed its mil Doctrine to one of shock and all okay and what shock and all means is that means is that you don&#x27;t have to follow these three you don&#x27;t have to follow these three</p>
+<p><span class="timestamp">[8:06]</span> principles anymore you can use ear Supremacy um you you also have technological technological omniscience and you also have special omniscience and you also have special forces and this allows you to fight Wars cheaply quickly and decisively so that you no longer need public political support for fighting Wars and as we also discussed this created the idea of in the American Military so the American</p>
+<p><span class="timestamp">[8:38]</span> Military because of the 2003 uh war in Iraq are clothin that can win any War any place against any any place against any enemy we know that this Doctrine is enemy we know that this Doctrine is actually not true and we know because of something called operation Prosperity something called operation Prosperity Guardian okay so um a few months ago The Guardian okay so um a few months ago The Who Who which are a rebel group in in Yemen they which are a rebel group in in Yemen they started to attack ships in the Red Sea</p>
+<p><span class="timestamp">[9:11]</span> okay um and a lot of trade goes through the Red Sea so the American Military dispatched a massive Naval Force against the the houthis were the Americans able to houthis were the Americans able to defeat the defeat the houthis no they were houthis no they were houthis no they were not and so what the what what what are not and so what the what what what are the Americans going to do about it houthis what&#x27;s what&#x27;s the solution to this problem you have these Pirates houthis going around and attacking these</p>
+<p><span class="timestamp">[9:43]</span> uh ships which is affecting um International Commerce and that&#x27;s why International Commerce and that&#x27;s why inflation is such a huge problem right inflation is such a huge problem right now in the world so what are the what&#x27;s American Military going to do about this the answer is nothing okay the American Military has no solution why because they don&#x27;t have the forces necessary in order to undertake an operation against the houthis they have special forces they have Air Supremacy</p>
+<p><span class="timestamp">[10:14]</span> they have technological omnicient they have technological omnicient satellites but they don&#x27;t have infantry satellites but they don&#x27;t have infantry they don&#x27;t have lots and lots of ships therefore they cannot stop the houthis okay and what&#x27;s willing point is that Joe Biden has come out and said that yes we know we are losing the war in the Red Sea and yes we know that we cannot stop the houthis but we are going to continue on this continue on this path okay does that make sense this is path okay does that make sense this is</p>
+<p><span class="timestamp">[10:51]</span> hubris not knowing your limitations and when when you are faced with your limitations you refuse to accept your limitations okay and that&#x27;s why when the US military is given the order to invade Iran they&#x27;ll probably go along with it because they cannot imagine the because they cannot imagine the possibility that they could be defeated possibility that they could be defeated in in Iran okay and then you have the Iran okay and then you have the Iran Iran revolutionary uh core okay the re rol</p>
+<p><span class="timestamp">[11:23]</span> revolutionary uh core okay the re rol guard and as we discussed last class they want war with the United States because because um they&#x27;re very angry about us um they&#x27;re very angry about us interference in Iran right so during the Sha regime which was a brutal police state from 1953 and state from 1953 and 19779 the Americans were the ones who 19779 the Americans were the ones who were backing this police were backing this police state so there are many who are who are state so there are many who are who are angry about this they&#x27;re also um angry</p>
+<p><span class="timestamp">[11:54]</span> about the fact that the US continues to protect protect Israel and Saudi Arabia okay and they&#x27;re also angry about the fact that that Trump killed J general salamini okay um and as we discussed it&#x27;s possible that uh the rary guard Corps killed last week the president of Iran Ibraham Ry in or because um he was preventing War okay so they want war</p>
+<p><span class="timestamp">[12:24]</span> with the United States so you see the map right you you see the logic of this where there are power forces United States pushing the United States towards War you have Trump who has basically agreed in its first term to raise or increase escalation with Iran within the Trump White House there be Jared Kushner and Niki heli to push this war both privately and privately and publicly the US publicly the US publicly the US military um has so much huis that they</p>
+<p><span class="timestamp">[12:55]</span> military um has so much huis that they think they can win this war and Iran wants to provoke the United States into invading it okay United St Iran can have many and for so Iran has many many um strategies in order to provoke the United States into war okay basically United States is looking for a reason and Iran wants to give them a reason and that&#x27;s why I think war between United States and Iran is very likely in the next two to four next two to four years okay any questions so far are we</p>
+<p><span class="timestamp">[13:25]</span> years okay any questions so far are we clear about where we are so far be any questions okay so now let&#x27;s talk about the actual War so here most of this is speculation okay but um I&#x27;m using speculation in order to help us better understand what a war would look like okay so let&#x27;s pretend that it&#x27;s</p>
+<p><span class="timestamp">[13:55]</span> March March 2027 okay and Trump go on TV he 2027 okay and Trump go on TV he announces operation Iranian Freedom a announces operation Iranian Freedom a fullscale US invasion of Iran along with fullscale US invasion of Iran along with Israel Saudi Arabia as its main Partners but United Kingdom UK will be involved Australia will be involved UAE will be involved Poland will be involved Poland will be involved okay so you have many countries</p>
+<p><span class="timestamp">[14:26]</span> involved okay so you have many countries attacking um Iran together and Trump goes on TV and explains to the American public why the United States is fighting this war okay and this is what Trump says first he says that for the past year there have been violent protests in Iran you have religious protests you have political protests you have ethnic protests the Iranian people are sick of the Ayatollah they are sick of the</p>
+<p><span class="timestamp">[14:58]</span> dictatorship they want democracy they dictatorship they want democracy they want want freedom and response the reg want want freedom and response the reg guard are killing thousands of guard are killing thousands of protesters Iran is on the brink of Civil protesters Iran is on the brink of Civil War therefore the United States has an obligation to obligation to protect the people of Iran okay the protect the people of Iran okay the people of Iran are praying for freedom and democracy in the United States the world&#x27;s greatest democracy must give world&#x27;s greatest democracy must give them democracy okay so the first reason them democracy okay so the first reason</p>
+<p><span class="timestamp">[15:33]</span> democracy democracy second us intelligence along with second us intelligence along with second us intelligence along with Israeli intelligence have discovered Israeli intelligence have discovered Israeli intelligence have discovered that for the past two years Iran has that for the past two years Iran has been working very very hard on developing a nuclear bomb in fact Iran is only one month away from having three nuclear nuclear bombs so that New York City San bombs so that New York City San Francisco and Los Angeles at Los Angeles</p>
+<p><span class="timestamp">[16:04]</span> could all be could all be destroyed okay so to prevent this we destroyed okay so to prevent this we must strike first to stop Iran&#x27;s nuclear program program okay third Iranian proxies the houthis hollah many groups have been many groups have been disrupting shipping disrupting shipping disrupting shipping in the Middle East in both the Red Sea in the Middle East in both the Red Sea and the sh of and the sh of hus 40% of the world&#x27;s oil passes</p>
+<p><span class="timestamp">[16:36]</span> hus 40% of the world&#x27;s oil passes through that region mainly to East Asia China Japan South China Japan South Korea our Global Prosperity is at stake Korea our Global Prosperity is at stake we must go to war to protect these shipping lanes and ensure that the oil goes to China Japan and South Korea so that they can continue their economic Prosperity so Prosperity so the United States as the world hedgemon the United States as the world hedgemon</p>
+<p><span class="timestamp">[17:07]</span> has a responsibility to protect Global okay okay four Iran has been launching attacks four Iran has been launching attacks against our allies Saudi Arabia and Israel hesah has been violent attacking Israel killing dozens of Israelis in a and and Israelis the huies have been attacking Israelis the huies have been attacking Saudi Arabia oil fields damaging the</p>
+<p><span class="timestamp">[17:39]</span> economy we have an obligation to protect our allies our friends in the Middle okay and the last reason is we know for a fact that the Iranian ref guard Corp is a is a sponsor of sponsor of sponsor of terrorism last week in a mall terrorism last week in a mall there were gunmen who went and killed 107 people our intelligence says that it</p>
+<p><span class="timestamp">[18:11]</span> was most definitely an Iranian was most definitely an Iranian operation okay so for these five operation okay so for these five reasons we have decided to invade Iran but don&#x27;t Iran but don&#x27;t worry this Invasion will be worry this Invasion will be worry this Invasion will be successful because we have a lot of successful because we have a lot of allies the allies the UK Israel Saudi Arabia our friends we UK Israel Saudi Arabia our friends we part of this part of this operation our special forces are already operation our special forces are already</p>
+<p><span class="timestamp">[18:41]</span> in the in the country looking for their air bases and country looking for their air bases and their missiles we can knock them out at the beginning of the war also we have been in contact with Iranian opposition groups they want to overthrow the regime and when we help them they will install democracy in the country our American Military is the greatest in the world in 1991 our military defeated</p>
+<p><span class="timestamp">[19:14]</span> Saddam Hussein in 100 100 Saddam Hussein in 100 100 hours in 2003 our military defeated s hours in 2003 our military defeated s Hussein in only in less than three weeks to prove that we are the greatest in the world we will defeat Iran in only so do not so do not worry we will be strong in protecting worry we will be strong in protecting democracy freedom and Global democracy freedom and Global Prosperity okay so that&#x27;s what that&#x27;s Prosperity okay so that&#x27;s what that&#x27;s</p>
+<p><span class="timestamp">[19:46]</span> what Donald Trump will say to the people of the United States okay and of course you&#x27;re going to have large scale protests throughout the country opposing protests throughout the country opposing this war but most people in the country this war but most people in the country will support will support this war okay all right so after this this war okay all right so after this speech the operation is speech the operation is launched and on TV we&#x27;ll watch this on launched and on TV we&#x27;ll watch this on TV and the internet together on YouTube together okay and we&#x27;ll be so impressed</p>
+<p><span class="timestamp">[20:18]</span> by the power of the US military um this is military um this is Iran this is the straight of Iran this is the straight of humus Saudi humus Saudi Arabia um Israel is Arabia um Israel is Arabia um Israel is here Red Sea is here Iraq is here okay here Red Sea is here Iraq is here okay so in the hus comes the USS Gerald art Ford it is a$1 13 billion super carrier</p>
+<p><span class="timestamp">[20:49]</span> okay this thing is designed to destroy countries it is now Pro countries it is now Pro prowling the shus to ensure that prowling the shus to ensure that shipping is safe shipping is safe America establishes ear Supremacy very America establishes ear Supremacy very America establishes ear Supremacy very quickly okay meaning that it has quickly okay meaning that it has complete control over the skies nothing can move in the skies without America uh detection okay and then a massive</p>
+<p><span class="timestamp">[21:20]</span> Invasion force is sent to Iran in the South South 100,000 US troops land maybe 200,000 100,000 US troops land maybe 200,000 Saudi Arabia troops land okay maybe you have 300,000 to half a million troops in Iran and they are about to strike Tan in the north okay so in the South the United States and its allies have established a foothold they have a huge presence in the country and they&#x27;re</p>
+<p><span class="timestamp">[21:51]</span> about to attack Tran okay all right do you understand what what has you understand what what has happened okay now I want to ask you this happened okay now I want to ask you this question at this point I think the war has been has been decided who has won the war America has established Air war America has established Air Supremacy it controls the Supremacy it controls the Supremacy it controls the skies US Navy controls the Seas you have skies US Navy controls the Seas you have 100,000 US troops in country ready to stri stri Tran the war has been decided who has</p>
+<p><span class="timestamp">[22:22]</span> Tran the war has been decided who has war okay okay obviously this is a trick why what&#x27;s the problem with this plan okay this is typical American Doctrine shocking all this is how they fight Wars but there&#x27;s a problem with this plan</p>
+<p><span class="timestamp">[23:09]</span> okay let&#x27;s go back to traditional military Doctrine okay in traditional military Doctrine okay in traditional military Doctrine you have three military Doctrine you have three military Doctrine you have three principles right Mass forces avoid principles right Mass forces avoid principles right Mass forces avoid encirclement protect supply lines okay encirclement protect supply lines okay encirclement protect supply lines okay these are three three things you must these are three three things you must absolutely obey if you are win to war okay so using traditional mil military Doctrine explain to me why United States has lost the war right has lost the war right now exactly first of all they&#x27;re in now exactly first of all they&#x27;re in circle okay do you know why because Iran</p>
+<p><span class="timestamp">[23:40]</span> are all mountains it&#x27;s a are all mountains it&#x27;s a fortress okay meaning that to get these fortress okay meaning that to get these troops into the country you have to eardrop eardrop them right but guys once they&#x27;re in the country you can&#x27;t get them out of the country you understand okay so that&#x27;s a first problem they&#x27;ve been in circle right</p>
+<p><span class="timestamp">[24:22]</span> else yeah that that that that&#x27;s right okay um so they failed to mass forces okay Iran is a population of 90 million people you will need at least 3 to four million soldiers to even think about conquering the country they&#x27;ve got conquering the country they&#x27;ve got 100,000 in this country okay and as Jack 100,000 in this country okay and as Jack says you can&#x27;t move tanks through Mountains they&#x27;re not designed for Mountains they&#x27;re not designed for Mountain Warfare what are you going to Mountain Warfare what are you going to do okay so they can&#x27;t mask forces and they can&#x27;t and they&#x27;ve been en circled and and what else is a</p>
+<p><span class="timestamp">[24:57]</span> problem exactly they cannot be problem exactly they cannot be resupplied okay they have no supply resupplied okay they have no supply lines for them to be resupplied airplanes have to drop ammunition food into the country but again Iran is all mountains so it&#x27;s very easy for Iranians to shoot down the airplanes does that make sense when you pass through mountains you can&#x27;t see what&#x27;s on the ground a guy a random guy with a rocket launcher can just shoot down the helicopter okay which is what the what the Afghans did against the Soviets in the Afghanistan war and that&#x27;s why the</p>
+<p><span class="timestamp">[25:28]</span> Soviets lost the war Soviets lost the war War a drone can take down any airplanes War a drone can take down any airplanes okay so in other okay so in other words these guys are words these guys are words these guys are trapped that you think they&#x27;re soldiers trapped that you think they&#x27;re soldiers but they&#x27;re not what they really are okay does that make sense you have too many people in the country so you can&#x27;t get them out of the country but you don&#x27;t have enough people to actually launch a strike against tan you can&#x27;t</p>
+<p><span class="timestamp">[26:01]</span> resupply them and they&#x27;ve been encircled by Iranian by Iranian forces all right does that make sense okay okay now the logic of having 100,000 US troops in the country is that once in the country all the resistance to the regime will rise up and strike against tan the Iranian Army will mut</p>
+<p><span class="timestamp">[26:31]</span> will Mutiny against the country okay that&#x27;s the hope why do we think this happen why won&#x27;t the Iranians revolt revolt that&#x27;s right okay so Iranians hate Americans okay remember that hate Americans okay remember that Iranians remember the Sha from 1953 Iranians remember the Sha from 1953</p>
+<p><span class="timestamp">[27:01]</span> until 1979 the shaw the American supported Shaw was running a a brutal police state so brutal that everyone in Iran revolted against the regime okay that&#x27;s number one what what why else Americans Americans why that&#x27;s the first why that&#x27;s the first why that&#x27;s the first reason Iran has a bad history of America reason Iran has a bad history of America</p>
+<p><span class="timestamp">[27:35]</span> guys which country&#x27;s next guys which country&#x27;s next door what happened in Iraq America destroyed Iraq right from 2003 in 2011 America was there destroying the country America said that it would bring freedom freedom democracy it would bring Prosperity it would bring wealth but instead it just destroyed the country American soldiers were running country American soldiers were running into houses every night pointing guns at into houses every night pointing guns at</p>
+<p><span class="timestamp">[28:06]</span> children destroying homes and arresting children destroying homes and arresting men for no reason okay Iranians saw all men for no reason okay Iranians saw all this on TV they heard about all this from Neighbors okay so they know that if America comes it&#x27;s destroy the country not to bring freedom democracy not to bring prosperity it&#x27;s to destroy the country that&#x27;s why they&#x27;re going to fight okay fight okay um and another reason is um and another reason is um and another reason is that that that Iranians think that they belong to a Iranians think that they belong to a</p>
+<p><span class="timestamp">[28:37]</span> great civilization so they value their freedom and Independence okay does that make sense they&#x27;re not going to submit to a foreign conqueror to a foreign conqueror so so so um why else would the Iranians resist okay also religion right the Iranians are Rel religious they believe that that um that s America is Satan and they have um that s America is Satan and they have</p>
+<p><span class="timestamp">[29:07]</span> a duty a religious obligation to fight Satan okay so for many reasons there&#x27;s is no way that Iran people are going to stand with America you might have a minority but most are are going to resist resist okay okay so does that make sense okay okay okay so does that make sense okay okay so uh that&#x27;s a great question why would the Americans think that thean</p>
+<p><span class="timestamp">[29:38]</span> people will rise up and the answer is that they need to justify The Invasion does that make sense they they have to have a logical explanation for why this Invasion will succeed because one other the criticisms against them will be like you need 4 million people to invade Iran they don&#x27;t have 4 million soldiers they have at most one million soldiers okay total throughout the soldiers okay total throughout the world uh they have about 60,000 in the world uh they have about 60,000 in the Middle East so they can&#x27;t get a million soldiers so their only explanation is</p>
+<p><span class="timestamp">[30:08]</span> okay well we&#x27;re going to pretend that once we invade the people of Iran will support us do you understand so it&#x27;s not based on truth but but it&#x27;s it&#x27;s a explanation for why the The Invasion will will succeed does that make sense oh you know that&#x27;s a great question okay so that&#x27;s their propaganda but do they actually believe this and the answer is</p>
+<p><span class="timestamp">[30:40]</span> um hubris okay they do believe this because they have hubris and and again um it&#x27;s hard because we&#x27;re not in your position but once you&#x27;re in that position where you have access to nuclear weapons when you can kill anyone in the world when you can see everything in the world um it makes you think you&#x27;re God you&#x27;re God okay and we we we remember like last okay and we we we remember like last semester we were reading the Greeks the Greeks believe the worst thing is hubris because it makes you think you&#x27;re</p>
+<p><span class="timestamp">[31:10]</span> God but you&#x27;re not God and you&#x27;re gonna get into a lot of trouble if you think you&#x27;re God okay does that make sense questions Okay so questions Okay so um Trump says that Iran is one month um Trump says that Iran is one month from developing a nuclear bomb right America&#x27;s been seeing this for the past</p>
+<p><span class="timestamp">[31:41]</span> 10 years okay you just Google this and America&#x27;s like oh Iran is only one month away from a nuclear bomb they&#x27;ve been saying this for the past 10 years so do you understand when Trump gives a speech there&#x27;s absolutely no evidence that any of this is true okay but this is how he&#x27;ll explain the he&#x27;ll explain the invasion okay all right and chances are invasion okay all right and chances are that even if that even if tan uh possess a nuclear bomb they won&#x27;t tan uh possess a nuclear bomb they won&#x27;t</p>
+<p><span class="timestamp">[32:13]</span> not that&#x27;s right um the reality is that there&#x27;s only one way that America can win this war against Iran okay they can just nuke the country and America will do that I if it has enough if it has a pre-ex okay so nuclear weapons is something that Iran is very afraid of okay so does it make sense all right so this becomes so American soldiers are trapped in this trapped in this country okay so now the question then is</p>
+<p><span class="timestamp">[32:44]</span> country okay so now the question then is wait a minute here why would America do something so stupid as send 100,000 soldiers into the country for no reason and get them and get them trapped okay so that&#x27;s a question trapped okay so that&#x27;s a question and what I want to do now is make you the argument that um there are two ways that we that we can prove or provide evidence that this can prove or provide evidence that this is true okay the first is historical analysis historical analysis means that analysis historical analysis means that are there historical examples like this</p>
+<p><span class="timestamp">[33:17]</span> are there historical examples like this okay are there historical analogues if there are then this could be true okay the second uh method is for Game Theory analysis why would the actors who are rational do something as stupid as trap 100,000 American soldiers in Iran all right so we&#x27;ll first do historical analysis to find Historical analoges analysis to find Historical analoges examples s of similar similar to this examples s of similar similar to this and then we&#x27;ll look at Game Theory to to</p>
+<p><span class="timestamp">[33:50]</span> try to reason out the motivation of the actors okay so let&#x27;s first look at Game Theory oh sorry sorry let&#x27;s first look at historical analysis okay at historical analysis okay so the year is so the year is so the year is 415 BC okay in Athens remember that we studied Athens remember that we studied faciiities the pelan war last semester faciiities the pelan war last semester okay so so we will now discuss the pelian war the war is four the year is</p>
+<p><span class="timestamp">[34:24]</span> 415 BC and for the past um 17 years Athens have been fighting a brutal war against Sparta okay it&#x27;s a against Sparta okay it&#x27;s a stalemate and then for whatever stalemate and then for whatever stalemate and then for whatever reason um a man named alab alabes okay reason um a man named alab alabes okay has a suggestion and his suggestion is to win the war against Sparta let&#x27;s go invade invade sisily and uh sisily and uh sisily and uh Nas his Nas his Nas his opponent is like why the hell would we</p>
+<p><span class="timestamp">[34:55]</span> opponent is like why the hell would we want to invade Sicily it&#x27;s far way and alabed by this is like well because it has a lot of money and if we invade the country we can take their money okay and it turned out by making this argument the people of Athens really support this argument okay they because the reason why is war was costing them a lot of money and they become addicted to the Easy Money of Empire okay so they wanted to fight this war so to fight this war so nus has this great idea of how to</p>
+<p><span class="timestamp">[35:26]</span> nus has this great idea of how to convince people not to go to war okay and what he says to the people is okay guys I know you want to fight this War I know I know you want to I know that you think this war is a good idea but Sicily is a huge place it has a Navy therefore we need a massive Expedition Force against Syracuse and Expedition Force against Syracuse and Sicily okay we need at least 5,000 Sicily okay we need at least 5,000 soldiers that&#x27;s a lot okay because the total Athan population is about 50,000</p>
+<p><span class="timestamp">[35:59]</span> people okay 5,000 soldiers is a lot for Athens and we need about 100 ships and the idea is nus is trying to scare people into not agreeing to not fight okay that&#x27;s the idea the Athenians say that&#x27;s a great idea let&#x27;s send a massive Force against Sicily and Syracuse so the war can be can be won just like that</p>
+<p><span class="timestamp">[36:30]</span> all so they so the problem though is that never before in his history has Athens sent a large Expedition Force against another Power okay does that make sense when the Persians invaded they were invading Athens Athens didn&#x27;t go invade go invade Persia so when you have S a massive Persia so when you have S a massive Expedition Force against another country Expedition Force against another country what is your number one what is your number one what is your number one problem what is the thing that you must problem what is the thing that you must resolve for the Athenians really think about it because he had actually no</p>
+<p><span class="timestamp">[37:11]</span> war okay uh so yeah so the other the enemy knows the terrain better than you do okay but there&#x27;s actually a much what okay the biggest problem is resupply and this is something that the aans didn&#x27;t think about because they never thought they they never fought a war like this before okay so they sent this huge Expedition against Sicily and Syracuse um which was a naval power were</p>
+<p><span class="timestamp">[37:42]</span> surprised because they were like why would the Athenians want to invade us okay so for the first year the phans were were destroying uh the Syracuse Army and the destroying uh the Syracuse Army and the Syracuse Army had to retreat back into their City okay and so the f is late Siege to Siege to the city the Athenians Syracuse is here the city the Athenians Syracuse is here the Athenians are here and the Athenians control the sea control the sea right okay so this situation is very right okay so this situation is very similar to this situation okay do you</p>
+<p><span class="timestamp">[38:14]</span> understand but then what happened was that the Athenians couldn&#x27;t resupply that the Athenians couldn&#x27;t resupply themselves the reason why is Syracuse themselves the reason why is Syracuse had also had a navy and they could stop the aian Navy from resupplying the Athenian troops and Athenian troops and therefore the Athenian Army was wiped therefore the Athenian Army was wiped out in Sicily and this caus the Athenians to ultimately lose the war against Sparta and it caused the Athenian Empire to Athenian Empire to collapse okay do you understand and collapse okay do you understand and</p>
+<p><span class="timestamp">[38:46]</span> again historians have been trying to figure out for a long time why the Athenians would do such a stupid thing as as as to send a huge Army against Syracuse because the risk of failure here was here was catastrophic okay and the only answer is catastrophic okay and the only answer is well the well the Athenians had hubis okay they never Athenians had hubis okay they never really lost a really lost a war and they had become addicted to war and they had become addicted to Empire which is the same situation</p>
+<p><span class="timestamp">[39:16]</span> America finds itself in today okay does that make sense guys all that make sense guys all right so this has happened before in right so this has happened before in history when the Athenians invaded history when the Athenians invaded Sicily and lost to Syracuse their entire Sicily and lost to Syracuse their entire Army was wiped out in Syracuse okay because they couldn&#x27;t resupply their because they couldn&#x27;t resupply their army does that make sense all right the army does that make sense all right the second example we can look at is the War so in in the beginning of 1960 okay</p>
+<p><span class="timestamp">[39:47]</span> in the beginning of the decade most Americans have never heard of a country called called Vietnam okay most Americans didn&#x27;t know Vietnam okay most Americans didn&#x27;t know what it was didn&#x27;t know where it was okay by the end of the decade in 1969 half a 1969 half a million American soldiers were in the million American soldiers were in the country destroying everything okay but country destroying everything okay but also getting destroyed themselves also getting destroyed themselves also getting destroyed themselves 58,000 US soldiers died in 58,000 US soldiers died in 58,000 US soldiers died in Vietnam so the question then is how this</p>
+<p><span class="timestamp">[40:20]</span> Vietnam so the question then is how this happen why would this happen 1960 Vietnam was a distant country no one&#x27;s ever heard of by by the end of the decade half a million US soldiers were in country fighing this war against an enemy they really didn&#x27;t know okay in 1971 um the Pentagon papers came out and the Pentagon papers uh was a history of America&#x27;s involvement in the</p>
+<p><span class="timestamp">[40:52]</span> Vietnam War dating back to 1950s okay and it made three major points the first American leadership military leadership American leadership military leadership has been expanding the war in has been expanding the war in Vietnam without public knowledge okay Vietnam without public knowledge okay this is what we call Mission creep so maybe at first they sent some observers to the country then they sent some advisors then trainers then some advisors then trainers then soldiers okay so Mission creep slowly</p>
+<p><span class="timestamp">[41:22]</span> soldiers okay so Mission creep slowly over over time um things escalate and you don&#x27;t time um things escalate and you don&#x27;t understand why things escalate but they do do okay second point is that American okay second point is that American leadership from very early on knew the war was war was unwinable this was the greatest military unwinable this was the greatest military in the world they dropped more bombs in Vietnam in the Vietnam in the 60s than all bombs were dropped in World 60s than all bombs were dropped in World</p>
+<p><span class="timestamp">[41:53]</span> War II War II okay and they could not win the war the okay and they could not win the war the reason why is to win a war you have to solve three problems okay okay the first problem problem is playar strategy is playar strategy is playar strategy okay what are you trying to accomplish okay what are you trying to accomplish in this in this country what are your clear military country what are your clear military objectives okay second objectives okay second is you must adopt to the battlefield</p>
+<p><span class="timestamp">[42:23]</span> is you must adopt to the battlefield okay because all your best plans will change over the course of battle okay so the the the adversary that is most willing to adapt to the battlefield will win Okay the third thing is the will to fight so if you want to look at a war and who&#x27;s most likely to win the war you ask these three questions one does this guy have clear military objectives that everyone understands because that will everyone understands because that will determine strategy okay second is is</p>
+<p><span class="timestamp">[42:56]</span> determine strategy okay second is is this guy a adapting to the battlefield the third is is this guy um this does this guy still have the will to fight and if the answer is yes all three questions then the person will most likely win the war okay and if you look at the Vietnam War even though America was killing a lot of people it killed three million people it killed three million Vietnamese during the course of the war Vietnamese during the course of the war it was not destroying the enemy&#x27;s will</p>
+<p><span class="timestamp">[43:31]</span> angrier and therefore more people people willing to fight the willing to fight the Americans okay so from a very so very Americans okay so from a very so very early on the American political early on the American political leadership knew the war could not be won leadership knew the war could not be won so then the question then is why did America stay in the war and the answer is is credibility credibility credibility okay credibility just means they didn&#x27;t okay credibility just means they didn&#x27;t want to lose face they didn&#x27;t want to be laughed at by the Chinese and by the Soviets Soviets and by the Europeans okay but there&#x27;s and by the Europeans okay but there&#x27;s</p>
+<p><span class="timestamp">[44:02]</span> actually another uh way to understand credibility and it&#x27;s it&#x27;s what we call the the sunk cost sunk cost sunk cost fallacy okay have you guys heard of the fallacy okay have you guys heard of the sunk cost sunk cost fallacy and the idea fallacy and the idea fallacy and the idea is never ever go into a casino the is never ever go into a casino the reason why is that when you go to the casino you start losing money at some</p>
+<p><span class="timestamp">[44:37]</span> not exactly you want to you want to reclaim the money you&#x27;ve lost okay you&#x27;ve invested so much that you cannot leave you have to get that money back and that&#x27;s a problem with war eventually you&#x27;ve invested so much you cannot leave the war and that&#x27;s what happened in Vietnam America invested so much it can it didn&#x27;t want to leave the war because it did not want to admit that all this um has been lost okay it&#x27;s what we call the sunk cause fallacy that&#x27;s the sunk cause fallacy that&#x27;s why even though America could not win why even though America could not win</p>
+<p><span class="timestamp">[45:10]</span> the war it still want to fight the war okay does that make sense okay so the Vietnam war is another the Vietnam war is another example okay that is similar to to example okay that is similar to to this where America invests enough this where America invests enough soldiers that it refuses to leave the soldiers that it refuses to leave the war and Aid defeat okay does that make sense guys all right now let&#x27;s look at one more example and this is the uh most recent example and it&#x27;s the Russian</p>
+<p><span class="timestamp">[45:41]</span> Ukraine war now as you know in February 2022 Putin ordered uh a special military operation against operation against Ukraine okay and uh this is Ukraine okay and uh this is Ukraine and Russia attacked from three axises okay the North to take K the capital you have the East to take dones and then you have the south from from uh Crea to take the South okay and</p>
+<p><span class="timestamp">[46:12]</span> as we know uh the north fail okay the north attack failed and the Russians had to turn back but the to turn back but the East and the South was successful okay East and the South was successful okay now let&#x27;s think about this you have an extremely powerful military attacking extremely powerful military attacking your country the Ukraine your country the Ukraine your country the Ukraine if you were the Ukrainian president if if you were the Ukrainian president if you were the Ukrainian military there&#x27;s really only one way you can fight this war and when and what is it using traditional military Doctrine what how traditional military Doctrine what how much you fight this war you guys</p>
+<p><span class="timestamp">[46:48]</span> know let&#x27;s go back to mass forces avoid in circle men protect supply lines how much you fight this war there&#x27;s only one excuse excuse me how do you disrupt supply me how do you disrupt supply lines there&#x27;s only one way you can fight it the the enemy is attacking you right do okay the answer is you must</p>
+<p><span class="timestamp">[47:24]</span> why the enem is attacking right so you pull back your forces pull back your forces why would you do that what&#x27;s the logic why would you do that what&#x27;s the logic that exactly okay it&#x27;s it&#x27;s as simple okay you want to overextend your enemy Ukraine is a huge country right and and Russia didn&#x27;t send send that that that many soldiers maybe 160,000 that&#x27;s not that many soldiers so if you just give them space they&#x27;re going to outrun the supply lines okay and then when they outrun their supply lines you can encircle them and you can disrupt their</p>
+<p><span class="timestamp">[47:57]</span> supply and that&#x27;s the only way you can win the war okay what did the ukrainians do do instead that&#x27;s the only way to win this instead that&#x27;s the only way to win this war but what did what did the ukrainians war yeah so the ukrainians refuse to give up give up space okay they refuse to give up land they want to fight the Russians for every inch of Russians for every inch of territory and eventually because the territory and eventually because the territory and eventually because the Russians had more forces Mass forces</p>
+<p><span class="timestamp">[48:27]</span> Russians had more forces Mass forces they were able to push push through okay so that&#x27;s the first major mistake that Ukraine Ukraine made but then last made but then last made but then last summer Ukraine launched something called summer Ukraine launched something called summer Ukraine launched something called a counter offensive right so once Russia a counter offensive right so once Russia was able to take space it it because and because Russia is a land Army it started to De to develop um fortifications defenses okay mainly artillery that defenses okay mainly artillery that three lines of defenses and in the three lines of defenses and in the summer summer offensive the Ukrainian military for</p>
+<p><span class="timestamp">[48:59]</span> offensive the Ukrainian military for offensive the Ukrainian military for whatever reason sent tens of thousands whatever reason sent tens of thousands hundreds of thousands of soldiers hundreds of thousands of soldiers against the this artillery and the against the this artillery and the Russians blew every everyone up Russians blew every everyone up okay now here&#x27;s a okay now here&#x27;s a okay now here&#x27;s a question why are the ukrainians doing question why are the ukrainians doing this they&#x27;ve lost the war now right they have no more soldiers right now the average age of the Ukrainian Army is about it&#x27;s over 40 years old they have guys from their 60s and 70s fighting in</p>
+<p><span class="timestamp">[49:30]</span> the military they don&#x27;t have enough manpower the war is manpower the war is lost why would the ukrainians do do this lost why would the ukrainians do do this first of all why would they fight for every inch of territory and why would they launch a counter offensive against a superior enemy a superior a superior enemy a superior enemy what&#x27;s a enemy what&#x27;s a enemy what&#x27;s a problem okay the first problem okay the first problem okay the first is the president is the president is the president zalinski the guy a TV actor okay which zalinski the guy a TV actor okay which</p>
+<p><span class="timestamp">[50:01]</span> means that he doesn&#x27;t think strategy he just thinks what looks good on TV so for the first two years of the war we&#x27;re watching this on TV right it looked as though the ukrainians were going to win this going to win this war right it I remember like two years war right it I remember like two years ago people were saying that the ukrainians are going to march to Moscow and overthrow Putin people are saying that okay and the reason why is that zilinski is is a master of Public Image</p>
+<p><span class="timestamp">[50:32]</span> manipulation okay he was distorting manipulation okay he was distorting reality for people through reality for people through reality for people through television the problem with that though television the problem with that though is it&#x27;s not reality guys okay reality the reality on the ground is very different from TV okay so who else is like zilinsky in this world Trump is exactly like uh zilinski okay do you understand Trump is also concerned about what looks good on TV he&#x27;s like I must</p>
+<p><span class="timestamp">[51:03]</span> look look strong we must look as though we&#x27;re strong we must look as though we&#x27;re winning this war he doesn&#x27;t really care about strategy okay so because of this it&#x27;s very likely that he orders a land invasion of Iran because it would look good on TV okay so the problem with zinsky is he cared about what looked good as opposed to actually what actually worked okay but you also have other problems like you have other problems like you have extremists in the Ukrainian military</p>
+<p><span class="timestamp">[51:35]</span> extremists in the Ukrainian military extremists in the Ukrainian military okay and guys uh these extremists okay and guys uh these extremists they&#x27;re Nazis they&#x27;re they&#x27;re Nazis they&#x27;re neo-nazis and so um the traditional neo-nazis and so um the traditional understanding of Neo of Nazis are people who kill Jews okay but the Russians don&#x27;t understand Nazis that way because because remember Germany and and the Soviet Union fought fought this Soviet Union fought fought this War so the Russians understood Nazis to War so the Russians understood Nazis to be enemies of Russia who want to kill</p>
+<p><span class="timestamp">[52:08]</span> Russians and there were many neo-nazis in Ukraine they hate Russia they wanted to kill as many Russians as possible okay and they&#x27;re they&#x27;re the ones who are pushing for as much War as possible okay so you have these extremists in the Ukrainian extremists in the Ukrainian military the last reason is military the last reason is military the last reason is NATO so it&#x27;s an Open Secret that NATO is NATO so it&#x27;s an Open Secret that NATO is helping the Ukraine Ukrainian military helping the Ukraine Ukrainian military against Russia you have NATO military against Russia you have NATO military</p>
+<p><span class="timestamp">[52:42]</span> advisors devising strategy against advisors devising strategy against Russia okay so it&#x27;s most likely that the Russia okay so it&#x27;s most likely that the summer offensive last uh last summer was a NATO plan and not a Ukrainian plan it&#x27;s possible we also know that NATO special forces are in the country directing missile strikes against directing missile strikes against Russian forces Russian forces Russian forces okay which means okay which means okay which means what if if this is true and what if if this is true and if um Ukraine loses the war meaning that</p>
+<p><span class="timestamp">[53:12]</span> it doesn&#x27;t have enough soldiers to continue to fight this war what will NATO NATO do yeah yeah I mean according to what do yeah yeah I mean according to what happened to Vietnam War and uh the Athenians uh Expedition against Sicily Athenians uh Expedition against Sicily it is most ly that the most likely it is most ly that the most likely outcome will be that NATO sends its own troops against troops against Russia okay so macron of France have Russia okay so macron of France have said that we are we want to send French soldiers and the British um prime</p>
+<p><span class="timestamp">[53:43]</span> minister has said that he is considering conscription for British people okay conscription for British people okay which means that young British uh which means that young British uh citizens will be drafted into the army all right so these are three historical examples that are very similar to what could happen in Iran okay does that make</p>
+<p><span class="timestamp">[54:21]</span> continue all right is this clear so far all all right now let&#x27;s use another mode of right now let&#x27;s use another mode of analysis called game analysis okay and this is what I&#x27;ve been teaching you uh this uh semester and the idea is that Society what happens in the real world is a game among human is a game among human beings okay so so and each person is beings okay so so and each person is trying to play this game as to optimize the outcome for that the outcome for that person okay so the question then person okay so the question then</p>
+<p><span class="timestamp">[54:54]</span> is why would the United States send 100,000 troops into Iran so let&#x27;s look at the individual motivations of the individual players okay so you have the United United States what does the United States want States what does the United States want to to do what what what what does it want to do by by doing do by by doing one and accomplishing one it wants to top of the regime in in</p>
+<p><span class="timestamp">[55:25]</span> tran right and you can only do that for a ground Invasion okay okay so the United States is trying to topple Iran but then you also have other actors okay okay so um Iran what does Iran want to do what what does Iran want to do or the basically the Revolutionary G Corp what do they want to do ex me they want to kill as many</p>
+<p><span class="timestamp">[55:55]</span> Americans as possible okay you Americans as possible okay you understand they want to force an understand they want to force an American Landing Invasion okay so Iran wants to force a US invasion knowing that if the US invades it has to lose the war okay it will lose the war because the re guard can just send suicide bombers against the United suicide bombers against the United States okay now let&#x27;s look at States okay now let&#x27;s look at Israel okay we know that the United States wants to top of Iran we know that Iran wants to force a US invasion to</p>
+<p><span class="timestamp">[56:26]</span> defeat the the the Americans to humiliate the Americans and and um exact revenge for what happened in the past okay what does Israel want to do what is know if you&#x27;re Israel what do you want</p>
+<p><span class="timestamp">[56:57]</span> happen Okay so you you you want Iran defeated okay and then what do you want to happen you want Iran defeated you want the prox defeated and then what happen do you want the United States to East what happens if United States what happens if United States and Iran both lose the war mean Iran is destroyed as a</p>
+<p><span class="timestamp">[57:28]</span> country the United States is destroyed as a military presence in the Middle happen Israel becomes the top dog in the Middle East do you understand okay Israel can now control the entire Middle East so the timal outcome for Israel is Iran and United States are both destroyed okay you understand how about how about Saudi Arabia what is their</p>
+<p><span class="timestamp">[58:00]</span> exactly the same as isual exactly okay do you do you understand okay which will leave the understand okay which will leave the Middle East to Saudi Arabia and Israel but Israel is a far superior military than Saudi Arabia okay remember like it&#x27;s very easy to blow up Saudi Arabia they have oil fields okay not that hard not that easy to blow um Israel so Israel becomes a top dog you understand game theory in other words all the major participants want an participants want an invasion of invasion of invasion of Iran okay but they want different</p>
+<p><span class="timestamp">[58:31]</span> Iran okay but they want different outcomes and Saudi Arabia in Israel most benefit if this situation happens where you have 100,000 US troops in the country and they can&#x27;t get out okay because it becomes some cost fallacy United States can only Point more right so is this clear to you guys okay you can either use historical analysis</p>
+<p><span class="timestamp">[59:01]</span> to get to this outcome but you can also use Game Theory to get to this far okay great okay so Seline asked the most pival question most pival question okay the United States has nuclear okay the United States has nuclear weapons which is its ultimate trump card right so what what Trump can say to Tran</p>
+<p><span class="timestamp">[59:32]</span> is like I have 100,000 troops in country you have to let them go or I will nuke you okay you understand Trump trump can say that listen I&#x27;m Trump I&#x27;m Donald Trump I need to look strong I have 100,000 troops in the country I can&#x27;t to Teran you either let them go okay you either gu guarantee him self safe passage out of the country or I will nuke nuke you right so that&#x27;s what that that&#x27;s you right so that&#x27;s what that that&#x27;s what will happen that is what Donald Trump will do once the situation</p>
+<p><span class="timestamp">[1:00:04]</span> arises the only way for Donald Trump to say face is to threaten tan and says you either let my my guys go or I will nuke the entire the entire country country country right so how does Tran get out of this right so how does Tran get out of this situation how do the Iranians protect themselves against this possibility themselves against this possibility because as because you&#x27;re absolutely because as because you&#x27;re absolutely because as because you&#x27;re absolutely right this is exactly what will happen right this is exactly what will happen if this situation will arise Trump will respond with nuclear weapons or a threat of nuclear weapons so what must the Iranians do to protect to protect</p>
+<p><span class="timestamp">[1:00:35]</span> themselves against this possibility who who can help the the possibility who who can help the the Iranians Iranians now Russia okay do you understand so now Russia okay do you understand so before this war happens Iran and Russia must come to an agreement where Putin says from the out from from the onset no one is allowed to use nuclear weapons okay if Iran US US nuclear weapons I will nuke Iran if the United States use use nuclear weapons I will nuke the United nuke the United States if Israel use nuclear weap I will States if Israel use nuclear weap I will</p>
+<p><span class="timestamp">[1:01:06]</span> nuke Israel okay Putin if Putin says react if Putin says this you are not allowed to use nuclear weapons how will the world the world react he&#x27;s a hero right he saved react he&#x27;s a hero right he saved Humanity but because he says this the United States is now trapped United States is now trapped okay you understand and so this becomes okay you understand and so this becomes a black hole for the United States where they can only send in more troops they can&#x27;t get any troops out</p>
+<p><span class="timestamp">[1:01:42]</span> troops what&#x27;s a problem with this what&#x27;s troops no there&#x27;s there&#x27;s actually a huge problem with this idea of sending it okay you can&#x27;t like no one wants to go fight you understand the military cannot recruit cannot recruit soldiers all right but even if you if soldiers all right but even if you if you did have enough you did have enough troops as Jack says you can&#x27;t resupply troops as Jack says you can&#x27;t resupply them them why why can&#x27;t you actually resupply your</p>
+<p><span class="timestamp">[1:02:13]</span> why why can&#x27;t you actually resupply your not there but there&#x27;s a bigger problem than the supply lines what is it what do ammunition America has no manufacturing ammunition America has no manufacturing capacity because America moved all its capacity because America moved all its manufa capacity to China okay remember this so for every one ship that America</p>
+<p><span class="timestamp">[1:02:44]</span> can build China can build 232 ships that&#x27;s what the Pentagon that&#x27;s what the Pentagon says can do you says can do you says can do you understand so if this were to were if understand so if this were to were if this war were to this war were to happen there&#x27;s absolutely no way America happen there&#x27;s absolutely no way America can win this war it&#x27;s just completely trapped inside Iran and once it becomes trapped some cost fallacy comes into play and America just puts in all its resources into the country but it&#x27;s a black hole okay they cannot use nuclear</p>
+<p><span class="timestamp">[1:03:15]</span> weapons because Putin I said from the from the onset you are not allowed to use nuclear weapons use nuclear weapons right but now the question then is why right but now the question then is why would Putin do that right why would Putin involve himself in this war and that&#x27;s what we&#x27;ll discuss next class all right how Putin sees this war and how Putin will react in this war okay but um before we end are there any questions about any of this does this make sense</p>
+<p><span class="timestamp">[1:04:05]</span> oh that&#x27;s a great question yeah um so the the problem with Iraq is that Iraq is an independent country you understand there are 10,000 American soldiers in Iraq Iraq um so you would need you would need um so you would need you would need their their permission even if you had their permission there&#x27;s a problem their permission there&#x27;s a problem problem here because there are lots of problem here because there are lots of Shia militia men in Iraq who are loyal to Iraq okay and they would see the</p>
+<p><span class="timestamp">[1:04:36]</span> American Invasion Force as something as opportunity to attack the Americans okay because they&#x27;re still anger about the Americans for what happened in Iraq but even if they could have a staging area in Iraq they still they still have to deal with mountains okay do you understand all right I mean the problem is you have 100,000 troops in the country you have to get out of the country okay and it&#x27;s very hard to get through the mountains you&#x27;re going to get this you&#x27;re going to get ambush in the mountains if you go through the ear th those drones are going to strike you</p>
+<p><span class="timestamp">[1:05:08]</span> down that&#x27;s that&#x27;s the issue down that&#x27;s that&#x27;s the issue okay right does that make sense okay any okay right does that make sense okay any more more questions okay great so uh on Friday questions okay great so uh on Friday</p>
+    </article>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
