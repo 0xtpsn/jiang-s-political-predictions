@@ -705,7 +705,7 @@ def generate_article_html(series, number, title, transcript_html, read_time, wor
             if (preferred) currentUtterance.voice = preferred;
 
             currentUtterance.onend = () => {{
-                if (isPlaying) {{
+                if (isPlaying && !stopped) {{
                     speakParagraph(index + 1);
                 }}
             }};
@@ -726,6 +726,7 @@ def generate_article_html(series, number, title, transcript_html, read_time, wor
 
             if (!isPlaying && !isPaused) {{
                 // Start fresh
+                stopped = false;
                 isPlaying = true;
                 isPaused = false;
                 player.classList.remove('hidden');
@@ -750,10 +751,13 @@ def generate_article_html(series, number, title, transcript_html, read_time, wor
             }}
         }}
 
+        let stopped = false;
+
         function stopTTS() {{
-            synth.cancel();
+            stopped = true;
             isPlaying = false;
             isPaused = false;
+            synth.cancel();
             currentParagraph = 0;
             document.getElementById('audioPlayer').classList.add('hidden');
             document.getElementById('playPauseBtn').textContent = '▶';
