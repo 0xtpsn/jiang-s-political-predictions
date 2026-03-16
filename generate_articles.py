@@ -44,8 +44,94 @@ def parse_filename(filename):
     return "Other", "", name
 
 
+def polish_transcript(text):
+    """
+    Remove speech disfluencies from auto-generated transcripts.
+    Handles: repeated words, repeated phrases, filler words, stammering.
+    """
+    # Process each paragraph (timestamp block) separately
+    blocks = re.split(r'(\[\d+:\d+(?::\d+)?\])', text)
+    
+    polished_blocks = []
+    for block in blocks:
+        # Don't process timestamp markers themselves
+        if re.match(r'\[\d+:\d+(?::\d+)?\]', block.strip()):
+            polished_blocks.append(block)
+            continue
+        
+        if not block.strip():
+            polished_blocks.append(block)
+            continue
+        
+        paragraph = block
+        
+        # 1. Remove repeated multi-word phrases (3-8 word chunks)
+        # Match "X Y Z X Y Z" patterns and keep only one
+        for phrase_len in range(8, 2, -1):
+            # Build regex: capture N words, match same sequence repeated
+            word_pattern = r'(\S+)'
+            words_group = r'\s+'.join([word_pattern] * phrase_len)
+            # We need a different approach - use word splitting
+            words = paragraph.split()
+            cleaned_words = []
+            i = 0
+            while i < len(words):
+                # Try to find repeated phrase starting at position i
+                found_repeat = False
+                for plen in range(min(8, (len(words) - i) // 2), 2, -1):
+                    phrase = words[i:i+plen]
+                    next_phrase = words[i+plen:i+plen*2]
+                    if len(next_phrase) == plen and [w.lower() for w in phrase] == [w.lower() for w in next_phrase]:
+                        # Found a repeated phrase, keep only the first
+                        cleaned_words.extend(phrase)
+                        i += plen * 2
+                        # Check for triple+ repeats
+                        while i + plen <= len(words):
+                            check = words[i:i+plen]
+                            if [w.lower() for w in check] == [w.lower() for w in phrase]:
+                                i += plen
+                            else:
+                                break
+                        found_repeat = True
+                        break
+                if not found_repeat:
+                    cleaned_words.append(words[i])
+                    i += 1
+            paragraph = ' '.join(cleaned_words)
+        
+        # 2. Remove consecutive duplicate words ("okay okay okay" -> "okay")
+        paragraph = re.sub(r'\b(\w+)(\s+\1){1,}\b', r'\1', paragraph, flags=re.IGNORECASE)
+        
+        # 3. Remove filler words/phrases at various positions
+        # Remove standalone fillers
+        filler_patterns = [
+            r'\bum\b',
+            r'\buh\b',
+        ]
+        for pattern in filler_patterns:
+            paragraph = re.sub(pattern, '', paragraph, flags=re.IGNORECASE)
+        
+        # 4. Clean up "okay so" / "okay and" at start of sentences (but keep meaningful "okay")
+        paragraph = re.sub(r'(?:^|\.\s+)(?:okay\s+so\s+)', '', paragraph, flags=re.IGNORECASE)
+        paragraph = re.sub(r'(?:^|\.\s+)(?:all\s+right\s+so\s+)', '', paragraph, flags=re.IGNORECASE)
+        
+        # 5. Remove stammering ("in in the" -> "in the")
+        paragraph = re.sub(r'\b(\w+)\s+\1\b', r'\1', paragraph, flags=re.IGNORECASE)
+        
+        # 6. Clean up excessive whitespace
+        paragraph = re.sub(r'\s{2,}', ' ', paragraph)
+        paragraph = paragraph.strip()
+        
+        polished_blocks.append(paragraph)
+    
+    return ''.join(polished_blocks)
+
+
 def format_transcript(text):
     """Convert plain text transcript into nicely formatted HTML paragraphs."""
+    # Polish the transcript first to remove speech disfluencies
+    text = polish_transcript(text)
+    
     text = html.escape(text)
     
     # Split into paragraphs by timestamp markers or double newlines

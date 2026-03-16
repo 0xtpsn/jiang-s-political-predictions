@@ -2,9 +2,17 @@
 """
 Clean YouTube auto-generated VTT subtitle files.
 
-YouTube auto-subs have overlapping text segments that repeat content.
-This script deduplicates them and produces clean transcript text files
-with timestamp markers every ~30 seconds.
+YouTube auto-subs have a specific pattern:
+- Each cue block has 2 lines: line 1 is repeated from previous cue, line 2 is new content
+- There are also "flash" cues (near-zero duration) that just show the accumulated text
+- This creates massive duplication if you naively concatenate everything
+
+Strategy:
+- Only extract the NEW text from each cue (the second line)
+- Handle edge cases where cues have only one line
+- Remove VTT formatting tags
+- Insert timestamp markers every ~30 seconds
+- Post-process to remove speech disfluencies (stuttering, fillers, repeated words)
 """
 
 import os
@@ -36,113 +44,167 @@ def format_timestamp(seconds):
         return f"{m}:{s:02d}"
 
 
+def clean_tag(text):
+    """Remove HTML/VTT tags like <c>, </c>, <00:00:01.440>, etc."""
+    return re.sub(r'<[^>]+>', '', text).strip()
+
+
 def clean_vtt(vtt_path):
     """
-    Parse a VTT file and extract deduplicated text with timestamps.
-    
-    YouTube auto-subs work like this:
-    - Each cue block has a timestamp range and 1-2 lines of text
-    - The second line of one block often becomes the first line of the next
-    - This creates overlapping/repeated text
-    
-    Strategy: Track seen text segments and skip duplicates.
-    Insert timestamp markers every ~30 seconds.
+    Parse a VTT file using the YouTube auto-sub pattern:
+    each cue has 2 lines - line 1 repeats previous content, line 2 is new.
+    We only keep line 2 (new content) from each cue.
     """
     with open(vtt_path, 'r', encoding='utf-8') as f:
         content = f.read()
 
     lines = content.split('\n')
     
-    segments = []  # List of (start_time, text)
-    current_time = None
-    
+    # Parse all cue blocks: (start_time, end_time, text_lines)
+    cues = []
     i = 0
     while i < len(lines):
         line = lines[i].strip()
         
-        # Match timestamp lines like "00:00:01.440 --> 00:00:04.720"
+        # Match timestamp lines
         ts_match = re.match(
             r'(\d{2}:\d{2}:\d{2}\.\d{3})\s*-->\s*(\d{2}:\d{2}:\d{2}\.\d{3})',
             line
         )
         
         if ts_match:
-            current_time = parse_timestamp(ts_match.group(1))
-            # Collect text lines until blank line or next timestamp
+            start = parse_timestamp(ts_match.group(1))
+            end = parse_timestamp(ts_match.group(2))
             i += 1
             text_lines = []
             while i < len(lines):
                 tl = lines[i].strip()
                 if tl == '' or re.match(r'\d{2}:\d{2}:\d{2}\.\d{3}\s*-->', tl):
                     break
-                # Remove HTML/VTT tags like <c>, </c>, <00:00:01.440>, etc.
-                clean = re.sub(r'<[^>]+>', '', tl).strip()
-                if clean:
-                    text_lines.append(clean)
+                cleaned = clean_tag(tl)
+                if cleaned:
+                    text_lines.append(cleaned)
                 i += 1
             
-            if text_lines and current_time is not None:
-                full_text = ' '.join(text_lines)
-                segments.append((current_time, full_text))
+            if text_lines:
+                duration = end - start
+                cues.append((start, end, duration, text_lines))
         else:
             i += 1
 
-    if not segments:
+    if not cues:
         return ""
 
-    # Deduplicate: YouTube auto-subs repeat text across overlapping cue blocks
-    # Use a sliding window approach to detect and remove repeated phrases
-    seen_phrases = set()
-    deduped_words = []
-    timestamps = []  # (word_index, timestamp_str)
+    # YouTube auto-subs pattern:
+    # - "Flash" cues (duration < 0.1s) just show accumulated text, skip them
+    # - Regular cues: line 1 = repeat from previous, line 2 = new content
+    # - Some cues have only 1 line (new content only)
     
-    last_ts_marker = -30  # Track when we last inserted a timestamp
+    extracted_words = []
+    timestamps = []
+    last_ts_marker = -30
+    prev_line1 = ""
     
-    for start_time, text in segments:
-        # Split into words for fine-grained dedup
-        words = text.split()
+    for start, end, duration, text_lines in cues:
+        # Skip flash cues (near-zero duration, just echoing previous text)
+        if duration < 0.05:
+            continue
         
-        # Create n-gram phrases to detect repetition
-        # Use a window of ~6-8 words to detect repeated segments
-        phrase_len = min(6, len(words))
-        
-        if phrase_len >= 3:
-            phrase_key = ' '.join(words[:phrase_len]).lower()
-            if phrase_key in seen_phrases:
-                # This segment is likely a repeat, skip it
+        # Determine which lines are new content
+        if len(text_lines) >= 2:
+            # Standard pattern: line 1 = old, line 2 = new
+            new_text = text_lines[1]
+        elif len(text_lines) == 1:
+            # Single line - check if it's a repeat of last line 1
+            if text_lines[0].lower() == prev_line1.lower():
                 continue
-            seen_phrases.add(phrase_key)
-            
-            # Also add sub-phrases for better detection
-            if len(words) > 3:
-                for j in range(0, len(words) - 2, 3):
-                    sub_phrase = ' '.join(words[j:j+3]).lower()
-                    seen_phrases.add(sub_phrase)
+            new_text = text_lines[0]
+        else:
+            continue
+        
+        # Update prev_line1 for next iteration's dedup
+        if len(text_lines) >= 1:
+            prev_line1 = text_lines[0] if len(text_lines) >= 2 else text_lines[0]
         
         # Add timestamp marker every ~30 seconds
-        if start_time - last_ts_marker >= 30:
-            timestamps.append((len(deduped_words), format_timestamp(start_time)))
-            last_ts_marker = start_time
+        if start - last_ts_marker >= 30:
+            timestamps.append((len(extracted_words), format_timestamp(start)))
+            last_ts_marker = start
         
-        deduped_words.extend(words)
+        words = new_text.split()
+        extracted_words.extend(words)
+
+    # Post-process: Remove speech disfluencies
+    extracted_words = remove_disfluencies(extracted_words)
 
     # Build final text with timestamp markers
     result_parts = []
     ts_idx = 0
     
-    for word_i, word in enumerate(deduped_words):
-        # Insert timestamp marker before this word if applicable
-        if ts_idx < len(timestamps) and timestamps[ts_idx][0] == word_i:
+    for word_i, word in enumerate(extracted_words):
+        if ts_idx < len(timestamps) and timestamps[ts_idx][0] <= word_i:
             result_parts.append(f"\n\n[{timestamps[ts_idx][1]}]\n")
             ts_idx += 1
         result_parts.append(word)
     
     text = ' '.join(result_parts)
-    # Clean up spacing around timestamp markers
     text = re.sub(r'\s*\n\n\[', '\n\n[', text)
     text = re.sub(r'\]\n\s*', ']\n', text)
     
     return text.strip()
+
+
+def remove_disfluencies(words):
+    """
+    Remove speech disfluencies from word list:
+    - Consecutive duplicate words ("okay okay okay" -> "okay")
+    - Repeated phrases ("Hunter gather Society Hunter gather Society" -> one copy)
+    - Filler words (um, uh)
+    - Stammering
+    """
+    if not words:
+        return words
+    
+    # Pass 1: Remove repeated multi-word phrases (longest first)
+    cleaned = []
+    i = 0
+    while i < len(words):
+        found_repeat = False
+        # Try phrase lengths from 8 down to 3
+        for plen in range(min(8, (len(words) - i) // 2), 2, -1):
+            phrase = [w.lower() for w in words[i:i+plen]]
+            next_phrase = [w.lower() for w in words[i+plen:i+plen*2]]
+            if len(next_phrase) == plen and phrase == next_phrase:
+                # Keep first copy, skip repeats
+                cleaned.extend(words[i:i+plen])
+                skip = plen * 2
+                # Handle triple+ repeats
+                while skip + plen <= len(words) - i:
+                    check = [w.lower() for w in words[i+skip:i+skip+plen]]
+                    if check == phrase:
+                        skip += plen
+                    else:
+                        break
+                i += skip
+                found_repeat = True
+                break
+        if not found_repeat:
+            cleaned.append(words[i])
+            i += 1
+    words = cleaned
+    
+    # Pass 2: Remove consecutive duplicate words
+    cleaned = []
+    for w in words:
+        if cleaned and w.lower() == cleaned[-1].lower():
+            continue
+        cleaned.append(w)
+    words = cleaned
+    
+    # Pass 3: Remove filler words (standalone "um" and "uh")
+    words = [w for w in words if w.lower() not in ('um', 'uh')]
+    
+    return words
 
 
 def main():
