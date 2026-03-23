@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Political Prophet Predicts the Next Phase in Iran, Trump’s War Plan, &amp; Israel’s Plot to Sabotage It — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Political Prophet Predicts the Next Phase in Iran, Trump’s War Plan, &amp; Israel’s Plot to Sabotage It">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #8b8b9e;
+            --accent-bg: rgba(255,255,255,0.05);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .article-body p.tts-active {
+            background: rgba(99, 102, 241, 0.08);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-left: -12px;
+            margin-right: -12px;
+            border-left: 3px solid var(--accent);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Audio Player Bar */
+        .audio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: rgba(10, 10, 18, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            padding: 12px 24px;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        .audio-player.hidden {
+            transform: translateY(100%);
+        }
+        .player-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .player-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--accent), #6366f1);
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: 0.2s;
+            box-shadow: 0 2px 12px rgba(99, 102, 241, 0.3);
+        }
+        .player-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        }
+        .player-btn:active {
+            transform: scale(0.95);
+        }
+        .player-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .player-status {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .player-progress-track {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 2px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .player-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        .player-time {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .speed-btn {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+        .speed-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .close-player-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .close-player-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+
+        /* Listen button in header */
+        .listen-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 16px;
+        }
+        .listen-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-bg);
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+            .player-controls .speed-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Other </span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Other </div>
+        <h1 class="article-title">Political Prophet Predicts the Next Phase in Iran, Trump’s War Plan, &amp; Israel’s Plot to Sabotage It</h1>
+        <div class="article-meta">
+            <span>📖 54 min read</span>
+            <span>📝 10,722 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+        <button class="listen-btn" id="listenBtn" onclick="toggleTTS()">
+            🎧 Listen to Article
+        </button>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body" id="articleBody">
+        <p># Political Prophet Predicts the Next Phase in Iran, Trump’s War Plan, &amp; Israel’s Plot to Sabotage It</p><p><span class="timestamp">[0:07]</span> We&#x27;ve never met. I don&#x27;t know a great deal about you, but I have seen a number of your videos in which you make remarkably accurate predictions. , so that&#x27;s what I know about you and I&#x27;m impressed by that by your ability to call events before they happen. So with that in mind, let me ask you, where do you think this war in Iran is going? How will it be resolved? and what are the consequences likely to be? Tucker. I&#x27;m a huge fan. I&#x27;ve been among your work for a number of years now. &amp;gt;&amp;gt; Thank</p><p><span class="timestamp">[0:38]</span> you. &amp;gt;&amp;gt; So, I think that this war in Iran will be very similar to the war in Ukraine, meaning that this will be drawn out, be a war of attrition. neither side will concede defeat even though it is in their best interest to reach a ceasefire. And this will have dram dramatic consequences on the global economy. and this war could drag on for years and years. Already we&#x27;re seeing major repercussions on the global economy</p><p><span class="timestamp">[1:09]</span> in that flights are being cancelled. in Southeast Asia they ran out of fuel. So they&#x27;re asking people to stay at home and in a few more months experts are predicting a food shortage meaning that nations will be forced into food rationing and today there&#x27;s a major escalation in that the Israelis struck the largest gas field in Iran and Iran retaliated by attacking energy infrastructure of the GCC. and Iran has stated that its purpose, its goal, its strategy is to</p><p><span class="timestamp">[1:42]</span> move oil to $200 a barrel, which will have a really significant impact on the global economy because the entire global economy is based on access to cheap energy. So unfortunately, I think that we can expect this war to drag on for years and years. Eventually, America will send in ground troops. eventually the hormos will be contested. eventually this will spread all across the world. Eventually other nations be drawn in. So Saudi Arabia is thinking about declaring war on Iran and</p><p><span class="timestamp">[2:14]</span> Saudi Arabia has a neutral defense pack with Pakistan. So Pakistan will be drawn into this into this war. So things are sping out of control and just recently Ali Larajini who is the de facto head of the Iranian war effort was assassinated and he was a pomatic elder statesman in Iran who had the authority to negotiate a ceasefire. Now that he&#x27;s gone there really is no more offramp. So both sides are committed</p><p><span class="timestamp">[2:44]</span> to a long war of attrition and the consequences for the entire global economy are quite dire. That is u I wouldn&#x27;t say that&#x27;s the worst case scenario. The worst case scenario would include a nuclear strike by one or more actors and the destruction of the Oxamos complex in Jerusalem which would spark a religious war. So that&#x27;s as bad as it could get. But you&#x27;ve just described one step before the worst which is protracted, destructive, impossible to stop. So my</p><p><span class="timestamp">[3:15]</span> question is because there are so many global players, big global players, the US and China I think who would be hurt by this, why is there not an incentive to get it settled quickly and why can&#x27;t that happen? &amp;gt;&amp;gt; Right. so once this war starts it&#x27;s it achieves a momentum and a logic of its own. So the United States h doesn&#x27;t really have an offramp meaning that if it tries to</p><p><span class="timestamp">[3:47]</span> negotiate a ceasefire with Iran, Iran would ask for reparations about $1 trillion basically. it would ask for the United States to leave the Middle East permanently to ensure its long-term survival. If the United States were to do that, then the GC the GCC nations would collectively become client states of Iran because only Iran can guarantee their safety as well as use of the shared home. The GCC is the basis of the petro dollar. So what</p><p><span class="timestamp">[4:20]</span> the GCC does is it sells oil in US dollars and then recycles this money back into the American economy. So if the GCC were to abandon the petro dollar, then this would have severe repercussions on the American economy. Also, there&#x27;ll be a chain a chain reaction in that Japan and South Korea would look at what&#x27;s happened in the Middle East and decide that the United States can no longer guarantee its their safety. So, they would have to remilitarize and they would have</p><p><span class="timestamp">[4:53]</span> spent all the resources on adapting to the possible China threat. And then you have Europe and the Europe would look at what happened in the GCC as well as in Southeast Asia and they would be like why are we fighting Russia? Wouldn&#x27;t it be in our best interest to negotiate a peace treaty with Russia as soon as possible? What this would mean the collapse of the US dollar as a global reserve currency. Remember that America is sitting on $39 trillion in debt. And so the American economy is a Ponzi scheme that relies on foreign</p><p><span class="timestamp">[5:24]</span> nations to continually buy US dollars. So the US economy would not be able to withstand essentially American withdrawal from the Middle East. So the Americans are stuck where they are right now unfortunately. &amp;gt;&amp;gt; What is the Chinese perspective on this? I mean, it seems like China has an interest in peace in the in the Persian Gulf with those seven oil producing countries. Why wouldn&#x27;t China step in and try to settle this? So,</p><p><span class="timestamp">[5:56]</span> both United States and China benefit from the status quo. , and China has invested interest in seeing a very quick solution to this war in Middle East. China imports about 40% of its energy needs from the GCC. So not just Iranian oil but also Qatari natural gas. Right. &amp;gt;&amp;gt; So as you point out, China very much wants to see as soon as possible a ceasefire. unfortunately it is</p><p><span class="timestamp">[6:28]</span> the nature of the Chinese government not to interfere in foreign affairs. It China doesn&#x27;t really have a geopolitical framework, a grand strategy. it really believes in global trade and it doesn&#x27;t really have a framework for how to resolve armed conflict and so Chinese policymakers are really stuck and in fact Chinese policy makers have come out publicly saying that they would like the carnage the violence in Middle East to stop as soon as possible and for the</p><p><span class="timestamp">[6:59]</span> straight moose to open up. but unfortunately as I pointed out previously when war a war starts it achieve a momentum and a logic of its own and it&#x27;s very hard to stop a war once it starts. &amp;gt;&amp;gt; So if your prediction is correct and I pray that it&#x27;s not and I&#x27;m sure you do too. hope that you&#x27;re wrong, but if you&#x27;re not wrong, &amp;gt;&amp;gt; yes, &amp;gt;&amp;gt; and this continues to grind in the way that it is now, destroying energy infrastructure, just really destroying the</p><p><span class="timestamp">[7:30]</span> civilizations of the region and Iran and the GCC, what does that look like in say 2 years globally? What&#x27;s the effect on the global economy? &amp;gt;&amp;gt; Right. So, this war it will accelerate three major trends. and nations will have to adapt to a new reality in which energy is no longer cheap and accessible. the first major trend is de-industrialization. meaning that right now you just have too many people living in cities and you can do that</p><p><span class="timestamp">[8:00]</span> as long as you can import cheap energy and cheap food. But when cheap energy and cheap food are gone, then you need people to work the fields to grow food for your economy. So you have to de-industrialize and reduce your energy dependence. Okay, that&#x27;s one major trend that we should see very soon. Second major trend we should see is remil militarization in that before we had tax americana where America basically guaranteed global peace and America basically prevented nations from going to war</p><p><span class="timestamp">[8:31]</span> against each other. So for example Trump brokered a ceasefire between India and Pakistan because these two nations have much hostilities against each other. But now that America doesn&#x27;t no longer has the aura of invincibility and ability now that the American military does not come across as almighty then America doesn&#x27;t have the power to stop kids from attacking each other on the playground anymore. So nations have to remilarize especially nations like Japan which before relied too heavily on American military protection. Okay. So that&#x27;s</p><p><span class="timestamp">[9:04]</span> number two the remilitarization of the world. And the third major trend we should see is mercantalism. Meaning that now that global trade is disrupted nations, especially advanced industrial nations such as Japan and Germany, they need to create their own independent, self-sufficient supply chains. Fortunately, America doesn&#x27;t have this issue because the western hemisphere is extremely wealthy and abundant in natural resources. but if you are Japan and Germany then you have to reach out and expand your borders if</p><p><span class="timestamp">[9:36]</span> you are to maintain your industrial might. So these are the three major trends we should be seeing very quickly. Well, here&#x27;s something that thieves count on. Security cameras usually stop where Wi-Fi stops, right? Makes sense. So if you got a barn, a job site, equipment parked outside a long driveway, criminals know there&#x27;s a good chance that nobody is watching this cuz there&#x27;s no Wi-Fi. And that&#x27;s why we like</p><p><span class="timestamp">[10:06]</span> Defend by Tacticam. It&#x27;s a new sponsor of this show. Defense cameras don&#x27;t run on Wi-Fi. They run on cellular just like your phones. They work everywhere. If you&#x27;ve got cell signal, you&#x27;ve got security. Middle of nowhere, edge of your property, construction site, wherever you need it. You don&#x27;t need Wi-Fi. It&#x27;s big difference. And you can see why it matters. So, we use these cameras in places where Wi-Fi doesn&#x27;t reach. The setup is super simple. You mount the camera, open the Defend app, and you are live. You get</p><p><span class="timestamp">[10:38]</span> clear footage, night vision alert sent right to your phone. It&#x27;s great for construction sites, ranches, farms, or anyone with a property that stretches beyond a router. And here&#x27;s something we really appreciate. Defend does not sell your data. Not to tech companies, not to advertisers, not to China, no one. Your footage belongs to you. And that&#x27;s big. Plan start at about five bucks a month. No contract. Cancel anytime. Visit defendellcam.com. Let&#x27;s defend cellcam.com. I mean, we&#x27;ve of course seen this exact dynamic very famously in the last century. And I do think Japan is</p><p><span class="timestamp">[11:09]</span> the big question mark because traditionally, you know, a rising power, a great power like China just kind of intuitively demands hegemony in its own region. Like China controls the east. I would imagine that&#x27;s the Chinese perspective. But in the way of that are Japan, the historic enemy, and South Korea, but particularly Japan, and I know that people in your country are very focused on Japan. So, is it plausible that China allows Japan to become say a nuclear armed power at this</p><p><span class="timestamp">[11:42]</span> point? Right. So, from the surface, it seems as though Japan has a lot of structural weaknesses. Okay? So, for example, it has an aging population. It has the oldest population in the world. That&#x27;s a huge constraint on the future growth potential of Japan. Another problem for Japan is that it is resource dependent. It relies on imports for its resources. and Taiwan clo it blocks off the sh of Malaka, right? Because Japan requ requires most of</p><p><span class="timestamp">[12:13]</span> its energy from the GCC through the sh of Malaka and Taiwan will be a barrier. So if Taiwan were to reunify with China, then basically Japan could be blockaded and they could be starved. and the other major issue with Japan is its economy where for the past 30 years it&#x27;s in a deflationary spiral because of its excessive debt burden. So there are fundamental weaknesses to Japan. But I&#x27;m a historian and I study historical patterns and what I&#x27;ve seen is that the Japanese</p><p><span class="timestamp">[12:45]</span> people are incredibly resilient. You go back to the 13th century when the Mongols emitted not once but twice. And at this time Japan was very much a feudal nation divided into different thiefs and they came together as a people to defeat the greatest empire in the world at that time not once but twice. And you go to the middle of the 19th century when China was being carved up by these western industrial powers and it</p><p><span class="timestamp">[13:16]</span> seemed as though Japan was what they be carved up as well. But the Japanese engaged in something called the Maji restoration and in 20 to 30 years time they went from a feudal backward nation into an industrial power that ultimately defeated Russia in the Russian Japanese war of 1905. &amp;gt;&amp;gt; Right? And then you go to World War II when American devastated Japan not just nuclear strikes but also the firebombings. Yes. So at the end of World War II, Japan was completely devastated. But in like 20 years time,</p><p><span class="timestamp">[13:47]</span> in a generation, they became the world&#x27;s greatest manufacturing power. So I would not count the Japanese out. There&#x27;s something about their culture that is extremely resilient, extremely entrepreneurial, and I think that given crisis, they will come together as a people and adapt to these challenges. , and so, , I, if I were to bet if you give me like a billion dollars and said, &quot;In East Asia, you can invest your money either in China or Japan, or you could you could invest half and half.&quot; Well, Tucker,</p><p><span class="timestamp">[14:19]</span> I&#x27;ll be honest with you. , I would invest all my money in Japan. That&#x27;s a what a fascinating analysis. I agree with you. I just I mean intuitively I agree with you, but I just wonder if China can tolerate that given the history between the two countries and the focus and just the growth of China. Can they really allow right in the middle of East Asia a competing power, &amp;gt;&amp;gt; right? So the major issue with China is that it sells itself the middle kingdom. you know jungo the middle kingdom which is to say that</p><p><span class="timestamp">[14:49]</span> the Chinese believe that they are a universe onto themselves what happens outside China doesn&#x27;t really impact China so it&#x27;s important is to maintain the national sovereignty of China because it is a self-sufficient nation that has no interest in the outside world Japan is complete opposite in that it is an island and it requires to it basically needs to extract resources from other nations in order to survive as a nation so these are two very different mentalities where China is very much an</p><p><span class="timestamp">[15:20]</span> agricultural self-sufficient nation that is insular and conservative and Japan is an outward-looking seafaring nation. &amp;gt;&amp;gt; Interesting. So you it sounds like they can coexist or well you just said it you&#x27;re not betting against Japan. What about South Korea which has the one of the lowest if not the lowest birth rate in the world in contrast to North Korea and has basically modeled itself on the United States. I mean down to the to the most basic level. The US pulling back from East Asia is I mean that&#x27;s going to be</p><p><span class="timestamp">[15:51]</span> a transformative thing I would think for South Korea. What happens? &amp;gt;&amp;gt; Yeah, South Korea is in a very precarious position partly because of North Korea. so once the United States is forced to withdraw from Southeast Asia then North Korea can take the initiative. Now the problem with this conflict is that Seoul the largest city in South Korea it&#x27;s only 30 minutes away from North Korean artillery. So in like a whole day North Korea could flatten Soul &amp;gt;&amp;gt; and so South Korea is</p><p><span class="timestamp">[16:23]</span> in a very precarious position. Also if you look at the economy of soul of South Korea it&#x27;s a very oified very corrupt system where just a few companies control the entire economy and this is what&#x27;s led to intense competition in South Korea which has led to the extremely low birth rate in South Korea. So South Korea is in a very precarious position. But what I will say about the South Koreans is that they are fanatical workers. They work really hard and they have a long memory of colonial persecution from both</p><p><span class="timestamp">[16:53]</span> the Chinese and the Japanese. And these are fiercely independent people. So I would not be surprised if North Korea and South Korea were to were to come to a compromise at some point because both nations aspire for national reunification and because China Japan will be in conflict with each other then the Korean people could actually navigate this conflict to their benefit. &amp;gt;&amp;gt; That&#x27;s very smart. I sense you&#x27;re absolutely right about that. Let me just ask</p><p><span class="timestamp">[17:24]</span> you about an observation you made parathetically a second ago, which is because South Korea&#x27;s economy is oified and centralized, it&#x27;s a monopoly economy, its birth rate is low. What&#x27;s the connection between economic monopolies and low birth rate? Yeah, great question. So, when you have a monopoly, what you do is you create a hierarchy, right? because everyone&#x27;s trying to get into these companies because these companies are the most prestigious in South Korea and South Korea is very much a confusion culture where</p><p><span class="timestamp">[17:55]</span> face is everything. So the problem though is how do you get into these companies? It&#x27;s a very prestigious position where everyone&#x27;s trying to get in, right? And so you usually get in through the college entrance examination which allows you to get into prestigious university, right? So if you are a South Korean couple, your strategy is either not to have children because you cannot afford to play this game because you need to</p><p><span class="timestamp">[18:25]</span> send your kid to cram schools, get the best tutors, basically focus all your resources on ensuring the child does well on the college examination so that he or she can get into Samson. or you can choose to have so you can choose not to have any children because it&#x27;s too expensive for you. But if you choose to have a children, you can only choose have one kid because it&#x27;s much more strategic for you to put all your resources into one kid and spread it over three or four kids.</p><p><span class="timestamp">[18:55]</span> so that&#x27;s why an economic monopoly would naturally lead to a low birth rate. So what you&#x27;re saying is intense competitions for resources, scarce resources produces an incentive that results in low birth rate. &amp;gt;&amp;gt; Exactly. because everyone sees themselves as competitors against each other and you lose a sense of community, right? Because you have a lot of children because you want to contribute to the community and grow as a nation. But when you see your neighbor as your enemy, then that reduced your incentive to have children. &amp;gt;&amp;gt; Interesting. So what</p><p><span class="timestamp">[19:26]</span> will be the economic effects on China and also on the on the rest of Asia and Southeast Asia, you know, Philippines, Vietnam? if this energy crunch continues in the Middle East, &amp;gt;&amp;gt; the reality is that this war in the Middle East is having a severe impact already on the entire Southeast Asian economy. So India imports about 60% of its oil from the GCC. Pakistan also imports a majority of its oil. Japan imports about 75% of its oil from the GCC. China imports about</p><p><span class="timestamp">[19:58]</span> 40%. Okay? So all these countries are being impacted and already Thailand, Vietnam are running out of fuel. and you go to the gas station, there&#x27;s just no more fuel for your for your motorbike and now people are being forced to work from home. There&#x27;s fuel rationing. there&#x27;s no jet fuel. So this is impacting all of Southeast Asia. So the question isn&#x27;t like who will be impacted because everyone&#x27;s impacted. The question is who will be most resilient and the most willing to innovate and adapt</p><p><span class="timestamp">[20:29]</span> to this new reality? because we&#x27;re not talking about a short-term war. We&#x27;re talking about a long-term changeable economy. And I think that China will actually be the least resilient and the least ready to adapt to this new reality because for the past 30 40 years China has gone on very wealthy because of the global economy where it imports cheap energy and exports manufactured goods and the entire Chinese economy is currently based on this model. Now, for the past 20 years, China has been moving towards a consumer-based economy and more of</p><p><span class="timestamp">[20:59]</span> an innovation-based economy, AI. But unfortunately, AI itself is dependent on cheap energy. And Chinese consumers are refusing to spend money for a variety of reasons. Primarily because they&#x27;re not they are not that optimistic about China&#x27;s growth for the in the future. So, Chinese household savings is about 4%. And unless the government is able to get Chinese to spend more money, then it&#x27;s it&#x27;ll be very hard for the Chinese economy to move towards a consumer-based economy. So, all of Southeast Asia will be impacted and I think China</p><p><span class="timestamp">[21:30]</span> will be impacted the most in the long term, maybe not the short term because China still has access to Iranian oil. You know, Scott does announced today that they will lift sanctions on Iranian oil in order to make sure the global economy is not too impacted by this war. But in the long term the Chinese economy it is now much too focused on export and manufacturing in order to shift to a much more diversified economy. &amp;gt;&amp;gt; Right? People seem</p><p><span class="timestamp">[22:02]</span> to be more inflamed not just emotionally but physically and more tired than ever. And food is part of the reason. Bad food tastes good but not good for you. For most of human history, people ate actual food, stuff that your body recognizes, but now you eat a ton of chemicals. Paleo Valley is the solution to this. Paleo Valley&#x27;s bone broth protein is made from, let&#x27;s see, 100% grass-fed and finished beef bones. That&#x27;s it. No fillers, no additives, no weird industrial byproducts. It&#x27;s actual food turned into something you can consume every day. Most people use it the way we do.</p><p><span class="timestamp">[22:33]</span> You blend it into a smoothie or coffee. The chocolate flavor is top tier. It actually tastes awesome. They also have vanilla and salted caramel. Plus, they make a savory original turmeric ginger and an unflavored version you stir into soup, rice, or even just mix with hot water and drink like bone broth. You could do any of those things or all of them. Americans use Paleo Valley to support joints, digestion, recovery. Paleo Valley verifies sourcing and tests for pesticide and that does matter. or you don&#x27;t want to</p><p><span class="timestamp">[23:05]</span> drink pesticides, though you probably do inadvertently. If you want to add something genuinely useful to your diet, visit paleo valley.com and use the code Tucker for checkout. 20% off your first order if you do that. That&#x27;s paleo valley.com code tucker for 20% off. So, it&#x27;s not just the west that is locked into the current arrangement where we consume the east produces. It&#x27;s the east. They&#x27;re locked into producing. So this is a massive reorientation for everybody is I think is what you&#x27;re saying. &amp;gt;&amp;gt; Yeah. And I would</p><p><span class="timestamp">[23:36]</span> say look the east is going to be much more impacted than the west because at the end of the day the western hemisphere America they I mean the wealth in the western hemisphere is just tremendous. I mean the western hemisphere is self-sufficient but that&#x27;s not true for Southeast Asia. Southeast Asia is very dependent on energy from overseas. &amp;gt;&amp;gt; How does this affect Africa? and with this war in the GCC experts are saying that in the worst case scenario you could have famine in Africa because so much</p><p><span class="timestamp">[24:06]</span> of food and energy sustains the African economy and so yeah &amp;gt;&amp;gt; okay just moving west now. what about the GCC? What does that look like in 5 years? &amp;gt;&amp;gt; Right. So unfortunately the biggest loser of this war regardless of how it turns out okay even Americans were to win the biggest loser is the GCC because for the past 30 40 years the GC is basically b built on a mirage because it&#x27;s essentially a desert with very little access to fresh water and very little agriculture and so it couldn&#x27;t really sustain a large population. but with the petro</p><p><span class="timestamp">[24:37]</span> dollar and with American military production then the GCC nations felt free to invest in technology that allowed them to grow their population. Right? So these desalination plants modern infrastructure. So you sort of saw this massive growth in Dubai, in Qatar in Riyad. and what this war has done is shattered this mirage and revealed the</p><p><span class="timestamp">[25:08]</span> limitations of the GCC. So for example look at Dubai. So Dubai for many years has prided itself as this safe very cosmopolitan very open tax haven. So a lot of wealthy people immigrated to Dubai but because of this war and we&#x27;re only talking about like a few drones hitting hotels it&#x27;s really shattered the image of Dubai and once you shadow this mirage you</p><p><span class="timestamp">[25:39]</span> can never ever rebuild it again. So the idea of Dubai as like the future New York or London, the financial capital of the GCC, it&#x27;s this mirage has evaporated. &amp;gt;&amp;gt; Iran in 5 years. so the Israelis and Americans are attacking critical infrastructure. So the Israelis attacked the largest gas field in Iran. The dissalination plant was destroyed. But we also have to remember what is being hidden from us. And what&#x27;s being hidden from</p><p><span class="timestamp">[26:10]</span> us is the fact that the Israelis and Americans are trying to destroy the capacity of the state to govern the nation. Basically destroy the state&#x27;s monopoly on violence. And so what we&#x27;re hearing are attacks on police officers, on military installations, and there&#x27;s talk of special forces going into Iran and starting to fund dissident groups, right, like the Kurds and the Galakis in souththeast Iran. So no matter what happens</p><p><span class="timestamp">[26:42]</span> in this war, it&#x27;s going to be very hard for the government to maintain national control even if they were to survive this war. And also another huge issue for Iran is that for the past few years it suffered drought issues. so it agriculture was heavily impacted. They were actually talking about moving terrain like moving these millions of people out of the city of terrain because the capital can no longer sustain this</p><p><span class="timestamp">[27:19]</span> large population. So this war will only exaggerate these environmental issues especially with the attacks on critical civil infrastructure for example dams reservoirs the dissolation plants and it&#x27;s going to take years and years for Iran to recover from this war as a nation and you have basically the storing of ethnic settlements you have the destruction of the state&#x27;s capacity to deliver basic services. But the good news for Iran is that</p><p><span class="timestamp">[27:51]</span> it seems as though they will be able to maintain control over the strip of hummus. And that is critical because now they&#x27;re able to charge a toll on anyone who uses a strip of homeus. And they&#x27;re talking about 10%. Which should generate about $800 billion a year annually for Iran. So the nation will be destroyed in this war. But it but if it&#x27;s able to harness the u pride of the Persian people,</p><p><span class="timestamp">[28:22]</span> if it&#x27;s able to unify the Persian people and it&#x27;s able to leverage the resource of the most effectively then we can expect Iran to rise again in like 10 to 20 years time. &amp;gt;&amp;gt; Where is Israel in a few years from now? So if you look at the main beneficiary of this war, it is Israel because Israel has an ambition called the greater Israel project which is what they believe that their God Yahweh promised to their ancestor</p><p><span class="timestamp">[28:54]</span> Abraham. and so they believe that Yahweh promised Abra Abraham all the land from the Nile in Egypt to Euphrates in Iraq. If you look at the entire map, it also extends to Anatolia, which is southern Turkey, and even into Saudi Arabia. So, if you look at what&#x27;s happening, well, it&#x27;s convenient in that the GCC is being destroyed. Saudi Arabia will probably drawn into this war. It is possible Turkey will be drawn into this war as well. And this war allows Israel to remake the</p><p><span class="timestamp">[29:27]</span> Middle East in its own image. Also, if you think about it, according to game theory, the main constraint to Israel achieving the greater Israel project is actually not Iran, but America. Because America guarantees the military safety and protection of the GCC, Saudi Arabia, Qatar, Kuwait, Ban, UAE, these nations. And so if Israel is become dominant, it&#x27;s become the hedgeimon of the Middle East, it needs to figure out how to remove America from the equation. And quite honestly, this war has shown the</p><p><span class="timestamp">[29:57]</span> limitations of American power. It&#x27;s really annoyed the American people. The American people do not want this war. American people have don&#x27;t even understand why America is still in the Middle East. And so it&#x27;s very possible that regardless of what happens in this war, America&#x27;s forced to withdraw from the Middle East, in which case Israel is able to achieve its greater Israel project. Standard security cameras cannot prevent breakins. They can help catch</p><p><span class="timestamp">[30:27]</span> burglars after they&#x27;ve done it. But that&#x27;s a little late. No. They can steal your stuff, scare your family, maybe hurt you. You need a security system that will stop home invasions before they occur. That&#x27;s why we always recommend Simply Safe. Simply Safe is a whole home security system backed by 24/7 monitoring agents you can rely on even when you&#x27;re gone. Proactive crime prevention. It&#x27;s not reactive and that makes the difference. Plus no required long-term contract that gives you flexibility to switch</p><p><span class="timestamp">[30:58]</span> if you don&#x27;t like it. That&#x27;s unlikely though because we think Simply Safe is excellent. And they&#x27;re so confident in the protection, they back it with an anti- theft guarantee. Used by over 4 million people, 20 years of experience. Named best home security system of 2026. It&#x27;s the peak of the industry. And right now, listeners to this show can get 50% off their new Simplysafe system at simplysafe.com/tucker. That&#x27;s simplysafe.com/tucker. There is no safe</p><p><span class="timestamp">[31:30]</span> like Simply Safe. It was clear to me that was part of the motive that Israel understood this and order to get the United States out in order to hurt the United States and get the United States out of the Middle East. Do you think that will be successful? this plan will work. And the reason why is the American military has not fought a real war for decades. 2003 this war in Iraq was not a real war because Saddam Hussein basically gave up. He didn&#x27;t have air defense because those economic sanctions had destroyed his economy. And his logic was this. Let the Americans invade. They can&#x27;t</p><p><span class="timestamp">[32:02]</span> possibly invade because if they destroy us that would make Iran which has hostilities against America the regional power. So why would America do this? It is self-defeating. It is not logical. It is not rational. So I&#x27;m not worried about them attacking me. And he was surprised when they did attack because it was not logical. It was not rational. but they did they did attack. It was it was a cakewalk. It took about two weeks. America achieve air supremacy very quickly and they rolled into Baghdad in very quickly and toppled</p><p><span class="timestamp">[32:33]</span> the regime. So that was a very quick and easy war that fit the American military of shock and awe. , Iran is completely different and the American military does not want to fight this war because they&#x27;ve war game this countless times and each war game they discover that they lose because the American military it&#x27;s too bulky. It&#x27;s not as nimble and resilient as the Iranian military. And we&#x27;re seeing that play out right now where you</p><p><span class="timestamp">[33:04]</span> have these devastating carriers, Abraham Lincoln and Nerald Ford threatening Iran but not actually doing anything because they&#x27;re afraid of getting too close to the coast of Iran because then they become susceptible to drone strikes as well as hypersonics. So the Iranians have been preparing this for 20 plus years. They know the entire American playbook and</p><p><span class="timestamp">[33:34]</span> they have the perfect strategy to counter the American playbook. So America will have a really tough time winning this war. The great problem okay the big question now is will America send in ground troops because once America sends in ground troops then it becomes pot committed. It&#x27;s mission creep some cost fallacy it like Vietnam over. So right now there&#x27;s talk of 200 Marines who&#x27;ve coming in from Okinawa. They&#x27;ll be in the Middle East in about 7 days time. and the talk is the rumor is and I</p><p><span class="timestamp">[34:04]</span> don&#x27;t know but the rumor is the intention is for them to take Car Island which is the main oil for Iran. So Iran exports 90% of its oil from that facility the island. And if the Marines were to take it, it would be great optics. you know, Trump would look good on TV. It&#x27; be a great boost for the for American morale. The problem is that you can take it, but you can&#x27;t hold it because it&#x27;s too</p><p><span class="timestamp">[34:35]</span> close to Iranian coast and Iranians can attack with artillery, with drones, okay? Which means that you now have to take on the coast. You have you have to occupy the coast and create a foreign operating base, but then you&#x27;re exposed to the Zagos mountains, right? Which means that you&#x27;re now forced to occupy the mountains as well. So, it&#x27;s mission creep. It&#x27;s exactly like Vietnam where in 1965 3,000 Marines went into Dak Nan to occupy an air base and like four or five years later you</p><p><span class="timestamp">[35:08]</span> have you have a half a million troops, right? So it started off as a very limited self-defined mission but then it just balloons. so America could find itself in the situation very quickly. If you were the commander-in-chief of the United States, what would you do at this point as of today? Trump. &amp;gt;&amp;gt; Yeah. You get to make the decision. What does America do next? If it&#x27;s acting in its own interest, if it&#x27;s trying to preserve its power and wealth at this point, what does it</p><p><span class="timestamp">[35:39]</span> do? that all these events are interconnected, right? So the sugar war with China, this war in Ukraine, this war in the Middle East, it&#x27;s all interconnected because American empire is too overstretched and it has its fingers on everything and so it allows its enemies to provoke it into these never- ending wars. So what I would do is basically sit down everyone okay including Russia, China, Iran and say it&#x27;s time for a new world order where we are partners in this relationship right before America was a hedgeimon before the US</p><p><span class="timestamp">[36:10]</span> dollar was a world reserve currency. but now what we want to do is open a dialogue where everyone is respected where America is no longer the bully but a winning partner in creating a new economic order that benefits everyone and not just a few. &amp;gt;&amp;gt; I think that&#x27;s the wisest possible advice and probably the only path that preserves civilization. , and but there the one country standing in the way of that is Israel, which is the only beneficiary of this war as you just said. I think that&#x27;s true. Can you think of another beneficiary other than Israel of</p><p><span class="timestamp">[36:42]</span> this war? &amp;gt;&amp;gt; Well, Russia benefits, right? Because Russia is trying to win this war in Ukraine. &amp;gt;&amp;gt; That&#x27;s correct. &amp;gt;&amp;gt; And America is forced to lift oil sanctions. And so now Russia is now able to take all these war profits, right? And then help the Iranians, finance the Iranians in the struggle against the Americans and Israelis. So, the Russians also benefit tremendously from this war.</p><p><span class="timestamp">[37:12]</span> &amp;gt;&amp;gt; Yeah. But fair point, Israel has to be constrained by the United States in order to do what you just recommended it do. Is that possible? Does the American president have the authority to control its client state? , so if you look at the domestic situation in Israel, , Israel no longer behaves rationally. it is sort of overtaken by esquetological fever. Right? So if you look at videos coming out of Israel, there are rabbis going around saying</p><p><span class="timestamp">[37:44]</span> that this war in the Middle East even though it&#x27;s destroying Tel Aviv, it&#x27;s good for us because this will lead to the to the coming of our Messiah. so they believe that it is when Israel is under the most strain when Israel when the very existence of Israel is threatened then God will intervene because the Jewish people will come together as a nation again and commit themselves renew their faith in God. And once God sees the blind</p><p><span class="timestamp">[38:15]</span> trusting after the faith of the Jewish people, then he will save his people by sending his Messiah who will then redeem the Jewish people. So another saying this is secular temporal matters don&#x27;t really matter. This war in the Middle East not an issue. What matters is divinity. What matters is our relationship with God. Yes. So what matters is faith. and nuclear bombs go flying doesn&#x27;t really matter. What it&#x27;s what&#x27;s so interesting is that you know 25 years ago at 911 whatever you think of how that happened and why there was I saw it personally you know a political Islam there were wahhabists there</p><p><span class="timestamp">[38:45]</span> were a lot of Islamic radicals around the world and for a bunch of reasons over 25 years that hasn&#x27;t disappeared there still exist Islamic radicals but it&#x27;s not you know an important political force anymore at the same time as Islam in general has become much more moderate and the GCC is kind of the most obvious example of this there has been a rise of Jewish</p><p><span class="timestamp">[39:15]</span> Wahhabism and evangelical Christian Wahhabism so to speak I mean you&#x27;ve seen this esqueological extremism among some American Protestants Christians and some Israeli and American Jews what how did that happen what is at right. So first of all I don&#x27;t think we can over ever overestimate the influence of esquetology in American politics. So I&#x27;ll give an example where about a quarter of Americans are evangel evangelicals and a lot of them are Christian Zionist. , so</p><p><span class="timestamp">[39:46]</span> they believe that Israel is crucial, the lynch pin to achieving God&#x27;s plan of and the return of Jesus. And so a very prominent figure that you probably know very well is John who runs something called the Christiansite for Israel. It&#x27;s 7 million u members and these are the people who are financing a lot of the conflict in the Middle East in Israel because they&#x27;re the ones who are funding Westbank settlements. And so Christian Zionism,</p><p><span class="timestamp">[40:19]</span> it is an extremely powerful political force in America. So your question is how did this happen? and yes, the issue the issue is that this is a plan that has been in motion for centuries and it&#x27;s a very complicated history but it involves different religious groups among the Jews Frankis Shabbat Lubovich which you&#x27;ve talked about but also involves the Freemasons the Knights Templars the Rosacruians it involves the Jesuits so you have these different</p><p><span class="timestamp">[40:50]</span> different secret societies different religious organizations working together through the centuries to achieve this plan for the end of the world which heralds the messianic age. Okay. And there are different components of this plan but the basic components are one is the creation of the state the nation state of Israel which happened in 194848 and then you need to have the building of the third temple which requires the destruction</p><p><span class="timestamp">[41:22]</span> of the AXC mosque which is actually which could happen during this war given what we&#x27;ve seen so far. So, the Israelis have closed off the Alex mosque as well as other religious sites like the church of holy separ to tourists these past few days. there&#x27;s rumors that for the past two years the Israelis have been conducting these archeological digs under the AIC mosque to basically destroy</p><p><span class="timestamp">[41:54]</span> the foundations of the mosque so that it they can conduct a control demolition of the mosque and blame it on a missile strike from the Iranians. And there&#x27;s actually talk among the Israelis of using this plan to ignite a war between the Arabs and the Persians. So the Alex mosy need each to be destroyed for the third temple. They also talk about this war of Gog and Magog between Israel and the entire world. then the coming of the</p><p><span class="timestamp">[42:24]</span> Jewish Messiah the creation of the greater Israel project. The return of all Jews from the diaspora. so there are different components to this plan. If you just observe geopolitical events, we&#x27;re seeing these events converge together to today. I mean all these events are playing out. So it seems as though there are these very powerful shadow forces working behind the scenes. We don&#x27;t know who they are, but</p><p><span class="timestamp">[42:54]</span> it seems as though they&#x27;re able to control deal policy in a certain manner as to fulfill their esot esotical script. &amp;gt;&amp;gt; What role do you think Donald Trump plays in this? answer. So, so let&#x27;s look at different possibilities. Okay, the first possibility is that he&#x27;s been employed as an actor and he&#x27;s just following a script, but he doesn&#x27;t really know where this movie is going. He&#x27;s just doing his part, but he&#x27;s been he&#x27;s</p><p><span class="timestamp">[43:24]</span> manipulated behind the scenes by people around him. And you know when reporters asked him like why is this war in Iran happening he did say that his advisers which includes civil cough Jared Kushner, Peter Hexf, Marco Rubio told him that the Iranians were so close to getting a nuclear weapon and that the Iranians were attacked first. And so I was basically misled. And I think I think that&#x27;s probably true in that Trump surrounds himself with certain people that have a certain</p><p><span class="timestamp">[43:56]</span> political esqueological agenda. so that&#x27;s one possibility that he&#x27;s just he&#x27;s just an actor. Another possibility is that he himself has a mezzanic calling. Okay. And what I mean by that is if you go back to 20 January 2021, he was politically dead, right? because the January 6 riots happened. he was impeached twice and then after he left office there was lawfare conducted against him and he went bankrupt. so it was it was as though the entire world went against him but now he&#x27;s president of the United States. And so how would he personally understand</p><p><span class="timestamp">[44:28]</span> this? I think a lot of it is God has asked him to serve. There&#x27;s a call to serve and he has to fulfill a mission. what this mission is. Okay, what this mission is whether it&#x27;s to save Israel, whether it&#x27;s to save America, whether it&#x27;s a part of a grander scheme, only he in his heart knows. And I think no one except him knows. Okay, so I think that&#x27;s another possibility. And the third possibility is that this is all Israel&#x27;s doing. Netanyahu is the one</p><p><span class="timestamp">[45:01]</span> who&#x27;s forced him into this sort of situation because Israel is attacked first. And Marco Rubio said this where you know what we wanted these negotiations but the Israelis were planning to attack. If they attack the Iranians would be compelled to attack both the Americans and the Israelis and we did not want to put our soldiers in harm&#x27;s way so we attacked with the</p><p><span class="timestamp">[45:33]</span> Israelis. Okay. So it&#x27;s possible this all Nanyahu and all his machinations. another fourth possibility is they have they have co-opted him like there&#x27;s blackmail on him. there&#x27;s and he has actually no choice but to do what he says because he&#x27;s compromised in a certain way and maybe his family is under threat. So all four are possibilities and quite honestly I have no idea which possibility is the most correct. Yeah. I don&#x27;t I don&#x27;t think anybody does and I&#x27;ve really tried to keep you</p><p><span class="timestamp">[46:04]</span> know speculation to a minimum. You always want to believe that people&#x27;s motives are transparent that they state why they&#x27;re doing what they&#x27;re doing. But of course, you can never know what&#x27;s inside a man, right? Even in yourself, it&#x27;s hard to know your own motives very often. So, I think that&#x27;s a that&#x27;s a wise take. , what happens to North America, United States, and I do want to include</p><p><span class="timestamp">[46:36]</span> Mexico and Canada. We don&#x27;t think a lot about those countries, but they&#x27;re both massive land masses and they have big populations and they&#x27;re our neighbors. And so, if the world is reorienting, I think you need to think in terms of continents rather than just nation states. What does that look like in three or four years? &amp;gt;&amp;gt; Right. So from a geopolitical perspective, if America is forced to retreat back into the Western Hemisphere, it needs to worry about resources. And so it is in the best interest of America to eventually take over and colonize both Canada and Mexico. &amp;gt;&amp;gt;</p><p><span class="timestamp">[47:07]</span> Yes. &amp;gt;&amp;gt; Mexico for its labor supply, Canada for its resources. You know, Canada is probably the wealthiest country in the world. &amp;gt;&amp;gt; I know. , and so from a geopol geopolitical perspective, if the world is retreating into self-sufficiency, if there&#x27;s mercantalism, if there&#x27;s trade barriers, the America has absolutely no choice but to ensure its own supply networks. And that means eventually taking over Greenland, Canada, Mexico, Latin America, Cuba, Venezuela. , so America doesn&#x27;t really have much choice in this ma matter. At the same time, what we&#x27;re seeing is that this</p><p><span class="timestamp">[47:37]</span> war as well as other events are causing political fissures in America, especially between left and right. So witness what happened in Minneapolis in January, right? and so we can expect that as this war continues and there&#x27;s a strong possibility that Donald Trump will call a national draft in order to ensure the manpower to fight this war then you will have rioting in the streets you have massive violence in which case the national guard is deployed there&#x27;s a plan to deploy the national guard to all ma major American cities by April and so unfortunately</p><p><span class="timestamp">[48:08]</span> America u it&#x27;s probably going to suffer a long many years of sectarian violence U not a full-fledged civil war, but maybe something along the lines of the troubles in Ireland. you know, I&#x27;m not sure if you&#x27;ve seen this terrible movie called One Battle After Another. it&#x27;s just a terrible movie, by the way, but you know, it gives you insight into what a civil war might look like where you have these insurgent groups fighting against the state. , so yeah, &amp;gt;&amp;gt; but you expect the United States to hang together as a coherent nation state. &amp;gt;&amp;gt; Listen, Tucker, the United States is the greatest nation in the world. The</p><p><span class="timestamp">[48:38]</span> people are open, generous, entrepreneurial, energetic. , the resources of America are infinite. America is a continental fortress. So that it&#x27;s protected by two oceans. America doesn&#x27;t have a peer competitor in North America and South America. and so I mean America regardless of what happens, America will still come out doing pretty well just because of the pure energy and creativity of its people. What? So you mentioned Canada. Most Americans are don&#x27;t even know the capital of Canada. Canada does not appear on their radar</p><p><span class="timestamp">[49:10]</span> doesn&#x27;t figure in their thoughts. But you described it as probably quote probably the richest country in the world. I think that&#x27;s objectively true. And yet Canada is not a rich country. In fact, it&#x27;s getting poorer. Its life expectancy is declining. Its GDP is declining. And that&#x27;s on purpose. The nation of Canada has been suppressed on purpose. Its population is being killed off by the state</p><p><span class="timestamp">[49:41]</span> through its assisted suicide program and its population is changing through mass immigration against the will of the population. So that country is being held down on purpose and my question is by whom and why? &amp;gt;&amp;gt; Sure. That&#x27;s a great question and this is something that I struggle with all the time because I am a Canadian citizen. I went to school there. so my answer is that Canada was never really a nation state. It&#x27;s more of a glorified research sorry glorified resource colony. Yes. for the British, the city of London and</p><p><span class="timestamp">[50:11]</span> the reality is now that the British are under a lot of strain the city of London is under a lot of financial pressure it sees place like Australia, New Zealand and Canada and what do you do if you have financial issues where you corporate you do corporate restructuring right you change the middle management right and historically you know the British got along very well with the Indian elite right they went into India and stole trillions of dollars from the Indians and the elite the</p><p><span class="timestamp">[50:41]</span> Indian elite were perfectly happy to help them right so why not use the same model for Australia for Canada so you know there are millions of Indians who immigrated to Canada in the past 5 years and it&#x27;s put a lot of strain on the Canadian economy because housing prices are you know have exploded and so orary Canadians can no longer afford to buy a house and it&#x27;s put this pressure on the Canadian welfare system</p><p><span class="timestamp">[51:13]</span> on the Canadian economy and you would think that the proper strategy would have a moratorum where they&#x27;re like you know what we&#x27;ve had too many immigrants and we need to close the borders and absorb these immigrants because we want to ensure that these immigrants have proper housing they have decent jobs right you would think that&#x27;d be the right strategy but instead Mark Carney goes to India and says we want more Indians and also we&#x27;ll give you scholarships to come to Canada to study</p><p><span class="timestamp">[51:45]</span> for free. Meanwhile, there are a lot of Canadians who are homeless, , who are unemployed and who cannot put food on the table, but hey, we want more Indians. So, if it&#x27;s not corporate restructuring, if it&#x27;s not trying to acid strip Canada, I really don&#x27;t understand the strategy for this. Well, I mean, it&#x27;s a kind of genocide, right, against Canadians, people whose ancestors built the country. But you wonder what the purpose is like this is because it is happening</p><p><span class="timestamp">[52:17]</span> all over the West, all over the English-sp speakaking world in the white countries, and it&#x27;s not an accident. It&#x27;s not organic. So, it&#x27;s a it&#x27;s a big picture, you know, that spans from Australia to Ottawa. And what are we what is that? Do you know? &amp;gt;&amp;gt; Right. So, let&#x27;s look at Europe because in 2014 this was a major turning point in Europe because you had these tens of millions of refugees trying to escape these wars in the Middle East you know created by</p><p><span class="timestamp">[52:47]</span> America&#x27;s wars in the Middle East and they were trying to reach Europe and at this point Europe had a choice. It could choose to close its borders and maintain its cultural identity or it could open the floodgates. And Angela Merkel, the chancellor of Germany, she said something really famous and that which stuck in my mind which is we can do this. We are Europeans. Somehow we can take in these millions of refugees and welcome them to into our societies and</p><p><span class="timestamp">[53:19]</span> thrive as a people. And the complete opposite has happened. You&#x27;ve got millions of these refugees who fled into Europe, not because of their choice, by the way, but because their nations were devastated, right? Libya, Syria, Afghanistan, Iraq were all devastated, in these wars in against terror in the Middle East. So, they go and these are proud Islamists. They love their religion. They love their family. They love the community. And so, they&#x27;re not going to absorb themselves and assimilate themselves into Europe. And today, you know, you&#x27;re looking at population replacement in a lot of cities. You</p><p><span class="timestamp">[53:51]</span> go to certain places in Britain and you might think you&#x27;re in Cairo or Baghdad. and this has caused tremendous conflict throughout Europe. I would not be surprised in if like 2 to four years time you have civil war break out, insurgencies break out in place like Britain and France. So the question is why is this happening throughout the world at the same time? Exactly. Why is it that these different nations whether they&#x27;re European, whether they&#x27;re Canadian or Australian, why are they adopting the same policies</p><p><span class="timestamp">[54:21]</span> not just in terms of co right but also in terms of like immigration and so that&#x27;s the one of the great questions that we have to ask about the world we live in today. It seems as though it&#x27;s almost a control demolition of Western civilization, right? The Angosphere Western Europe. It seems as though these nations are being destroyed purposely. For what end? I don&#x27;t know. But I would just say there&#x27;s a certain pattern that is that has</p><p><span class="timestamp">[54:52]</span> emerged and the result can only end up in the control demolition of these societies. &amp;gt;&amp;gt; I don&#x27;t think I don&#x27;t I don&#x27;t even think that&#x27;s up for debate. I mean, of course, just look at the bottom line numbers, you know, of course, the white populations are being killed on purpose. And the question is why? And I don&#x27;t have the faintest idea. And I know there&#x27;s a lot of speculation as to who&#x27;s doing it. I&#x27;ll just say bluntly, I don&#x27;t know. I mean,</p><p><span class="timestamp">[55:23]</span> I know who the instruments are, of course, but Kier Starmer is not in charge of Great Britain. Mcronone isn&#x27;t in charge of France. I&#x27;m not sure how many leaders really do have control of their countries. I don&#x27;t know how many countries actually have sovereignty. I really don&#x27;t know the answer, &amp;gt;&amp;gt; but something is going on. Is there any precedent for this in history? Have you ever seen anything like this as a historian? &amp;gt;&amp;gt; Right. So, you look at what&#x27;s happening</p><p><span class="timestamp">[55:54]</span> in Ukraine where the war is lost. It was lost two years ago. The Ukrainians have lost over a million fighting men. A lot of their people have fled overseas. , no matter what happens in this war, Ukraine is finished as a nation state. it is no longer viable as a nation state. And rather than emit defeat and come to a ceasefire with Putin, what the Europeans are doing is they&#x27;re saying that we&#x27;re going to draft our men and have them fight in the trenches of Ukraine,</p><p><span class="timestamp">[56:24]</span> which would be suicide because the Russians dominate the battlefield with their drones and artillery and trenches in Ukraine. So, so it&#x27;s almost like a suicide mission. But not only that, but the Germans have said that, okay, we can only draft German men, but not Islamic men because we&#x27;re afraid of their loyalty, which means that you have a situation where, you know, local men like British, French, German men are being sent to die in the trenches of Ukraine. and you know back at home</p><p><span class="timestamp">[56:56]</span> you have these immigrant population that have not assimilated into your culture. so it&#x27;s a really weird strategy. and I don&#x27;t know who comes up with these sort of w with this sort of stuff. And look there&#x27;s no historical precedent for this. There just isn&#x27;t. I mean there&#x27;s been incidents of mass immigration. you go back to the fall of the Roman Empire and how these you know hordes of immigrants flooded the Romans and it&#x27;s almost impossible to assimilate so many people</p><p><span class="timestamp">[57:27]</span> eventually there&#x27;s going there&#x27;s going to be a cultural takeover eventually with so many people who are insistent on maintaining their cultural identity eventually because they have more children than you eventually they&#x27;re going to overwhelm your cultural identity. Yeah. And I do think that is the story of history. One population replacing another. There&#x27;s no such thing as multiculturalism. There&#x27;s always a dominant culture that, you know, that insists on dominance, of course. I just don&#x27;t think there&#x27;s ever been anyone who thought this could happen globally, like a systematic targeting of a race for elimination globally. I</p><p><span class="timestamp">[57:57]</span> mean I well it wasn&#x27;t possible until pretty recently but it would be interesting to know what the plan is. There&#x27;s clearly like a plan behind that. There&#x27;s a plan behind everything. I wonder how many Americans do you think understand what&#x27;s actually happening in the world right now? &amp;gt;&amp;gt; You know, unfortunately I think that if you are educated in America, you know, I went to Yale and so I know a lot of these Ivy League people. Yes. &amp;gt;&amp;gt; unfortunately we&#x27;ve been indoctrinated to believe certain values and these values are not questionable. So,</p><p><span class="timestamp">[58:28]</span> so for example, there was a court case that went to the Supreme Court about affirmative action at the University of Michigan. and affirmative action is clearly against American values, against the idea of American meritocracy, right? But the Supreme Court said that affirmative action was good because diversity is an inherent good. Okay? And it&#x27;s interesting because if you go to a place like Yale or Harvard or any of these Ivy League schools, there&#x27;s actually very little diversity. I&#x27;m talking about intellectual diversity. Yeah. I mean like</p><p><span class="timestamp">[58:59]</span> there&#x27;s different skin color, but if you actually look at the ideas &amp;gt;&amp;gt; that they engage with in a classroom, it&#x27;s a very conformist setting. So it&#x27;s one of these great ironies where a form of affirmative action is supposed to bring diversity to the classroom. but if you go to any classroom in an elite setting, it&#x27;s extremely conformist. you&#x27;re not allowed to bring up these issues about, you know, population replacement,</p><p><span class="timestamp">[59:30]</span> immigration, because then you become you be called a racist. because and that&#x27;s the worst thing to be called, right? It&#x27;s I mean like you&#x27;re better off being called a pedophile, right? Pedophiles have more rights now than racist. so unfortunately it&#x27;s not just what&#x27;s happening in current events. It&#x27;s also what&#x27;s happening in the classroom where and in the c popular culture where people are not even allowed to ask questions that are like blindly obvious if just walk the streets of any you know western city. You&#x27;ve lived</p><p><span class="timestamp">[1:00:01]</span> around the world. I think you&#x27;re now in China. does the rest of the world see this more clearly? and if you&#x27;re not subjected to this u brainwashing indoctrination that they feed you in the schools, it&#x27;s I mean it&#x27;s obvious again it&#x27;s blinding obvious to anyone if you just walk the streets of any major city in the west. So there&#x27;s a joke in China and so popular so Chinese don&#x27;t actually like to go to Canada for tourism and someone asked</p><p><span class="timestamp">[1:00:32]</span> why don&#x27;t why does why doesn&#x27;t anyone recommend Chinese going to Canada and the response was well would you recommend someone going to India right so it&#x27;s a bit racist I it&#x27;s very racist okay but I mean I mean you know it&#x27;s obvious to people &amp;gt;&amp;gt; it&#x27;s just interesting Because like I&#x27;m not defending the whites. I am white of course but you know white people have done a lot of bad things just like any people do a</p><p><span class="timestamp">[1:01:03]</span> lot of bad things but in general people like to go on as you just noted vacation in white countries cuz they&#x27;re pretty nice. So I think you&#x27;d have to say if you took the emotion out of it and just like looked at it net whites have been you know pretty big addition to the world invented a lot of stuff created a lot of beauty created places people like to go on vacation which really is a good test. So like why would you destroy all</p><p><span class="timestamp">[1:01:36]</span> that? books. I teach western civilization. I teach Homer, the lead, the Odyssey. I teach Plato, the Republic. I teach Dante the Divine Comedy. I teach the Bible. And my students love it. because Western civilization, it&#x27;s just not about people being white. It&#x27;s really about what it means to be human, right? and what it means to be spiritual and to have connections with the divine. So it&#x27;s unfortunate that just when the world needs western civilization the most the west decides to destroy its own civilization. I mean Homer, Dante, Plato, Shakespeare, the Bible, these are timeless</p><p><span class="timestamp">[1:02:06]</span> classics that speak to every human. I know because I teach in China to Chinese students who have absolutely no exposure to Western culture yet they fall in love with Plato, Dante, Homer and Shakespeare. And why is that? And it&#x27;s because there is eternal truth embedded in their in their words. And so universities, Western universities ought to be the places, the fortresses that are the greatest defenders of Western civilization. But if you go again to these elite universities, Yale, Harvard, they are the most critical of</p><p><span class="timestamp">[1:02:37]</span> Western civilization. They don&#x27;t they no longer teach Homer and Dante Plato. And it&#x27;s like if you don&#x27;t teach these classics, what&#x27;s the purpose of university? I always I always thought the university was the heart and center of civilization, right? It&#x27;s like what monasteries were in the med medieval age. , and I thought these professors, they would dedicate their lives to promoting the classics, but instead they now promote complete nonsense like DEI</p><p><span class="timestamp">[1:03:07]</span> and , yeah, of all the and this is my last question, professor. Thank you. It&#x27;s been a wonderful conversation and I hope it won&#x27;t be our last and I and I hope we can have dinner when we&#x27;re on the same continent. , but this is my last question. Where since you&#x27;ve traveled so much and lived so many places and speak multiple languages, where would you say the part of the world that&#x27;s most hostile to Western civilization</p><p><span class="timestamp">[1:03:40]</span> as you just described it is? Trying to understand where this hostility is coming from. Well, I would say Canada, Britain, Western Europe, I would say these places are the most hostile towards Western civilization. Chinese people have tremendous respect for western civilization in fact in China&#x27;s you know in the process of promoting the classics Plato Homer Shakespeare with in China because Chinese recognize the tremendous cultural value and immense eternal truths embedded in these classics. So, so we&#x27;re in a very weird situation where the West is destroying itself by abandoning what makes it great. - which is, you know, these classics. &amp;gt;&amp;gt; I think</p><p><span class="timestamp">[1:04:10]</span> if we talk longer, I&#x27;m going to start to cry on camera, so I&#x27;m going to take an emotional break here. , Professor, thank you. &amp;gt;&amp;gt; Okay. No, &amp;gt;&amp;gt; I do not mean I&#x27;m half kidding. No, it&#x27;s emotionally resonant for me because I know that you&#x27;re telling the truth and it comports with everything that I&#x27;ve seen and so it&#x27;s hard to accept something that&#x27;s true, but I think what you&#x27;re saying is true unfortunately. So, ,</p><p><span class="timestamp">[1:04:41]</span> bless you for this and I hope to see you again soon. Thank you. &amp;gt;&amp;gt; Yeah, I really enjoyed it, Tucker.</p>
+    </article>
+
+    <!-- Audio Player Bar -->
+    <div class="audio-player hidden" id="audioPlayer">
+        <div class="player-inner">
+            <button class="player-btn" id="playPauseBtn" onclick="toggleTTS()">▶</button>
+            <div class="player-info">
+                <div class="player-status" id="playerStatus">Ready</div>
+                <div class="player-progress-track" onclick="seekTTS(event)">
+                    <div class="player-progress-fill" id="playerProgress" style="width:0%"></div>
+                </div>
+                <div class="player-time" id="playerTime"></div>
+            </div>
+            <div class="player-controls">
+                <button class="speed-btn" id="speedBtn" onclick="cycleSpeed()">1x</button>
+                <button class="close-player-btn" onclick="stopTTS()">✕</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+
+        // ========================================
+        // TEXT-TO-SPEECH READER
+        // ========================================
+        const synth = window.speechSynthesis;
+        let paragraphs = [];
+        let currentParagraph = 0;
+        let isPlaying = false;
+        let isPaused = false;
+        let currentUtterance = null;
+        let speeds = [0.8, 1, 1.2, 1.5, 2];
+        let speedIndex = 1;
+
+        function getParagraphs() {
+            if (paragraphs.length === 0) {
+                paragraphs = Array.from(document.querySelectorAll('#articleBody p'));
+            }
+            return paragraphs;
+        }
+
+        function getCleanText(el) {
+            // Remove timestamp spans and get clean text
+            const clone = el.cloneNode(true);
+            clone.querySelectorAll('.timestamp').forEach(ts => ts.remove());
+            return clone.textContent.trim();
+        }
+
+        function highlightParagraph(index) {
+            getParagraphs().forEach((p, i) => {
+                p.classList.toggle('tts-active', i === index);
+            });
+            // Scroll to active paragraph
+            const active = getParagraphs()[index];
+            if (active) {
+                active.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function updateProgress() {
+            const total = getParagraphs().length;
+            const pct = total > 0 ? ((currentParagraph + 1) / total) * 100 : 0;
+            document.getElementById('playerProgress').style.width = pct + '%';
+            document.getElementById('playerTime').textContent = 
+                `Paragraph ${currentParagraph + 1} of ${total}`;
+        }
+
+        function speakParagraph(index) {
+            const paras = getParagraphs();
+            if (index >= paras.length) {
+                // Done
+                stopTTS();
+                document.getElementById('playerStatus').textContent = 'Finished';
+                return;
+            }
+
+            currentParagraph = index;
+            const text = getCleanText(paras[index]);
+            
+            if (!text) {
+                // Skip empty paragraphs
+                speakParagraph(index + 1);
+                return;
+            }
+
+            highlightParagraph(index);
+            updateProgress();
+            document.getElementById('playerStatus').textContent = 'Speaking...';
+
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.rate = speeds[speedIndex];
+            currentUtterance.pitch = 1;
+            
+            // Try to pick a good voice
+            const voices = synth.getVoices();
+            const preferred = voices.find(v => v.name.includes('Samantha')) 
+                || voices.find(v => v.name.includes('Google') && v.lang.startsWith('en'))
+                || voices.find(v => v.lang.startsWith('en') && v.localService);
+            if (preferred) currentUtterance.voice = preferred;
+
+            currentUtterance.onend = () => {
+                if (isPlaying && !stopped) {
+                    speakParagraph(index + 1);
+                }
+            };
+
+            currentUtterance.onerror = (e) => {
+                if (e.error !== 'canceled') {
+                    speakParagraph(index + 1);
+                }
+            };
+
+            synth.speak(currentUtterance);
+        }
+
+        function toggleTTS() {
+            const player = document.getElementById('audioPlayer');
+            const btn = document.getElementById('playPauseBtn');
+            const listenBtn = document.getElementById('listenBtn');
+
+            if (!isPlaying && !isPaused) {
+                // Start fresh
+                stopped = false;
+                isPlaying = true;
+                isPaused = false;
+                player.classList.remove('hidden');
+                btn.textContent = '⏸';
+                listenBtn.textContent = '⏸ Pause';
+                speakParagraph(currentParagraph);
+            } else if (isPlaying && !isPaused) {
+                // Pause
+                synth.pause();
+                isPaused = true;
+                isPlaying = true;
+                btn.textContent = '▶';
+                listenBtn.textContent = '🎧 Resume';
+                document.getElementById('playerStatus').textContent = 'Paused';
+            } else if (isPaused) {
+                // Resume
+                synth.resume();
+                isPaused = false;
+                btn.textContent = '⏸';
+                listenBtn.textContent = '⏸ Pause';
+                document.getElementById('playerStatus').textContent = 'Speaking...';
+            }
+        }
+
+        let stopped = false;
+
+        function stopTTS() {
+            stopped = true;
+            isPlaying = false;
+            isPaused = false;
+            synth.cancel();
+            currentParagraph = 0;
+            document.getElementById('audioPlayer').classList.add('hidden');
+            document.getElementById('playPauseBtn').textContent = '▶';
+            document.getElementById('listenBtn').textContent = '🎧 Listen to Article';
+            document.getElementById('playerProgress').style.width = '0%';
+            getParagraphs().forEach(p => p.classList.remove('tts-active'));
+        }
+
+        function cycleSpeed() {
+            speedIndex = (speedIndex + 1) % speeds.length;
+            document.getElementById('speedBtn').textContent = speeds[speedIndex] + 'x';
+            // If currently speaking, restart current paragraph at new speed
+            if (isPlaying && !isPaused) {
+                synth.cancel();
+                speakParagraph(currentParagraph);
+            }
+        }
+
+        function seekTTS(event) {
+            const track = event.currentTarget;
+            const rect = track.getBoundingClientRect();
+            const pct = (event.clientX - rect.left) / rect.width;
+            const targetIndex = Math.floor(pct * getParagraphs().length);
+            synth.cancel();
+            currentParagraph = Math.max(0, Math.min(targetIndex, getParagraphs().length - 1));
+            if (isPlaying) {
+                speakParagraph(currentParagraph);
+            } else {
+                highlightParagraph(currentParagraph);
+                updateProgress();
+            }
+        }
+
+        // Load voices (some browsers load asynchronously)
+        synth.onvoiceschanged = () => synth.getVoices();
+
+        // Stop speech when navigating away
+        window.addEventListener('beforeunload', () => synth.cancel());
+    </script>
+</body>
+</html>

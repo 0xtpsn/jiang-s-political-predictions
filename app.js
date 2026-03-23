@@ -463,6 +463,50 @@ const predictions = [
         source: "Game Theory #14",
         quote: "The world is headed towards an economic depression... a splintering, a rupture in the world. And so you're not going to be able to afford to fly to Maldives for vacation. There will be no avocados in the supermarket.",
         analysis: "Jiang predicts a severe global economic depression driven by the convergence of war, energy disruption, and financial bubble bursts. While the global economy has been strained, a full depression has not materialized as of March 2026."
+    },
+    {
+        id: 43,
+        title: "America Will Expand into Canada, Mexico, and the Western Hemisphere",
+        category: "US Domestic",
+        verdict: "partial",
+        verdictLabel: "🔶 Partial",
+        confidence: "High",
+        source: "Tucker Carlson Interview",
+        quote: "If America is forced to retreat back into the Western Hemisphere, it needs to worry about resources... America has absolutely no choice but to ensure its own supply networks. That means eventually taking over Greenland, Canada, Mexico.",
+        analysis: "Trump has openly discussed acquiring Greenland and making Canada the '51st state,' and has exerted significant economic pressure on Mexico. While outright annexation hasn't occurred, the direction of US policy aligns with Jiang's thesis of hemispheric consolidation."
+    },
+    {
+        id: 44,
+        title: "America Will Experience Sectarian Violence (Similar to The Troubles)",
+        category: "US Domestic",
+        verdict: "pending",
+        verdictLabel: "⏳ Pending",
+        confidence: "High",
+        source: "Tucker Carlson Interview, Geo-Strategy #11",
+        quote: "America is probably going to suffer many years of sectarian violence, not a full-fledged civil war, but maybe something along the lines of the troubles in Ireland.",
+        analysis: "Jiang refines his earlier civil war prediction into something more specific: prolonged sectarian violence with insurgent groups fighting the state, triggered by the Iran war and a potential national draft. As of March 2026, political polarization is extreme but organized sectarian violence has not yet materialized."
+    },
+    {
+        id: 45,
+        title: "Japan Will Rise Again as a Major Power",
+        category: "China",
+        verdict: "pending",
+        verdictLabel: "⏳ Pending",
+        confidence: "High",
+        source: "Tucker Carlson Interview",
+        quote: "If I were to bet if you give me a billion dollars and said in East Asia you can invest your money either in China or Japan... I would invest all my money in Japan.",
+        analysis: "Despite aging population, resource dependency, and 30 years of deflation, Jiang bets on Japan's historical resilience — citing the Mongol invasions, Meiji Restoration, and post-WWII recovery. A contrarian take given China's current economic dominance in the region."
+    },
+    {
+        id: 46,
+        title: "Korean Reunification Will Happen",
+        category: "China",
+        verdict: "pending",
+        verdictLabel: "⏳ Pending",
+        confidence: "Medium",
+        source: "Tucker Carlson Interview",
+        quote: "I would not be surprised if North Korea and South Korea were to come to a compromise... both nations aspire for national reunification and because China and Japan will be in conflict.",
+        analysis: "Jiang suggests that as China and Japan enter into conflict, the Korean peninsula could leverage the instability for reunification. As of March 2026, inter-Korean relations remain hostile with no signs of compromise."
     }
 ];
 
@@ -614,6 +658,7 @@ const lectures = [
 
     // Other
     { title: "Jiang Xueqin Teaching Gay Talese Research Method (Introduction)", series: "other", number: "—", hasPredictions: false },
+    { title: "Political Prophet Predicts the Next Phase in Iran, Trump's War Plan, & Israel's Plot to Sabotage It", series: "other", number: "—", hasPredictions: true },
 ];
 
 // ========================================
@@ -792,7 +837,12 @@ function slugify(text) {
 function getLectureArticleUrl(l) {
     const meta = seriesMeta[l.series];
     const seriesSlug = meta.label.toLowerCase().replace(/\s+/g, '-');
-    const raw = `${seriesSlug}-${l.number}-${l.title}`;
+    let raw;
+    if (l.series === 'other') {
+        raw = l.title;
+    } else {
+        raw = `${seriesSlug}-${l.number}-${l.title}`;
+    }
     return `articles/${slugify(raw)}.html`;
 }
 
