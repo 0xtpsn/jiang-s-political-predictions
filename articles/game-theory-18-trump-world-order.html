@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Theory #18: Trump World Order — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Game Theory #18: Trump World Order">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #f59e0b;
+            --accent-bg: rgba(245, 158, 11, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .article-body p.tts-active {
+            background: rgba(99, 102, 241, 0.08);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-left: -12px;
+            margin-right: -12px;
+            border-left: 3px solid var(--accent);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Audio Player Bar */
+        .audio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: rgba(10, 10, 18, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            padding: 12px 24px;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        .audio-player.hidden {
+            transform: translateY(100%);
+        }
+        .player-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .player-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--accent), #6366f1);
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: 0.2s;
+            box-shadow: 0 2px 12px rgba(99, 102, 241, 0.3);
+        }
+        .player-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        }
+        .player-btn:active {
+            transform: scale(0.95);
+        }
+        .player-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .player-status {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .player-progress-track {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 2px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .player-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        .player-time {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .speed-btn {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+        .speed-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .close-player-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .close-player-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+
+        /* Listen button in header */
+        .listen-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 16px;
+        }
+        .listen-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-bg);
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+            .player-controls .speed-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Game Theory #18</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Game Theory #18</div>
+        <h1 class="article-title">Trump World Order</h1>
+        <div class="article-meta">
+            <span>📖 31 min read</span>
+            <span>📝 6,140 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+        <button class="listen-btn" id="listenBtn" onclick="toggleTTS()">
+            🎧 Listen to Article
+        </button>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body" id="articleBody">
+        <p># Game Theory #18： Trump World Order</p><p><span class="timestamp">[0:07]</span> addressed the American people. This follows an address from Prime Minister Albanese of Australia, Jewish people as well as Prime Minister Stormer to the British people. And in both speeches by Stormer and Albanese, they said they said to the to the people, &quot;We know that fuel prices, gas prices are going up and we should expect more pain, but we will do as much as we can to ens to ensure that your wallet is not too impacted.&quot; Donald</p><p><span class="timestamp">[0:41]</span> Trump in his address to the American people basically said that this war will continue and America may start to bomb energy and oil infrastructure of Iran. Okay, so let&#x27;s listen to a few of his words. the day and it will soon</p><p><span class="timestamp">[1:13]</span> be roaring back like never before. It will top the levels that it was a month ago. I&#x27;ve made clear from the beginning of Operation Epic Fury that we will continue until our objectives are fully achieved. Thanks to the progress we&#x27;ve made, I can say tonight that we are on track to complete all of America&#x27;s military objectives shortly. Very shortly, we are going to hit them extremely hard over the next two to three weeks. We&#x27;re going to bring them back to the stone ages where</p><p><span class="timestamp">[1:44]</span> they belong. &amp;gt;&amp;gt; Okay, so he&#x27;s basically saying that we&#x27;re winning this war and we&#x27;re we will bomb them to the stone ages, which tells us he&#x27;s actually not winning this war. Okay. Now, I also want to look at another person who is Peter Hex &amp;gt;&amp;gt; new strategic map. ending. In fact, many people believe it&#x27;s only</p><p><span class="timestamp">[2:18]</span> starting to ramp up. So there are rumors that Donald Trump has already authorized the use of ground forces and so we could see an invasion of Iran as early as this weekend but certainly definitely this month. Okay. But while America is fighting this war in Iran, this is the secretary of war Peter Hegv and he&#x27;s announced that America will control all North America. the Panama Canal and its surrounding countries. At the</p><p><span class="timestamp">[2:48]</span> Department of War, we call this strategic map the greater North America. Why? Because every sovereign nation and territory north of the equator from Greenland to Ecuador and from Alaska to Guyana is not part of the global south. is the security perimeter in this great neighborhood that we all live in. &amp;gt;&amp;gt; Okay. So basically what</p><p><span class="timestamp">[3:19]</span> he&#x27;s saying is we will enforce the Monroe Doctrine in North America. So it sounds very strange to people in that Donald Trump is fighting this war in Iran that&#x27;s not really winnable. the same time he is being aggressive in North America. He&#x27;s seeking fights with Canada, with Denmark, over Greenland, with Colombia, with Mexico, with Cuba. In fact, he&#x27;s</p><p><span class="timestamp">[3:49]</span> embarrassing Cuba right now and people expect possibly an invasion of Cuba very soon. So, people just think that Donald Trump is all over the place and he&#x27;s idiotic. Okay, so this is Iran and everyone says that a ground invasion of Iran would be stupid because it is much too large to invade. Right now America has only about 50,000 troops in the Middle East and the geography, the terrain makes it very hard to</p><p><span class="timestamp">[4:21]</span> control. Okay. So, you have these mountains, the Zagos mountains, which allows for the Iranians to hide and conduct guerrilla warfare and use drone strikes and artillery strikes. , and then you have the desert, which ma which makes it very hard to cross. Okay. So, even if the Americans were to attack from here, from Iraq, , they would have to face the mountains. If they were attacked from Pakistan, from the east, they would have</p><p><span class="timestamp">[4:53]</span> to face deserts. Okay. And if they were to attack from the south, they would face all these mountains and also you&#x27;re far away from Tran, which is ultimately your objective. Okay. So there are there&#x27;s lots of conversations about what the Americans are trying to do right now. The consensus seems to be the Americans first want to control the shoo in order to elevate the strain on the global economy. Okay. But as you can see from this map, first of all, the straight, it&#x27;s not very wide and it&#x27;s</p><p><span class="timestamp">[5:25]</span> very close to the Iranian coastline in the mountains, so it&#x27;s easy to attack from. And there are these and then the Iranians can put mines all around the straight as well. So what everyone tells us is that an invasion of Iran would just be idiotic. At the same time, the Americans need to free up the shoo and allow for maritime navigation in order to stabilize</p><p><span class="timestamp">[5:56]</span> the global economy. Okay. already we&#x27;re seeing lots of signs that America is preparing for a long war. So there are already 50,000 troops in the Middle East and a lot of them are will be deployed against Iran. But also there&#x27;s a letter from Leonard Anderson to reserves telling them to say telling them we must get ready to deploy fight and win. Okay. So not only have</p><p><span class="timestamp">[6:26]</span> they sent 50,000 troops to Middle East, but they&#x27;re preparing to call the reserves as well. Okay. So this seems as though America is preparing for total war. poly market is a very interesting place to understand how global events will turn out. Okay. And so there are three indicators that in fact a war is coming, a ground invasion is coming. First of all, the peace pizza index is exploding. What does this mean? It means that in the Pentagon when they are</p><p><span class="timestamp">[6:58]</span> preparing to launch a ground invasion, they need to work overtime and so they call for pizza. Okay? and so pizza deliveries are going up. Gay bars are empty. Okay. So when people are, you know, don&#x27;t have much to do, they go and you know go on dates. The last is that people are making bets, large bets that a grand invasion will happen. Okay, so these are people who have inside information and so they go on poly market and make a bet</p><p><span class="timestamp">[7:28]</span> that this will happen knowing it will happen. So this guy bet $200,000 that an a grand invasion will happen and if it turns out an a grand invasion does happen, he will win over a million dollar. Okay, so these are three very good indicators that a grand invasion has been approved and it will happen very soon. has said many things. Okay. So he said that you know what if we leave the Middle East it&#x27;s not our problem we don&#x27;t really care okay and</p><p><span class="timestamp">[8:05]</span> he also says that hey NATO it&#x27;s your responsibility to open the street of Hamus because we told you so and because you need the oil and of course NATO is angry at Donald Trump because previously Donald Trump threatened to take over Greenland. Okay, so everything&#x27;s Donald Trump is just a He doesn&#x27;t plan ahead because before this war in Iran where he</p><p><span class="timestamp">[8:37]</span> needs the help of NATO, he was pissing off NATO by threat to take over Greenland. So Donald Trump is over the place. He&#x27;s just a right? let&#x27;s just assume okay that the ground invasion goes ahead. What will happen? Well, as I as I predicted before, if a ground invasion were to go ahead, first of all, America would lose this war because</p><p><span class="timestamp">[9:09]</span> a ground invasion would fail and the Iranians are fully prepared for a ground invasion. Second of all, if America loses war, the American empire would die because be forced out of the Middle East. they would they would lose the petro dollar and the US dollar as a global reserve currency. The third thing is the global economy would collapse. So clearly Donald Trump is the worst president in human history and he&#x27;s a complete buffoon. Right? Okay. But let&#x27;s put our thinking caps on. Okay. Let&#x27;s use game theory and say, but what if for</p><p><span class="timestamp">[9:40]</span> some strange reason, Donald Trump wants to lose his war in Iran? What if he wants the American empire to collapse? What if Donald Trump wants to destroy the global economy? Then he&#x27;d be a genius. Right. He&#x27;s a because he&#x27;s going to destroy the American empire. But if he actually wants to destroy the American empire,</p><p><span class="timestamp">[10:13]</span> then the man is the greatest American president ever. Okay. So, we&#x27;re going to have a fun class today and we&#x27;re going to make the argument that in fact Donald Trump is a genius. That in fact all this chaos is purposeful. That there&#x27;s actually a plan behind all this. Okay, that&#x27;s the argument I want to make to you today. Okay, so what is the plan? What is going on</p><p><span class="timestamp">[10:43]</span> here? All right, so first thing to notice is that the world gets 20%. Okay, 20% of its oil from the Middle East. Okay, primarily going to East Asia. So India gets about 6% of its oil from the Middle East. Japan gets 75% of its oil from the Middle East. So East Asia is heavily dependent on Middle East oil.</p><p><span class="timestamp">[11:15]</span> Okay. But as you can see, it also goes to Europe as well and then also to the United States. All right. So the world is dependent on the GCC oil. If this war continues, if ground forces are used, then all the oil from the Middle East collapses and JP Morgan has come out and said that by midappril the world will run out of oil. Okay, so this is a disaster for the world, but it&#x27;s not it&#x27;s just</p><p><span class="timestamp">[11:45]</span> much more than energy needs. Okay. So this by because Iran is constraining movement in the straight of home moves. We&#x27;re seeing we&#x27;re seeing seven major shortages. Okay. So yes, we know oil and LG are being stopped. Okay. But actually the problem is much worse because look at phosphate, ammonium, sulfur, ura. This is food production. Okay. primarily used for fertilizers. not only will countries run out of energy,</p><p><span class="timestamp">[12:18]</span> they&#x27;ll also run out of food. Okay. Also, look at this. Helium and sulfur are used for what? They&#x27;re used for semiconductors. the production of semiconductors use helium and sulfuric acid in the production of semiconductors which leads to AI. Okay. So in other words this war in</p><p><span class="timestamp">[12:51]</span> the Middle East it&#x27;s impacting everything in the market economy. Okay. It&#x27;s if this war continues the global economy could collapse. But again, we&#x27;re making the assumption that Donald Trump is a genius and this is all part of his big plan. Okay. So, what is his plan? So, okay, we</p><p><span class="timestamp">[13:22]</span> know that there&#x27;s a lot of oil in the Middle East. Okay. But, you know, oil is not as rare as people think it is. There&#x27;s also a lot of oil in Canada. Venezuela has the world&#x27;s largest oil reserves. Okay. Russia also has a lot of oil. So in other words, if the shoo is closed, if this war in the GC continues, it doesn&#x27;t mean</p><p><span class="timestamp">[13:53]</span> the world no longer has oil. All it means is the world is now much more dependent on North America and Russia for oil. And so the global economy now shifts over to North America and to Russia. Okay? So in other words, the United States starts a stupid war in the GCC in the Middle East. It can&#x27;t possibly win, but</p><p><span class="timestamp">[14:26]</span> it still benefits. Because now the world is much more dependent on North America. Okay. Why is Venezuela important? Because America just took over Venezuela in January. Okay. And look and look, Canada has a lot of oil and Trump is threatening to take over Canada. Okay? So now let&#x27;s look at who needs the oil. Well, this map tells you</p><p><span class="timestamp">[14:56]</span> that if you&#x27;re in the red, you consume more oil than you export. And who are these countries? Well, they&#x27;re Europe, okay? And they are East Asia as well as Australia. is an idiot. Yes, I understand that he&#x27;s going to lose his war in the Middle East. Yes, I understand he&#x27;s going to destroy the global economy, but for some strange reason, he benefits and the United</p><p><span class="timestamp">[15:29]</span> States benefits because now Europe and China, Japan, Australia, they&#x27;re much more dependent on North America for resources, for food, for energy. Okay. important for fertilizers. Okay, you need nitrogen for fertilizers. , and as you can and what this map tells you is that if you are in the blue or the light</p><p><span class="timestamp">[16:00]</span> blue, it means you produce more nitrogen than you need. So, you exported it. If you are not in a blue, then you&#x27;re kind of screwed. Okay. So basically this area this area especially this area okay Europe as some parts of Europe okay so now</p><p><span class="timestamp">[16:31]</span> they need more nitrogen and again before they were getting a lot of nitrogen ammonia from the Middle East and now where are they forced to get the nitrogen from here and from here. Okay. So again, yes, I know Donald Trump&#x27;s losing this war in the Middle East, but in the long term, America stands to benefit, look at is water. Okay, water is important because water tells us which areas are</p><p><span class="timestamp">[17:04]</span> the most stable. Basically, if you have a lot of water, you&#x27;re less prone to conflict. But if you don&#x27;t have that much water, then you&#x27;re prone to conflict. Okay? So, we looked at we look at so if you&#x27;re in a dark blue, you&#x27;re good. Okay? Nothing to</p><p><span class="timestamp">[17:36]</span> worry about. If you are in the light blue, you are in a lot of trouble. Okay? So, we look at this area, North America, pretty stable because lots and lots of fresh water. Okay? If you look at Russia, pretty stable, lots and lots of fresh water. But if you&#x27;re Africa, you&#x27;re in a lot of trouble. If you&#x27;re Europe, you&#x27;re in a lot of trouble. If you are Middle East, you&#x27;re in a lot of trouble. If you are Southeast Asia, you are not in that much trouble, but you are in some trouble. Okay. So we already see how</p><p><span class="timestamp">[18:08]</span> this map tells us where in the future basically Russia and the United States, North America are the most stable parts of the world with the most resources and therefore they are the most resilient, the most stable. Okay. But if you go to Africa, Europe, Middle East, Southeast Asia, these are points of conflict in the world. So we can expect these places to become much more unstable over time. So in other words, all the United States</p><p><span class="timestamp">[18:39]</span> and Russia have to do is maintain stability and then export resources to these places. And guess what? if they and then they make a lot of money for themselves. Okay, so again, I understand Donald Trump&#x27;s an idiot. I understand this war in the Middle East is stupid, but from a long-term game theory perspective, the United States wins from this disaster, from a long-term perspective. Okay, now you look at this map, you</p><p><span class="timestamp">[19:10]</span> think, well, China&#x27;s pretty good, too, right? Like, China has a lot of fresh water. The problem with China though is this. sits on a lot of fresh water that Southeast Asia and India depends on. Okay? So a lot of water is in the Tibetan plateau. It flows downstream into India and in Southeast Asia. If there were a drought using game theory, we can suspect that China might want to keep the water for itself,</p><p><span class="timestamp">[19:41]</span> right? In which case, Southeast Asia and India would be very angry. Okay. So, this is a potential flash point that we have to watch out for. but the surrounding areas are not so stable and so China will be dragged into a conflict. Okay. So let&#x27;s summarize what we&#x27;ve learned so far. So these are the countries with the most oil</p><p><span class="timestamp">[20:14]</span> reserves. Okay. Venezuela, UAE, Kuwait, United States, Russia. , okay. All right. Now, what&#x27;s interesting about this is this war in the Middle East is going to knock out the oil production of Saudi Arabia, of Iran, of Iraq, of UAE, of Kuwait, which leaves what?</p><p><span class="timestamp">[20:47]</span> which leaves oh Venezuela, Canada, and the United States. Okay. North America and Russia. Now then look, let&#x27;s look at who has to buy oil, right? Let&#x27;s look at who buys oil. Well, the United States consumes a lot of oil, but again, it has its own supply of oil. China needs to</p><p><span class="timestamp">[21:19]</span> import a lot of its oil needs. Okay. So, China imports about 7 75% of its oil needs. India, Russia, Saudi Arabia, Brazil, Japan, South Korea. Okay. Germany. All right. So, China, India, Japan, South Korea imports a lot of oil. And where does it get its oil from? The Middle East. Right? So if he</p><p><span class="timestamp">[21:50]</span> can&#x27;t get his oil from the Middle East, then these four countries, China, India, Japan, and South Korea need will need it to get to get the oil either from United States or Russia. Okay? And why does this matter? Well, look, let&#x27;s look at this. Let&#x27;s look at who owns the most US treasuries. Basically, if you own a lot of US treasuries, it means that</p><p><span class="timestamp">[22:20]</span> you are financing American debt. America right now is $39 trillion in debt. That&#x27;s a lot of money. But as long as people continue buy US debt, as long as people want to buy US treasuries, it&#x27;s not a problem. Okay, it&#x27;s a Ponty scheme. so let&#x27;s look at this. Who are the biggest holders of US debt? Japan, China, right? Taiwan, Singapore, Hong Kong, India. Okay, so this is all Asia and we already said that Asia needs a lot of oil from the Middle East, right? Now let&#x27;s look at others. United</p><p><span class="timestamp">[22:53]</span> Kingdom a second. Okay, Cayman Islands is basically just Europe as well. It&#x27;s it&#x27;s a mining operation. Okay, Belgium, Luxembourg, Fran, Canada, France, Ireland, Switzerland. These countries are Europe and again where do we say most oil from the GC go? It goes to either e Asia or Europe. And now because of the stupid war</p><p><span class="timestamp">[23:23]</span> in the Middle East, Asia and Europe are now forced to buy oil from either Russia or the United States. And this is important. Okay, this is important because previously there&#x27;s a fear that these countries would stop buying US treasuries because America is too heavily in debt. The American economy is too much of a Ponzi scheme.</p><p><span class="timestamp">[23:54]</span> So there&#x27;s this great fear that Europe and Asia would move away from the US dollar and more towards Swiss Franks or gold. Okay. Now because Europe and Asia need fertilizer, they need energy from the United States and of America. United States no longer has to worry about its debt. Okay. All right. The $39 trillion debt, not a problem because the entire world is dependent on North America for resources. The policy can keep on going. So again, Donald Trump is an idiot, but he&#x27;s so stupid. He&#x27;s become</p><p><span class="timestamp">[24:28]</span> a genius. Okay. Donald Trump&#x27;s an idiot. Where would he get this idea from? How would he know how to do this?&quot; And the answer is because Putin has already proven that the strategy works in Ukraine. Okay? So, let me show you how. Okay, so this is the war in Ukraine. And as you can see, the dark red are</p><p><span class="timestamp">[24:59]</span> areas in which Russia is contesting territory. The light red, sorry, the pink are areas in which Russia wants to gain territory. As you can see, Russia still has a long way to go and we&#x27;re already four or five years into this war, which means that this war can go on for another 10, 20 years. It&#x27;s a very</p><p><span class="timestamp">[25:30]</span> slow grind and it&#x27;s good for Russia. Yes, I know that Russia is losing a lot of soldiers and I know that the Russian economy is suffering, but this long war of attrition is good for Russia. Why? Well, because first of all, what it does is it allows Russia to industrialize its economy. Okay? It allows it allows Russia to center its economy around war</p><p><span class="timestamp">[26:03]</span> production. Okay? So the red as you can see is total industry. Okay. And as you can see it&#x27;s been going up since the war started. All right. Overall industry is been going up as well. Unfortunately industries that are not dominated by the military that have no war purpose is actually going down. Okay. So it seems as though the entire Russian economy is being restructured</p><p><span class="timestamp">[26:33]</span> for total war for a long war and that is the purpose that is the goal. military industries the blue are civilian industries and as you can see the blue sorry the pink completely dominate the blue and the trend is increasing meaning it is possible in four or five years time Russia is primarily a war economy industrializing to produce war weapons.</p><p><span class="timestamp">[27:05]</span> Okay, munitions. specifically drones. Okay, these are drones. before at the be at the beginning of the war, Russia was dependent on Iran for drones. Okay. But then what happened over time is that Russia started to have its own domestic production. Okay. So imports from Iran have stayed</p><p><span class="timestamp">[27:37]</span> constant and then domestic production has gone way up which tells us that the Russian economy is industrializing for the production of drones and Russia is preparing to fight a long war. Now, not only can Russia produce its own drones for the war, but it can also export its drones to</p><p><span class="timestamp">[28:13]</span> Iran to fight against the Americans. Okay? And so you&#x27;re like, wait a minute here. So Russia is switching its entire economy to war production, which means that Russia will always fight wars. is that what Russia is planning? And the answer is yes, it is. Okay. And so let me explain why Russia</p><p><span class="timestamp">[28:46]</span> is planning this. This is something called the third Rome plan. Okay? And this comes from the 1996 book, sorry, 1996 book, actor Dugan who I think is one of the smartest geopolitical political thinkers alive today. Okay. And his argument is this. His argument is this unipolar moment of American dominance. it&#x27;s going to fade away because it&#x27;s too much focus on secularism,</p><p><span class="timestamp">[29:18]</span> individualism, liberalism. And these ideas break apart community. These ideas are antihuman. So eventually western society, western civilization will collapse because its values are abhorent and when it collapses this gives opportunity for Moscow to become the third Rome. Okay. we&#x27;ll talk more about this in the future. But what&#x27;s brilliant about Dugan is he recognizes that when</p><p><span class="timestamp">[29:50]</span> the world collapses, all Russia has to do is stay stable and resilient. As long as it stays together, unified, cohesive, it&#x27;ll be fine. Okay? Because as this global order collapses, as global economy collapses, every other society will face eternal collapse such as United States. Okay? So he predicts civil war in the United States as left and</p><p><span class="timestamp">[30:20]</span> right go to war against each other. Okay? He predicts collapse of China. He predicts collapse of the Middle East. He predicts collapse of Europe. Okay. So all these places are collapsing. Basically if you are the main pillar of the global economy, you are much more susceptible to collapse than if you are not. Okay. What so what Dugan says is this. Okay. All right. So the strategy is</p><p><span class="timestamp">[30:51]</span> first of all Russia needs to stay coherent. It needs to defend its territory. It needs to unify its people through nationalism, through religion, okay, through faith. And then what Russia needs to do is figure out allies that would support the Russian outlook. And this and these allies could include Japan. Okay. Vietnam, India, Iran. Okay. And then by combining their forces, they become a trading block onto themselves. This is an age</p><p><span class="timestamp">[31:22]</span> of nuclear weapons. You don&#x27;t want to go to war against each other, but this is also an age of collapse. So, as long as you&#x27;re able to stay coherent, as long as you&#x27;re able to defend your borders, then you&#x27;ll come out ahead. Okay? So that&#x27;s the idea of moving towards war because war has a power to unify the imagination and the beliefs of the people in your nation. Right? So using war in</p><p><span class="timestamp">[31:52]</span> order to increase the nationalism, the religion of your society which will allow you to weather the storm better. Okay? So that is the grand vision of a dugan and in my opinion he is absolutely correct and Russia is moving towards this by invading Ukraine. All right. So the Ukraine invasion was not a response to NATO. The Ukraine invasion was to implement this grand vision</p><p><span class="timestamp">[32:23]</span> for the creation of the third Rome to allow Russia to survive the coming collapse of the global order better than anyone else. Okay? And so by taking over Ukraine, you now control onethird of the world&#x27;s carbohydrates and a lot of the world&#x27;s energy. Right? Once you control Ukraine in the Black Sea, you&#x27;re now able to export your energy and your food to Africa, to the Middle East, to Europe, to Asia.</p><p><span class="timestamp">[32:54]</span> Okay, so that&#x27;s the grand vision for Russia. And again, in my opinion, this makes a lot of sense. The world is collapsing and so you have to build a fortress. You have to be self-sufficient in order to weather the storm. So given this America is like well we can do the same thing. Okay. And so the grand plan for America is something called the</p><p><span class="timestamp">[33:27]</span> technate. Okay. Sorry. There something we&#x27;ll discuss more later on. Okay. But first I want to introduce this idea to you. The technate. And the technique is very simple. It&#x27;s the idea that you know what yes the world is going into chaos. The world is collapsing, but North America is self-sufficient, right? So these past few months, Donald Trump has been has picking a fight with Denmark over Greenland, right? He&#x27;s been threatening</p><p><span class="timestamp">[33:59]</span> Canada. He&#x27;s been threatening Mexico. He&#x27;s been threatening Colombia. He&#x27;s think he&#x27;s taking over Venezuela. He&#x27;s been threatening Cuba. He&#x27;s been threatening Honduras, Nicawaga. Why is he doing this? because they&#x27;re all part of the grand vision for greater North America. Okay. What Peter Hexf calls greater North America, response to Moscow&#x27;s third Rome. If Moscow is going to build this grand alliance in order to weather a storm and America has no choice but to also build this grand alliance as well</p><p><span class="timestamp">[34:31]</span> in order to protect itself in this coming storm. All right. So what Donald Trump has recognized is that Putin is right. The world is collapsing. There&#x27;s nothing we can do to save the world. So let&#x27;s just accelerate it in a way that allows America to benefit from this collapse. Okay. So, by collapsing the GCC, by collapsing the Middle East, you make Asia and Europe now dependent on</p><p><span class="timestamp">[35:03]</span> American North American energy and fertilizer exports. And this allows you the resources, the motivation to create the technate, okay, this self-sufficient economy. Okay? Does it make sense? All right. Okay. So, let us summarize. Okay. So in George HW Bush he responds to the fall of the Berlin wall the collapse of so new phrase called the new world order and there are three major pillars to the idea of</p><p><span class="timestamp">[35:35]</span> the new world order. Okay. The first idea is that America will become the financial capital of the world. We America will offshore resources and manufacturing to other places and then America will focus primarily on finance making Wall Street the center of the world. Okay. The other idea is the idea of secular multiculturalism. So the world is divided but what can unite everyone is</p><p><span class="timestamp">[36:06]</span> the love of money, the love of consumerism. So if we just focus on making money and buying things, then the world will be forever at peace. Okay? And</p><p><span class="timestamp">[36:39]</span> so we have to let go of borders. We have to let go of community. We have to let go of identity and focus more on consumerism. Okay? And the and the last idea is global domination where in order for global trade to happen, America will provide security for all. No one has to fight it anymore because America will guarantee global peace. If anyone rises to challenge this order, pass</p><p><span class="timestamp">[37:11]</span> Americana, the America will go destroy it. Okay. So these are the three main pillars of the new world order as announced by George HW Bush on September 11th 1991. Okay. Trump world order is a response to this new world order. Basically what Trump is saying and what he&#x27;s been saying for a long time is why should America pay for the defense of other nations? Why should America have to be the consumer of last resort for everyone? Why are</p><p><span class="timestamp">[37:44]</span> the American why are Americans paying for everything so that Europeans can have their welfare and their pension? Everyone&#x27;s taking advantage of America and it&#x27;s destroying America. So let us change the new order to the Trump world order. Okay? And how do you do that? where you move America from a focus on finance to a focus on resources and manufacturing. Okay, basically</p><p><span class="timestamp">[38:16]</span> you believe the world is going to permanent war and so you provide the resources and manufacturing in order to facilitate this world war. Meanwhile, America is has become fortress of America. It can it can hide behind its fortress kind of fortress and it&#x27;s protected by two oceans, right? Okay. So this makes sense. Multiculturalism doesn&#x27;t work. It leads to stupidity such as DEI, woke politics, transgenderism, it&#x27;s all Let&#x27;s focus on what makes</p><p><span class="timestamp">[38:48]</span> us proud to be Americans, which is Christian nationalism. Okay? Our love of the white race, our nation, and God. Okay? So no more of this multiculturalism, no more immigration, no more open borders, no more democratic party. Let&#x27;s just focus on being Christian nationalists. Okay? Love the United States, love of Christianity, love of the white race. And the last idea is why should America pay to protect the world? Screw Pax</p><p><span class="timestamp">[39:18]</span> Americana. Let&#x27;s just do MAGA. Okay, what is MAGA? MAGA is national rejuvenation. Let&#x27;s make America great again by rebuilding America&#x27;s manufacturing industry by exploiting re the infinite resources that God has given America in order to make sure every American has a decent life. Okay. All right. So again, I understand Trump is an idiot. Trump has launched America into this stupid war in the Middle East.</p><p><span class="timestamp">[39:48]</span> Trump has pissed off NATO. Trump has pissed off all of America&#x27;s allies. So, he&#x27;s a But if the goal was to destroy the American empire, destroy the global economy and rebuild America for the benefit of Americans, then Trump is a genius and he may go down in history as America&#x27;s greatest president. Okay. All right. , any questions? &amp;gt;&amp;gt; Yeah. mentioned that the Donald Trump or like pudding they think that the</p><p><span class="timestamp">[40:19]</span> world like the whole system will collapse inev inevitable. But like how why like if this Ukraine war doesn&#x27;t happen or if this Iran war won&#x27;t happen, how will the world economy collapsed? Like okay. Okay, that&#x27;s a really good question. Okay, so both Putin and Trump know that the world will collapse and the question is how do they know this? And</p><p><span class="timestamp">[40:51]</span> the answer is because it&#x27;s so obvious. Okay. So, for the longest time, America it basically after World War II, it lent money to Europe and Japan so that Europe and Japan can buy manufactured goods from America. Okay. And this was good for America because it created a lot of jobs and</p><p><span class="timestamp">[41:22]</span> Americans were productive. But then over time Americans became very lazy and so they made the Europeans and the Japanese do the work specifically Germany. And then America started to be the consumer. Okay. So then America started to spend more money than it made. Okay, before it made more money</p><p><span class="timestamp">[41:54]</span> than it spent and lent this money to Europe and Japan. But then over time this reverse itself. Okay. And then what happened was that America started to shift its manufacturing to China. the work for you America. and I&#x27;ll do it for really cheaply and</p><p><span class="timestamp">[42:24]</span> I&#x27;ll borrow money from you. Sorry. So I&#x27;ll get I&#x27;ll lend you the money to do it. Okay. So what&#x27;s happening is that America is becoming lazy in debt and corrupt. Okay? Because the entire world was basically working for America for very little money. So Americans sly have to work. And this led to massive inequality in America which led to political corruption which led to</p><p><span class="timestamp">[42:54]</span> an oligarchy. Okay? So don&#x27;t think of America as a democracy. Think of it as an oligarchy. And so when that happens when only a few people benefit from the system then the American people get really pissed. And so they affect they elected for they elected Donald Trump. Okay. And why did Donald Trump get elected? because he</p><p><span class="timestamp">[43:29]</span> understood intuitively this system does not work. It cannot it cannot hold. It cannot be stable for too long. It&#x27;s going to collapse eventually. Okay. The question then is when will collapse and who will benefit from the collapse? And Donald Trump&#x27;s like okay then let&#x27;s control the collapse so that my friends and I can benefit the most from this collapse. Okay. And Donald Trump</p><p><span class="timestamp">[44:00]</span> has two sets of friends. The first are the Christians, okay? Christian evangelicals, basically the fanatics who support Israel as well as the AI, Silicon Valley. All right? So, we learn about the idea of elite over production. Okay? But the idea is that as society collapses, declines, the elites start to compete against themselves for resources. And so right now the elite are the finance people and the new elite okay the counter elites are the AI people okay</p><p><span class="timestamp">[44:33]</span> artificial intelligent and it&#x27;s something we&#x27;ll discuss later on okay but I but I introduce you to the idea but basically the idea is that America is a is a house of cards it&#x27;s a Ponzi scheme it&#x27;s corrupt it&#x27;s unequal it&#x27;s lazy it&#x27;s in decline so it&#x27;s so it&#x27;s going to fall apart sooner or later okay but the question then is like how do you manage this decline? How do you control this decline in a way</p><p><span class="timestamp">[45:05]</span> that allows you and your friends to benefit the most? Okay. And that&#x27;s why Donald Trump started this war in the Middle East. Because by starting this war in the Middle East, you&#x27;re accelerating the process of decline in America. And therefore, you&#x27;re able to help transform America from one that from an economy that&#x27;s based on finance to one that&#x27;s based on resource exportation and then manufacturing. Okay? Does that make sense? All right. Any more</p><p><span class="timestamp">[45:37]</span> questions? explanations of this war like before we explain it in the religious perspectives and how does this like this explanation connect to the explan explanation today? &amp;gt;&amp;gt; Okay. All right. Yeah, that&#x27;s a really good question. Okay. So the thing to understand about war is that there are different factors at play. Okay. So before we went into esquetological factor. All right. Now I explain to you the geopolitical also the historical or hubris. Right? And what you need to recognize about history is that often all three things converge together. Okay? Because what is religion? Religion is a memory, a long-lost</p><p><span class="timestamp">[46:08]</span> memory of our ancient past told through myths and stories. So there&#x27;s truth to religion because it&#x27;s basing a lot of its ideas through personal experience, through history. Okay, from thousands of years ago, right? And geopolitics, economics drives historical forces. So another way, another way of understanding this is that often all these different</p><p><span class="timestamp">[46:40]</span> factors are aligned together. This something we&#x27;ll discuss more later on. Okay. All right. And so why do I look at different factors, different vectors? And the answer is because I make predictions. And if I&#x27;m able to analyze an event using esquetology, geopolitics, and history, and they align together, then I can make a pretty accurate prediction</p><p><span class="timestamp">[47:11]</span> that this will happen. I don&#x27;t know when it will happen. I mean, I know who the players are, but I&#x27;m pretty sure this event will happen. Okay, does that make sense? Okay, great. All right, so we&#x27;ll continue this next week.</p>
+    </article>
+
+    <!-- Audio Player Bar -->
+    <div class="audio-player hidden" id="audioPlayer">
+        <div class="player-inner">
+            <button class="player-btn" id="playPauseBtn" onclick="toggleTTS()">▶</button>
+            <div class="player-info">
+                <div class="player-status" id="playerStatus">Ready</div>
+                <div class="player-progress-track" onclick="seekTTS(event)">
+                    <div class="player-progress-fill" id="playerProgress" style="width:0%"></div>
+                </div>
+                <div class="player-time" id="playerTime"></div>
+            </div>
+            <div class="player-controls">
+                <button class="speed-btn" id="speedBtn" onclick="cycleSpeed()">1x</button>
+                <button class="close-player-btn" onclick="stopTTS()">✕</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+
+        // ========================================
+        // TEXT-TO-SPEECH READER
+        // ========================================
+        const synth = window.speechSynthesis;
+        let paragraphs = [];
+        let currentParagraph = 0;
+        let isPlaying = false;
+        let isPaused = false;
+        let currentUtterance = null;
+        let speeds = [0.8, 1, 1.2, 1.5, 2];
+        let speedIndex = 1;
+
+        function getParagraphs() {
+            if (paragraphs.length === 0) {
+                paragraphs = Array.from(document.querySelectorAll('#articleBody p'));
+            }
+            return paragraphs;
+        }
+
+        function getCleanText(el) {
+            // Remove timestamp spans and get clean text
+            const clone = el.cloneNode(true);
+            clone.querySelectorAll('.timestamp').forEach(ts => ts.remove());
+            return clone.textContent.trim();
+        }
+
+        function highlightParagraph(index) {
+            getParagraphs().forEach((p, i) => {
+                p.classList.toggle('tts-active', i === index);
+            });
+            // Scroll to active paragraph
+            const active = getParagraphs()[index];
+            if (active) {
+                active.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function updateProgress() {
+            const total = getParagraphs().length;
+            const pct = total > 0 ? ((currentParagraph + 1) / total) * 100 : 0;
+            document.getElementById('playerProgress').style.width = pct + '%';
+            document.getElementById('playerTime').textContent = 
+                `Paragraph ${currentParagraph + 1} of ${total}`;
+        }
+
+        function speakParagraph(index) {
+            const paras = getParagraphs();
+            if (index >= paras.length) {
+                // Done
+                stopTTS();
+                document.getElementById('playerStatus').textContent = 'Finished';
+                return;
+            }
+
+            currentParagraph = index;
+            const text = getCleanText(paras[index]);
+            
+            if (!text) {
+                // Skip empty paragraphs
+                speakParagraph(index + 1);
+                return;
+            }
+
+            highlightParagraph(index);
+            updateProgress();
+            document.getElementById('playerStatus').textContent = 'Speaking...';
+
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.rate = speeds[speedIndex];
+            currentUtterance.pitch = 1;
+            
+            // Try to pick a good voice
+            const voices = synth.getVoices();
+            const preferred = voices.find(v => v.name.includes('Samantha')) 
+                || voices.find(v => v.name.includes('Google') && v.lang.startsWith('en'))
+                || voices.find(v => v.lang.startsWith('en') && v.localService);
+            if (preferred) currentUtterance.voice = preferred;
+
+            currentUtterance.onend = () => {
+                if (isPlaying && !stopped) {
+                    speakParagraph(index + 1);
+                }
+            };
+
+            currentUtterance.onerror = (e) => {
+                if (e.error !== 'canceled') {
+                    speakParagraph(index + 1);
+                }
+            };
+
+            synth.speak(currentUtterance);
+        }
+
+        function toggleTTS() {
+            const player = document.getElementById('audioPlayer');
+            const btn = document.getElementById('playPauseBtn');
+            const listenBtn = document.getElementById('listenBtn');
+
+            if (!isPlaying && !isPaused) {
+                // Start fresh
+                stopped = false;
+                isPlaying = true;
+                isPaused = false;
+                player.classList.remove('hidden');
+                btn.textContent = '⏸';
+                listenBtn.textContent = '⏸ Pause';
+                speakParagraph(currentParagraph);
+            } else if (isPlaying && !isPaused) {
+                // Pause
+                synth.pause();
+                isPaused = true;
+                isPlaying = true;
+                btn.textContent = '▶';
+                listenBtn.textContent = '🎧 Resume';
+                document.getElementById('playerStatus').textContent = 'Paused';
+            } else if (isPaused) {
+                // Resume
+                synth.resume();
+                isPaused = false;
+                btn.textContent = '⏸';
+                listenBtn.textContent = '⏸ Pause';
+                document.getElementById('playerStatus').textContent = 'Speaking...';
+            }
+        }
+
+        let stopped = false;
+
+        function stopTTS() {
+            stopped = true;
+            isPlaying = false;
+            isPaused = false;
+            synth.cancel();
+            currentParagraph = 0;
+            document.getElementById('audioPlayer').classList.add('hidden');
+            document.getElementById('playPauseBtn').textContent = '▶';
+            document.getElementById('listenBtn').textContent = '🎧 Listen to Article';
+            document.getElementById('playerProgress').style.width = '0%';
+            getParagraphs().forEach(p => p.classList.remove('tts-active'));
+        }
+
+        function cycleSpeed() {
+            speedIndex = (speedIndex + 1) % speeds.length;
+            document.getElementById('speedBtn').textContent = speeds[speedIndex] + 'x';
+            // If currently speaking, restart current paragraph at new speed
+            if (isPlaying && !isPaused) {
+                synth.cancel();
+                speakParagraph(currentParagraph);
+            }
+        }
+
+        function seekTTS(event) {
+            const track = event.currentTarget;
+            const rect = track.getBoundingClientRect();
+            const pct = (event.clientX - rect.left) / rect.width;
+            const targetIndex = Math.floor(pct * getParagraphs().length);
+            synth.cancel();
+            currentParagraph = Math.max(0, Math.min(targetIndex, getParagraphs().length - 1));
+            if (isPlaying) {
+                speakParagraph(currentParagraph);
+            } else {
+                highlightParagraph(currentParagraph);
+                updateProgress();
+            }
+        }
+
+        // Load voices (some browsers load asynchronously)
+        synth.onvoiceschanged = () => synth.getVoices();
+
+        // Stop speech when navigating away
+        window.addEventListener('beforeunload', () => synth.cancel());
+    </script>
+</body>
+</html>

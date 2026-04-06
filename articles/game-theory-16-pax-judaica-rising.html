@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Theory #16: Pax Judaica Rising — Predictive History</title>
+    <meta name="description" content="Transcript of Professor Jiang's lecture: Game Theory #16: Pax Judaica Rising">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.06);
+            --text: #f0f0f5;
+            --text-secondary: #8b8b9e;
+            --text-muted: #55556a;
+            --accent: #f59e0b;
+            --accent-bg: rgba(245, 158, 11, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .ambient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+        }
+        .ambient .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; left: -100px;
+        }
+        .ambient .orb-2 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            bottom: -150px; right: -100px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+        .nav-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Article header */
+        .article-header {
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .series-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            background: var(--accent-bg);
+            margin-bottom: 20px;
+        }
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .article-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .article-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 40px auto;
+        }
+
+        /* Article body */
+        .article-body {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+        }
+        .article-body p {
+            margin-bottom: 1.3em;
+            font-size: 1.05rem;
+            color: rgba(240, 240, 245, 0.88);
+        }
+        .article-body p.tts-active {
+            background: rgba(99, 102, 241, 0.08);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-left: -12px;
+            margin-right: -12px;
+            border-left: 3px solid var(--accent);
+        }
+        .timestamp {
+            font-family: 'Inter', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            z-index: 101;
+            transition: width 0.1s linear;
+        }
+
+        /* Audio Player Bar */
+        .audio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: rgba(10, 10, 18, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            padding: 12px 24px;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        .audio-player.hidden {
+            transform: translateY(100%);
+        }
+        .player-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .player-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--accent), #6366f1);
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: 0.2s;
+            box-shadow: 0 2px 12px rgba(99, 102, 241, 0.3);
+        }
+        .player-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        }
+        .player-btn:active {
+            transform: scale(0.95);
+        }
+        .player-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .player-status {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .player-progress-track {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 2px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .player-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #6366f1);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        .player-time {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .speed-btn {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+        .speed-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .close-player-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .close-player-btn:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+        }
+
+        /* Listen button in header */
+        .listen-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 16px;
+        }
+        .listen-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-bg);
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        @media (max-width: 600px) {
+            .article-body p { font-size: 1rem; }
+            .article-meta { flex-direction: column; gap: 8px; }
+            .player-controls .speed-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../index.html#teachings" class="back-btn">← Back</a>
+            <span class="nav-title">Game Theory #16</span>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="series-badge">Game Theory #16</div>
+        <h1 class="article-title">Pax Judaica Rising</h1>
+        <div class="article-meta">
+            <span>📖 43 min read</span>
+            <span>📝 8,642 words</span>
+            <span>🎓 Professor Jiang</span>
+        </div>
+        <button class="listen-btn" id="listenBtn" onclick="toggleTTS()">
+            🎧 Listen to Article
+        </button>
+    </header>
+
+    <div class="divider"></div>
+
+    <article class="article-body" id="articleBody">
+        <p># Game Theory #16： Pax Judaica Rising</p><p><span class="timestamp">[0:01]</span> the green is on. Okay. &amp;gt;&amp;gt; Okay. &amp;gt;&amp;gt; Yeah. Thank you. will end. I cannot predict when this war will end but I want to make certain predictions about how this war will end. Okay. So to first understand how the war is going, let&#x27;s look at some video clips. All right. So this is</p><p><span class="timestamp">[0:34]</span> President Donald Trump. He&#x27;s talking about the war. He hit Qatar, Saudi Arabia, UAE, Bahrain, Kuwait. Nobody expected that. We were shocked. And the other one, you know, they fought back. They could have yielded. But think of it, if we weren&#x27;t around, they have tremendous They had tremendous power. They had thousands of missiles, most of which we&#x27;ve terminated. They had thousands of drones. They were making drones and missiles all over the place. We&#x27;ve knocked</p><p><span class="timestamp">[1:06]</span> out most of those factories. They hit. &amp;gt;&amp;gt; Okay. So, what he&#x27;s saying here is we went in expecting them expecting to hit them, kill the leadership, and then they would surrender. We didn&#x27;t expect them to fight back. We didn&#x27;t expect them to close the trip home. We didn&#x27;t expect that they would hit Qatar, Bahrain, Kuwait. Okay. So, what he&#x27;s saying is we actually have a plan going in and we really didn&#x27;t think</p><p><span class="timestamp">[1:37]</span> our enemies would fight back. All right. So, that this is Donald Trump. Now let&#x27;s look at his There does not need to be any more death and destruction. But if Iran fails to accept the reality of the current moment, if they fail to understand that they have been defeated militarily and will continue to be,</p><p><span class="timestamp">[2:08]</span> President Trump will ensure they are hit harder than they have ever been hit before. President Trump does not bluff and he is prepared to unleash hell. Okay. So, what she This is Karen Levit and she&#x27;s the press secretary for the White House. And what she&#x27;s saying is, &quot;Look, we&#x27;ve defeated these guys, but for whatever reason, the Iranians don&#x27;t know that.&quot; That&#x27;s the problem. The problem isn&#x27;t us. We came in with the right strategy. We did everything right.</p><p><span class="timestamp">[2:39]</span> But for whatever reason, the Iranians being stupid don&#x27;t know they&#x27;ve been defeated. All right. Iran had a modern military, a modern navy, a modern air force, modern air defenses, leadership, massive bunker. Never has a modern</p><p><span class="timestamp">[3:11]</span> military been so rapidly and historically obliterated, defeated from day one with overwhelming firepower. The air campaign that we&#x27;ve conducted, that Israel&#x27;s conducted alongside us, was one for the history books truly. And it&#x27;s because we have a president of the United States that when he sends his war fighters out to fight, he unties their hands to actually go out and close with and destroy the enemy as viciously as possible from moment one. And that&#x27;s why we see ourselves as part of this negotiation as well. we&#x27;re we negotiate with bombs. You have a choice as we loiter over the top</p><p><span class="timestamp">[3:43]</span> of Tyrron as the president talked about your future. President has made it clear that you will not have a nuclear weapon. The War Department agrees our job is to ensure that and so we&#x27;re keeping our hand on that throttle as long as hard as is necessary to ensure the interests of the United States of America are achieved on. &amp;gt;&amp;gt; Okay. So this is Secretary of War Peter Hexavv and he represents the Pentagon, the military and his attitude is we&#x27;re winning this war. We are kicking ass and we don&#x27;t have to negotiate because we&#x27;re kicking ass and we&#x27;ll</p><p><span class="timestamp">[4:14]</span> continue to do so. All right. So this is the attitude of the military. Now the US media has been reporting that Donald Trump is seeking an offramp. He&#x27;s seeking negotiations. And what Peter Hav says, &quot;No, let&#x27;s negotiate with bombs, man.&quot; Okay Treasury, we unsanctioned Russian oil. We knew that there were about 130</p><p><span class="timestamp">[4:50]</span> million barrels on the water and we created supply that is beyond the straits of Hermouth. So we anticipated this. We knew that the there could be a temporary and I want to emphasize temporary choke point there and there was 130 million barrels of floating storage in the coming days. we may unsanction the Iranian oil that&#x27;s on the water. It&#x27;s about 140 million barrels. So depending on how you count it,</p><p><span class="timestamp">[5:23]</span> that&#x27;s 10 days to two weeks of supply that the Iranians had been pushing out. That would have all gone to China. In essence, we will be using the Iranian barrels against the Iranians to keep the price down, you know, for the next 10 or 14 days. &amp;gt;&amp;gt; Okay. So this is the secret secretary of the treasury Scott Besson. Okay. He&#x27;s responding to a problem which is the Americans didn&#x27;t expect that the Iranians would close off the shoo. And so this</p><p><span class="timestamp">[5:53]</span> is affecting oil supply and so the global economy could be disrupted or even destroyed if this lasts too long. So Scott Besson says, &quot;Ha, we knew this was going to happen and we have a really brilliant plan to destroy the Iranians once and for all. Our plan is this. We&#x27;re going to let the Iranians sell their oil and make a lot of money and then they&#x27;ll be</p><p><span class="timestamp">[6:24]</span> destroyed.&quot; Yeah. So the Americans basically unsanctioned Iranian oil and because of that the Iranians were able to make $14 billion just like that. The total Iranian military budget for one year is $10 billion. Okay. So this is American genius at work. They knew this is was happen. They knew the Iranians wanted to destroy the global</p><p><span class="timestamp">[6:57]</span> economy. So the government is like, &quot;What to make them rich so they can&#x27;t destroy the global economy?&quot; We got them now. to trade, a threat to the to the straits of Harmuth, then I would argue that we could have years of, you know, above $100</p><p><span class="timestamp">[7:30]</span> closer to $150 oil. &amp;gt;&amp;gt; What happens to the global economy? If that happens, how do we see it? &amp;gt;&amp;gt; That we&#x27;ll have global recession. If there&#x27;s a sessation of war and yet &amp;gt;&amp;gt; Okay, so this is Larry Frink and he&#x27;s head of a company called Black Rockck, which is the largest asset manager in the world. They control trillions and trillions of dollars. And what he&#x27;s saying he&#x27;s being interviewed by the BBC. What he&#x27;s saying is we can&#x27;t stop this war now because if we stop this war now that means that the price of oil</p><p><span class="timestamp">[8:01]</span> will be too high for many years. The Iranians will control the shoo and therefore we must fight this war to the end. What he doesn&#x27;t address is well if you didn&#x27;t start this war in the first place you wouldn&#x27;t have this problem because the Iranians would have no pretext to close off the trip of humus and the go would have been fine but what he&#x27;s saying that but what he&#x27;s saying is like oh don&#x27;t worry about that the problem is like is the war</p><p><span class="timestamp">[8:32]</span> has started and therefore we must fight to the end Okay. Iranian proxy in Iraq flying over an American base. And as you can see, there&#x27;s nothing stopping it. Okay, it&#x27;s just</p><p><span class="timestamp">[9:14]</span> flying over this American base. It&#x27;s being remote controlled. It spots two American helicopters and destroys one of them. Okay, meaning that you have all these American bases throughout the Middle East and they are vulnerable. They cannot be protected against cheap drones. So from American perspective, this war will either bankrupt the Americans or this war will be lost. Okay? But it&#x27;s very hard</p><p><span class="timestamp">[9:44]</span> to fight this war against a determined enemy. So what I want to do now is Okay. So, , I&#x27;ve said this many times, but the Americans are losing this war. And the main reason is the problem of hubris. this means strategically, what this means on the battlefield. Okay. So war is fought</p><p><span class="timestamp">[10:16]</span> across four dimensions. All right. There is the narrative dimension, meaning global opinion, how history will perceive this war. There is the political dimension, meaning how your allies perceive this war, how your domestic base perceive this war. There&#x27;s the economic, and then there&#x27;s</p><p><span class="timestamp">[10:48]</span> the military. the Iranians are fighting a very different war from the Americans. What the Americans are doing is basically they are shifting the narrative, political sphere and economic sphere to fit their economic strategy. Okay.</p><p><span class="timestamp">[11:19]</span> Their regular strategy is decapitation which forces surrender. Right? So what they want to do is they want to not destroy the Iranian leadership, destroy the Iranian economy to force a surrender in which case the Americans can dictate terms. That is their strategy and that&#x27;s about it. And they are forcing the narrative space, the political space and the economic space to conform to the military strategy. Meaning</p><p><span class="timestamp">[11:49]</span> that they expect the allies, NATO, they expect the media, they expect the economy to support their strategy. So for example in the political space Donald Trump has ordered NATO to come and open up the strip of humus. Okay. And also Donald Trump refuses to acknowledge the fact that this war is very unpopular back in America. In the economic space what the Americans are trying to</p><p><span class="timestamp">[12:23]</span> do is keep the price of oil low so it does not disrupt the global economy. And they do that of course by unsectioning Russian and Iranian oil which benefits the Russian and Iranian economies. Okay. And in a nar in narrow space they&#x27;re basically trying to tell the media to follow the party line. Donald Trump has threatened journalists that if you do not report this war is going well then I might put you in prison. All right. So this is</p><p><span class="timestamp">[12:54]</span> the American strategy forcing the narrative, political and economic spheres to conform to military strategy. The Iranians have a different approach. The Iranians are using the military in order to impact the economic, political and narrative spheres. All right, it&#x27;s complete reverse. so the military strategy is calibrated in a certain way to benefit the Iranian economy. Okay. So what I mean by that is that the military is strategically controlling moves so that</p><p><span class="timestamp">[13:25]</span> Chinese ships can pass, right? Because Chinese ships are the main buyer of Iranian oil. Also, if you are if you&#x27;re willing to play ball like Japan or Qatar or Oman, they will also let your ships pass. Okay, so this is being strategic. Politically, the Iranians are trying to split the Gulf States, right? They know that Saudi Arabia and UAE are committed to regime change in</p><p><span class="timestamp">[13:57]</span> Iran, but they know that Qatar, BN, sorry, not B, Qatar and Oman are on the other side. Okay. So, so they&#x27;re trying to gain as much global leverage as possible within the GCC and the narrative is they&#x27;re trying to shape global opinion and trying to make everyone believe that they are on the right side of history. And most people believe that. In fact, you have a lot of Americans who are rooting for the Iranians to</p><p><span class="timestamp">[14:29]</span> win. All right, so this is a very different these are two very different strategies. All right, so let&#x27;s talk about this the advantages and disadvantages of both strategies. Okay. So from the Mland perspective, the fact that you have this have this approach of making the world conform to your military strategy basically means that you lack what we call reflection. Okay? with your strategist and discuss how this war is going and how to make changes. But the Iranians are able to do so because the military</p><p><span class="timestamp">[15:01]</span> has to conform to the economic, political and narrative strategies. Okay. Second is flexibility. And what I mean by that is the military strategy. If it&#x27;s not going well for the Americans, they lack the capacity to reflect and make changes. So what they do is they double</p><p><span class="timestamp">[15:32]</span> down. Okay? to accelerate the process of bombing in Iran even though it&#x27;s probably not going getting them anywhere. Also, much more importantly, the Americans will choose much more self-destructive desperate strategies such as sending ground troops. It is possible by this weekend ground troops will be sent into Iran which most military analysts believe to be u either counter effective or suicidal. Okay. The Iranians</p><p><span class="timestamp">[16:03]</span> on the other hand can adapt their milit military strategy to the economic and political realities. Okay. So for example, what they&#x27;re doing now is they&#x27;re charging tolls to cross the Homus. Okay. And the third difference is the idea of resilience. So in other words, if you make the world and America conform to your military strategy, they won&#x27;t support you. That means that if you&#x27;re losing</p><p><span class="timestamp">[16:33]</span> troops and you&#x27;re losing equipment, it is very hard to replenish resupply. Whereas the complete opposite in Iran where because they are winning popular opinion because their economy is becoming stronger in this process because they&#x27;re winning more political allies they can actually draw on more support from a population and they can also recruit foreign fighters and foreign support foreign</p><p><span class="timestamp">[17:04]</span> sympathy for their cause. Okay. So for these reasons, I believe that America is losing this war and that ultimately this war will be lost. When this will happen, we don&#x27;t know because America is an empire and they can they can actually drag us on for at least 20 years. All right. Okay. So now that we&#x27;ve discussed why America will probably lose this war, I want to now shift our focus to discuss how</p><p><span class="timestamp">[17:34]</span> the world will change because of this war. What does the end of this war look like? And to do that, what&#x27;s really important is to go back to our model of how the world works. Okay? So remember last week we discussed the structure of the world and at the very core is the empire because the empire provides the muscle the military might to shape the contours of reality. Okay. And then with the empire you have the f the finance.</p><p><span class="timestamp">[18:07]</span> Okay. Finance includes City of London, Wall Street, Bank of International Settlements and asset managers and they are the game masters. Okay. finance are the ones who actually set the game and then this creates the global economy but you can&#x27;t actually have people believing that this is the way the game is structured because then people won&#x27;t want to play</p><p><span class="timestamp">[18:42]</span> the game so what you do is you create additional layer of multilateral organizations what the Americans like to call the rulesbased international order including the UN and the WTO, okay, and other organizations. But this is but this makes people believe that the way the world is structured is fair, open and transparent and you hide the finance and the empire behind multilateral organizations. Okay. And</p><p><span class="timestamp">[19:13]</span> then to justify this system you have the culture, education and media which then creates the different legal infrastructure of different nations and the values as well. Okay. So this is how the world is organized. We also discuss how there are these organizations that are above the nation state that are above the system in order to</p><p><span class="timestamp">[19:44]</span> benefit from the system to keep it going but also to extract rent from it. And these include intelligence, and science. We also discussed how the organizing u forces behind intelligence, crime and science are transational capital and we discuss how they are bound together by a concept called the occult which we&#x27;ll study later on. Okay. But the idea they&#x27;re called. Okay. So</p><p><span class="timestamp">[20:14]</span> this is the structure of the world. Now once this world is created, what you need to understand is that the people in the different spheres who benefit from the system first and foremost their interest is maintaining that status quo. Okay? So their interest is in maintaining the status quo. All to</p><p><span class="timestamp">[20:47]</span> continue. The problem with the system is at the core is an empire that will probably lose the war in Iran and this creates a problem because if the empire falls then it&#x27;s possible this entire edifice falls as well. So the only solution is</p><p><span class="timestamp">[21:18]</span> to replace the empire, the American empire with another empire. All right, this system. And this empire I&#x27;ve argued in the past is of course Israel and this what we call perhaps Judea. this war is one between the United States and Iran. But in reality what this war really is about is a war between</p><p><span class="timestamp">[21:49]</span> the United States and Israel where the American Empire has become corrupt, incompetent and arrogant. And so now Israel sees an opportunity to replace the American empire in the system. And it&#x27;s something that eventually every aspect of the system will agree to do. All right. So the main outcome of this war when it</p><p><span class="timestamp">[22:20]</span> ends is that Israel will replace America in the Middle East. Okay. All right. So let me first discuss why the American empire is falling. Okay. And the main reason is the idea of something called the military industrial for most of its history, America did not have a professional army. Why? Because the founding fathers and most American citizens believe that if</p><p><span class="timestamp">[22:52]</span> there&#x27;s if there&#x27;s an standing army if there&#x27;s professional army that&#x27;s a direct threat to the liberty of the Americans. Okay? Because the Americans fought a war the revolutionary war to get rid of the prof professional army that was the British. Okay? Okay. So, Americans do not like a professional army.</p><p><span class="timestamp">[23:24]</span> But in order to fight World War I and World War II, they have a choice but to create a setting army. The problem is that after America won World War II, the apparatus stayed and the apparatus wanted to maintain the status quo, meaning they wanted access to unlimited government funds. So this led to the cold war and the cold war was a justification for the MIC, the military-industrial complex to get as much government funding as possible. And</p><p><span class="timestamp">[23:56]</span> the blue, as you can see, is government expenditures. Okay, we can understand why they spent all this money in World War II because they were fighting a war to save America and to save the world. But as you can see even though it dropped drastically at the end of the war starting with the cold war you have this uptick okay and then you have the Vietnam war and</p><p><span class="timestamp">[24:28]</span> then after America won the cold war you saw this massive uptick there something called the war on terror. always looking to start wars in order to justify its existence. So there&#x27;s a very famous journalist named Julian Assange and he said this about America. The point is not to have successful wars. The point is not to win wars. The point is to have never</p><p><span class="timestamp">[24:59]</span> ending wars which allows the military-industrial complex to transfer American taxpayer money to a transnational elite. Okay, it&#x27;s basically the point of wars is for the military-industrial complex to steal as much money as possible from America. Okay, America spends a lot of money in its military. Okay, America accounts for 41% of all global military spending. , who&#x27;s next? China. China spends 8.2%. ,</p><p><span class="timestamp">[25:30]</span> Russia, which is America&#x27;s main military enemy, only spends 4.1%. Okay? Meaning that Russia spends onetenth the amount of money that America spends. And you think that, okay, well, this all this means that is that America is invincible. But what people don&#x27;t recognize is the level of corruption within the American military. The</p><p><span class="timestamp">[26:03]</span> American military is probably the most corrupt institution in the world by far. No one even comes close. Okay. September 10th 2001, Donald Rumsfield, who&#x27;s the secretary of defense for the Americans, he&#x27;s head of the Pentagon, and this is a day before September 11th, the 911 attacks, he said that he had a press conference and he said that look, we looked at the Pentagon books, okay? We&#x27;re</p><p><span class="timestamp">[26:36]</span> trying to do an accounting of the Pentagon military spending and we can&#x27;t find $2 trillion. There&#x27;s $2 trillion dollar missing from the budget. It went somewhere. We don&#x27;t know where, but it went somewhere. Okay. All right. All right. So, this is a So, where does the money go? It goes to private contractors. Okay. These are all private companies make a lot of money off the government. Okay. So look at look at a Boeing company.</p><p><span class="timestamp">[27:08]</span> They had in one year $20 billion from the government. They got $20 billion in contracts from the government. Okay. To do so, they had to spend $16 million in order to lobby Congress through advertisements, through political campaigns, and then they bribed this. This is a bribe to politicians. They spent $2 million. Okay? So, this is a really</p><p><span class="timestamp">[27:40]</span> good business to be in. You spend $2 million to you give them rods to politicians, then you spend $60 million on campaigns, and then you make $20 billion. Okay, this is extremely profitable. The difference of course is being picked up by the American taxpayer. The boy company is doesn&#x27;t is not just a defense contractor but also makes civilian</p><p><span class="timestamp">[28:10]</span> airplanes. And for these past few years, there&#x27;s been quite a few cases of civilian airplanes falling out of the sky made by Boeing. Okay, so for example, the Boeing 737 Max. Okay, there was a recall because there were some engineering issues with the plane. Now, there have been a couple of whistleblowers who&#x27;ve come out and tried to say that Boeing is a very company and for the reason they died. Okay, they just disappeared. We don&#x27;t know</p><p><span class="timestamp">[28:41]</span> why, but when they were about to testify against Boeing, they somehow died. All right. , this is a really interesting story that shows you the level of corruption in the Pentagon. There is this woman who is a contractor for the army and she stole $103 million. Okay, that&#x27;s a lot of money. $103 million. She stole it. The army didn&#x27;t know and she kept on stealing and no one seemed to care in the army. But then the IRS, , this is the</p><p><span class="timestamp">[29:14]</span> Internal Revenue Service. They recognized that she was getting all this money from somewhere. So they investigated her and recognized, &quot;Oh my god, she&#x27;s stealing from the army.&quot; So the IRS told the army and that&#x27;s when the army recognized, &quot;Oh, we have a problem.&quot; Okay. The fact that the army didn&#x27;t notice that she was stealing $13 million tells you actually theft in the military is probably a very common thing.</p><p><span class="timestamp">[29:45]</span> All right. So ultimately what this means is that this corruption in the Pentagon is not really sustainable. Okay. So let me discuss why this is a problem for America in Iran. Okay. So right now America is facing three major issues with this war in Iran. the first major issue is the lack of political will meaning that this war is very unpopular in America. Only 40% of the population currently support this war and as things go</p><p><span class="timestamp">[30:16]</span> on and on support will probably decrease. Okay. , you need political will because you need Americans to pay for this war. Trump has asked for $20 billion to fund this war. And also, it&#x27;s possible that Trump will call the national draft, which I believe will happen. , okay. So, if</p><p><span class="timestamp">[30:48]</span> Americans don&#x27;t want to support this war, it&#x27;s very hard to get them to pay for this war and to go fight this war. Second problem is lack of manufacturing capacity. that if you lose planes, if you spend too many if you use too many bombs, you cannot replenish it because you don&#x27;t have the factories to produce these planes and bombs quickly enough. Okay? And so if this war drags on too long, then America will just run out of bombs. And the and the</p><p><span class="timestamp">[31:18]</span> third problem for America is unwillingness casualties. Okay? And what this means is that Americans, the American military is afraid of reporting deaths, casualties, which is weird because in a war soldiers die. That&#x27;s just the reality of war. But the Pentagon is afraid of reporting too many deaths because of the back because of the fair political</p><p><span class="timestamp">[31:50]</span> backlash. Okay. So these are three major problems for the American military in Iran. These are the three major constraints. All right. So the Americans can&#x27;t actually resolve these issues. America will probably lose this war. In which case this is gives opportunity for Israel to prove to the world that it should be the empire. Okay. And it proves it can be the empire by showing</p><p><span class="timestamp">[32:23]</span> that it does have polical will. It does have it doesn&#x27;t have the manufacturing capacity but that&#x27;s more sad. Okay. And it is much more strategic. The last thing is that it is resilient meaning that is willing to accept casualties. Okay. So basically the idea here is the global elite they need an empire to provide the muscle</p><p><span class="timestamp">[32:53]</span> but the empire must prove that it can serve the needs of the global elite. Okay? And so an empire must prove three things. First of all, it must prove it has the resources and the capacity basically the capacity. Okay. And it must prove determination, So to understand this idea, let&#x27;s just do a thought experiment, right? Let&#x27;s just say that we&#x27;re venture capitalists. We have billions of dollars. We have trillions of dollars and we want to invest in a company. Okay? So we&#x27;re approached</p><p><span class="timestamp">[33:26]</span> by two companies. Company A, company B. Okay? So, company A comes to us and says that look, I have 100 companies and they&#x27;re all profitable. Okay? I don&#x27;t have a business plan, but I have lots and lots of resources and a</p><p><span class="timestamp">[33:59]</span> lot of experience and a lot of skill. And so, if I were to invest in another company, I&#x27;m sure it&#x27;ll make a lot of money. Okay. All right. So skills and experience that is company A. Company B is these young guys and they failed. Okay, but they&#x27;re like, you know what? We&#x27;re going to put our heart and soul into this enterprise. We&#x27;re going to work 16 hours a day</p><p><span class="timestamp">[34:30]</span> every day for as long as it takes and we won&#x27;t stop. Okay? Even if this company is successful, we&#x27;re going to keep on going because it&#x27;s our passion. And if this company fails, then we&#x27;re bankrupt. We might kill ourselves. All right? So, if you are the venture capitalist, do you put your money in A or do you put your money in B? Now, most</p><p><span class="timestamp">[35:02]</span> people would put their money in A because they think it is low risk. in B because it&#x27;s high reward. companies that are successful. People in the company don&#x27;t really care if there&#x27;s no new enterprise is successful or not. Who cares, right? I can afford to lose. In which case, it&#x27;s more likely the company A steals your money and actually invest it properly. Whereas company B is going to be opposite where this is their last chance. If they take your money, they&#x27;re going to make sure that they grow it because if they</p><p><span class="timestamp">[35:34]</span> don&#x27;t grow it, then they themselves die. Okay? So, you need these things. You need unity, capacity, and determination. Do you understand? And so, it whatso empire. Okay. All right. So, let&#x27;s look at what&#x27;s happening. , America has this MI mic. And so, the MIC, military industrial complex, what they&#x27;re good at doing is</p><p><span class="timestamp">[36:04]</span> producing very expensive weapon systems. But unfortunately, when you actually put these weapon systems into war, doesn&#x27;t really do anything. Okay. So, this is the Patriot missile system that&#x27;s supposed to protect the GCC in Israel and American military bases from Iranian drones and missiles. Guess what, guys? Doesn&#x27;t really work. Okay. In fact, as you can see from the video,</p><p><span class="timestamp">[36:37]</span> the Iranians can basically fly drones anywhere in the Middle East and Americans can&#x27;t really stop them. All right. So, this is billions of dollars. Doesn&#x27;t really do anything. This is called the F35. The F-35 is the most advanced fighter jet in the whole world. It has stealth technology, meaning you can&#x27;t actually lock onto it using radar. This cost $100 million each. Take took 26 years to develop. So you would think, wow, it</p><p><span class="timestamp">[37:08]</span> took 26 years, so this must be really, really good. No, it took 26 years because the MIC is really corrupt and they want to steal as much money as possible. Okay? And in this war, the Iranians have already shot down at least one of these jets. Okay, this is not supposed to happen. You&#x27;re not supposed to be able to shoot these things down. But Iranians have shut it down using very low radar. Again,</p><p><span class="timestamp">[37:39]</span> these things, they&#x27;re not designed to win wars. They&#x27;re designed to steal as much money as possible from American taxpayer. Okay. Now, last example is the Gerald Ford. This ship cost $13 billion. It cost $13 billion. The annual defense budget for the Iranians is $10 billion. It goes into the war theater and 3 weeks afterwards it has to run away. Okay. And in fact, the Americans say, &quot;Oh, the Gerald Ford, this is the most advanced super carry in the world. It&#x27;s probably going to be down for repairs in the next two years.&quot;</p><p><span class="timestamp">[38:11]</span> And there&#x27;s argument as to what happened. Okay, there are three different possibilities. The first possibility is that there&#x27;s an accident in the laundry room and there&#x27;s a fire and this fire spread throughout the carrier. Okay, which means that actually the carrier is not very resilient. Okay, so that&#x27;s one possibility and that&#x27;s what the official story is. But there are also others who say like the Iranians</p><p><span class="timestamp">[38:43]</span> hit the ship with a missile and so the 04 can&#x27;t protect itself from Iranian missiles so it ran away. Okay. The third possibility, the third explanation is the Pentagon recognized that there are severe limitations of the Jer Ford in actual combat operations. its radar, its guidance system are all very limited. So the Pentagon withdrew the Gerald Ford because it was absolutely useless in war, right? Whichever story is true, it doesn&#x27;t paint a good picture of American military. $13 billion and</p><p><span class="timestamp">[39:17]</span> this does nothing. Okay, it&#x27;s just a white elephant. the Iranians on the and also this is Ioima and this came in World War II in the Pacific theater when the Americans were fighting the Japanese and this is the height of American military glory. Okay, it took about 6,000 lost 6,000 Marines in taking this island and that&#x27;s a sacrifice you need in order to win wars. You&#x27;re going to lose a</p><p><span class="timestamp">[39:47]</span> lot of soldiers and Americans are proud that they were willing to make the sacrifice necessary to win the war. The problem is Americans are no longer willing to sustain casualties. Okay. So, the Americans send about 5,000 around 5,000 Marines to Iran hoping that 5,000 Marines will be enough to win this war. Okay? But it just shows you the Americans have no strategy to win</p><p><span class="timestamp">[40:20]</span> this war and they want they don&#x27;t want to want to make the necessary sacrifices to win this war. They want to win this war as quickly and as cheaply as possible. Okay? The Israel the Israelis are different. Okay, this is Gaza and we all know that what Gaza did was terrible. But again, if you are auditioning to be an empire, Gaza is proof of concept, okay? Meaning it&#x27;s</p><p><span class="timestamp">[40:52]</span> showing the global elite, look, we&#x27;re willing to do what it takes to win this war and defend the empire. Okay? So this was a tremendous tragedy and this and that&#x27;s all war crimes. Okay. And the entire world is a gas. But if you look at Israeli public opinion, 82% support expelling all Palestinians from Gaza. Okay. 66% believe AMLAC exists today. AMAC is just like Israel has this great enemy that he must defeat. Right. So 66% of Israelis believe that this war against Gaza</p><p><span class="timestamp">[41:23]</span> is a war for the very existence of Israel. Okay, this is unity. This is determination. The Americans don&#x27;t have this. Most Americans oppose what Israel is doing in Gaza. But what Israel But Israelis themselves support what&#x27;s going on. Okay. So there&#x27;s unity. All right. All right. So in 2024 there&#x27;s the famous Lebanon pager attack. Okay, meaning that the Israelis were able</p><p><span class="timestamp">[41:55]</span> to implant bombs into pagers that went to Hezbala members and then it blew up. Okay. And maybe from a mental perspective it didn&#x27;t accomplish that much from a psych but from a psych psychological perspective it accomplished a lot. Okay. It scared the living hell out of Hezbollah. It made them paranoid and it also made the world respect Israel more. And Israel spent $275 million to conduct this operation that</p><p><span class="timestamp">[42:27]</span> took decades to implement. Okay. And you&#x27;re like, &quot;Okay, why is telling us this?&quot; Because again, Israel is auditioning to be the new empire. It&#x27;s telling the global elite, &quot;Look, not only will we fight this war for you, not only will we be your muscle, but we&#x27;ll do it cheaply, man. Not billions of dollars,</p><p><span class="timestamp">[42:58]</span> millions of dollars.&quot; , ISIS Islamic State. Okay? And this is considered a terrorist organization. These Sunni extremists who go around and beheading people right now this is from the New York Times and the yellow tells you areas in which they operate and as you can see it&#x27;s really across the Middle East and the red are incidents of attacks directed by ISIS. Okay. Now, something that&#x27;s really funny about all this is ISIS attacks everywhere in the Middle</p><p><span class="timestamp">[43:29]</span> East except for one country, and that country is Israel. Okay? Really funny how you have these Muslim extremists going around committing all sorts of atrocities everywhere in the Middle East except Israel. And so that&#x27;s why a lot of people believe that Islamic State is actually creation of Mossad. But again, Issue is happy for the world to know this because</p><p><span class="timestamp">[44:00]</span> again, Issue is auditioning to be the new empire. And what is saying is we don&#x27;t have to use the American strategy of just bombing everyone to death. Okay, that&#x27;s expensive. That&#x27;s brutal. It&#x27;s not very strategic. We can use MSA to infiltrate groups and use these groups against their comrades, their neighbors. It&#x27;s not much more efficient, is not much more effective. Okay. So, what</p><p><span class="timestamp">[44:31]</span> Israel is saying is we are much better at controlling the Middle East than the Americans. So, let us control the Middle East using our strategies. Okay. this is a story of a MSAD agent who was disguised as an ISIS preacher. Okay. And this happens a lot. There are lots of stories where you have these license commanders or agents and they and when you arrest them you discover okay actually they&#x27;re</p><p><span class="timestamp">[45:02]</span> actually MSAD. Okay. So ISIS is basically a MSAD operation. okay if you look at history the relationship between Israel and America is actually pretty simple. Israel is the pitbull for America. is it doesn&#x27;t want to do bad things. Okay? It wants to feel good about itself. Therefore, it subcontracts the violence, the murder, the genocide to different people, okay? To mercenaries, the Israelis in the Middle East. And this is a pattern throughout human</p><p><span class="timestamp">[45:36]</span> history. So the Romans started out as mercenaries for the attricians in Italy. The Aztecs started out as mercenaries for the Kolkakan in Mexico. The Greeks started out as mercenaries for the Persians. Okay. The Mongols started out as mercenaries for the Chinese. The Aadian started out as mercenaries for the Samrians. The Mik Mo started out as mercenaries for the Audasty in Egypt.</p><p><span class="timestamp">[46:07]</span> In every instance, what happened is the mercenaries eventually got to the point where we are the ones killing ourselves for this empire. The empire is corrupt, decadent, and weak. Why don&#x27;t we just take it all over? And they did. Okay, we&#x27;re seeing a similar situation play out today in the Middle East</p><p><span class="timestamp">[46:38]</span> where Israel was created by the British and Americans to be the to be their pitbull, to be their u aircraft carrier in the Middle East to create as much instability as possible so that the Americans and the British can control the oil supply in the Middle East. And this has gone on for decades and now the Israelis are like, &quot;Wait a minute here. We&#x27;re the ones doing all the work. We&#x27;re the ones making all the sacrifices. We&#x27;re the ones that</p><p><span class="timestamp">[47:11]</span> are getting all the hate in this world. So why shouldn&#x27;t we be the empire now? America&#x27;s useless. Okay. All right. So this is a pattern throughout human history. And so we&#x27;re going to look at what this means. Okay. So Israel has something called the greater Israel project. And this is what extremists in Israel believe. They believe that God in the Bible promised the entire Middle East to the Jewish people. Okay? Extending from the Nile in Egypt all the way to the Euphrates in Iraq. Okay? And it also encompasses</p><p><span class="timestamp">[47:42]</span> Saudi Arabia, Jordan, Lebanon, Syria, and parts of Tur Turkey as well. Okay. Now, something really funny about this map is this. Iran, Persia is not part of the Greater Israel Project. So then you&#x27;re asking yourself, wait a minute here. If Iran is actually not part of the greater Israel project, then why is going to war with Iran? Well, the reason why is if they want all this territory,</p><p><span class="timestamp">[48:14]</span> their main enemy is not Syria that&#x27;s been destroyed. It&#x27;s not Iraq that&#x27;s been destroyed. It&#x27;s not Saudi Arabia, it&#x27;s too weak. Not Jordan, it&#x27;s too weak. Not Egypt, it&#x27;s too weak. Not Lebanon, it&#x27;s not. It&#x27;s too weak. Okay. Their main enemy is the American Empire. Okay. In the Greater Israel project, the M it&#x27;s</p><p><span class="timestamp">[48:45]</span> the Americans that control the land of greater Israel, the Middle East. These are American bases. So, in other words, you use this war against Iran to destroy the American Empire. How? By forcing the American Empire to go and invade Iran. And when this happens, America will be too overextended and then they&#x27;ll be forced to retreat from the Middle East. Okay? And so eventually America will be defeated.</p><p><span class="timestamp">[49:16]</span> America will be forced to retreat from the Middle East. And I will leave two regional powers, okay? Iran and Israel. And again because of the Greater Israel project, the Israelis have no problem with this. Persia is again not part of the great project. The Israelis don&#x27;t really care if Iran is still standing. They want Iran to be as weaken as possible. Okay. But they really don&#x27;t need to defeat Iran to achieve</p><p><span class="timestamp">[49:46]</span> the biblical prophecy, but they do need to defeat the Americans. All right. The Americans are in the way. All right. Okay. So, what does the Greater Israel Project mean? Well, it means control of the world the world&#x27;s oil. Basically 20% of the world&#x27;s oil. So these are the gas fields. The yellow are the gas fields of the Middle East. All right? And the blue are the</p><p><span class="timestamp">[50:17]</span> trade routes. So you can see how Israel is at the very center of all this wealth, right? They have the logistics, they have the technology. it makes sense for them to take control of all these resources and then start shipping these resources to Europe as well as to East Asia, China, South Korea and Japan. Okay, so that&#x27;s what the Paka will look like. It will be a trade network controlling all the resources of the Middle East and then shipping off to the</p><p><span class="timestamp">[50:50]</span> rest of the world. All right. Then you have data centers. Okay. So, Israel has the most data centers in the Middle East and then Saudi Arabia has 36. , UA has 34. Okay. So, these three places are competing against each other for AI dominance. Why is AI important? Because it allows you to create a surveillance state. Surveillance is what you need for an empire, right? You need to control the population. All right. Now</p><p><span class="timestamp">[51:20]</span> the problem with Saudi Arabia and UAE is for them to build their data centers, they need to import foreign expertise. They themselves do not have the human capital to build these data centers and to run these data centers. On the other hand, Israel does. Okay. Israel has the best universities in the Middle East. It has the best IT talent in the Middle</p><p><span class="timestamp">[51:51]</span> East. It has it has the best human capital. Therefore, it makes perfect sense for Israel to just absorb the entire AI network of the Middle East and become the main epicenter of AI surveillance in the Middle East. Okay, which will become the backbone of Pax Judea. One more. , so what does Pax Judea look like? It&#x27;s really the India Middle East trade corridor. Okay. where for India to get to Europe it has</p><p><span class="timestamp">[52:21]</span> to go through Israel. Okay. So this is what tax judic will look like. Basically a the trade corridor that will unite the sub Asian continent with Europe. Okay. But not only that, but the idea of this is also to connect to Africa, right? Because no other place is able to access Africa. Only Israel is. And not only that, but it&#x27;s also able to access Ukraine and Russia. Ukraine energy and food and then transport it into Africa that&#x27;s</p><p><span class="timestamp">[52:53]</span> combining the world. Okay. So Israel because of its location can really be the epicenter of all global trade. All right. Now let&#x27;s look at Iran. So for the longest time, Iran did have lots of resources, oil, oil resources, but the Americans put sanctions on this these oil exports. This war has basically lifted</p><p><span class="timestamp">[53:26]</span> all sanctions. Okay. So the Iranian economy is now able to export its oil all across the world. So this is treaty parsley and he is probably America&#x27;s foremost expert on Iran and he&#x27;s talks to a lot of people and what he&#x27;s saying is basically Iran now is able to produce oil transport it across the</p><p><span class="timestamp">[53:56]</span> world and then get money for it. Okay. So what the conclusion he makes is this. Trump and Israel&#x27;s war has ended up delivering Iran def facto sanctions relief. Before the war, Iran was cut off from the global economy. Because of this war, Iran now is becoming embedded</p><p><span class="timestamp">[54:29]</span> into the global economy. It&#x27;s the complete opposite of the intention of this war. And what this means is Iran is now less incentivized to end the war. Okay. The more this war keeps on going, the more Iran benefits economically. becomes the epicenter of two major trade networks. Okay. The first is something called the north south transport corridor that links Russia. Okay. and Iran together. Okay.</p><p><span class="timestamp">[55:02]</span> And this will then allow Russia to access India and Asia and allow Iran to access Europe. Okay. So this is the north south quarter that&#x27;s controlled by Russia. But also you have of course the belt and road initiative and guess what terrain is also at the epicenter of this trade network. Okay. So for China</p><p><span class="timestamp">[55:33]</span> access Europe it has to go through Iran. For Europe to access China it has to go through terrain as well. Okay. So this is what the new world will look like after the war. You&#x27;ll have two regional powers, Israel and Iran. And they will</p><p><span class="timestamp">[56:05]</span> have their own independent trade networks and they will have their own access to resources. So Israel will control the resources of the Middle East and Iran will control the Hummus. Okay. And with the tomos they collect a toll which will feed the economy. They will be helped by Russia and China because</p><p><span class="timestamp">[56:35]</span> it is in Russia and China&#x27;s best interest develop the infrastructure of Iran to facilitate global trade. Okay. But then you&#x27;re like wait a minute here but Iran and Israel are enemies. Okay. So this is a misunderstanding. Ideologically Iran and Israel are enemies. But I want to teach you three basic principles or rules of geopolitics. Okay? And once you understand these rules, it&#x27;ll be much easier for you to</p><p><span class="timestamp">[57:08]</span> understand the new world that we&#x27;re going into. The first is this. The strong respect each other and pray on the weak. Okay, this makes sense, right? Why are the strong fighting each other? Wouldn&#x27;t it be easier for them to like leave each other alone and go pick on the weak? It benefits everyone, right? So, in this situation, right, you have four you</p><p><span class="timestamp">[57:39]</span> have different countries. You have GCC, you have Israel, you have the United States, you have Iran. Okay. So, you have these four different players in this war. Right now it&#x27;s essentially Israel, GCC and US fighting against Iran. But if Iran proves it is strong and GCD proves it&#x27;s weak, the US proves it&#x27;s weak, guess what&#x27;s going to happen? Issue and event are</p><p><span class="timestamp">[58:10]</span> going to get together and say screw these guys. Let&#x27;s just work together, man. Okay. Does that make sense? Even though at in the beginning it seems as though Israel GCC and US are allies against Iran, ultimately if it if Iran is able to prove it&#x27;s strong, then Israel will ban the GCC in the United States and Israel will work with Iran to build a new order in the Middle East because that&#x27;s the law of the jungle. Okay, that is what is in</p><p><span class="timestamp">[58:43]</span> the best interest according to game theory for Israel. And the last thing to understand is the weak do not work well together. The weak must ally with the strong for protection. Okay? So what this means is the GCC is weak. Right? So you look at Saudi Arabia, , Bahan, Oman, Kuwait, Qatar. Okay,</p><p><span class="timestamp">[59:13]</span> so these are the six GCC countries. They&#x27;re all weak. And you would think, you know what, if they were to combine their resources and fight together, they could probably beat Israel or probably beat Iran. The problem with this is weak players don&#x27;t work well together. Okay? They&#x27;re weak because they&#x27;re stupid. They are. And so what they do is rather than seek to work together, what they do is they seek to ally with stronger forces. Okay? So</p><p><span class="timestamp">[59:45]</span> right now they&#x27;re all aligned with the United States and Israel. All right? Against Iran. But as this war progresses and the US falls, then what will happen is that they must either choose Israel or Iran. And what&#x27;s going to happen is that you might have some places Qatar and Oman who choose, you know</p><p><span class="timestamp">[1:00:16]</span> what, screw this, we&#x27;re going to join Iran. And you have Saudi Arabia and UAE who are like, okay, let&#x27;s join Israel. Okay. But the GCC, regardless of what happens, will no longer be a major geogical factor in the Middle East anymore. A lot of them will be destroyed because of this war. All right? So, according to game theory, this is what the world should look like after the war ends. But again, this is</p><p><span class="timestamp">[1:00:47]</span> all theory. Okay? This is a class focused on intellectual speculation. It&#x27;s meant to be fun. It&#x27;s meant to make us more curious about the world. It&#x27;s supposed to heighten our critical thinking skills. This is not meant to be prophecy. Okay? I&#x27;m not saying this must happen. I&#x27;m saying this might happen for these reasons. And if they do happen because of they do happen, then this provides us a good framework to understand our reasoning</p><p><span class="timestamp">[1:01:18]</span> better. Okay? If it doesn&#x27;t work out this way, it&#x27;s fine because we&#x27;ll just go back and analyze what went wrong better. Okay. What&#x27;s really important is not to set a judgment. What&#x27;s really important is keep our minds open and be open to the possibility of different outcomes. All right. Okay. Any questions, guys? America, what will &amp;gt;&amp;gt; No, no. I didn&#x27;t say Israel will defeat America. I never said that. Okay. Well, Israel might &amp;gt;&amp;gt; No, no. Let&#x27;s</p><p><span class="timestamp">[1:01:50]</span> be clear about language. I did not say Israel will fight America. What I said is Israel is auditioning to replace America. Israel is trying to prove to global elite I&#x27;m strong enough to replace America when America leaves the Middle East. You understand? &amp;gt;&amp;gt; Yeah. &amp;gt;&amp;gt; Okay. Let&#x27;s be clear about language. Okay. Yes. like what will like Israel try to prove that it&#x27;s stronger than America and I&#x27;m curious like what the next step Israel will take if like it&#x27;s trying to show that it&#x27;s strong. All</p><p><span class="timestamp">[1:02:22]</span> right. So look, Israel doesn&#x27;t have to do anything different. Israel is determined to win this war, right? That&#x27;s all it has to do. Israel is determined to win this war and the United States is not determined to win this war. The answer doesn&#x27;t even know what it&#x27;s doing. Okay. All right. So what&#x27;s important? Okay. What&#x27;s really important</p><p><span class="timestamp">[1:02:52]</span> is to go back to our analysis of H. Sorry, not yet. Yeah. like this is all right. remember you need an empire. And you have the finance, the game masters, and then you have the global economy. Okay. All right. So the these different players and again this really important idea to understand all these players are interested in maintaining a status quo. Eventually as this war progresses they&#x27;re going to recognize that</p><p><span class="timestamp">[1:03:24]</span> America is actually a problem. The American Empire is not a good thing. It&#x27;s not a benefit to us. It&#x27;s an it&#x27;s a problem for us. And so we need to replace the American Empire, right? And who&#x27;s the only alternative? Israel. So we need to transition from America to Israel if we are to maintain the system. Then they recognize that okay the problem</p><p><span class="timestamp">[1:03:54]</span> though is America will not go away. Empires don&#x27;t surrender power willingly and so we need to create a situation which America is forced out of the Middle East. Now Iran cannot defeat America on the battlefield. America can drag this thing on for at least</p><p><span class="timestamp">[1:04:27]</span> 20 years. We don&#x27;t want to wait 20 years because we&#x27;ll lose a lot of money in the process and there&#x27;s no point in waiting 20 years. So we need to force America out of the Middle East. So if we cannot we if we cannot defeat America sorry if Iran cannot defeat America on the battlefield what we need to do is cause America to implode. We need to cause a collapse in America. And how do you do that? The economy.</p><p><span class="timestamp">[1:04:58]</span> oil to go way up, if I cause discontent in America, this will cause a civil war in America. And then the American military has no choice but to retreat back into America. Okay? And then Israel will naturally take over from America. And this is something we&#x27;ll discuss next class. Okay? The strategy for how to destroy the American Empire and replace it with Israel. Right. Okay. Does that make sense? Okay. Any more questions, guys? Okay, great. So, I will see you</p><p><span class="timestamp">[1:05:28]</span> next week. Okay. All right. Okay. So, was this interesting? Yeah. &amp;gt;&amp;gt; Was this clear? &amp;gt;&amp;gt; Yeah.</p>
+    </article>
+
+    <!-- Audio Player Bar -->
+    <div class="audio-player hidden" id="audioPlayer">
+        <div class="player-inner">
+            <button class="player-btn" id="playPauseBtn" onclick="toggleTTS()">▶</button>
+            <div class="player-info">
+                <div class="player-status" id="playerStatus">Ready</div>
+                <div class="player-progress-track" onclick="seekTTS(event)">
+                    <div class="player-progress-fill" id="playerProgress" style="width:0%"></div>
+                </div>
+                <div class="player-time" id="playerTime"></div>
+            </div>
+            <div class="player-controls">
+                <button class="speed-btn" id="speedBtn" onclick="cycleSpeed()">1x</button>
+                <button class="close-player-btn" onclick="stopTTS()">✕</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <a href="../index.html#teachings">← Back to all lectures</a> &nbsp;·&nbsp;
+        by <a href="https://x.com/ethtachi" target="_blank">@ethtachi</a> &nbsp;·&nbsp;
+        <a href="https://www.youtube.com/@PredictiveHistory" target="_blank">@PredictiveHistory</a>
+    </footer>
+
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+
+        // ========================================
+        // TEXT-TO-SPEECH READER
+        // ========================================
+        const synth = window.speechSynthesis;
+        let paragraphs = [];
+        let currentParagraph = 0;
+        let isPlaying = false;
+        let isPaused = false;
+        let currentUtterance = null;
+        let speeds = [0.8, 1, 1.2, 1.5, 2];
+        let speedIndex = 1;
+
+        function getParagraphs() {
+            if (paragraphs.length === 0) {
+                paragraphs = Array.from(document.querySelectorAll('#articleBody p'));
+            }
+            return paragraphs;
+        }
+
+        function getCleanText(el) {
+            // Remove timestamp spans and get clean text
+            const clone = el.cloneNode(true);
+            clone.querySelectorAll('.timestamp').forEach(ts => ts.remove());
+            return clone.textContent.trim();
+        }
+
+        function highlightParagraph(index) {
+            getParagraphs().forEach((p, i) => {
+                p.classList.toggle('tts-active', i === index);
+            });
+            // Scroll to active paragraph
+            const active = getParagraphs()[index];
+            if (active) {
+                active.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function updateProgress() {
+            const total = getParagraphs().length;
+            const pct = total > 0 ? ((currentParagraph + 1) / total) * 100 : 0;
+            document.getElementById('playerProgress').style.width = pct + '%';
+            document.getElementById('playerTime').textContent = 
+                `Paragraph ${currentParagraph + 1} of ${total}`;
+        }
+
+        function speakParagraph(index) {
+            const paras = getParagraphs();
+            if (index >= paras.length) {
+                // Done
+                stopTTS();
+                document.getElementById('playerStatus').textContent = 'Finished';
+                return;
+            }
+
+            currentParagraph = index;
+            const text = getCleanText(paras[index]);
+            
+            if (!text) {
+                // Skip empty paragraphs
+                speakParagraph(index + 1);
+                return;
+            }
+
+            highlightParagraph(index);
+            updateProgress();
+            document.getElementById('playerStatus').textContent = 'Speaking...';
+
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.rate = speeds[speedIndex];
+            currentUtterance.pitch = 1;
+            
+            // Try to pick a good voice
+            const voices = synth.getVoices();
+            const preferred = voices.find(v => v.name.includes('Samantha')) 
+                || voices.find(v => v.name.includes('Google') && v.lang.startsWith('en'))
+                || voices.find(v => v.lang.startsWith('en') && v.localService);
+            if (preferred) currentUtterance.voice = preferred;
+
+            currentUtterance.onend = () => {
+                if (isPlaying && !stopped) {
+                    speakParagraph(index + 1);
+                }
+            };
+
+            currentUtterance.onerror = (e) => {
+                if (e.error !== 'canceled') {
+                    speakParagraph(index + 1);
+                }
+            };
+
+            synth.speak(currentUtterance);
+        }
+
+        function toggleTTS() {
+            const player = document.getElementById('audioPlayer');
+            const btn = document.getElementById('playPauseBtn');
+            const listenBtn = document.getElementById('listenBtn');
+
+            if (!isPlaying && !isPaused) {
+                // Start fresh
+                stopped = false;
+                isPlaying = true;
+                isPaused = false;
+                player.classList.remove('hidden');
+                btn.textContent = '⏸';
+                listenBtn.textContent = '⏸ Pause';
+                speakParagraph(currentParagraph);
+            } else if (isPlaying && !isPaused) {
+                // Pause
+                synth.pause();
+                isPaused = true;
+                isPlaying = true;
+                btn.textContent = '▶';
+                listenBtn.textContent = '🎧 Resume';
+                document.getElementById('playerStatus').textContent = 'Paused';
+            } else if (isPaused) {
+                // Resume
+                synth.resume();
+                isPaused = false;
+                btn.textContent = '⏸';
+                listenBtn.textContent = '⏸ Pause';
+                document.getElementById('playerStatus').textContent = 'Speaking...';
+            }
+        }
+
+        let stopped = false;
+
+        function stopTTS() {
+            stopped = true;
+            isPlaying = false;
+            isPaused = false;
+            synth.cancel();
+            currentParagraph = 0;
+            document.getElementById('audioPlayer').classList.add('hidden');
+            document.getElementById('playPauseBtn').textContent = '▶';
+            document.getElementById('listenBtn').textContent = '🎧 Listen to Article';
+            document.getElementById('playerProgress').style.width = '0%';
+            getParagraphs().forEach(p => p.classList.remove('tts-active'));
+        }
+
+        function cycleSpeed() {
+            speedIndex = (speedIndex + 1) % speeds.length;
+            document.getElementById('speedBtn').textContent = speeds[speedIndex] + 'x';
+            // If currently speaking, restart current paragraph at new speed
+            if (isPlaying && !isPaused) {
+                synth.cancel();
+                speakParagraph(currentParagraph);
+            }
+        }
+
+        function seekTTS(event) {
+            const track = event.currentTarget;
+            const rect = track.getBoundingClientRect();
+            const pct = (event.clientX - rect.left) / rect.width;
+            const targetIndex = Math.floor(pct * getParagraphs().length);
+            synth.cancel();
+            currentParagraph = Math.max(0, Math.min(targetIndex, getParagraphs().length - 1));
+            if (isPlaying) {
+                speakParagraph(currentParagraph);
+            } else {
+                highlightParagraph(currentParagraph);
+                updateProgress();
+            }
+        }
+
+        // Load voices (some browsers load asynchronously)
+        synth.onvoiceschanged = () => synth.getVoices();
+
+        // Stop speech when navigating away
+        window.addEventListener('beforeunload', () => synth.cancel());
+    </script>
+</body>
+</html>

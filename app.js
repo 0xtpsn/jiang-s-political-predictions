@@ -507,6 +507,39 @@ const predictions = [
         source: "Tucker Carlson Interview",
         quote: "I would not be surprised if North Korea and South Korea were to come to a compromise... both nations aspire for national reunification and because China and Japan will be in conflict.",
         analysis: "Jiang suggests that as China and Japan enter into conflict, the Korean peninsula could leverage the instability for reunification. As of March 2026, inter-Korean relations remain hostile with no signs of compromise."
+    },
+    {
+        id: 47,
+        title: "Israel and Iran Will Eventually Ally",
+        category: "geopolitics",
+        verdict: "pending",
+        verdictLabel: "⏳ Pending",
+        confidence: "High",
+        source: "Game Theory #16: Pax Judaica Rising",
+        quote: "If Iran proves it is strong and GCC proves it's weak... Israel will abandon the GCC and the United States and Israel will work with Iran to build a new order in the Middle East because that's the law of the jungle.",
+        analysis: "Applying game theory and the geopolitical logic that 'the strong respect each other and prey on the weak', Jiang predicts an eventual alliance of convenience between regional powers Israel and Iran once the US empire is forced out, despite current ideological enmity."
+    },
+    {
+        id: 48,
+        title: "Engineered US Financial Collapse",
+        category: "economics",
+        verdict: "pending",
+        verdictLabel: "⏳ Pending",
+        confidence: "High",
+        source: "Game Theory #17: The Great Reset",
+        quote: "Transnational capital needs to first collapse the American economy... to shift the center of gravity from America to Israel. You want to engineer a financial crisis... to buy up these resources... It'll be suddenly.",
+        analysis: "Jiang theorizes that transnational capital will deliberately engineer a severe, sudden collapse of the US stock market and private credit bubbles in order to extract wealth before shifting the global center of economic gravity to Israel."
+    },
+    {
+        id: 49,
+        title: "Creation of a North American Technate",
+        category: "geopolitics",
+        verdict: "pending",
+        verdictLabel: "⏳ Pending",
+        confidence: "High",
+        source: "Game Theory #18: Trump World Order",
+        quote: "The grand plan for America is something called the Technate... By collapsing the Middle East, you make Asia and Europe dependent on North American energy and fertilizer... to transform America from finance to resource exportation and manufacturing.",
+        analysis: "Jiang predicts Trump's chaotic foreign policy and Middle East wars are calculated moves to collapse the globalized financial system. This forces a transition towards a self-sufficient, resource-driven 'Fortress America' (Technate) spanning North America."
     }
 ];
 
@@ -647,6 +680,9 @@ const lectures = [
     { title: "The Law of Eschatological Convergence", series: "game-theory", number: "#12", hasPredictions: false },
     { title: "Epstein's World", series: "game-theory", number: "#13", hasPredictions: true },
     { title: "The Law of Proximity", series: "game-theory", number: "#14", hasPredictions: true },
+    { title: "Pax Judaica Rising", series: "game-theory", number: "#16", hasPredictions: true },
+    { title: "The Great Reset", series: "game-theory", number: "#17", hasPredictions: true },
+    { title: "Trump World Order", series: "game-theory", number: "#18", hasPredictions: true },
 
     // Great Books Series
     { title: "Secrets of the Universe", series: "great-books", number: "#1", hasPredictions: false },
